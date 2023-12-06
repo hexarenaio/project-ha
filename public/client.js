@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Manejar la recepción de información sobre la cantidad de usuarios conectados
   socket.on('userCount', function (count) {
     connectedUsers = count;
+    drawUserCount(); // Llamar a la función para actualizar el texto en el canvas
   });
 
   // Función para dibujar un círculo en el canvas con el nombre del jugador
@@ -38,9 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
     context.clearRect(0, 0, canvas.width, 30); // Limpiar la parte superior del canvas
 
     // Dibujar el texto con la cantidad de usuarios conectados
-    context.fillStyle = 'black';
-    context.font = '16px Arial';
-    context.fillText(`Usuarios conectados: ${connectedUsers}`, canvas.width / 2 - 100, 20);
+    drawUserCount();
 
     context.beginPath();
     context.arc(x, y, 10, 0, 2 * Math.PI);
@@ -52,4 +51,12 @@ document.addEventListener('DOMContentLoaded', function () {
     context.font = '12px Arial';
     context.fillText(playerName, x - 20, y - 15);
   }
+
+  // Función para dibujar el texto con la cantidad de usuarios conectados
+  function drawUserCount() {
+    context.fillStyle = 'black';
+    context.font = '16px Arial';
+    context.fillText(`Usuarios conectados: ${connectedUsers}`, canvas.width / 2 - 100, 20);
+  }
 });
+
