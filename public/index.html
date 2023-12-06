@@ -3,29 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Juego Multijugador</title>
+  <title>Mi Juego Multijugador</title>
   <style>
     body {
       margin: 0;
       overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #0000FF;
     }
-
-    canvas {
-      display: block;
+    form {
+      text-align: center;
+    }
+    #gameCanvas {
+      display: none; /* Ocultar el canvas inicialmente */
     }
   </style>
 </head>
 <body>
   <form id="nameForm">
-    <label for="playerName">Nombre:</label>
-    <input type="text" id="playerName" required>
+    <label for="playerName">Introduce tu nombre:</label>
+    <input type="text" id="playerName" name="playerName" required>
     <button type="submit">Aceptar</button>
   </form>
 
-  <canvas id="gameCanvas"></canvas>
+  <canvas id="gameCanvas" width="400" height="400"></canvas>
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="client.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const nameForm = document.getElementById('nameForm');
+      const gameCanvas = document.getElementById('gameCanvas');
+
+      nameForm.addEventListener('submit', function (event) {
+        event.preventDefault(); // Evitar el envío del formulario
+
+        const playerName = document.getElementById('playerName').value;
+
+        // Aquí puedes enviar playerName al servidor si es necesario
+
+        // Ocultar el formulario y mostrar el canvas
+        nameForm.style.display = 'none';
+        gameCanvas.style.display = 'block';
+      });
+    });
+  </script>
 </body>
 </html>
 
