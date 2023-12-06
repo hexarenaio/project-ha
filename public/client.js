@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function () {
     playerName = document.getElementById('playerName').value;
     nameForm.style.display = 'none';
     canvas.style.display = 'block';
+
+        drawHexGrid();
+
   });
 
   // Manejar la creación de círculos
@@ -51,6 +54,41 @@ document.addEventListener('DOMContentLoaded', function () {
     context.font = '12px Arial';
     context.fillText(playerName, x - 20, y - 15);
   }
+
+    // Función para dibujar la malla de hexágonos
+  function drawHexGrid() {
+    const hexRadius = 20;
+    const hexWidth = Math.sqrt(3) * hexRadius;
+    const hexHeight = 2 * hexRadius;
+    const cols = Math.floor(canvas.width / hexWidth);
+    const rows = Math.floor(canvas.height / hexHeight);
+
+    context.strokeStyle = 'black';
+
+    for (let col = 0; col < cols; col++) {
+      for (let row = 0; row < rows; row++) {
+        const x = col * hexWidth + (row % 2) * hexWidth / 2;
+        const y = row * hexHeight;
+
+        drawHexagon(x, y, hexRadius);
+      }
+    }
+  }
+
+  // Función para dibujar un hexágono en una posición dada
+  function drawHexagon(x, y, radius) {
+    context.beginPath();
+    for (let i = 0; i < 6; i++) {
+      const angle = (i * Math.PI) / 3;
+      const offsetX = radius * Math.cos(angle);
+      const offsetY = radius * Math.sin(angle);
+      context.lineTo(x + offsetX, y + offsetY);
+    }
+    context.closePath();
+    context.stroke();
+  }
+
+ 
 
   // Función para dibujar el texto con la cantidad de usuarios conectados
   function drawUserCount() {
