@@ -9,14 +9,22 @@ const io = socketIo(server);
 app.use(express.static('public'));
 
 io.on('connection', (socket) => {
-  console.log('Usuario conectado');
+  console.log('Nuevo usuario conectado');
+
+  // Resto de la lógica
+
+  io.emit('userCount', Object.keys(io.sockets.sockets).length);
 
   socket.on('circle', (data) => {
     io.emit('circle', data);
   });
 
-  socket.on('disconnect', () => {
+ socket.on('disconnect', () => {
     console.log('Usuario desconectado');
+
+    // Resto de la lógica
+
+    io.emit('userCount', Object.keys(io.sockets.sockets).length);
   });
 });
 
