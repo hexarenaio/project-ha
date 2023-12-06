@@ -56,18 +56,19 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
     // Función para dibujar la malla de hexágonos
+  // Función para dibujar la malla de hexágonos
   function drawHexGrid() {
     const hexRadius = 20;
     const hexWidth = Math.sqrt(3) * hexRadius;
     const hexHeight = 2 * hexRadius;
-    const cols = Math.floor(canvas.width / hexWidth);
-    const rows = Math.floor(canvas.height / hexHeight);
+    const cols = Math.floor(canvas.width / hexWidth) + 1;
+    const rows = Math.floor(canvas.height / hexHeight) + 1;
 
     context.strokeStyle = 'black';
 
     for (let col = 0; col < cols; col++) {
       for (let row = 0; row < rows; row++) {
-        const x = col * hexWidth + (row % 2) * hexWidth / 2;
+        const x = col * hexWidth * 3 / 4;
         const y = row * hexHeight;
 
         drawHexagon(x, y, hexRadius);
