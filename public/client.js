@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const nameForm = document.getElementById('nameForm');
 
   let playerName;
-  let connectedUsers = 0; // Variable para almacenar la cantidad de usuarios conectados
+  let playerPosition = { x: 0, y: 0 };
+  let hexRadius = 30;
 
   nameForm.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -14,49 +15,97 @@ document.addEventListener('DOMContentLoaded', function () {
     canvas.style.display = 'block';
   });
 
-  // Manejar la creación de círculos
   canvas.addEventListener('click', function (event) {
-    const x = event.clientX - canvas.getBoundingClientRect().left;
-    const y = event.clientY - canvas.getBoundingClientRect().top;
+    const mouseX = event.clientX - canvas.getBoundingClientRect().left;
+    const mouseY = event.clientY - canvas.getBoundingClientRect().top;
 
-    // Enviar la información del círculo al servidor
-    socket.emit('circle', { x, y, playerName });
+    // Actualizar la posición del jugador al hacer clic
+    playerPosition = getHexagonAt(mouseX, mouseY);
+
+    // Enviar la información del jugador al servidor
+    socket.emit('playerMove', { playerName, position: playerPosition });
   });
 
-  // Manejar la recepción de círculos del servidor
-  socket.on('circle', function (data) {
-    drawCircle(data.x, data.y, data.playerName);
+  socket.on('updatePlayers', function (players) {
+    // Limpiar el canvas
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Dibujar la malla de hexágonos
+    drawHexagonGrid();
+
+    // Dibujar a todos los jugadores
+    for (const player of players) {
+      drawPlayer(player.position.x, player.position.y);
+    }
   });
 
-  // Manejar la recepción de información sobre la cantidad de usuarios conectados
-  socket.on('userCount', function (count) {
-    connectedUsers = count;
-    drawUserCount(); // Llamar a la función para actualizar el texto en el canvas
-  });
+  // Función para dibujar la malla de hexágonos
+  function drawHexagonGrid() {
+    const cols = Math.floor(canvas.width / (hexRadius * 3));
+    const rows = Math.floor(canvas.height / (hexRadius * Math.sqrt(3)));
 
-  // Función para dibujar un círculo en el canvas con el nombre del jugador
-  function drawCircle(x, y, playerName) {
-    context.clearRect(0, 0, canvas.width, 30); // Limpiar la parte superior del canvas
+    for (let col = 0; col < cols; col++) {
+      for (let row = 0; row < rows; row++) {
+        const x = col * hexRadius * 3 + (row % 2 === 1 ? hexRadius * 1.5 : 0);
+        const y = row * hexRadius * Math.sqrt(3);
+        drawHexagon(x, y);
+      }
+    }
+  }
 
-    // Dibujar el texto con la cantidad de usuarios conectados
-    drawUserCount();
+  // Función para dibujar un hexágono en una posición dada
+  function drawHexagon(x, y) {
+    context.beginPath();
+    for (let i = 0; i < 6; i++) {
+      const angle = (i * Math.PI) / 3;
+      const offsetX = hexRadius * Math.cos(angle);
+      const offsetY = hexRadius * Math.sin(angle);
+      context.lineTo(x + offsetX, y + offsetY);
+    }
+    context.closePath();
+    context.stroke();
+  }
 
+  // Función para obtener la posición del hexágono en las coordenadas dadas
+  function getHexagonAt(mouseX, mouseY) {
+    const cols = Math.floor(canvas.width / (hexRadius * 3));
+    const rows = Math.floor(canvas.height / (hexRadius * Math.sqrt(3)));
+
+    for (let col = 0; col < cols; col++) {
+      for (let row = 0; row < rows; row++) {
+        const x = col * hexRadius * 3 + (row % 2 === 1 ? hexRadius * 1.5 : 0);
+        const y = row * hexRadius * Math.sqrt(3);
+
+        // Verificar si el punto está dentro del hexágono
+        if (isPointInHexagon(mouseX, mouseY, x, y)) {
+          return { x, y };
+        }
+      }
+    }
+
+    return { x: 0, y: 0 }; // Devolver una posición por defecto si no se encuentra un hexágono
+  }
+
+  // Función para verificar si un punto está dentro de un hexágono
+  function isPointInHexagon(pointX, pointY, hexX, hexY) {
+    const offsetX = pointX - hexX;
+    const offsetY = pointY - hexY;
+    const distance = Math.sqrt(offsetX ** 2 + offsetY ** 2);
+
+    return distance < hexRadius;
+  }
+
+  // Función para dibujar a un jugador
+  function drawPlayer(x, y) {
     context.beginPath();
     context.arc(x, y, 10, 0, 2 * Math.PI);
     context.fillStyle = 'red';
     context.fill();
+    context.stroke();
 
     // Mostrar el nombre del jugador encima del círculo
     context.fillStyle = 'white';
     context.font = '12px Arial';
     context.fillText(playerName, x - 20, y - 15);
   }
-
-  // Función para dibujar el texto con la cantidad de usuarios conectados
-  function drawUserCount() {
-    context.fillStyle = 'black';
-    context.font = '16px Arial';
-    context.fillText(`Usuarios conectados: ${connectedUsers}`, 10, 40);
-  }
 });
-
