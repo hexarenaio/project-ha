@@ -58,37 +58,60 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Función para dibujar la malla de hexágonos
   function drawHexGrid() {
-    const hexRadius = 20;
-    const hexWidth = Math.sqrt(3) * hexRadius;
-    const hexHeight = 2 * hexRadius;
-    const cols = Math.floor(canvas.width / hexWidth) + 1;
-    const rows = Math.floor(canvas.height / hexHeight) + 1;
+    var hexHeight,
+      hexRadius,
+      hexRectangleHeight,
+      hexRectangleWidth,
+      hexagonAngle = 0.523598776, // 30 degrees in radians
+      sideLength = 36,
+      boardWidth = 10,
+      boardHeight = 10;
 
-    context.strokeStyle = 'black';
+    hexHeight = Math.sin(hexagonAngle) * sideLength;
+    hexRadius = Math.cos(hexagonAngle) * sideLength;
+    hexRectangleHeight = sideLength + 2 * hexHeight;
+    hexRectangleWidth = 2 * hexRadius;
 
-    for (let col = 0; col < cols; col++) {
-      for (let row = 0; row < rows; row++) {
-        const x = col * hexWidth * 3 / 4;
-        const y = row * hexHeight;
+    context.fillStyle = "#000000";
+    context.strokeStyle = "#CCCCCC";
+    context.lineWidth = 1;
 
-        drawHexagon(x, y, hexRadius);
+    drawBoard(context, boardWidth, boardHeight);
+  }
+
+  function drawBoard(canvasContext, width, height) {
+    var i, j;
+    // Este bucle genera una cuadrícula de hexágonos rectangular
+    for (i = 0; i < width; ++i) {
+      for (j = 0; j < height; ++j) {
+        drawHexagon(
+          canvasContext,
+          i * hexRectangleWidth + ((j % 2) * hexRadius),
+          j * (sideLength + hexHeight),
+          false
+        );
       }
     }
   }
 
-  // Función para dibujar un hexágono en una posición dada
-  function drawHexagon(x, y, radius) {
-    context.beginPath();
-    for (let i = 0; i < 6; i++) {
-      const angle = (i * Math.PI) / 3;
-      const offsetX = radius * Math.cos(angle);
-      const offsetY = radius * Math.sin(angle);
-      context.lineTo(x + offsetX, y + offsetY);
+  function drawHexagon(canvasContext, x, y, fill) {
+    var fill = fill || false;
+
+    canvasContext.beginPath();
+    canvasContext.moveTo(x + hexRadius, y);
+    canvasContext.lineTo(x + hexRectangleWidth, y + hexHeight);
+    canvasContext.lineTo(x + hexRectangleWidth, y + hexHeight + sideLength);
+    canvasContext.lineTo(x + hexRadius, y + hexRectangleHeight);
+    canvasContext.lineTo(x, y + sideLength + hexHeight);
+    canvasContext.lineTo(x, y + hexHeight);
+    canvasContext.closePath();
+
+    if (fill) {
+      canvasContext.fill();
+    } else {
+      canvasContext.stroke();
     }
-    context.closePath();
-    context.stroke();
   }
- 
 
   // Función para dibujar el texto con la cantidad de usuarios conectados
   function drawUserCount() {
