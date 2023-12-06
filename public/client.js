@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const context = canvas.getContext('2d');
   const nameForm = document.getElementById('nameForm');
 
-  // Capturar el nombre del jugador
   let playerName;
+  let connectedUsers = 0; // Variable para almacenar la cantidad de usuarios conectados
 
   nameForm.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -28,8 +28,20 @@ document.addEventListener('DOMContentLoaded', function () {
     drawCircle(data.x, data.y, data.playerName);
   });
 
+  // Manejar la recepción de información sobre la cantidad de usuarios conectados
+  socket.on('userCount', function (count) {
+    connectedUsers = count;
+  });
+
   // Función para dibujar un círculo en el canvas con el nombre del jugador
   function drawCircle(x, y, playerName) {
+    context.clearRect(0, 0, canvas.width, 30); // Limpiar la parte superior del canvas
+
+    // Dibujar el texto con la cantidad de usuarios conectados
+    context.fillStyle = 'black';
+    context.font = '16px Arial';
+    context.fillText(`Usuarios conectados: ${connectedUsers}`, canvas.width / 2 - 100, 20);
+
     context.beginPath();
     context.arc(x, y, 10, 0, 2 * Math.PI);
     context.fillStyle = 'red';
