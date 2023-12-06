@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function drawUserCount() {
     context.fillStyle = 'black';
     context.font = '16px Arial';
-    context.fillText(`Usuarios conectados: ${connectedUsers}`, canvas.width / 2 - 100, 20);
+    context.fillText(`Usuarios conectados: ${connectedUsers}`, 10, 40);
   }
 });
 
