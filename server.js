@@ -25,7 +25,7 @@ io.on('connection', (socket) => {
 
   // Resto de la lógica
 
-  io.emit('userCount', Object.keys(io.sockets.sockets).length);
+ // io.emit('userCount', Object.keys(io.sockets.sockets).length);
 
   socket.on('circle', (data) => {
     io.emit('circle', data);
@@ -41,7 +41,7 @@ io.on('connection', (socket) => {
 
     // Resto de la lógica
 
-    io.emit('userCount', Object.keys(io.sockets.sockets).length);
+   // io.emit('userCount', Object.keys(io.sockets.sockets).length);
   });
 });
 
