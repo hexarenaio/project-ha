@@ -13,8 +13,33 @@ document.addEventListener('DOMContentLoaded', function () {
     nameForm.style.display = 'none';
     canvas.style.display = 'block';
 
-        drawHexGrid();
+var canvas = document.getElementById('hexmap');
 
+var hexHeight,
+  hexRadius,
+  hexRectangleHeight,
+  hexRectangleWidth,
+  hexagonAngle = 0.523598776, // 30 degrees in radians
+  sideLength = 9,
+  boardWidth = 13,
+  boardHeight = 13;
+
+hexHeight = Math.sin(hexagonAngle) * sideLength;
+hexRadius = Math.cos(hexagonAngle) * sideLength;
+hexRectangleHeight = sideLength + 2 * hexHeight;
+hexRectangleWidth = 2 * hexRadius;
+var ctx = canvas.getContext('2d');
+
+ctx.fillStyle = "#000000";
+ctx.strokeStyle = "#CCCCCC";
+ctx.lineWidth = 1;
+
+drawBoard(ctx, boardWidth, boardHeight);
+
+
+
+
+    
   });
 
   // Manejar la creación de círculos
@@ -55,39 +80,42 @@ document.addEventListener('DOMContentLoaded', function () {
     context.fillText(playerName, x - 20, y - 15);
   }
 
-    // Función para dibujar la malla de hexágonos
-  // Función para dibujar la malla de hexágonos
-  function drawHexGrid() {
-    const hexRadius = 20;
-    const hexWidth = Math.sqrt(3) * hexRadius;
-    const hexHeight = 2 * hexRadius;
-    const cols = Math.floor(canvas.width / hexWidth) + 1;
-    const rows = Math.floor(canvas.height / hexHeight) + 1;
+function drawBoard(canvasContext, width, height) {
+  var i, j, hexagons, xStart;
+  //this loop generates a rectangular hexagon grid
+  for (i = 0; i < height; i++) {
+    hexagons = width - (Math.abs(Math.floor(width / 2) - i));
+    xStart = (width - 3) % 4 == 0 ? Math.ceil((width - hexagons) / 2) : Math.floor((width - hexagons) / 2);
 
-    context.strokeStyle = 'black';
-
-    for (let col = 0; col < cols; col++) {
-      for (let row = 0; row < rows; row++) {
-        const x = col * hexWidth * 3 / 4;
-        const y = row * hexHeight;
-
-        drawHexagon(x, y, hexRadius);
-      }
+    for (j = xStart; j < xStart + hexagons; j++) {
+      drawHexagon(
+        ctx,
+        j * hexRectangleWidth + ((i % 2) * hexRadius),
+        i * (sideLength + hexHeight),
+        false
+      );
     }
   }
+}
 
-  // Función para dibujar un hexágono en una posición dada
-  function drawHexagon(x, y, radius) {
-    context.beginPath();
-    for (let i = 0; i < 6; i++) {
-      const angle = (i * Math.PI) / 3;
-      const offsetX = radius * Math.cos(angle);
-      const offsetY = radius * Math.sin(angle);
-      context.lineTo(x + offsetX, y + offsetY);
-    }
-    context.closePath();
-    context.stroke();
+function drawHexagon(canvasContext, x, y, fill) {
+  var fill = fill || false;
+
+  canvasContext.beginPath();
+  canvasContext.moveTo(x + hexRadius, y);
+  canvasContext.lineTo(x + hexRectangleWidth, y + hexHeight);
+  canvasContext.lineTo(x + hexRectangleWidth, y + hexHeight + sideLength);
+  canvasContext.lineTo(x + hexRadius, y + hexRectangleHeight);
+  canvasContext.lineTo(x, y + sideLength + hexHeight);
+  canvasContext.lineTo(x, y + hexHeight);
+  canvasContext.closePath();
+
+  if (fill) {
+    canvasContext.fill();
+  } else {
+    canvasContext.stroke();
   }
+}
 
  
 
