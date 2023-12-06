@@ -17,6 +17,9 @@
     form {
       text-align: center;
     }
+    #gameCanvas {
+      display: none; /* Ocultar el canvas inicialmente */
+    }
   </style>
 </head>
 <body>
@@ -30,5 +33,24 @@
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="client.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const nameForm = document.getElementById('nameForm');
+      const gameCanvas = document.getElementById('gameCanvas');
+
+      nameForm.addEventListener('submit', function (event) {
+        event.preventDefault(); // Evitar el envío del formulario
+
+        const playerName = document.getElementById('playerName').value;
+
+        // Aquí puedes enviar playerName al servidor si es necesario
+
+        // Ocultar el formulario y mostrar el canvas
+        nameForm.style.display = 'none';
+        gameCanvas.style.display = 'block';
+      });
+    });
+  </script>
 </body>
 </html>
+
