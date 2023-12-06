@@ -3,21 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Aplicación</title>
-  <h1>Juego</h1>
-
+  <title>Mi Juego Multijugador</title>
   <style>
     body {
       margin: 0;
       overflow: hidden;
-    }
-    canvas {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
       background-color: #0000FF;
-      display: block;
+    }
+    form {
+      text-align: center;
     }
   </style>
 </head>
 <body>
+  <form id="nameForm">
+    <label for="playerName">Introduce tu nombre:</label>
+    <input type="text" id="playerName" name="playerName" required>
+    <button type="submit">Aceptar</button>
+  </form>
+
+  <canvas id="gameCanvas" width="800" height="800"></canvas>
+
   <script src="/socket.io/socket.io.js"></script>
   <script src="client.js"></script>
 </body>
