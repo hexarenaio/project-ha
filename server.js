@@ -1,45 +1,51 @@
 const express = require('express');
 const http = require('http');
-const socketIO = require('socket.io');
+const socketIo = require('socket.io');
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIO(server);
+const io = socketIo(server);
 
-const players = [];
+const connectedUsers = new Set(); // Usamos un conjunto para mantener un registro único de usuarios conectados
+
+
+app.use(express.static('public'));
 
 io.on('connection', (socket) => {
-  console.log(`Nuevo usuario conectado`);
 
-  socket.on('playerMove', (data) => {
-    const existingPlayer = players.find((player) => player.playerName === data.playerName);
+    console.log(`Total de usuarios: ${connectedUsers.size}`);
 
-    if (existingPlayer) {
-      existingPlayer.position = data.position;
-    } else {
-      players.push({ playerName: data.playerName, position: data.position });
-    }
+  console.log('Nuevo usuario conectado');
 
-    // Emitir la información actualizada a todos los clientes
-    io.emit('updatePlayers', players);
+  connectedUsers.add(socket.id);
+
+  // Emitir la cantidad de usuarios conectados a todos los clientes
+  io.emit('userCount', connectedUsers.size);
+
+
+  // Resto de la lógica
+
+ // io.emit('userCount', Object.keys(io.sockets.sockets).length);
+
+  socket.on('circle', (data) => {
+    io.emit('circle', data);
   });
 
-  socket.on('disconnect', () => {
-    console.log(`Usuario desconectado`);
-    // Eliminar al usuario desconectado de la lista de jugadores
-    const index = players.findIndex((player) => player.playerName === socket.id);
-    if (index !== -1) {
-      players.splice(index, 1);
-      // Emitir la información actualizada a todos los clientes
-      io.emit('updatePlayers', players);
-    }
+ socket.on('disconnect', () => {
+    console.log('Usuario desconectado');
+
+   connectedUsers.delete(socket.id);
+
+    // Emitir la cantidad de usuarios conectados a todos los clientes
+    io.emit('userCount', connectedUsers.size);
+
+    // Resto de la lógica
+
+   // io.emit('userCount', Object.keys(io.sockets.sockets).length);
   });
 });
 
-// Configuraciones adicionales del servidor
-
 const PORT = process.env.PORT || 3000;
-
 server.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
