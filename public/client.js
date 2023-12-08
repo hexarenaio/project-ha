@@ -68,18 +68,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 function drawCircle(x, y, radius, color, text) {
-  // Calcular la posición ajustada para que el círculo esté justo encima del borde del hexágono
-  const adjustedY = y - hexHeight;
+  // Calcular la posición ajustada para que el círculo esté en la punta del hexágono
+  const adjustedX = x + hexRadius * Math.cos(hexagonAngle);
+  const adjustedY = y + hexRadius * Math.sin(hexagonAngle);
 
   context.beginPath();
-  context.arc(x, adjustedY, radius, 0, 2 * Math.PI);
+  context.arc(adjustedX, adjustedY, radius, 0, 2 * Math.PI);
   context.fillStyle = color;
   context.fill();
 
   // Mostrar el nombre del jugador encima del círculo
   context.fillStyle = 'white';
   context.font = '12px Arial';
-  context.fillText(text, x - 20, adjustedY - 15);
+  context.fillText(text, adjustedX - 20, adjustedY - 15);
 }
 
   nameForm.addEventListener('submit', function (event) {
