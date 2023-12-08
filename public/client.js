@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
     nameForm.style.display = 'none';
     canvas.style.display = 'block';
 
-    drawHexGrid();
 
     
   });
@@ -56,62 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
     context.fillText(playerName, x - 20, y - 15);
   }
 
-  // Función para dibujar la malla de hexágonos
-  function drawHexGrid() {
-    var hexHeight,
-      hexRadius,
-      hexRectangleHeight,
-      hexRectangleWidth,
-      hexagonAngle = 0.523598776, // 30 degrees in radians
-      sideLength = 36,
-      boardWidth = 10,
-      boardHeight = 10;
 
-    hexHeight = Math.sin(hexagonAngle) * sideLength;
-    hexRadius = Math.cos(hexagonAngle) * sideLength;
-    hexRectangleHeight = sideLength + 2 * hexHeight;
-    hexRectangleWidth = 2 * hexRadius;
-
-    context.fillStyle = "#000000";
-    context.strokeStyle = "#CCCCCC";
-    context.lineWidth = 1;
-
-    drawBoard(context, boardWidth, boardHeight);
-  }
-
-  function drawBoard(canvasContext, width, height) {
-    var i, j;
-    // Este bucle genera una cuadrícula de hexágonos rectangular
-    for (i = 0; i < width; ++i) {
-      for (j = 0; j < height; ++j) {
-        drawHexagon(
-          canvasContext,
-          i * hexRectangleWidth + ((j % 2) * hexRadius),
-          j * (sideLength + hexHeight),
-          false
-        );
-      }
-    }
-  }
-
-  function drawHexagon(canvasContext, x, y, fill) {
-    var fill = fill || false;
-
-    canvasContext.beginPath();
-    canvasContext.moveTo(x + hexRadius, y);
-    canvasContext.lineTo(x + hexRectangleWidth, y + hexHeight);
-    canvasContext.lineTo(x + hexRectangleWidth, y + hexHeight + sideLength);
-    canvasContext.lineTo(x + hexRadius, y + hexRectangleHeight);
-    canvasContext.lineTo(x, y + sideLength + hexHeight);
-    canvasContext.lineTo(x, y + hexHeight);
-    canvasContext.closePath();
-
-    if (fill) {
-      canvasContext.fill();
-    } else {
-      canvasContext.stroke();
-    }
-  }
 
   // Función para dibujar el texto con la cantidad de usuarios conectados
   function drawUserCount() {
