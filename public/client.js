@@ -59,42 +59,54 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
 
-    // Función para dibujar hexágonos en el fondo del canvas
+  // Agregar hexágonos al fondo del canvas
   function drawHexagons() {
-    // Definir propiedades de los hexágonos
-    const hexSize = 50;
-    const hexSpacing = 50;
-    const yOffset = 100;
+    const hexHeight = Math.sin(hexagonAngle) * sideLength;
+    const hexRadius = Math.cos(hexagonAngle) * sideLength;
+    const hexRectangleHeight = sideLength + 2 * hexHeight;
+    const hexRectangleWidth = 2 * hexRadius;
 
-    // Dibujar hexágonos en filas y columnas
-    for (let row = 0; row < 5; row++) {
-      for (let col = 0; col < 5; col++) {
-        const x = col * (hexSize + hexSpacing);
-        const y = row * (hexSize * 1.75) + yOffset;
+    context.fillStyle = "#000000";
+    context.strokeStyle = "#CCCCCC";
+    context.lineWidth = 1;
 
-        // Dibujar hexágono
-        drawHexagon(x, y, hexSize);
+    drawBoard(context, 10, 10); // Puedes ajustar el tamaño del tablero según tus necesidades
+  }
+
+  // Esta función dibuja el fondo del canvas con hexágonos
+  function drawBoard(canvasContext, width, height) {
+    let i, j;
+
+    for (i = 0; i < width; ++i) {
+      for (j = 0; j < height; ++j) {
+        drawHexagon(
+          context,
+          i * hexRectangleWidth + ((j % 2) * hexRadius),
+          j * (sideLength + hexHeight),
+          false
+        );
       }
     }
   }
 
-  // Función para dibujar un hexágono en el canvas
-  function drawHexagon(x, y, size) {
-    context.beginPath();
-    context.moveTo(x + size * Math.cos(0), y + size * Math.sin(0));
+  // Esta función dibuja un hexágono en el canvas
+  function drawHexagon(canvasContext, x, y, fill) {
+    const fillHex = fill || false;
 
-    for (let i = 1; i <= 6; i++) {
-      context.lineTo(
-        x + size * Math.cos((i * 2 * Math.PI) / 6),
-        y + size * Math.sin((i * 2 * Math.PI) / 6)
-      );
+    canvasContext.beginPath();
+    canvasContext.moveTo(x + hexRadius, y);
+    canvasContext.lineTo(x + hexRectangleWidth, y + hexHeight);
+    canvasContext.lineTo(x + hexRectangleWidth, y + hexHeight + sideLength);
+    canvasContext.lineTo(x + hexRadius, y + hexRectangleHeight);
+    canvasContext.lineTo(x, y + sideLength + hexHeight);
+    canvasContext.lineTo(x, y + hexHeight);
+    canvasContext.closePath();
+
+    if (fillHex) {
+      canvasContext.fill();
+    } else {
+      canvasContext.stroke();
     }
-
-    context.fillStyle = '#fff2aa';
-    context.fill();
-    context.closePath();
-    context.strokeStyle = '#ff9a00';
-    context.stroke();
   }
 
 
