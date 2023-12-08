@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Juego Multijugador</title>
   <style>
     body {
       margin: 0;
@@ -12,62 +13,12 @@
       align-items: center;
       height: 100vh;
       background-color: #0000FF;
-      position: relative; /* Añade esta línea para posicionar correctamente los hexágonos */
     }
     form {
       text-align: center;
-      z-index: 1; /* Añade esta línea para posicionar correctamente los hexágonos */
     }
     #gameCanvas {
-      display: none;
-      position: absolute; /* Añade esta línea para posicionar correctamente los hexágonos */
-      z-index: 1; /* Añade esta línea para posicionar correctamente los hexágonos */
-    }
-    .hexagons {
-      position: absolute;
-      z-index: 0;
-      top: 0;
-      left: 0;
-      width: 400px; /* Ajusta según el tamaño de tu juego */
-      height: 400px; /* Ajusta según el tamaño de tu juego */
-    }
-    .container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      width: 100%;
-      height: 100%;
-    }
-
-    .block {
-      grid-area: 1/1;
-      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0 50%);
-      background-color: #fff2aa;
-      box-shadow: inset 0 0 50px 25px #ff9a0073;
-    }
-
-    .container > :nth-child(1) {
-      transform: translateY(100%);
-    }
-
-    .container > :nth-child(2) {
-      transform: translateY(-100%);
-    }
-
-    .container > :nth-child(3) {
-      transform: translate(-50%, -75%);
-    }
-
-    .container > :nth-child(4) {
-      transform: translate(50%, -75%);
-    }
-
-    .container > :nth-child(5) {
-      transform: translate(50%, 75%);
-    }
-
-    .container > :nth-child(6) {
-      transform: translate(-50%, 75%);
+      display: none; /* Ocultar el canvas inicialmente */
     }
   </style>
 </head>
@@ -75,23 +26,10 @@
   <form id="nameForm">
     <label for="playerName">Introduce tu nombre:</label>
     <input type="text" id="playerName" name="playerName" required>
-    <button type="submit">Aceptar3</button>
+    <button type="submit">Aceptar</button>
   </form>
 
   <canvas id="gameCanvas" width="400" height="400"></canvas>
-
-  <!-- Agrega la capa para los hexágonos -->
-  <div class="hexagons">
-    <div class="container">
-      <div class="block"></div>
-      <div class="block"></div>
-      <div class="block"></div>
-      <div class="block"></div>
-      <div class="block"></div>
-      <div class="block"></div>
-      <div class="block"></div>
-    </div>
-  </div>
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="client.js"></script>
@@ -101,8 +39,13 @@
       const gameCanvas = document.getElementById('gameCanvas');
 
       nameForm.addEventListener('submit', function (event) {
-        event.preventDefault();
+        event.preventDefault(); // Evitar el envío del formulario
+
         const playerName = document.getElementById('playerName').value;
+
+        // Aquí puedes enviar playerName al servidor si es necesario
+
+        // Ocultar el formulario y mostrar el canvas
         nameForm.style.display = 'none';
         gameCanvas.style.display = 'block';
       });
