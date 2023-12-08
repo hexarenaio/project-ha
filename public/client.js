@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function drawHexagons() {
     // Definir propiedades de los hexágonos
     const hexSize = 50;
-    const hexSpacing = 0;
+    const hexSpacing = 50;
     const yOffset = 100;
 
     // Dibujar hexágonos en filas y columnas
