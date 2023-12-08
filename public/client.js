@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 function drawCircle(x, y, radius, color, text) {
-  // Calcular la posición ajustada para que el círculo esté en la punta del hexágono
+  // Calcular la posición ajustada para que el círculo esté en una esquina del hexágono
   const adjustedX = x + hexRadius * Math.cos(hexagonAngle);
   const adjustedY = y + hexRadius * Math.sin(hexagonAngle);
 
@@ -82,6 +82,7 @@ function drawCircle(x, y, radius, color, text) {
   context.font = '12px Arial';
   context.fillText(text, adjustedX - 20, adjustedY - 15);
 }
+
 
   nameForm.addEventListener('submit', function (event) {
     event.preventDefault();
