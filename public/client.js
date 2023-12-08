@@ -23,6 +23,12 @@ document.addEventListener('DOMContentLoaded', function () {
     context.lineWidth = 1;
 
     drawBoard(context, 10, 10); // Puedes ajustar el tamaño del tablero según tus necesidades
+
+     const randomX = Math.random() * canvas.width;
+    const randomY = Math.random() * canvas.height;
+
+    // Dibujar un círculo rojo en la posición aleatoria
+    drawCircle(randomX, randomY, 20, "red", playerName);
   }
 
   // Esta función dibuja un hexágono en el canvas
@@ -58,6 +64,19 @@ document.addEventListener('DOMContentLoaded', function () {
         );
       }
     }
+  }
+
+
+  function drawCircle(x, y, radius, color, text) {
+    context.beginPath();
+    context.arc(x, y, radius, 0, 2 * Math.PI);
+    context.fillStyle = color;
+    context.fill();
+
+    // Mostrar el nombre del jugador encima del círculo
+    context.fillStyle = 'white';
+    context.font = '12px Arial';
+    context.fillText(text, x - 20, y - 15);
   }
 
   nameForm.addEventListener('submit', function (event) {
