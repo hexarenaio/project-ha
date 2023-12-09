@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     hexRectangleHeight = sideLength + 2 * hexHeight;
     hexRectangleWidth = 2 * hexRadius;
 
+
     context.fillStyle = "#000000";
     context.strokeStyle = "#CCCCCC";
     context.lineWidth = 1;
@@ -28,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const randomY = Math.random() * canvas.height;
 
     // Dibujar un círculo rojo en la posición aleatoria
-    drawCircle(hexRectangleWidth, hexRectangleHeight, 4, "red", playerName);
+    drawCircle(hexHeight, hexHeight, 4, "red", playerName);
   }
 
   // Esta función dibuja un hexágono en el canvas
