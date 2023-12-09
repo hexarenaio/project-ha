@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', function () {
   let playerName;
   let connectedUsers = 0;
 
+    let playerPosition = { x: 0, y: 0 }; // Inicializar la posición del jugador
+
+
   const hexagonAngle = 0.523598776; // 30 degrees in radians
 
 //  const hexagonAngle = (2 * Math.PI) / 3; // Ángulo de 120 grados en radianes
@@ -91,6 +94,40 @@ function drawCircle(x, y, radius, color, text) {
   context.font = '12px Arial';
   context.fillText(text, adjustedX - 20, adjustedY - 15);
 }
+
+
+
+ canvas.addEventListener('click', function (event) {
+    const clickX = event.clientX - canvas.getBoundingClientRect().left;
+    const clickY = event.clientY - canvas.getBoundingClientRect().top;
+
+    // Calcular la nueva posición basada en la posición del clic y la geometría de los hexágonos
+    const newCirclePosition = calculateNewPosition(clickX, clickY);
+
+    // Enviar la nueva posición al servidor
+    socket.emit('updatePosition', newCirclePosition);
+  });
+
+  socket.on('circle', function (data) {
+    drawCircle(data.x, data.y, data.playerName);
+  });
+
+  socket.on('userCount', function (count) {
+    connectedUsers = count;
+    drawUserCount();
+  });
+
+  socket.on('updatePosition', function (data) {
+    playerPosition = data;
+    drawCircle(playerPosition.x, playerPosition.y, playerName);
+  });
+
+  function calculateNewPosition(clickX, clickY) {
+    // Lógica para calcular la nueva posición en función de la geometría de los hexágonos
+    // Puedes utilizar fórmulas trigonométricas y la estructura de tu malla hexagonal
+    // En este ejemplo, simplemente asignamos las coordenadas del clic como la nueva posición
+    return { x: clickX, y: clickY };
+  }
 
 
 
