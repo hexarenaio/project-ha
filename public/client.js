@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let connectedUsers = 0;
 
   const hexagonAngle = 0.523598776; // 30 degrees in radians
-  const sideLength = 36;
+  const sideLength = 38;
   let hexHeight, hexRadius, hexRectangleHeight, hexRectangleWidth;
 
   // Esta función dibuja el fondo del canvas con hexágonos
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const randomY = Math.random() * canvas.height;
 
     // Dibujar un círculo rojo en la posición aleatoria
-    drawCircle(70, 70, 4, "red", playerName);
+    drawCircle(60, 40, 4, "red", playerName);
   }
 
   // Esta función dibuja un hexágono en el canvas
