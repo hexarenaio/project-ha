@@ -73,8 +73,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function drawCircle(x, y, radius, color, text) {
   // Calcular la posición ajustada para que el círculo esté en la esquina superior del hexágono
-  const adjustedX = x + hexRadius * Math.cos(hexagonAngle);
-  const adjustedY = y - hexHeight;
+  
+  //const adjustedX = x + hexRadius * Math.cos(hexagonAngle);
+//  const adjustedY = y - hexHeight;
+
+   const adjustedX = x;
+  const adjustedY = y;
+
 
   context.beginPath();
   context.arc(adjustedX, adjustedY, radius, 0, 2 * Math.PI);
