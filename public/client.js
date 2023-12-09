@@ -122,7 +122,7 @@ function drawCircle(x, y, radius, color, text) {
     drawCircle(playerPosition.x, playerPosition.y, playerName);
   });
 
- function calculateNewPosition(clickX, clickY) {
+  function calculateNewPosition(clickX, clickY) {
   // Ajustes basados en la geometría de un hexágono regular
   const columnIndex = Math.floor(clickX / (hexRectangleWidth * 1.5));
   const rowIndex = Math.floor(clickY / (hexHeight + sideLength));
@@ -134,7 +134,11 @@ function drawCircle(x, y, radius, color, text) {
   const centerX = hexX + hexRadius;
   const centerY = hexY + hexHeight;
 
-  return { x: centerX, y: centerY };
+  // Ajustar la posición del círculo para que esté en la esquina superior del hexágono
+  const adjustedX = centerX + hexRadius * Math.cos(hexagonAngle);
+  const adjustedY = centerY - hexHeight;
+
+  return { x: adjustedX, y: adjustedY };
 }
 
 
