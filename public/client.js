@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
   let playerName;
   let connectedUsers = 0;
 
-    let playerPosition = { x: 0, y: 0 }; // Inicializar la posición del jugador
 
 
   const hexagonAngle = 0.523598776; // 30 degrees in radians
@@ -97,50 +96,29 @@ function drawCircle(x, y, radius, color, text) {
 
 
 
- canvas.addEventListener('click', function (event) {
-    const clickX = event.clientX - canvas.getBoundingClientRect().left;
-    const clickY = event.clientY - canvas.getBoundingClientRect().top;
+ function updateCanvas() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    drawHexagons();
+  }
 
-    // Calcular la nueva posición basada en la posición del clic y la geometría de los hexágonos
-    const newCirclePosition = calculateNewPosition(clickX, clickY);
+  // Agregar un event listener para clics en el canvas
+  canvas.addEventListener('click', function (event) {
+    const mouseX = event.clientX - canvas.getBoundingClientRect().left;
+    const mouseY = event.clientY - canvas.getBoundingClientRect().top;
 
-    // Enviar la nueva posición al servidor
-    socket.emit('updatePosition', newCirclePosition);
+    // Calcular la dirección del clic y mover el círculo
+    const deltaX = mouseX - circleX;
+    const deltaY = mouseY - circleY;
+
+    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+    // Mover 20 pixeles en la dirección del clic (normalizado)
+    circleX += (deltaX / distance) * 20;
+    circleY += (deltaY / distance) * 20;
+
+    // Actualizar el canvas después de mover el círculo
+    updateCanvas();
   });
-
-  socket.on('circle', function (data) {
-    drawCircle(data.x, data.y, data.playerName);
-  });
-
-  socket.on('userCount', function (count) {
-    connectedUsers = count;
-    drawUserCount();
-  });
-
-  socket.on('updatePosition', function (data) {
-    playerPosition = data;
-    drawCircle(playerPosition.x, playerPosition.y, playerName);
-  });
-
-  function calculateNewPosition(clickX, clickY) {
-  // Ajustes basados en la geometría de un hexágono regular
-  const columnIndex = Math.floor(clickX / (hexRectangleWidth * 1.5));
-  const rowIndex = Math.floor(clickY / (hexHeight + sideLength));
-
-  const hexX = columnIndex * (hexRectangleWidth * 1.5);
-  const hexY = rowIndex * (hexHeight + sideLength);
-
-  // Calcular la posición en el centro del hexágono
-  const centerX = hexX + hexRadius;
-  const centerY = hexY + hexHeight;
-
-  // Ajustar la posición del círculo para que esté en la esquina superior del hexágono
-  const adjustedX = centerX + hexRadius * Math.cos(hexagonAngle);
-  const adjustedY = centerY - hexHeight;
-
-  return { x: adjustedX, y: adjustedY };
-}
-
 
 
   nameForm.addEventListener('submit', function (event) {
