@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const randomY = Math.random() * canvas.height;
 
     // Dibujar un círculo rojo en la posición aleatoria
-    drawCircle(hexRectangleHeight / 2, hexRectangleHeight, 4, "red", playerName);
+    drawCircle((hexRectangleHeight / 2)-2, hexRectangleHeight, 4, "red", playerName);
   }
 
   // Esta función dibuja un hexágono en el canvas
