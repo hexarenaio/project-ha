@@ -101,24 +101,25 @@ function drawCircle(x, y, radius, color, text) {
     drawHexagons();
   }
 
-  // Agregar un event listener para clics en el canvas
-  canvas.addEventListener('click', function (event) {
-    const mouseX = event.clientX - canvas.getBoundingClientRect().left;
-    const mouseY = event.clientY - canvas.getBoundingClientRect().top;
+// Agregar un event listener para clics en el canvas
+canvas.addEventListener('click', function (event) {
+  const rect = canvas.getBoundingClientRect();
+  const mouseX = event.clientX - rect.left;
+  const mouseY = event.clientY - rect.top;
 
-    // Calcular la dirección del clic y mover el círculo
-    const deltaX = mouseX - circleX;
-    const deltaY = mouseY - circleY;
+  // Calcular la dirección del clic y mover el círculo
+  const deltaX = mouseX - circleX;
+  const deltaY = mouseY - circleY;
 
-    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+  const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
-    // Mover 20 pixeles en la dirección del clic (normalizado)
-    circleX += (deltaX / distance) * 20;
-    circleY += (deltaY / distance) * 20;
+  // Mover 20 pixeles en la dirección del clic (normalizado)
+  circleX += (deltaX / distance) * 20;
+  circleY += (deltaY / distance) * 20;
 
-    // Actualizar el canvas después de mover el círculo
-    updateCanvas();
-  });
+  // Actualizar el canvas después de mover el círculo
+  updateCanvas();
+});
 
 
   nameForm.addEventListener('submit', function (event) {
