@@ -122,12 +122,20 @@ function drawCircle(x, y, radius, color, text) {
     drawCircle(playerPosition.x, playerPosition.y, playerName);
   });
 
-  function calculateNewPosition(clickX, clickY) {
-    // Lógica para calcular la nueva posición en función de la geometría de los hexágonos
-    // Puedes utilizar fórmulas trigonométricas y la estructura de tu malla hexagonal
-    // En este ejemplo, simplemente asignamos las coordenadas del clic como la nueva posición
-    return { x: clickX, y: clickY };
-  }
+ function calculateNewPosition(clickX, clickY) {
+  // Ajustes basados en la geometría de un hexágono regular
+  const columnIndex = Math.floor(clickX / (hexRectangleWidth * 1.5));
+  const rowIndex = Math.floor(clickY / (hexHeight + sideLength));
+
+  const hexX = columnIndex * (hexRectangleWidth * 1.5);
+  const hexY = rowIndex * (hexHeight + sideLength);
+
+  // Calcular la posición en el centro del hexágono
+  const centerX = hexX + hexRadius;
+  const centerY = hexY + hexHeight;
+
+  return { x: centerX, y: centerY };
+}
 
 
 
