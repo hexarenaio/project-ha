@@ -7,7 +7,10 @@ document.addEventListener('DOMContentLoaded', function () {
   let playerName;
   let connectedUsers = 0;
 
-  const hexagonAngle = 0.523598776; // 30 degrees in radians
+  //const hexagonAngle = 0.523598776; // 30 degrees in radians
+
+  const hexagonAngle = (2 * Math.PI) / 3; // Ángulo de 120 grados en radianes
+
   const sideLength = 38;
   let hexHeight, hexRadius, hexRectangleHeight, hexRectangleWidth;
 
