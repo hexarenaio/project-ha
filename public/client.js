@@ -57,6 +57,30 @@ function updateCanvas() {
 }
 
 
+document.addEventListener('DOMContentLoaded', function () {
+  // ... (tu código existente)
+
+  let circleX = (hexRectangleHeight / 2) - 2;
+  let circleY = hexRectangleHeight;
+  let lastCircleX = circleX;
+  let lastCircleY = circleY;
+
+  // ... (tu código existente)
+
+  function drawHexagons() {
+    // ... (tu código existente)
+
+    // Dibujar un círculo rojo en la posición inicial
+    drawCircle(circleX, circleY, 4, 'red', playerName);
+
+    // ... (tu código existente)
+  }
+
+  function updateCanvas() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    drawHexagons();
+  }
+
   // Agregar un event listener para clics en el documento
   document.addEventListener('mousedown', function (event) {
     const rect = canvas.getBoundingClientRect();
@@ -65,15 +89,13 @@ function updateCanvas() {
 
     // Verificar si el clic está dentro del área del canvas
     if (mouseX >= 0 && mouseX <= canvas.width && mouseY >= 0 && mouseY <= canvas.height) {
-      // Calcular la posición X más cercana en la malla hexagonal
-      const nearestX = Math.round(mouseX / hexRectangleWidth) * hexRectangleWidth;
+      // Redondear las coordenadas a múltiplos de la longitud del lado del hexágono (38 píxeles)
+      const roundedX = Math.round(mouseX / sideLength) * sideLength;
+      const roundedY = Math.round(mouseY / (sideLength + hexHeight)) * (sideLength + hexHeight);
 
-      // Calcular la posición Y más cercana en la malla hexagonal
-      const nearestY = Math.round(mouseY / (sideLength + hexHeight)) * (sideLength + hexHeight);
-
-      // Mover el círculo hacia la posición más cercana en la malla hexagonal
-      circleX = nearestX;
-      circleY = nearestY;
+      // Mover el círculo hacia la posición redondeada
+      circleX = roundedX;
+      circleY = roundedY;
 
       // Actualizar la última posición válida
       lastCircleX = circleX;
@@ -83,6 +105,10 @@ function updateCanvas() {
       updateCanvas();
     }
   });
+
+  // ... (tu código existente)
+});
+
   
 
   // Esta función dibuja un hexágono en el canvas
