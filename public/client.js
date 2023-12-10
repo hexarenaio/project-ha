@@ -36,8 +36,34 @@ document.addEventListener('DOMContentLoaded', function () {
     const randomY = Math.random() * canvas.height;
 
     // Dibujar un círculo rojo en la posición aleatoria
-    drawCircle((circleX, circleY, 4, "red", playerName);
+    drawCircle(circleX, circleY, 4, "red", playerName);
   }
+
+ function updateCanvas() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    drawHexagons();
+  }
+
+  // Agregar un event listener para clics en el canvas
+  canvas.addEventListener('click', function (event) {
+    const mouseX = event.clientX - canvas.getBoundingClientRect().left;
+    const mouseY = event.clientY - canvas.getBoundingClientRect().top;
+
+    // Calcular la dirección del clic y mover el círculo
+    const deltaX = mouseX - circleX;
+    const deltaY = mouseY - circleY;
+
+    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+    // Mover 20 pixeles en la dirección del clic (normalizado)
+    circleX += (deltaX / distance) * 20;
+    circleY += (deltaY / distance) * 20;
+
+    // Actualizar el canvas después de mover el círculo
+    updateCanvas();
+  });
+
+  
 
   // Esta función dibuja un hexágono en el canvas
   function drawHexagon(canvasContext, x, y, fill) {
