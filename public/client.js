@@ -102,7 +102,7 @@ function drawCircle(x, y, radius, color, text) {
   }
 
 // Agregar un event listener para clics en el canvas
-canvas.addEventListener('click', function (event) {
+canvas.addEventListener('mousedown', function (event) {
   const rect = canvas.getBoundingClientRect();
   const mouseX = event.clientX - rect.left;
   const mouseY = event.clientY - rect.top;
