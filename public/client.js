@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const hexagonAngle = 0.523598776; // 30 degrees in radians
 
-  let circleX = (hexRectangleHeight / 2) - 2;
-  let circleY = hexRectangleHeight;
+ // let circleX = (hexRectangleHeight / 2) - 2;
+  //let circleY = hexRectangleHeight;
 
 
 //  const hexagonAngle = (2 * Math.PI) / 3; // Ángulo de 120 grados en radianes
