@@ -13,10 +13,15 @@ document.addEventListener('DOMContentLoaded', function () {
   let circleY = 50;
 
 
+ 
 //  const hexagonAngle = (2 * Math.PI) / 3; // Ángulo de 120 grados en radianes
 
   const sideLength = 38;
   let hexHeight, hexRadius, hexRectangleHeight, hexRectangleWidth;
+
+   let lastCircleX = (hexRectangleHeight / 2) - 2;
+let lastCircleY = hexRectangleHeight;
+
 
   // Esta función dibuja el fondo del canvas con hexágonos
   function drawHexagons() {
@@ -39,10 +44,31 @@ document.addEventListener('DOMContentLoaded', function () {
     drawCircle(circleX, circleY, 4, "red", playerName);
   }
 
- function updateCanvas() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    drawHexagons();
+function updateCanvas() {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  drawHexagons();
+
+  // Verificar si el círculo está dentro de un hexágono
+  const hexRow = Math.floor(circleY / (sideLength + hexHeight));
+  const hexCol = Math.floor(circleX / hexRectangleWidth);
+
+  // Calcular la posición central del hexágono correspondiente
+  const hexCenterX = hexCol * hexRectangleWidth + ((hexRow % 2) * hexRadius);
+  const hexCenterY = hexRow * (sideLength + hexHeight) + (hexHeight + sideLength);
+
+  // Calcular la distancia desde el centro del hexágono al círculo
+  const distance = Math.sqrt(Math.pow(circleX - hexCenterX, 2) + Math.pow(circleY - hexCenterY, 2));
+
+  // Si la distancia es menor que el radio del hexágono, el círculo está dentro
+  if (distance < hexRadius) {
+    // Permitir que el círculo se mueva si está dentro del hexágono
+    drawCircle(circleX, circleY, 4, 'red', playerName);
+  } else {
+    // Si está fuera, volver a la posición anterior (dentro del hexágono)
+    drawCircle(lastCircleX, lastCircleY, 4, 'red', playerName);
   }
+}
+
 
   // Agregar un event listener para clics en el canvas
   canvas.addEventListener('click', function (event) {
