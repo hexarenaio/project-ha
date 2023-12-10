@@ -128,13 +128,13 @@ document.addEventListener('DOMContentLoaded', function () {
     context.lineWidth = 1;
 
     // Dibujar un círculo azul en el centro del canvas
-    context.beginPath();
-    context.arc(canvas.width / 2, canvas.height / 2, 5, 0, 2 * Math.PI);
-    context.fillStyle = 'blue';
-    context.fill();
+    //context.beginPath();
+    //context.arc(canvas.width / 2, canvas.height / 2, 5, 0, 2 * Math.PI);
+    //context.fillStyle = 'blue';
+    //context.fill();
     // Asignar un ID al círculo azul
     // Esto solo funciona si necesitas seleccionar el círculo usando JavaScript después
-    context.canvas.children[0].id = 'bluePoint';
+    //context.canvas.children[0].id = 'bluePoint';
 
 
     drawBoard(context, 10, 10); // Puedes ajustar el tamaño del tablero según tus necesidades
