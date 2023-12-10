@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const randomY = Math.random() * canvas.height;
 
     // Dibujar un círculo rojo en la posición aleatoria
-    drawCircle(circleX, circleY, 4, "red", playerName);
+    drawCircle(20, 20, 4, "red", playerName);
   }
 
  function updateCanvas() {
