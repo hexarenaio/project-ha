@@ -16,6 +16,14 @@ document.addEventListener('DOMContentLoaded', function () {
   const sideLength = 38;
   let hexHeight, hexRadius, hexRectangleHeight, hexRectangleWidth;
 
+
+
+
+   // document.addEventListener('click', moveBluePoint);
+
+
+  
+
   // Esta función dibuja el fondo del canvas con hexágonos
   function drawHexagons() {
     hexHeight = Math.sin(hexagonAngle) * sideLength;
@@ -102,7 +110,7 @@ function drawCircle(x, y, radius, color, text) {
   }
 
 // Agregar un event listener para clics en el canvas
-canvas.addEventListener('mousedown', function (event) {
+document.addEventListener('click', function (event) {
   const rect = canvas.getBoundingClientRect();
   const mouseX = event.clientX - rect.left;
   const mouseY = event.clientY - rect.top;
