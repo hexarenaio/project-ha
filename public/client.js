@@ -57,6 +57,7 @@ function updateCanvas() {
 }
 
 
+  // Agregar un event listener para clics en el documento
   document.addEventListener('mousedown', function (event) {
     const rect = canvas.getBoundingClientRect();
     const mouseX = event.clientX - rect.left;
@@ -64,25 +65,15 @@ function updateCanvas() {
 
     // Verificar si el clic está dentro del área del canvas
     if (mouseX >= 0 && mouseX <= canvas.width && mouseY >= 0 && mouseY <= canvas.height) {
-      // Calcular la posición X límite para evitar que el círculo se mueva fuera de la línea
-      const maxX = (Math.floor(circleY / (sideLength + hexHeight)) % 2 === 0)
-        ? ((circleY / (sideLength + hexHeight)) % 2 === 0) ? canvas.width : canvas.width - hexRectangleWidth / 2
-        : ((circleY / (sideLength + hexHeight)) % 2 === 0) ? hexRectangleWidth / 2 : canvas.width;
-
       // Calcular la posición X más cercana en la malla hexagonal
       const nearestX = Math.round(mouseX / hexRectangleWidth) * hexRectangleWidth;
-
-      // Mover el círculo hacia la posición X más cercana en la malla hexagonal
-      circleX = Math.max(hexRadius, Math.min(maxX - hexRadius, nearestX));
-
-      // Calcular la posición Y límite para evitar que el círculo se mueva fuera de la línea
-      const maxY = canvas.height;
 
       // Calcular la posición Y más cercana en la malla hexagonal
       const nearestY = Math.round(mouseY / (sideLength + hexHeight)) * (sideLength + hexHeight);
 
-      // Mover el círculo hacia la posición Y más cercana en la malla hexagonal
-      circleY = Math.max(hexHeight, Math.min(maxY - hexHeight, nearestY));
+      // Mover el círculo hacia la posición más cercana en la malla hexagonal
+      circleX = nearestX;
+      circleY = nearestY;
 
       // Actualizar la última posición válida
       lastCircleX = circleX;
@@ -92,7 +83,6 @@ function updateCanvas() {
       updateCanvas();
     }
   });
-
   
 
   // Esta función dibuja un hexágono en el canvas
