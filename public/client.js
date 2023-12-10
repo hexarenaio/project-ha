@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', function () {
   let lastCircleX = circleX;
   let lastCircleY = circleY;
 
+
+    const lineSpacing = sideLength / 2;
+
   
   // Esta función dibuja el fondo del canvas con hexágonos
   function drawHexagons() {
@@ -57,7 +60,7 @@ function updateCanvas() {
 }
 
 
-  // Agregar un event listener para clics en el documento
+ // Agregar un event listener para clics en el documento
   document.addEventListener('mousedown', function (event) {
     const rect = canvas.getBoundingClientRect();
     const mouseX = event.clientX - rect.left;
@@ -65,17 +68,14 @@ function updateCanvas() {
 
     // Verificar si el clic está dentro del área del canvas
     if (mouseX >= 0 && mouseX <= canvas.width && mouseY >= 0 && mouseY <= canvas.height) {
-      // Calcular la distancia entre la posición actual y la posición clicada
-      const distanceX = Math.abs(mouseX - lastCircleX);
-      const distanceY = Math.abs(mouseY - lastCircleY);
+      // Calcular la posición Y más cercana en la malla hexagonal
+      const nearestY = Math.round(mouseY / (sideLength + hexHeight)) * (sideLength + hexHeight);
 
-      // Limitar la distancia a la longitud del lado del hexágono
-      const maxDistance = sideLength;
-
-      if (distanceX <= maxDistance && distanceY <= maxDistance) {
-        // Mover el círculo solo si la distancia es menor o igual a la longitud del lado del hexágono
+      // Mover el círculo solo si la posición Y coincide con una línea blanca
+      if (Math.abs(nearestY - mouseY) < lineSpacing / 2) {
+        // Mover el círculo solo si la distancia es menor o igual a la mitad de la longitud del lado del hexágono
         circleX = mouseX;
-        circleY = mouseY;
+        circleY = nearestY;
 
         // Actualizar la última posición válida
         lastCircleX = circleX;
@@ -86,6 +86,7 @@ function updateCanvas() {
       }
     }
   });
+
 
   
 
