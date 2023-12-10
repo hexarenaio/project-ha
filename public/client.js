@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const hexagonAngle = 0.523598776; // 30 degrees in radians
 
- // let circleX = (hexRectangleHeight / 2) - 2;
-  //let circleY = hexRectangleHeight;
+  let circleX = 50;
+  let circleY = 50;
 
 
 //  const hexagonAngle = (2 * Math.PI) / 3; // Ángulo de 120 grados en radianes
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const randomY = Math.random() * canvas.height;
 
     // Dibujar un círculo rojo en la posición aleatoria
-    drawCircle(20, 20, 4, "red", playerName);
+    drawCircle(circleX, circleY, 4, "red", playerName);
   }
 
  function updateCanvas() {
