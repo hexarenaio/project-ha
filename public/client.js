@@ -57,30 +57,6 @@ function updateCanvas() {
 }
 
 
-document.addEventListener('DOMContentLoaded', function () {
-  // ... (tu código existente)
-
-  let circleX = (hexRectangleHeight / 2) - 2;
-  let circleY = hexRectangleHeight;
-  let lastCircleX = circleX;
-  let lastCircleY = circleY;
-
-  // ... (tu código existente)
-
-  function drawHexagons() {
-    // ... (tu código existente)
-
-    // Dibujar un círculo rojo en la posición inicial
-    drawCircle(circleX, circleY, 4, 'red', playerName);
-
-    // ... (tu código existente)
-  }
-
-  function updateCanvas() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    drawHexagons();
-  }
-
   // Agregar un event listener para clics en el documento
   document.addEventListener('mousedown', function (event) {
     const rect = canvas.getBoundingClientRect();
@@ -105,10 +81,6 @@ document.addEventListener('DOMContentLoaded', function () {
       updateCanvas();
     }
   });
-
-  // ... (tu código existente)
-});
-
   
 
   // Esta función dibuja un hexágono en el canvas
