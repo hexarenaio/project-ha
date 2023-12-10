@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', function () {
   let playerName;
   let connectedUsers = 0;
 
+  let circleX = (hexRectangleHeight / 2) - 2;
+  let circleY = hexRectangleHeight;
+
+
 
 
   const hexagonAngle = 0.523598776; // 30 degrees in radians
@@ -18,9 +22,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-      const bluePoint = document.getElementById('bluePoint');
+    //  const bluePoint = document.getElementById('bluePoint');
 
-      document.addEventListener('click', moveBluePoint);
+ //     document.addEventListener('click', moveBluePoint);
 
 
       function getHexagonPoints(x, y, size) {
@@ -127,15 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
     context.strokeStyle = "#CCCCCC";
     context.lineWidth = 1;
 
-    // Dibujar un círculo azul en el centro del canvas
-    //context.beginPath();
-    //context.arc(canvas.width / 2, canvas.height / 2, 5, 0, 2 * Math.PI);
-    //context.fillStyle = 'blue';
-    //context.fill();
-    // Asignar un ID al círculo azul
-    // Esto solo funciona si necesitas seleccionar el círculo usando JavaScript después
-    //context.canvas.children[0].id = 'bluePoint';
-
+    
 
     drawBoard(context, 10, 10); // Puedes ajustar el tamaño del tablero según tus necesidades
 
@@ -143,7 +139,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const randomY = Math.random() * canvas.height;
 
     // Dibujar un círculo rojo en la posición aleatoria
-    drawCircle((hexRectangleHeight / 2)-2, hexRectangleHeight, 4, "red", playerName);
+ //   drawCircle((hexRectangleHeight / 2)-2, hexRectangleHeight, 4, "red", playerName);
+    drawCircle(circleX, circleY, 4, "red", playerName);
+
   }
 
   // Esta función dibuja un hexágono en el canvas
@@ -205,30 +203,29 @@ function drawCircle(x, y, radius, color, text) {
 
 
 
- function updateCanvas() {
+  function updateCanvas() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     drawHexagons();
   }
 
-// Agregar un event listener para clics en el canvas
-document.addEventListener('click', function (event) {
-  const rect = canvas.getBoundingClientRect();
-  const mouseX = event.clientX - rect.left;
-  const mouseY = event.clientY - rect.top;
+  // Agregar un event listener para clics en el canvas
+  canvas.addEventListener('click', function (event) {
+    const mouseX = event.clientX - canvas.getBoundingClientRect().left;
+    const mouseY = event.clientY - canvas.getBoundingClientRect().top;
 
-  // Calcular la dirección del clic y mover el círculo
-  const deltaX = mouseX - circleX;
-  const deltaY = mouseY - circleY;
+    // Calcular la dirección del clic y mover el círculo
+    const deltaX = mouseX - circleX;
+    const deltaY = mouseY - circleY;
 
-  const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
-  // Mover 20 pixeles en la dirección del clic (normalizado)
-  circleX += (deltaX / distance) * 20;
-  circleY += (deltaY / distance) * 20;
+    // Mover 20 pixeles en la dirección del clic (normalizado)
+    circleX += (deltaX / distance) * 20;
+    circleY += (deltaY / distance) * 20;
 
-  // Actualizar el canvas después de mover el círculo
-  updateCanvas();
-});
+    // Actualizar el canvas después de mover el círculo
+    updateCanvas();
+  });
 
 
   nameForm.addEventListener('submit', function (event) {
