@@ -17,6 +17,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const sideLength = 38;
   let hexHeight, hexRadius, hexRectangleHeight, hexRectangleWidth;
 
+   hexHeight = Math.sin(hexagonAngle) * sideLength;
+    hexRadius = Math.cos(hexagonAngle) * sideLength;
+   hexRectangleHeight = sideLength + 2 * hexHeight;
+    hexRectangleWidth = 2 * hexRadius;
+
     let circleX = (hexRectangleHeight / 2) - 2;
   let circleY = hexRectangleHeight;
   let lastCircleX = circleX;
