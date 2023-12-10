@@ -65,22 +65,28 @@ function updateCanvas() {
 
     // Verificar si el clic está dentro del área del canvas
     if (mouseX >= 0 && mouseX <= canvas.width && mouseY >= 0 && mouseY <= canvas.height) {
-      // Redondear las coordenadas a múltiplos de la longitud del lado del hexágono (38 píxeles)
-      const roundedX = Math.round(mouseX / sideLength) * sideLength;
-      const roundedY = Math.round(mouseY / (sideLength + hexHeight)) * (sideLength + hexHeight);
+      // Calcular la distancia entre la posición actual y la posición clicada
+      const distanceX = Math.abs(mouseX - lastCircleX);
+      const distanceY = Math.abs(mouseY - lastCircleY);
 
-      // Mover el círculo hacia la posición redondeada
-      circleX = roundedX;
-      circleY = roundedY;
+      // Limitar la distancia a la longitud del lado del hexágono
+      const maxDistance = sideLength;
 
-      // Actualizar la última posición válida
-      lastCircleX = circleX;
-      lastCircleY = circleY;
+      if (distanceX <= maxDistance && distanceY <= maxDistance) {
+        // Mover el círculo solo si la distancia es menor o igual a la longitud del lado del hexágono
+        circleX = mouseX;
+        circleY = mouseY;
 
-      // Actualizar el canvas después de mover el círculo
-      updateCanvas();
+        // Actualizar la última posición válida
+        lastCircleX = circleX;
+        lastCircleY = circleY;
+
+        // Actualizar el canvas después de mover el círculo
+        updateCanvas();
+      }
     }
   });
+
   
 
   // Esta función dibuja un hexágono en el canvas
