@@ -9,8 +9,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const hexagonAngle = 0.523598776; // 30 degrees in radians
 
-  let circleX = 50;
-  let circleY = 50;
 
 
  
@@ -19,10 +17,12 @@ document.addEventListener('DOMContentLoaded', function () {
   const sideLength = 38;
   let hexHeight, hexRadius, hexRectangleHeight, hexRectangleWidth;
 
-   let lastCircleX = (hexRectangleHeight / 2) - 2;
-let lastCircleY = hexRectangleHeight;
+    let circleX = (hexRectangleHeight / 2) - 2;
+  let circleY = hexRectangleHeight;
+  let lastCircleX = circleX;
+  let lastCircleY = circleY;
 
-
+  
   // Esta función dibuja el fondo del canvas con hexágonos
   function drawHexagons() {
     hexHeight = Math.sin(hexagonAngle) * sideLength;
@@ -48,45 +48,35 @@ function updateCanvas() {
   context.clearRect(0, 0, canvas.width, canvas.height);
   drawHexagons();
 
-  // Verificar si el círculo está dentro de un hexágono
-  const hexRow = Math.floor(circleY / (sideLength + hexHeight));
-  const hexCol = Math.floor(circleX / hexRectangleWidth);
 
-  // Calcular la posición central del hexágono correspondiente
-  const hexCenterX = hexCol * hexRectangleWidth + ((hexRow % 2) * hexRadius);
-  const hexCenterY = hexRow * (sideLength + hexHeight) + (hexHeight + sideLength);
-
-  // Calcular la distancia desde el centro del hexágono al círculo
-  const distance = Math.sqrt(Math.pow(circleX - hexCenterX, 2) + Math.pow(circleY - hexCenterY, 2));
-
-  // Si la distancia es menor que el radio del hexágono, el círculo está dentro
-  if (distance < hexRadius) {
-    // Permitir que el círculo se mueva si está dentro del hexágono
-    drawCircle(circleX, circleY, 4, 'red', playerName);
-  } else {
-    // Si está fuera, volver a la posición anterior (dentro del hexágono)
-    drawCircle(lastCircleX, lastCircleY, 4, 'red', playerName);
-  }
 }
 
 
-  // Agregar un event listener para clics en el canvas
-  canvas.addEventListener('click', function (event) {
-    const mouseX = event.clientX - canvas.getBoundingClientRect().left;
-    const mouseY = event.clientY - canvas.getBoundingClientRect().top;
+  // Agregar un event listener para clics en el documento
+  document.addEventListener('mousedown', function (event) {
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
 
-    // Calcular la dirección del clic y mover el círculo
-    const deltaX = mouseX - circleX;
-    const deltaY = mouseY - circleY;
+    // Verificar si el clic está dentro del área del canvas
+    if (mouseX >= 0 && mouseX <= canvas.width && mouseY >= 0 && mouseY <= canvas.height) {
+      // Calcular la dirección del clic y mover el círculo solo en dirección horizontal
+      const deltaX = mouseX - lastCircleX;
 
-    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+      // Calcular la posición X límite para evitar que el círculo se mueva fuera de la línea
+      const maxX = (Math.floor(circleY / (sideLength + hexHeight)) % 2 === 0)
+        ? ((circleY / (sideLength + hexHeight)) % 2 === 0) ? canvas.width : canvas.width - hexRectangleWidth / 2
+        : ((circleY / (sideLength + hexHeight)) % 2 === 0) ? hexRectangleWidth / 2 : canvas.width;
 
-    // Mover 20 pixeles en la dirección del clic (normalizado)
-    circleX += (deltaX / distance) * 20;
-    circleY += (deltaY / distance) * 20;
+      // Movimiento horizontal dentro de los límites
+      circleX = Math.max(hexRadius, Math.min(maxX - hexRadius, lastCircleX + deltaX));
 
-    // Actualizar el canvas después de mover el círculo
-    updateCanvas();
+      // Actualizar la última posición válida
+      lastCircleX = circleX;
+
+      // Actualizar el canvas después de mover el círculo
+      updateCanvas();
+    }
   });
 
   
