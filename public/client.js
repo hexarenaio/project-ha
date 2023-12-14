@@ -14,7 +14,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const hexagonGroup = document.getElementById('hexagonGroup');
 
-    const bluePoint = document.getElementById('bluePoint');
+const blueCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    blueCircle.setAttribute('id', 'bluePoint');
+    blueCircle.setAttribute('cx', '170');
+    blueCircle.setAttribute('cy', '170');
+    blueCircle.setAttribute('r', '8');
+    blueCircle.setAttribute('fill', 'blue');
+
+    hexagonGroup.appendChild(blueCircle);
 
   createHexagons(); // Llama a la función para dibujar hexágonos en el fondo
 
