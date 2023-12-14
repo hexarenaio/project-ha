@@ -150,10 +150,7 @@ function updateCanvas() {
 
         console.log('La animación ha terminado');
 
-    hexHeight = Math.sin(hexagonAngle) * sideLength;
-    hexRadius = Math.cos(hexagonAngle) * sideLength;
-    hexRectangleHeight = sideLength + 2 * hexHeight;
-    hexRectangleWidth = 2 * hexRadius;
+   
 
     // Crea hexágonos en el fondo utilizando la función existente
     for (let row = 0; row < numRows; row++) {
