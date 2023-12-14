@@ -200,6 +200,10 @@ function drawCircle(x, y, radius, color, text) {
 
 
   function moveBluePoint(event) {
+
+
+	      drawUserCount();
+
      
         console.log('///////////////////');
 
@@ -510,7 +514,6 @@ function animateBluePoint(destinationX, destinationY, callback) {
         console.log('nameForm Comenzado');
 
 	  // Dibujar el texto con la cantidad de usuarios conectados
-    drawUserCount();
 
 
   });
