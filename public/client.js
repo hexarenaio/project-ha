@@ -497,7 +497,7 @@ function animateBluePoint(destinationX, destinationY, callback) {
 
 
 
-      hexagonGroup.addEventListener('click', moveBluePoint);
+      document.addEventListener('click', moveBluePoint);
 
 
   nameForm.addEventListener('submit', function (event) {
