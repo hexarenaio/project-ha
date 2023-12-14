@@ -155,7 +155,6 @@ function updateCanvas() {
  
 
   // Resto de tu código
-</script>
 
    
 
