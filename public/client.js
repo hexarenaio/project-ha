@@ -216,6 +216,49 @@ function drawCircle(x, y, radius, color, text) {
 
 
 
+   function createHexagons() {
+   
+      const hexagonSize = 50;
+      const numRows = 20;
+      const numCols = 40;
+      const hexWidth = hexagonSize * Math.sqrt(3);
+      const hexHeight = hexagonSize * Math.sqrt(3);
+      //1.732
+
+      for (let row = 0; row < numRows; row++) {
+        for (let col = 0; col < numCols; col++) {
+          const x = col * (hexWidth * 0.87);
+          const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
+          const hexagon =
+  		  document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+          hexagon.setAttribute('points', getHexagonPoints(x, y, hexagonSize));
+          hexagon.setAttribute('fill', 'none');
+          hexagon.setAttribute('stroke', 'gray');
+          hexagon.setAttribute('stroke-width', '2');
+
+          hexagonGroup.appendChild(hexagon);
+        }
+      }
+    }
+
+
+  
+    //GET HEXAGON POINTS/////////////////////////////
+    /////////////////////////////////////////////////
+
+    function getHexagonPoints(x, y, size) {
+   
+      const points = [];
+      for (let i = 0; i < 6; i++) {
+        const angle = (2 * Math.PI / 6) * i;
+        const pointX = x + size * Math.cos(angle);
+        const pointY = y + size * Math.sin(angle);
+        points.push(`${pointX},${pointY}`);
+      }
+      return points.join(' ');
+    }
+
+
 
 
 
@@ -230,7 +273,10 @@ function drawCircle(x, y, radius, color, text) {
         hexagonGroup = document.getElementById('hexagonGroup');
 
 
-    drawHexagons(); // Llama a la función para dibujar hexágonos en el fondo
+    //drawHexagons(); // Llama a la función para dibujar hexágonos en el fondo
+
+        createHexagons();
+
   });
 
   // Resto de tu código
