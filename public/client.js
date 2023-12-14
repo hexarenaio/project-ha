@@ -516,7 +516,6 @@ function animateBluePoint(destinationX, destinationY, callback) {
   });
 	////////////SERVER COSAS///////////
 
-	  let connectedUsers = 0; // Variable para almacenar la cantidad de usuarios conectados
 
 
 	 // Manejar la recepción de información sobre la cantidad de usuarios conectados
