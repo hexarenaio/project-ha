@@ -10,6 +10,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const hexagonAngle = 0.523598776; // 30 degrees in radians
 
+  // Crea el grupo de hexágonos
+  const hexagonGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  hexagonGroup.setAttribute('id', 'hexagonGroup');
+  canvas.appendChild(hexagonGroup);
+
 
 
  
