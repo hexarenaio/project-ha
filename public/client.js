@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   
   // Esta función dibuja el fondo del canvas con hexágonos
-  function drawHexagons() {
+  function drawHexagons222() {
     hexHeight = Math.sin(hexagonAngle) * sideLength;
     hexRadius = Math.cos(hexagonAngle) * sideLength;
     hexRectangleHeight = sideLength + 2 * hexHeight;
