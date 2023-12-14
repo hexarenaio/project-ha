@@ -203,6 +203,9 @@ function drawCircle(x, y, radius, color, text) {
 
         hexagonGroup.style.display = 'block';
 
+        console.log('nameForm Comenzado');
+
+
   });
 
   // Resto de tu código
