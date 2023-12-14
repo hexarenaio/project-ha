@@ -21,11 +21,7 @@ const bluePoint = document.createElementNS('http://www.w3.org/2000/svg', 'circle
     bluePoint.setAttribute('r', '8');
     bluePoint.setAttribute('fill', 'blue');
 
-    hexagonGroup.appendChild(bluePoint);
-
-  createHexagons(); // Llama a la función para dibujar hexágonos en el fondo
-
-
+	
 const helloText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
   helloText.setAttribute('x', '50%'); // Centrar horizontalmente
   helloText.setAttribute('y', '20'); // Ajustar verticalmente
@@ -35,6 +31,12 @@ const helloText = document.createElementNS('http://www.w3.org/2000/svg', 'text')
   helloText.textContent = 'Hola';
 
   hexagonGroup.appendChild(helloText);
+
+    hexagonGroup.appendChild(bluePoint);
+
+  createHexagons(); // Llama a la función para dibujar hexágonos en el fondo
+
+
 
 	
  
