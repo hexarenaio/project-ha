@@ -142,6 +142,12 @@ function updateCanvas() {
   // Esta función dibuja el fondo del canvas con hexágonos
   function drawHexagons() {
 
+     const hexagonSize = 50;
+      const numRows = 20;
+      const numCols = 40;
+      const hexWidth = hexagonSize * Math.sqrt(3);
+      const hexHeight = hexagonSize * Math.sqrt(3);
+
         console.log('La animación ha terminado');
 
     hexHeight = Math.sin(hexagonAngle) * sideLength;
