@@ -46,21 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-        // Inserta el SVG de hexágonos directamente en el canvas
-    const svgHexagons = `
-      <!-- Tu SVG de hexágonos aquí -->
-      <svg width="${canvas.width}" height="${canvas.height}" xmlns="http://www.w3.org/2000/svg">
-        <!-- Agrega aquí el contenido de tus hexágonos SVG -->
-      </svg>
-    `;
-
-    // Convierte la cadena SVG a un objeto DOM
-    const parser = new DOMParser();
-    const svgDocument = parser.parseFromString(svgHexagons, 'image/svg+xml');
-
-    // Inserta el objeto DOM SVG en el canvas
-    const svgElement = svgDocument.documentElement;
-    context.drawImage(svgElement, 0, 0);
+    
 
     
 
@@ -155,6 +141,9 @@ function updateCanvas() {
 
   // Esta función dibuja el fondo del canvas con hexágonos
   function drawHexagons() {
+
+        console.log('La animación ha terminado');
+
     hexHeight = Math.sin(hexagonAngle) * sideLength;
     hexRadius = Math.cos(hexagonAngle) * sideLength;
     hexRectangleHeight = sideLength + 2 * hexHeight;
