@@ -26,7 +26,17 @@ const bluePoint = document.createElementNS('http://www.w3.org/2000/svg', 'circle
   createHexagons(); // Llama a la función para dibujar hexágonos en el fondo
 
 
+const helloText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  helloText.setAttribute('x', '50%'); // Centrar horizontalmente
+  helloText.setAttribute('y', '20'); // Ajustar verticalmente
+  helloText.setAttribute('text-anchor', 'middle'); // Alinear al centro
+  helloText.setAttribute('fill', 'black');
+  helloText.setAttribute('font-size', '16px');
+  helloText.textContent = 'Hola';
 
+  hexagonGroup.appendChild(helloText);
+
+	
  
 //  const hexagonAngle = (2 * Math.PI) / 3; // Ángulo de 120 grados en radianes
 
