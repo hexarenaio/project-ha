@@ -509,8 +509,28 @@ function animateBluePoint(destinationX, destinationY, callback) {
 
         console.log('nameForm Comenzado');
 
+	  // Dibujar el texto con la cantidad de usuarios conectados
+    drawUserCount();
+
 
   });
+	////////////SERVER COSAS///////////
+
+	  let connectedUsers = 0; // Variable para almacenar la cantidad de usuarios conectados
+
+
+	 // Manejar la recepción de información sobre la cantidad de usuarios conectados
+  socket.on('userCount', function (count) {
+    connectedUsers = count;
+    drawUserCount(); // Llamar a la función para actualizar el texto en el canvas
+  });
+
+	 // Función para dibujar el texto con la cantidad de usuarios conectados
+  function drawUserCount() {
+    context.fillStyle = 'black';
+    context.font = '16px Arial';
+    context.fillText(`Usuarios conectados: ${connectedUsers}`, 10, 40);
+  }
 
   // Resto de tu código
 
