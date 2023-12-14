@@ -80,6 +80,18 @@ function updateCanvas() {
 
 }
 
+    function getHexagonPoints(x, y, size) {
+   
+      const points = [];
+      for (let i = 0; i < 6; i++) {
+        const angle = (2 * Math.PI / 6) * i;
+        const pointX = x + size * Math.cos(angle);
+        const pointY = y + size * Math.sin(angle);
+        points.push(`${pointX},${pointY}`);
+      }
+      return points.join(' ');
+    }
+
 
  // Agregar un event listener para clics en el documento
   document.addEventListener('mousedown', function (event) {
