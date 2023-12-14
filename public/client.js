@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
   let playerName;
   let connectedUsers = 0;
 
+  let hexagonGroup;
+
   const hexagonAngle = 0.523598776; // 30 degrees in radians
 
 
@@ -211,7 +213,9 @@ function drawCircle(x, y, radius, color, text) {
 
   nameForm.addEventListener('submit', function (event) {
     event.preventDefault();
-    playerName = document.getElementById('playerName').value;
+    hexagonGroup = document.getElementById('hexagonGroup').value;
+        playerName = document.getElementById('playerName').value;
+
     nameForm.style.display = 'none';
     canvas.style.display = 'block';
 
