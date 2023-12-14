@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function updateCanvas() {
   context.clearRect(0, 0, canvas.width, canvas.height);
-  drawHexagons();
+//  drawHexagons();
 
 
 }
@@ -217,6 +217,9 @@ function drawCircle(x, y, radius, color, text) {
 
 
    function createHexagons() {
+
+             console.log('CreateHexagons');
+
    
       const hexagonSize = 50;
       const numRows = 20;
@@ -271,6 +274,9 @@ function drawCircle(x, y, radius, color, text) {
     canvas.style.display = 'block';
 
      //   hexagonGroup = document.getElementById('hexagonGroup');
+
+
+            console.log('nameForm');
 
 
     //drawHexagons(); // Llama a la función para dibujar hexágonos en el fondo
