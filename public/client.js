@@ -410,7 +410,7 @@ function animateBluePoint(destinationX, destinationY, callback) {
         bluePoint.setAttribute('cx', newX);
         bluePoint.setAttribute('cy', newY);
         
-        detectarColisiones();
+      //  detectarColisiones();
 
         if (progress < 1) {
             requestAnimationFrame(update);
@@ -436,6 +436,53 @@ function animateBluePoint(destinationX, destinationY, callback) {
 
     requestAnimationFrame(update);
 }
+
+
+
+//FIND CLOSES TO CLICK///////////////////////////
+    /////////////////////////////////////////////////
+    
+	function findClosestRedVertexToClick(x, y) {
+    
+    	let closestVertex = null;
+    	let minDistance = Infinity;
+
+    	redVerticesArray.forEach((redVertex) => {
+        const x1 = redVertex.x;
+        const y1 = redVertex.y;
+
+        const distance = pointToPointDistance2(x, y, x1, y1);
+
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestVertex = { x: x1, y: y1 };
+        }
+    	});
+
+    	if (closestVertex) {
+    
+    		//bluePoint.setAttribute('cx',  closestVertex.x );
+    		//bluePoint.setAttribute('cy',  closestVertex.y  );
+            
+           animateBluePoint(closestVertex.x, closestVertex.y, function() {
+
+ 
+        findClosestVertices(bluePoint.getAttribute('cx'), 				bluePoint.getAttribute('cy'));
+    console.log('La animación ha terminado');
+    // Puedes realizar acciones adicionales después de que la animación ha terminado
+});
+
+
+    
+        	//console.log(`Vértice rojo más cercano a (${x}, ${y}): 
+           // (${closestVertex.x}, ${closestVertex.y})`);
+    	} else {
+        console.log(`No se encontró vértice rojo cercano a las coordenadas (${x}, ${y}).`);
+    	}
+
+    return closestVertex;
+	}
+	
 
 
 
