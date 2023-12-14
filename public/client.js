@@ -270,7 +270,7 @@ function drawCircle(x, y, radius, color, text) {
     nameForm.style.display = 'none';
     canvas.style.display = 'block';
 
-        hexagonGroup = document.getElementById('hexagonGroup');
+     //   hexagonGroup = document.getElementById('hexagonGroup');
 
 
     //drawHexagons(); // Llama a la función para dibujar hexágonos en el fondo
