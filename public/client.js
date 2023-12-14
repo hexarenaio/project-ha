@@ -7,13 +7,13 @@ document.addEventListener('DOMContentLoaded', function () {
   let playerName;
   let connectedUsers = 0;
 
-
   const hexagonAngle = 0.523598776; // 30 degrees in radians
 
-  // Crea el grupo de hexágonos
-  const hexagonGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-  hexagonGroup.setAttribute('id', 'hexagonGroup');
-  canvas.appendChild(hexagonGroup);
+  let circleX = 50;
+  let circleY = 50;
+
+  const hexagonGroup = document.getElementById('hexagonGroup');
+  createHexagons(); // Llama a la función para dibujar hexágonos en el fondo
 
 
 
@@ -23,22 +23,12 @@ document.addEventListener('DOMContentLoaded', function () {
   const sideLength = 38;
   let hexHeight, hexRadius, hexRectangleHeight, hexRectangleWidth;
 
-   hexHeight = Math.sin(hexagonAngle) * sideLength;
-    hexRadius = Math.cos(hexagonAngle) * sideLength;
-   hexRectangleHeight = sideLength + 2 * hexHeight;
-    hexRectangleWidth = 2 * hexRadius;
-
-    let circleX = (hexRectangleHeight / 2) - 2;
-  let circleY = hexRectangleHeight;
-  let lastCircleX = circleX;
-  let lastCircleY = circleY;
+   let lastCircleX = (hexRectangleHeight / 2) - 2;
+let lastCircleY = hexRectangleHeight;
 
 
-    const lineSpacing = sideLength / 2;
-
-  
   // Esta función dibuja el fondo del canvas con hexágonos
-  function drawHexagons222() {
+  function drawHexagons() {
     hexHeight = Math.sin(hexagonAngle) * sideLength;
     hexRadius = Math.cos(hexagonAngle) * sideLength;
     hexRectangleHeight = sideLength + 2 * hexHeight;
@@ -48,13 +38,6 @@ document.addEventListener('DOMContentLoaded', function () {
     context.fillStyle = "#000000";
     context.strokeStyle = "#CCCCCC";
     context.lineWidth = 1;
-
-
-
-
-    
-
-    
 
     drawBoard(context, 10, 10); // Puedes ajustar el tamaño del tablero según tus necesidades
 
@@ -67,51 +50,83 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function updateCanvas() {
   context.clearRect(0, 0, canvas.width, canvas.height);
-//  drawHexagons();
+ // drawHexagons();
 
+  // Verificar si el círculo está dentro de un hexágono
+  const hexRow = Math.floor(circleY / (sideLength + hexHeight));
+  const hexCol = Math.floor(circleX / hexRectangleWidth);
 
+  // Calcular la posición central del hexágono correspondiente
+  const hexCenterX = hexCol * hexRectangleWidth + ((hexRow % 2) * hexRadius);
+  const hexCenterY = hexRow * (sideLength + hexHeight) + (hexHeight + sideLength);
+
+  // Calcular la distancia desde el centro del hexágono al círculo
+  const distance = Math.sqrt(Math.pow(circleX - hexCenterX, 2) + Math.pow(circleY - hexCenterY, 2));
+
+  // Si la distancia es menor que el radio del hexágono, el círculo está dentro
+  if (distance < hexRadius) {
+    // Permitir que el círculo se mueva si está dentro del hexágono
+    drawCircle(circleX, circleY, 4, 'red', playerName);
+  } else {
+    // Si está fuera, volver a la posición anterior (dentro del hexágono)
+    drawCircle(lastCircleX, lastCircleY, 4, 'red', playerName);
+  }
 }
 
-    function getHexagonPoints(x, y, size) {
-   
-      const points = [];
-      for (let i = 0; i < 6; i++) {
-        const angle = (2 * Math.PI / 6) * i;
-        const pointX = x + size * Math.cos(angle);
-        const pointY = y + size * Math.sin(angle);
-        points.push(`${pointX},${pointY}`);
-      }
-      return points.join(' ');
-    }
 
+  // Agregar un event listener para clics en el canvas
+  canvas.addEventListener('click', function (event) {
+    const mouseX = event.clientX - canvas.getBoundingClientRect().left;
+    const mouseY = event.clientY - canvas.getBoundingClientRect().top;
 
- // Agregar un event listener para clics en el documento
-  document.addEventListener('mousedown', function (event) {
-    const rect = canvas.getBoundingClientRect();
-    const mouseX = event.clientX - rect.left;
-    const mouseY = event.clientY - rect.top;
+    // Calcular la dirección del clic y mover el círculo
+    const deltaX = mouseX - circleX;
+    const deltaY = mouseY - circleY;
 
-    // Verificar si el clic está dentro del área del canvas
-    if (mouseX >= 0 && mouseX <= canvas.width && mouseY >= 0 && mouseY <= canvas.height) {
-      // Calcular la posición Y más cercana en la malla hexagonal
-      const nearestY = Math.round(mouseY / (sideLength + hexHeight)) * (sideLength + hexHeight);
+    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
-      // Mover el círculo solo si la posición Y coincide con una línea blanca
-      if (Math.abs(nearestY - mouseY) < lineSpacing / 2) {
-        // Mover el círculo solo si la distancia es menor o igual a la mitad de la longitud del lado del hexágono
-        circleX = mouseX;
-        circleY = nearestY;
+    // Mover 20 pixeles en la dirección del clic (normalizado)
+    circleX += (deltaX / distance) * 20;
+    circleY += (deltaY / distance) * 20;
 
-        // Actualizar la última posición válida
-        lastCircleX = circleX;
-        lastCircleY = circleY;
-
-        // Actualizar el canvas después de mover el círculo
-        updateCanvas();
-      }
-    }
+    // Actualizar el canvas después de mover el círculo
+    updateCanvas();
   });
 
+    function createHexagons() {
+    const hexagonSize = 50;
+    const numRows = 20;
+    const numCols = 40;
+    const hexWidth = hexagonSize * Math.sqrt(3);
+    const hexHeight = hexagonSize * Math.sqrt(3);
+
+    for (let row = 0; row < numRows; row++) {
+      for (let col = 0; col < numCols; col++) {
+        const x = col * (hexWidth * 0.87);
+        const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
+        const hexagon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        hexagon.setAttribute('points', getHexagonPoints(x, y, hexagonSize));
+        hexagon.setAttribute('fill', 'none');
+        hexagon.setAttribute('stroke', 'gray');
+        hexagon.setAttribute('stroke-width', '2');
+        hexagon.addEventListener('click', function () {
+          // Agregar el manejo de clic en hexágono aquí si es necesario
+        });
+        hexagonGroup.appendChild(hexagon);
+      }
+    }
+  }
+
+  function getHexagonPoints(x, y, size) {
+    const points = [];
+    for (let i = 0; i < 6; i++) {
+      const angle = (2 * Math.PI / 6) * i;
+      const pointX = x + size * Math.cos(angle);
+      const pointY = y + size * Math.sin(angle);
+      points.push(`${pointX},${pointY}`);
+    }
+    return points.join(' ');
+  }
 
   
 
@@ -133,48 +148,6 @@ function updateCanvas() {
     } else {
       canvasContext.stroke();
     }
-  }
-
-
-   function drawHexagonSVG(x, y, size) {
-    const hexagon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-    hexagon.setAttribute('points', getHexagonPoints(x, y, size));
-    hexagon.setAttribute('fill', 'none');
-    hexagon.setAttribute('stroke', 'gray');
-    hexagon.setAttribute('stroke-width', '2');
-    hexagonGroup.appendChild(hexagon);
-  }
-
-  // Esta función dibuja el fondo del canvas con hexágonos
-  function drawHexagons() {
-  let hexagonGroup;
-
-     const hexagonSize = 50;
-      const numRows = 20;
-      const numCols = 40;
-      const hexWidth = hexagonSize * Math.sqrt(3);
-      const hexHeight = hexagonSize * Math.sqrt(3);
-
-        console.log('La animación ha terminado');
-
- 
-
-  // Resto de tu código
-
-   
-
-    // Crea hexágonos en el fondo utilizando la función existente
-    for (let row = 0; row < numRows; row++) {
-      for (let col = 0; col < numCols; col++) {
-        const x = col * (hexWidth * 0.87);
-        const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
-        drawHexagonSVG(x, y, hexagonSize);
-      }
-    }
-
-    // Resto de tu lógica de dibujo
-    drawBoard(context, 10, 10);
-    drawCircle(circleX, circleY, 4, "red", playerName);
   }
 
   function drawBoard(canvasContext, width, height) {
@@ -216,72 +189,19 @@ function drawCircle(x, y, radius, color, text) {
 
 
 
-   function createHexagons() {
-
-             console.log('CreateHexagons');
-
-   
-      const hexagonSize = 50;
-      const numRows = 20;
-      const numCols = 40;
-      const hexWidth = hexagonSize * Math.sqrt(3);
-      const hexHeight = hexagonSize * Math.sqrt(3);
-      //1.732
-
-      for (let row = 0; row < numRows; row++) {
-        for (let col = 0; col < numCols; col++) {
-          const x = col * (hexWidth * 0.87);
-          const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
-          const hexagon =
-  		  document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-          hexagon.setAttribute('points', getHexagonPoints(x, y, hexagonSize));
-          hexagon.setAttribute('fill', 'none');
-          hexagon.setAttribute('stroke', 'gray');
-          hexagon.setAttribute('stroke-width', '2');
-
-          hexagonGroup.appendChild(hexagon);
-        }
-      }
-    }
-
-
-  
-    //GET HEXAGON POINTS/////////////////////////////
-    /////////////////////////////////////////////////
-
-    function getHexagonPoints(x, y, size) {
-   
-      const points = [];
-      for (let i = 0; i < 6; i++) {
-        const angle = (2 * Math.PI / 6) * i;
-        const pointX = x + size * Math.cos(angle);
-        const pointY = y + size * Math.sin(angle);
-        points.push(`${pointX},${pointY}`);
-      }
-      return points.join(' ');
-    }
-
-
 
 
 
 
   nameForm.addEventListener('submit', function (event) {
     event.preventDefault();
-        playerName = document.getElementById('playerName').value;
-
+    playerName = document.getElementById('playerName').value;
     nameForm.style.display = 'none';
     canvas.style.display = 'block';
 
-     //   hexagonGroup = document.getElementById('hexagonGroup');
+  //  drawHexagons(); // Llama a la función para dibujar hexágonos en el fondo
 
-
-            console.log('nameForm');
-
-
-    //drawHexagons(); // Llama a la función para dibujar hexágonos en el fondo
-
-        createHexagons();
+        hexagonGroup.style.display = 'block';
 
   });
 
