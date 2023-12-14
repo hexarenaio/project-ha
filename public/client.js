@@ -43,6 +43,27 @@ document.addEventListener('DOMContentLoaded', function () {
     context.strokeStyle = "#CCCCCC";
     context.lineWidth = 1;
 
+
+
+
+        // Inserta el SVG de hexágonos directamente en el canvas
+    const svgHexagons = `
+      <!-- Tu SVG de hexágonos aquí -->
+      <svg width="${canvas.width}" height="${canvas.height}" xmlns="http://www.w3.org/2000/svg">
+        <!-- Agrega aquí el contenido de tus hexágonos SVG -->
+      </svg>
+    `;
+
+    // Convierte la cadena SVG a un objeto DOM
+    const parser = new DOMParser();
+    const svgDocument = parser.parseFromString(svgHexagons, 'image/svg+xml');
+
+    // Inserta el objeto DOM SVG en el canvas
+    const svgElement = svgDocument.documentElement;
+    context.drawImage(svgElement, 0, 0);
+
+    
+
     drawBoard(context, 10, 10); // Puedes ajustar el tamaño del tablero según tus necesidades
 
      const randomX = Math.random() * canvas.width;
@@ -108,6 +129,37 @@ function updateCanvas() {
     } else {
       canvasContext.stroke();
     }
+  }
+
+
+   function drawHexagonSVG(x, y, size) {
+    const hexagon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    hexagon.setAttribute('points', getHexagonPoints(x, y, size));
+    hexagon.setAttribute('fill', 'none');
+    hexagon.setAttribute('stroke', 'gray');
+    hexagon.setAttribute('stroke-width', '2');
+    hexagonGroup.appendChild(hexagon);
+  }
+
+  // Esta función dibuja el fondo del canvas con hexágonos
+  function drawHexagons() {
+    hexHeight = Math.sin(hexagonAngle) * sideLength;
+    hexRadius = Math.cos(hexagonAngle) * sideLength;
+    hexRectangleHeight = sideLength + 2 * hexHeight;
+    hexRectangleWidth = 2 * hexRadius;
+
+    // Crea hexágonos en el fondo utilizando la función existente
+    for (let row = 0; row < numRows; row++) {
+      for (let col = 0; col < numCols; col++) {
+        const x = col * (hexWidth * 0.87);
+        const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
+        drawHexagonSVG(x, y, hexagonSize);
+      }
+    }
+
+    // Resto de tu lógica de dibujo
+    drawBoard(context, 10, 10);
+    drawCircle(circleX, circleY, 4, "red", playerName);
   }
 
   function drawBoard(canvasContext, width, height) {
