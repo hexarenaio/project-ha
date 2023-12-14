@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', function () {
   let circleY = 50;
 
   const hexagonGroup = document.getElementById('hexagonGroup');
+
+    const bluePoint = document.getElementById('bluePoint');
+
   createHexagons(); // Llama a la función para dibujar hexágonos en el fondo
 
 
@@ -189,8 +192,254 @@ function drawCircle(x, y, radius, color, text) {
 
 
 
+  function moveBluePoint(event) {
+     
+        console.log('///////////////////');
+
+  		const clickX = event.clientX;
+  		const clickY = event.clientY;
+
+      
+   
+  		const closestLine = findClosestLine(
+        bluePoint.getAttribute('cx'), bluePoint.getAttribute('cy'));
+
+    	
+            
+             const destinationX = closestLine.x2;
+        const destinationY = closestLine.y2;
+
+        
+        animateBluePoint(destinationX, destinationY, function() {
+ 
+        findClosestVertices(bluePoint.getAttribute('cx'), 	
+                            bluePoint.getAttribute('cy'));
+ 
+});
+
+        
+           	
+            findClosestRedVertexToClick( clickX, clickY);
+
+	
+	}
 
 
+
+
+//FIND CLOSEST VERTICES//////////////////////////
+    /////////////////////////////////////////////////
+    
+	// Definir un arreglo para almacenar las coordenadas de los vértices rojos
+	
+    let redVerticesArray = [];
+
+	function findClosestVertices(x, y) {
+    
+    	const hexagons = document.querySelectorAll('#hexagonGroup polygon');
+    	let svg = document.querySelector('svg');
+    	let nearbyVertices = [];
+
+    	// Eliminar los puntos rojos existentes
+    	redVerticesArray.forEach((redVertex) => {
+        const existingRedDot = document.querySelector
+        (`circle[fill="red"][cx="${redVertex.x}"][cy="${redVertex.y}"]`);
+        
+        if (existingRedDot) {
+            svg.removeChild(existingRedDot);
+        }
+    	});
+
+    	// Limpiar el arreglo de coordenadas de los vértices rojos
+    	redVerticesArray = [];
+
+    	hexagons.forEach((hexagon) => {
+        const points = hexagon.getAttribute('points').split(' ');
+
+        // Iteramos sobre los vértices del hexágono
+        for (let i = 0; i < points.length; i++) {
+            const [x1, y1] = points[i].split(',').map(Number);
+
+            // Calculamos la distancia entre el punto azul y el vértice
+            const distance = pointToPointDistance2(x, y, x1, y1);
+
+            // Marcamos el vértice si está dentro del radio de 50 pixeles alrededor del punto azul
+            if (distance < 60) {
+                nearbyVertices.push({ x: x1, y: y1 });
+
+                // Almacenamos las coordenadas del vértice rojo
+                redVerticesArray.push({ x: x1, y: y1 });
+
+                // Dibujamos un círculo rojo en el vértice
+                const redDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                redDot.setAttribute('cx', x1);
+                redDot.setAttribute('cy', y1);
+                redDot.setAttribute('r', '3');
+                redDot.setAttribute('fill', 'red');
+
+                svg.appendChild(redDot);
+
+                // Mostramos las coordenadas en la consola
+                //console.log(`Vértice (${x1}, ${y1}) marcado con círculo rojo.`);
+            }
+        }
+    	});
+
+    	// Encontramos el vértice rojo más cercano al clic
+    	const clickX = x;
+    	const clickY = y;
+    	let closestVertex = null;
+    	let minDistance = Infinity;
+
+    	redVerticesArray.forEach((redVertex) => {
+        	const x1 = redVertex.x;
+        	const y1 = redVertex.y;
+
+        	const distance = pointToPointDistance2(clickX, clickY, x1, y1);
+
+        	if (distance < minDistance) {
+            	minDistance = distance;
+            	closestVertex = { x: x1, y: y1 };
+        	}
+    	});
+
+    	if (closestVertex) {
+        	//console.log(`Vértice rojo más cercano al clic: 
+          //  (${closestVertex.x}, ${closestVertex.y})`);
+            
+    	} else {
+        
+        	console.log('No se encontraron vértices rojos cercanos');
+		}
+    return nearbyVertices;
+	}
+
+	//POINT TO DISTANCE//////////////////////////////
+    /////////////////////////////////////////////////
+
+	function pointToPointDistance2(x1, y1, x2, y2) {
+    	const dx = x1 - x2;
+    	const dy = y1 - y2;
+    	return Math.sqrt(dx * dx + dy * dy);
+	}
+    
+
+	//FIND CLOSEST LINE//////////////////////////////
+    /////////////////////////////////////////////////
+    
+	function findClosestLine(x, y) {
+
+    //console.log('1. Coordenadas Azul:', 
+  //  bluePoint.getAttribute('cx'), bluePoint.getAttribute('cy'));
+   
+      const lines = document.querySelectorAll('#hexagonGroup polygon');
+      let closestLine = null;
+      let minDistance = Infinity;
+
+      lines.forEach((hexagon) => {
+        const points = hexagon.getAttribute('points').split(' ');
+        for (let i = 0; i < points.length; i++) {
+          const [x1, y1] = points[i].split(',').map(Number);
+          const [x2, y2] = points[(i + 1) % points.length].split(',').map(Number);
+
+          const distance = pointToLineDistance(x, y, x1, y1, x2, y2);
+          if (distance < minDistance) {
+     
+            minDistance = distance;
+            closestLine = { x1, y1, x2, y2 };
+          }
+        }
+      });
+
+      return closestLine;
+    }
+   
+    //POINT TO LINE DISTANCE//////////////////////////
+    /////////////////////////////////////////////////
+
+    function pointToLineDistance(x, y, x1, y1, x2, y2) {
+   
+      const A = x - x1;
+      const B = y - y1;
+      const C = x2 - x1;
+      const D = y2 - y1;
+
+      const dot = A * C + B * D;
+      const len_sq = C * C + D * D;
+      const param = dot / len_sq;
+
+      let xx, yy;
+
+      if (param < 0 || (x1 === x2 && y1 === y2)) {
+        xx = x1;
+        yy = y1;
+   
+      } else if (param > 1) {
+
+        xx = x2;
+        yy = y2;
+      } else {
+   
+        xx = x1 + param * C;
+        yy = y1 + param * D;
+      }
+
+      const dx = x - xx;
+      const dy = y - yy;
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+   
+    //CODE END////////////////////////////////////////
+    /////////////////////////////////////////////////
+    
+function animateBluePoint(destinationX, destinationY, callback) {
+    const startX = parseFloat(bluePoint.getAttribute('cx'));
+    const startY = parseFloat(bluePoint.getAttribute('cy'));
+
+    const startTime = performance.now();
+    const duration = 100; // 1 segundo
+
+    function update() {
+        const currentTime = performance.now();
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        const newX = startX + progress * (destinationX - startX);
+        const newY = startY + progress * (destinationY - startY);
+
+        bluePoint.setAttribute('cx', newX);
+        bluePoint.setAttribute('cy', newY);
+        
+        detectarColisiones();
+
+        if (progress < 1) {
+            requestAnimationFrame(update);
+            
+            
+            
+          ////DETECTOR DE COLISIONES
+         
+            
+            
+                      ////DETECTOR DE COLISIONES
+
+            
+            
+             
+        } else {
+            // Llamada a la devolución de llamada cuando la animación ha terminado
+            if (callback) {
+                callback();
+            }
+        }
+    }
+
+    requestAnimationFrame(update);
+}
+
+
+
+      document.addEventListener('click', moveBluePoint);
 
 
   nameForm.addEventListener('submit', function (event) {
@@ -202,6 +451,7 @@ function drawCircle(x, y, radius, color, text) {
   //  drawHexagons(); // Llama a la función para dibujar hexágonos en el fondo
 
         hexagonGroup.style.display = 'block';
+        bluePoint.style.display = 'block';
 
         console.log('nameForm Comenzado');
 
