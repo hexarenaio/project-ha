@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
   let playerName;
   let connectedUsers = 0;
 
-  let hexagonGroup;
 
   const hexagonAngle = 0.523598776; // 30 degrees in radians
 
@@ -143,6 +142,7 @@ function updateCanvas() {
 
   // Esta función dibuja el fondo del canvas con hexágonos
   function drawHexagons() {
+  let hexagonGroup;
 
      const hexagonSize = 50;
       const numRows = 20;
@@ -151,6 +151,11 @@ function updateCanvas() {
       const hexHeight = hexagonSize * Math.sqrt(3);
 
         console.log('La animación ha terminado');
+
+ 
+
+  // Resto de tu código
+</script>
 
    
 
@@ -213,11 +218,13 @@ function drawCircle(x, y, radius, color, text) {
 
   nameForm.addEventListener('submit', function (event) {
     event.preventDefault();
-    hexagonGroup = document.getElementById('hexagonGroup').value;
         playerName = document.getElementById('playerName').value;
 
     nameForm.style.display = 'none';
     canvas.style.display = 'block';
+
+        hexagonGroup = document.getElementById('hexagonGroup');
+
 
     drawHexagons(); // Llama a la función para dibujar hexágonos en el fondo
   });
