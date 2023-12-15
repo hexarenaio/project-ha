@@ -220,7 +220,7 @@ function drawCircle(x, y, radius, color, text) {
         console.log('///////////////////');
 
   		const clickX = event.clientX;
-  	const clickY = event.clientY - 60;
+  	const clickY = event.clientY - 40;
 
 
 
