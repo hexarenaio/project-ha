@@ -28,13 +28,24 @@ overflow: hidden;
       text-align: center;
     }
     #gameCanvas {
+
+
+top: 0;
+  left: 0;
+  width: 100vw; /* Ancho del 100% del viewport */
+  
+
+position: absolute;
+
+
+
       display: none; /* Ocultar el canvas inicialmente */
     }
     #hexagonGroup {
 
 
 
-top: 0;
+top: 60;
   left: 0;
   width: 100vw; /* Ancho del 100% del viewport */
   height: 100vh;
@@ -55,7 +66,7 @@ position: absolute;
     <button type="submit">Aceptar</button>
   </form>
 
-  <canvas id="gameCanvas" width="400" height="100"  style="background-color: #ff0000;"    ></canvas>
+  <canvas id="gameCanvas" height="50"  style="background-color: #ff0000;"    ></canvas>
 <svg id="hexagonGroup" style="background-color: #ffffff;" ></svg>
   <circle id="bluePoint" cx="170" cy="170" r="8" fill="blue" />
 
