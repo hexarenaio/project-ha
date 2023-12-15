@@ -219,9 +219,14 @@ function drawCircle(x, y, radius, color, text) {
      
         console.log('///////////////////');
 
-  		const clickX = event.clientX;
-  		const clickY = event.clientY;
+  		//const clickX = event.clientX;
+  	//	const clickY = event.clientY;
 
+
+
+
+const clickX = clickEvent.offsetX;
+      const clickY = clickEvent.offsetY;
       
    
   		const closestLine = findClosestLine(
