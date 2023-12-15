@@ -30,7 +30,7 @@ const helloText = document.createElementNS('http://www.w3.org/2000/svg', 'text')
   helloText.setAttribute('font-size', '16px');
   helloText.textContent = 'Hola';
 
-  canvas.appendChild(helloText);
+  //canvas.appendChild(helloText);
 
     hexagonGroup.appendChild(bluePoint);
 
