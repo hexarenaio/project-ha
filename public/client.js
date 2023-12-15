@@ -548,7 +548,7 @@ function animateBluePoint(destinationX, destinationY, callback) {
   function drawUserCount() {
     context.fillStyle = 'black';
     context.font = '16px Arial';
-    context.fillText(`Usuarios conectados: ${connectedUsers}`, 10, 40);
+    context.fillText(`Usuarios conectados: ${connectedUsers}`, 10, 5);
   }
 
   // Resto de tu código
