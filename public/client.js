@@ -54,11 +54,11 @@ bluePointElement.setAttribute('cx', '170');
 
 
 
-moveBluePoint(mouseX, mouseY);
+		moveBluePoint(mouseX, mouseY);
 
 
         // Enviar las nuevas coordenadas al servidor
-        socket.emit('updatePosition', { x: mouseX, y: mouseY });
+   		 socket.emit('updatePosition', { x: mouseX, y: mouseY });
     });
 
 
@@ -69,30 +69,19 @@ moveBluePoint(mouseX, mouseY);
 
 	
 
-    // Escuchar actualizaciones de posición de otros jugadores
-    socket.on('updatePlayers', function (updatedPlayer) {
-        // Actualizar la posición del jugador en el hexagonGroup
-        updatePlayerPosition(updatedPlayer);
-    });
+   socket.on('updatePlayers', function (updatedPlayer) {
+    // Actualizar la posición del jugador en el hexagonGroup
+    updatePlayerPosition(updatedPlayer);
+});
 
-    // Función para actualizar la posición del jugador en el hexagonGroup
-    function updatePlayerPosition(player) {
-        const playerElement = document.getElementById(player.id);
-        if (playerElement) {
-            playerElement.setAttribute('cx', player.x);
-            playerElement.setAttribute('cy', player.y);
-        }
+// Función para actualizar la posición del jugador en el hexagonGroup
+function updatePlayerPosition(player) {
+    const playerElement = document.getElementById(player.id);
+    if (playerElement) {
+        playerElement.setAttribute('cx', player.x);
+        playerElement.setAttribute('cy', player.y);
     }
-
-
-
-
-socket.on('updatePlayers', function (updatedPlayer) {
-        // Actualizar la posición del jugador en el hexagonGroup
-        updatePlayerPosition(updatedPlayer);
-	  console.log('Update'); // Imprime el valor en la consola
-
-    });
+}
 
 
 
