@@ -617,6 +617,8 @@ function drawCircle(x, y, radius, color, text) {
         // Actualizar la posición del círculo existente en lugar de crear uno nuevo
         bluePointElement.setAttribute('cx', newX);
         bluePointElement.setAttribute('cy', newY);
+	            socket.emit('updatePosition', { x: newX, y: newY });
+
 
         if (progress < 1) {
             requestAnimationFrame(update);
