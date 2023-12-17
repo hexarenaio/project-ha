@@ -36,11 +36,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Agregar el círculo azul al hexagonGroup
     const bluePointElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    bluePointElement.setAttribute('id', updatedPlayer.id);
+    bluePointElement.setAttribute('id', bluePoint.id);
     bluePointElement.setAttribute('r', '8');
-    bluePointElement.setAttribute('fill', updatedPlayer.color);
-bluePointElement.setAttribute('cx', updatedPlayer.x);
-   bluePointElement.setAttribute('cy', updatedPlayer.y);
+    bluePointElement.setAttribute('fill', bluePoint.color);
+bluePointElement.setAttribute('cx', bluePoint.x);
+   bluePointElement.setAttribute('cy', bluePoint.y);
     hexagonGroup.appendChild(bluePointElement);
 
 
@@ -296,7 +296,7 @@ function drawCircle(x, y, radius, color, text) {
       
    
   		const closestLine = findClosestLine(
-        bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+        bluePoint.getAttribute('cx'), bluePoint.getAttribute('cy'));
 
     	
             
@@ -306,8 +306,8 @@ function drawCircle(x, y, radius, color, text) {
         
         animateBluePoint(destinationX, destinationY, function() {
  
-        findClosestVertices(bluePointElement.getAttribute('cx'), 	
-                            bluePointElement.getAttribute('cy'));
+        findClosestVertices(bluePoint.getAttribute('cx'), 	
+                            bluePoint.getAttribute('cy'));
  
 });
 
@@ -487,8 +487,8 @@ function drawCircle(x, y, radius, color, text) {
     /////////////////////////////////////////////////
     
 function animateBluePoint(destinationX, destinationY, callback) {
-    const startX = parseFloat(bluePointElement.getAttribute('cx'));
-    const startY = parseFloat(bluePointElement.getAttribute('cy'));
+    const startX = parseFloat(bluePoint.getAttribute('cx'));
+    const startY = parseFloat(bluePoint.getAttribute('cy'));
 
     const startTime = performance.now();
     const duration = 100; // 1 segundo
@@ -501,8 +501,8 @@ function animateBluePoint(destinationX, destinationY, callback) {
         const newX = startX + progress * (destinationX - startX);
         const newY = startY + progress * (destinationY - startY);
 
-        bluePointElement.setAttribute('cx', newX);
-        bluePointElement.setAttribute('cy', newY);
+        bluePoint.setAttribute('cx', newX);
+        bluePoint.setAttribute('cy', newY);
         
       //  detectarColisiones();
 
@@ -561,7 +561,7 @@ function animateBluePoint(destinationX, destinationY, callback) {
            animateBluePoint(closestVertex.x, closestVertex.y, function() {
 
  
-        findClosestVertices(bluePointElement.getAttribute('cx'), 				bluePointElement.getAttribute('cy'));
+        findClosestVertices(bluePoint.getAttribute('cx'), 				bluePoint.getAttribute('cy'));
     console.log('La animación ha terminado');
     // Puedes realizar acciones adicionales después de que la animación ha terminado
 });
