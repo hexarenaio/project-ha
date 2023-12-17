@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     const bluePoint = {
-        id: 'bluePoint',
+        id: socket.id,
         name: '', // Agrega el nombre del jugador
         x: 170, // Posición X inicial del jugador
         y: 170, // Posición Y inicial del jugador
@@ -73,6 +73,17 @@ moveBluePoint(mouseX, mouseY);
             playerElement.setAttribute('cy', player.y);
         }
     }
+
+
+
+
+socket.on('updatePlayers', function (updatedPlayer) {
+        // Actualizar la posición del jugador en el hexagonGroup
+        updatePlayerPosition(updatedPlayer);
+    });
+
+
+
 
 	
 const helloText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
