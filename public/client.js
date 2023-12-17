@@ -564,6 +564,11 @@ function animateBluePoint(destinationX, destinationY, callback) {
       document.addEventListener('click', moveBluePoint);
 
 
+
+
+
+      /*
+
   nameForm.addEventListener('submit', function (event) {
     event.preventDefault();
     playerName = document.getElementById('playerName').value;
@@ -581,6 +586,12 @@ function animateBluePoint(destinationX, destinationY, callback) {
 
 
   });
+
+
+*/
+
+
+
 	////////////SERVER COSAS///////////
 
 
