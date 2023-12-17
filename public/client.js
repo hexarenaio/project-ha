@@ -94,7 +94,18 @@ socket.on('updatePlayers', function (updatedPlayers) {
       playerElement.setAttribute('fill', player.color);
       playerElement.setAttribute('cx', player.x);
       playerElement.setAttribute('cy', player.y);
+
+	    socket.on('assignColor', function (color) {
+    bluePoint.color = color; // Actualiza el color del jugador local
+ //   bluePointElement.setAttribute('fill', color); 
+		      playerElement.setAttribute('fill', color);
+    
+		    // Actualiza el color del círculo en el SVG
+});
+
+	    
       hexagonGroup.appendChild(playerElement);
+	    
     }
 	  createHexagons();
   });
