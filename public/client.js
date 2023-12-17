@@ -36,11 +36,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Agregar el círculo azul al hexagonGroup
     const bluePointElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    bluePointElement.setAttribute('id', bluePoint.id);
+    bluePointElement.setAttribute('id', updatedPlayer.id);
     bluePointElement.setAttribute('r', '8');
-    bluePointElement.setAttribute('fill', bluePoint.color);
-bluePointElement.setAttribute('cx', '170');
-   bluePointElement.setAttribute('cy', '170');
+    bluePointElement.setAttribute('fill', updatedPlayer.color);
+bluePointElement.setAttribute('cx', updatedPlayer.x);
+   bluePointElement.setAttribute('cy', updatedPlayer.y);
     hexagonGroup.appendChild(bluePointElement);
 
 
@@ -76,6 +76,8 @@ bluePointElement.setAttribute('cx', '170');
 
 // Función para actualizar la posición del jugador en el hexagonGroup
 function updatePlayerPosition(player) {
+	    console.log(`Actualizando posición para ${player.id} a (${player.x}, ${player.y})`);
+
     const playerElement = document.getElementById(player.id);
     if (playerElement) {
         playerElement.setAttribute('cx', player.x);
