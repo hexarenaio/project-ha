@@ -24,12 +24,12 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
 
-const bluePoint = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    bluePoint.setAttribute('id', 'bluePoint');
-    bluePoint.setAttribute('cx', '170');
-    bluePoint.setAttribute('cy', '170');
-    bluePoint.setAttribute('r', '8');
-    bluePoint.setAttribute('fill', 'blue');
+//const bluePoint = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+   // bluePoint.setAttribute('id', 'bluePoint');
+   // bluePoint.setAttribute('cx', '170');
+ //   bluePoint.setAttribute('cy', '170');
+ //   bluePoint.setAttribute('r', '8');
+ //   bluePoint.setAttribute('fill', 'blue');
 
 	
 const helloText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
