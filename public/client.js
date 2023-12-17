@@ -96,6 +96,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
       playerElement.setAttribute('cy', player.y);
       hexagonGroup.appendChild(playerElement);
     }
+	  createHexagons();
   });
 	
 
@@ -144,7 +145,7 @@ const helloText = document.createElementNS('http://www.w3.org/2000/svg', 'text')
 
    // hexagonGroup.appendChild(bluePoint);
 
-  createHexagons(); // Llama a la función para dibujar hexágonos en el fondo
+ // Llama a la función para dibujar hexágonos en el fondo
 
 
 
