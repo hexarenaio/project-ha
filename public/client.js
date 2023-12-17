@@ -83,7 +83,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
 
 socket.on('updatePlayers', function (updatedPlayers) {
     // Limpiar el hexagonGroup antes de actualizar los jugadores
-    hexagonGroup.innerHTML = '';
+    //hexagonGroup.innerHTML = '';
 
     // Iterar sobre el objeto de jugadores y actualizar la información
     for (const playerId in updatedPlayers) {
