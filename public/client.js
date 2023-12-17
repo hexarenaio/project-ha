@@ -499,8 +499,8 @@ function animateBluePoint(destinationX, destinationY, callback) {
         const newX = startX + progress * (destinationX - startX);
         const newY = startY + progress * (destinationY - startY);
 
-        bluePoint.setAttribute('cx', newX);
-        bluePoint.setAttribute('cy', newY);
+        bluePointElement.setAttribute('cx', newX);
+        bluePointElement.setAttribute('cy', newY);
         
       //  detectarColisiones();
 
