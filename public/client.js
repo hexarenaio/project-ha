@@ -158,7 +158,8 @@ function updatePlayerPosition(player) {
 
        
 
-        socket.emit('updatePosition', { x: newX, y: newY });
+    
+ //   socket.emit('updatePosition', { x: newX, y: newY });
 
 
 
