@@ -604,31 +604,43 @@ function drawCircle(x, y, radius, color, text) {
     const startY = parseFloat(bluePointElement.getAttribute('cy'));
 
     const startTime = performance.now();
-    const duration = 1000; // 1 segundo
+    const duration = 100; // 1 segundo
 
-    function update() {
-        const currentTime = performance.now();
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
+function update() {
+    const currentTime = performance.now();
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
 
-        const newX = startX + progress * (destinationX - startX);
-        const newY = startY + progress * (destinationY - startY);
+    const newX = startX + progress * (destinationX - startX);
+    const newY = startY + progress * (destinationY - startY);
 
-        // Actualizar la posición del círculo existente en lugar de crear uno nuevo
-        bluePointElement.setAttribute('cx', newX);
-        bluePointElement.setAttribute('cy', newY);
-	            socket.emit('updatePosition', { x: newX, y: newY });
+    // Elimina el círculo existente
+    hexagonGroup.removeChild(bluePointElement);
 
+    // Crea un nuevo círculo en las nuevas coordenadas
+    const newBluePointElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    newBluePointElement.setAttribute('id', socket.id);
+    newBluePointElement.setAttribute('r', '8');
+    newBluePointElement.setAttribute('fill', assignedColors.get(socket.id));
+    newBluePointElement.setAttribute('cx', newX);
+    newBluePointElement.setAttribute('cy', newY);
+    hexagonGroup.appendChild(newBluePointElement);
 
-        if (progress < 1) {
-            requestAnimationFrame(update);
-        } else {
-            // Llamada a la devolución de llamada cuando la animación ha terminado
-            if (callback) {
-                callback();
-            }
+    if (progress < 1) {
+        requestAnimationFrame(update);
+    } else {
+        // Llamada a la devolución de llamada cuando la animación ha terminado
+        if (callback) {
+            callback();
+            
+            // Emitir el evento después de la animación
+            socket.emit('updatePosition', { x: newX, y: newY });
         }
+        // Elimina el círculo temporal al final de la animación
+        hexagonGroup.removeChild(newBluePointElement);
     }
+}
+
 
     requestAnimationFrame(update);
 }
