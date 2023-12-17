@@ -69,6 +69,13 @@ socket.join('hexagonGroup');
   });
 
  socket.on('disconnect', () => {
+
+
+
+
+// Emitir información actualizada solo al grupo hexagonGroup
+        io.to('hexagonGroup').emit('updatePlayers', bluePoint);
+
     console.log('Usuario desconectado');
 
    connectedUsers.delete(socket.id);
