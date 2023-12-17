@@ -26,22 +26,23 @@ io.on('connection', (socket) => {
     io.emit('userCount', connectedUsers.size);
 
 
- // Asignar un color único al jugador
-    const availableColor = availableColors.find(color => !assignedColors.has(color));
+  const availableColor = availableColors.find(color => !assignedColors.has(color));
     if (availableColor) {
         assignedColors.set(socket.id, availableColor);
     }
 
-    // Enviar el color asignado al jugador
+    console.log(`Color asignado a ${socket.id}: ${assignedColors.get(socket.id)}`);
+
     socket.emit('assignColor', assignedColors.get(socket.id));
 
-
-socket.on('updatePosition', (data) => {
+    socket.on('updatePosition', (data) => {
+        console.log(`Actualizando posición para ${socket.id} a (${data.x}, ${data.y})`);
+        
         const updatedPlayer = {
             id: socket.id,
             x: data.x,
             y: data.y,
-            color: assignedColors.get(socket.id), // Puedes personalizar el color si es necesario
+            color: assignedColors.get(socket.id),
         };
 
         io.emit('updatePlayers', updatedPlayer);
