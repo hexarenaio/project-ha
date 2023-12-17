@@ -548,7 +548,7 @@ function drawCircle(x, y, radius, color, text) {
     //CODE END////////////////////////////////////////
     /////////////////////////////////////////////////
     
-function animateBluePoint(destinationX, destinationY, callback) {
+/*function animateBluePoint(destinationX, destinationY, callback) {
     const startX = parseFloat(bluePointElement.getAttribute('cx'));
     const startY = parseFloat(bluePointElement.getAttribute('cy'));
 
@@ -563,23 +563,10 @@ function animateBluePoint(destinationX, destinationY, callback) {
         const newX = startX + progress * (destinationX - startX);
         const newY = startY + progress * (destinationY - startY);
 
-	     // Eliminar el círculo anterior
-        const existingCircle = document.getElementById('bluePoint');
-        if (existingCircle) {
-            hexagonGroup.removeChild(existingCircle);
-        }
+       
 
-	    const newCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        newCircle.setAttribute('id', 'bluePoint');
-        newCircle.setAttribute('r', '8');
-        newCircle.setAttribute('fill', 'blue');
-        newCircle.setAttribute('cx', newX);
-        newCircle.setAttribute('cy', newY);
-        hexagonGroup.appendChild(newCircle);
-
-
-     //   bluePointElement.setAttribute('cx', newX);
-       // bluePointElement.setAttribute('cy', newY);
+        bluePointElement.setAttribute('cx', newX);
+        bluePointElement.setAttribute('cy', newY);
 
 	socket.emit('updatePosition', { x: newX, y: newY });
 
@@ -600,6 +587,39 @@ function animateBluePoint(destinationX, destinationY, callback) {
             
             
              
+        } else {
+            // Llamada a la devolución de llamada cuando la animación ha terminado
+            if (callback) {
+                callback();
+            }
+        }
+    }
+
+    requestAnimationFrame(update);
+}
+*/
+
+	function animateBluePoint(destinationX, destinationY, callback) {
+    const startX = parseFloat(bluePointElement.getAttribute('cx'));
+    const startY = parseFloat(bluePointElement.getAttribute('cy'));
+
+    const startTime = performance.now();
+    const duration = 1000; // 1 segundo
+
+    function update() {
+        const currentTime = performance.now();
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        const newX = startX + progress * (destinationX - startX);
+        const newY = startY + progress * (destinationY - startY);
+
+        // Actualizar la posición del círculo existente en lugar de crear uno nuevo
+        bluePointElement.setAttribute('cx', newX);
+        bluePointElement.setAttribute('cy', newY);
+
+        if (progress < 1) {
+            requestAnimationFrame(update);
         } else {
             // Llamada a la devolución de llamada cuando la animación ha terminado
             if (callback) {
