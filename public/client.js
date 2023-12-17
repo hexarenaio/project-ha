@@ -569,8 +569,17 @@ function animateBluePoint(destinationX, destinationY, callback) {
             hexagonGroup.removeChild(existingCircle);
         }
 
-        bluePointElement.setAttribute('cx', newX);
-        bluePointElement.setAttribute('cy', newY);
+	    const newCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        newCircle.setAttribute('id', 'bluePoint');
+        newCircle.setAttribute('r', '8');
+        newCircle.setAttribute('fill', 'blue');
+        newCircle.setAttribute('cx', newX);
+        newCircle.setAttribute('cy', newY);
+        hexagonGroup.appendChild(newCircle);
+
+
+     //   bluePointElement.setAttribute('cx', newX);
+       // bluePointElement.setAttribute('cy', newY);
 
 	socket.emit('updatePosition', { x: newX, y: newY });
 
