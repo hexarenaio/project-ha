@@ -140,7 +140,7 @@ function updatePlayerPosition(player) {
 
 
 	function animateCircleLocally(circleElement, start, end) {
-  const duration = 1000; // Duración en milisegundos
+  const duration = 100; // Duración en milisegundos
   const startTime = performance.now();
 
   function update() {
