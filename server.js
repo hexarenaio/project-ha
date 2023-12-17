@@ -9,6 +9,17 @@ const io = socketIo(server);
 const connectedUsers = new Set(); // Usamos un conjunto para mantener un registro único de usuarios conectados
 
 
+
+
+ Representación del jugador (círculo azul)
+const bluePoint = {
+    id: 'bluePoint',
+    name: '', // Agrega el nombre del jugador
+    x: 170, // Posición X inicial del jugador
+    y: 170, // Posición Y inicial del jugador
+    color: 'blue', // Color azul por defecto
+};
+
 app.use(express.static('public'));
 
 io.on('connection', (socket) => {
