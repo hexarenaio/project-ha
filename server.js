@@ -63,8 +63,21 @@ io.on('connection', (socket) => {
     y: Math.random() * 500,
   };
 
-     // io.emit('updatePlayers', players); // Envía la información de los jugadores a todos los clientes
-  socket.emit('updatePlayers', { [socket.id]: players[socket.id] });
+    
+
+      io.emit('updatePlayers', players); // Envía la información de los jugadores a todos los clientes
+
+    socket.on('updatePosition', function (position) {
+  // Actualiza la posición del jugador en el servidor
+  players[socket.id].x = position.x;
+  players[socket.id].y = position.y;
+
+  // Emite la actualización a todos los clientes
+  io.emit('updatePlayers', players);
+});
+
+    
+    /*  socket.emit('updatePlayers', { [socket.id]: players[socket.id] });
 
     socket.on('updatePosition', function (position) {
     // Actualiza la posición del jugador en el servidor
@@ -75,7 +88,7 @@ io.on('connection', (socket) => {
     io.emit('updatePlayers', { [socket.id]: players[socket.id] });
   });
 
-    
+ */   
     
     
     //USUARIOS DESCONECTADOS
