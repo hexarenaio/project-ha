@@ -11,6 +11,7 @@ const connectedUsers = new Set();
 //COLORES PARA JUGADOR
 const availableColors = ['blue', 'red', 'green', 'purple', 'orange']; // Puedes agregar más colores según sea necesario
 const assignedColors = new Map(); // Mapa para almacenar el color asignado a cada jugador
+let colorIndex = 0; // Índice para asignar colores a usuarios
 
 
 const players = {};
@@ -27,10 +28,16 @@ io.on('connection', (socket) => {
     io.emit('userCount', connectedUsers.size);
 
 
-  const availableColor = availableColors.find(color => !assignedColors.has(color));
-    if (availableColor) {
-        assignedColors.set(socket.id, availableColor);
-    }
+    const colorsArray = Array.from(availableColors); // Convierte el conjunto a un array para obtener un índice
+  const userColor = colorsArray[colorIndex % colorsArray.length];
+  colorIndex++;
+
+  assignedColors.set(socket.id, userColor);
+
+  //const availableColor = availableColors.find(color => !assignedColors.has(color));
+  //  if (availableColor) {
+   //     assignedColors.set(socket.id, availableColor);
+  //  }
 
     console.log(`Color asignado a ${socket.id}: ${assignedColors.get(socket.id)}`);
 
