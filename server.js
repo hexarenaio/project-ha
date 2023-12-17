@@ -8,6 +8,12 @@ const io = socketIo(server);
 
 const connectedUsers = new Set();
 
+//COLORES PARA JUGADOR
+const availableColors = ['blue', 'red', 'green', 'purple', 'orange']; // Puedes agregar más colores según sea necesario
+const assignedColors = new Map(); // Mapa para almacenar el color asignado a cada jugador
+
+
+
 app.use(express.static('public'));
 
 io.on('connection', (socket) => {
@@ -20,6 +26,14 @@ io.on('connection', (socket) => {
     io.emit('userCount', connectedUsers.size);
 
 
+ // Asignar un color único al jugador
+    const availableColor = availableColors.find(color => !assignedColors.has(color));
+    if (availableColor) {
+        assignedColors.set(socket.id, availableColor);
+    }
+
+    // Enviar el color asignado al jugador
+    socket.emit('assignColor', assignedColors.get(socket.id));
 
 
 socket.on('updatePosition', (data) => {
@@ -27,7 +41,7 @@ socket.on('updatePosition', (data) => {
             id: socket.id,
             x: data.x,
             y: data.y,
-            color: 'blue', // Puedes personalizar el color si es necesario
+            color: assignedColors.get(socket.id), // Puedes personalizar el color si es necesario
         };
 
         io.emit('updatePlayers', updatedPlayer);
