@@ -563,6 +563,12 @@ function animateBluePoint(destinationX, destinationY, callback) {
         const newX = startX + progress * (destinationX - startX);
         const newY = startY + progress * (destinationY - startY);
 
+	     // Eliminar el círculo anterior
+        const existingCircle = document.getElementById('bluePoint');
+        if (existingCircle) {
+            hexagonGroup.removeChild(existingCircle);
+        }
+
         bluePointElement.setAttribute('cx', newX);
         bluePointElement.setAttribute('cy', newY);
 
