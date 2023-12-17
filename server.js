@@ -50,6 +50,7 @@ socket.on('updatePosition', (data) => {
     //USUARIOS DESCONECTADOS
     socket.on('disconnect', () => {
         console.log('Usuario desconectado');
+        assignedColors.delete(socket.id);
         connectedUsers.delete(socket.id);
         io.emit('userCount', connectedUsers.size);
     });
