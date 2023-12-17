@@ -50,7 +50,14 @@ io.on('connection', (socket) => {
     });
 
     */
-    
+
+    players[socket.id] = {
+    x: Math.random() * 500,
+    y: Math.random() * 500,
+  };
+
+      io.emit('updatePlayers', players); // Envía la información de los jugadores a todos los clientes
+
     socket.on('updatePosition', function (position) {
     // Actualiza la posición del jugador en el servidor
     players[socket.id].x = position.x;
@@ -59,12 +66,17 @@ io.on('connection', (socket) => {
     // Emite la actualización a todos los clientes
     io.emit('updatePlayers', players);
   });
+
+    
+    
     
     //USUARIOS DESCONECTADOS
     socket.on('disconnect', () => {
         console.log('Usuario desconectado');
         assignedColors.delete(socket.id);
         connectedUsers.delete(socket.id);
+        delete players[socket.id]; //
+        io.emit('updatePlayers', players); //
         io.emit('userCount', connectedUsers.size);
     });
 
