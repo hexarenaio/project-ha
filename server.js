@@ -43,12 +43,23 @@ socket.join('hexagonGroup');
         bluePoint.y = newPosition.y;
 
         // Emitir la actualización solo al grupo hexagonGroup
-        io.to('hexagonGroup').emit('updatePlayers', bluePoint);
+        
+
+io.to('hexagonGroup').emit('updatePlayers', bluePoint);
 
 
 
 
+socket.on('updatePosition', (data) => {
+        const updatedPlayer = {
+            id: socket.id,
+            x: data.x,
+            y: data.y,
+            color: 'blue', // Puedes personalizar el color si es necesario
+        };
 
+        io.emit('updatePlayers', updatedPlayer);
+    });
 
     console.log(`Total de usuarios: ${connectedUsers.size}`);
 
