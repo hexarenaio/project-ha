@@ -49,6 +49,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const mouseX = event.clientX - hexagonGroup.getBoundingClientRect().left;
         const mouseY = event.clientY - hexagonGroup.getBoundingClientRect().top;
 
+
+
+
+moveBluePoint(mouseX, mouseY);
+
+
         // Enviar las nuevas coordenadas al servidor
         socket.emit('updatePosition', { x: mouseX, y: mouseY });
     });
@@ -258,7 +264,7 @@ function drawCircle(x, y, radius, color, text) {
 
 
 
-  function moveBluePoint(event) {
+  function moveBluePoint( clickX, clickY ) {
 
 
 	      drawUserCount();
@@ -561,7 +567,7 @@ function animateBluePoint(destinationX, destinationY, callback) {
 
 
 
-      document.addEventListener('click', moveBluePoint);
+    //  document.addEventListener('click', moveBluePoint);
 
 
 
