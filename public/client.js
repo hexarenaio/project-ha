@@ -39,6 +39,8 @@ document.addEventListener('DOMContentLoaded', function () {
     bluePointElement.setAttribute('id', bluePoint.id);
     bluePointElement.setAttribute('r', '8');
     bluePointElement.setAttribute('fill', bluePoint.color);
+bluePointElement.setAttribute('cx', '170');
+   bluePointElement.setAttribute('cy', '170');
     hexagonGroup.appendChild(bluePointElement);
 
 
