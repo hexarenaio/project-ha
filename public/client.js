@@ -75,14 +75,14 @@ moveBluePoint(mouseX, mouseY);
     }
 
 
-
+/*
 
 socket.on('updatePlayers', function (updatedPlayer) {
         // Actualizar la posición del jugador en el hexagonGroup
         updatePlayerPosition(updatedPlayer);
     });
 
-
+*/
 
 
 	
