@@ -44,6 +44,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+// Agregar un event listener para clics en el canvas
+    hexagonGroup.addEventListener('click', function (event) {
+        const mouseX = event.clientX - hexagonGroup.getBoundingClientRect().left;
+        const mouseY = event.clientY - hexagonGroup.getBoundingClientRect().top;
+
+        // Enviar las nuevas coordenadas al servidor
+        socket.emit('updatePosition', { x: mouseX, y: mouseY });
+    });
+
+    // Escuchar actualizaciones de posición de otros jugadores
+    socket.on('updatePlayers', function (updatedPlayer) {
+        // Actualizar la posición del jugador en el hexagonGroup
+        updatePlayerPosition(updatedPlayer);
+    });
+
+    // Función para actualizar la posición del jugador en el hexagonGroup
+    function updatePlayerPosition(player) {
+        const playerElement = document.getElementById(player.id);
+        if (playerElement) {
+            playerElement.setAttribute('cx', player.x);
+            playerElement.setAttribute('cy', player.y);
+        }
+    }
 
 	
 const helloText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
