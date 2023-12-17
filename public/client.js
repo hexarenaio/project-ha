@@ -107,8 +107,10 @@ socket.on('updatePlayers', function (updatedPlayers) {
       hexagonGroup.appendChild(playerElement);
 	    
     }
-	  createHexagons();
   });
+
+
+
 	
 
 	
@@ -143,6 +145,10 @@ function updatePlayerPosition(player) {
 
 
 */
+
+
+createHexagons();
+
 	
 const helloText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
   helloText.setAttribute('x', '50%'); // Centrar horizontalmente
