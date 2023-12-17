@@ -289,8 +289,8 @@ function drawCircle(x, y, radius, color, text) {
 
 
 
-const clickX2 = clickEvent.offsetX;
- const clickY2 = clickEvent.offsetY;
+//const clickX2 = clickEvent.offsetX;
+ //const clickY2 = clickEvent.offsetY;
       
    
   		const closestLine = findClosestLine(
@@ -311,7 +311,7 @@ const clickX2 = clickEvent.offsetX;
 
         
            	
-            findClosestRedVertexToClick( clickX2, clickY2);
+            findClosestRedVertexToClick( clickX, clickY);
 
 	
 	}
