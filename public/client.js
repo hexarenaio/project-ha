@@ -70,6 +70,20 @@ bluePointElement.setAttribute('cx', bluePoint.x);
 });
 
 
+
+	socket.on('animateBluePoint', function (animationData) {
+    const playerId = animationData.playerId;
+    const data = animationData.data;
+
+    // Encuentra el círculo correspondiente al jugador
+    const playerElement = document.getElementById(playerId);
+
+    // Realiza la animación localmente
+    animateCircleLocally(playerElement, data.start, data.end);
+  });
+
+
+
 	
 /*	
 socket.on('updatePlayers', function (updatedPlayers) {
@@ -122,6 +136,18 @@ function updatePlayerPosition(player) {
     playerElement.setAttribute('cy', player.y);
   }
 }
+
+
+
+	function animateCircleLocally(circleElement, start, end) {
+    // Implementa la lógica de animación local aquí
+    // Puedes usar bibliotecas como GSAP o implementar tu propia lógica
+    // Por ejemplo:
+    // TweenMax.to(circleElement, 1, { cx: end.x, cy: end.y });
+    // Aquí debes poner la lógica específica para animar el círculo localmente
+    // Puedes usar GSAP u otras bibliotecas de animación para esto.
+    // Asegúrate de ajustar este código según tus necesidades específicas.
+  }
 
 
 	/*
