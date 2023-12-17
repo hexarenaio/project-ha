@@ -31,6 +31,20 @@ document.addEventListener('DOMContentLoaded', function () {
  //   bluePoint.setAttribute('r', '8');
  //   bluePoint.setAttribute('fill', 'blue');
 
+
+
+
+// Agregar el círculo azul al hexagonGroup
+    const bluePointElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    bluePointElement.setAttribute('id', bluePoint.id);
+    bluePointElement.setAttribute('r', '8');
+    bluePointElement.setAttribute('fill', bluePoint.color);
+    hexagonGroup.appendChild(bluePointElement);
+
+
+
+
+
 	
 const helloText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
   helloText.setAttribute('x', '50%'); // Centrar horizontalmente
