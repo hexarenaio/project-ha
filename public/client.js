@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
     bluePointElement.setAttribute('fill', bluePoint.color);
 bluePointElement.setAttribute('cx', bluePoint.x);
    bluePointElement.setAttribute('cy', bluePoint.y);
-    hexagonGroup.appendChild(bluePointElement);
+ //   hexagonGroup.appendChild(bluePointElement);
 
 
 
@@ -98,7 +98,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
 	    socket.on('assignColor', function (color) {
     bluePoint.color = color; // Actualiza el color del jugador local
  //   bluePointElement.setAttribute('fill', color); 
-		      playerElement.setAttribute('fill', color);
+		   //   playerElement.setAttribute('fill', color);
     
 		    // Actualiza el color del círculo en el SVG
 });
