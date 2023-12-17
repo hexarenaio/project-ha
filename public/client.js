@@ -67,6 +67,26 @@ bluePointElement.setAttribute('cx', bluePoint.x);
     bluePointElement.setAttribute('fill', color); // Actualiza el color del círculo en el SVG
 });
 
+
+	socket.on('updatePlayers', function (updatedPlayers) {
+  // Itera sobre los jugadores actualizados y actualiza su posición en el mapa
+  for (const playerId in updatedPlayers) {
+    const updatedPlayer = updatedPlayers[playerId];
+    updatePlayerPosition(updatedPlayer);
+  }
+});
+
+function updatePlayerPosition(player) {
+  // Busca el elemento SVG del jugador por su identificación y actualiza la posición
+  const playerElement = document.getElementById(player.id);
+  if (playerElement) {
+    playerElement.setAttribute('cx', player.x);
+    playerElement.setAttribute('cy', player.y);
+  }
+}
+
+
+	/*
 	
 
    socket.on('updatePlayers', function (updatedPlayer) {
@@ -86,7 +106,7 @@ function updatePlayerPosition(player) {
 }
 
 
-
+*/
 	
 const helloText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
   helloText.setAttribute('x', '50%'); // Centrar horizontalmente
