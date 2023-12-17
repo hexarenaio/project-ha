@@ -599,53 +599,34 @@ function drawCircle(x, y, radius, color, text) {
 }
 */
 
-	function animateBluePoint(destinationX, destinationY, callback) {
+	function animateBluePoint(destinationX, destinationY) {
     const startX = parseFloat(bluePointElement.getAttribute('cx'));
     const startY = parseFloat(bluePointElement.getAttribute('cy'));
 
     const startTime = performance.now();
     const duration = 100; // 1 segundo
 
-function update() {
-    const currentTime = performance.now();
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
+    function update() {
+        const currentTime = performance.now();
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
 
-    const newX = startX + progress * (destinationX - startX);
-    const newY = startY + progress * (destinationY - startY);
+        const newX = startX + progress * (destinationX - startX);
+        const newY = startY + progress * (destinationY - startY);
 
-    if (progress < 1) {
-        // Si la animación no ha terminado, actualiza las coordenadas del círculo
         bluePointElement.setAttribute('cx', newX);
         bluePointElement.setAttribute('cy', newY);
-        requestAnimationFrame(update);
-    } else {
-        // Llamada a la devolución de llamada cuando la animación ha terminado
-        if (callback) {
-            callback();
-            
-            // Emitir el evento después de la animación
-            socket.emit('updatePosition', { x: newX, y: newY });
+
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        } else {
+            // Animación completada, emitir datos al servidor
+            socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
         }
-        
-        // Elimina el círculo original después de la animación
-        hexagonGroup.removeChild(bluePointElement);
-        
-        // Crea un nuevo círculo en las nuevas coordenadas
-        const newBluePointElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        newBluePointElement.setAttribute('id', socket.id);
-        newBluePointElement.setAttribute('r', '8');
-        newBluePointElement.setAttribute('fill', assignedColors.get(socket.id));
-        newBluePointElement.setAttribute('cx', newX);
-        newBluePointElement.setAttribute('cy', newY);
-        hexagonGroup.appendChild(newBluePointElement);
     }
-}
 
-// Inicia la animación
-requestAnimationFrame(update);
+    requestAnimationFrame(update);
 }
-
 
 
 //FIND CLOSES TO CLICK///////////////////////////
