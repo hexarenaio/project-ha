@@ -76,6 +76,12 @@ io.on('connection', (socket) => {
   io.emit('updatePlayers', players);
 });
 
+    socket.on('animationData', function (data) {
+        // Emitir datos a todos los clientes
+        io.emit('animateBluePoint', { playerId: socket.id, data: data });
+    });
+
+
     
     /*  socket.emit('updatePlayers', { [socket.id]: players[socket.id] });
 
