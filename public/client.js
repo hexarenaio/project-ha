@@ -96,7 +96,7 @@ const helloText = document.createElementNS('http://www.w3.org/2000/svg', 'text')
 
   //canvas.appendChild(helloText);
 
-    hexagonGroup.appendChild(bluePoint);
+   // hexagonGroup.appendChild(bluePoint);
 
   createHexagons(); // Llama a la función para dibujar hexágonos en el fondo
 
