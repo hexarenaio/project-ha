@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function () {
   let circleX = 50;
   let circleY = 50;
 
+	const players = {}; // Objeto para almacenar la información de los jugadores
+
+
   const hexagonGroup = document.getElementById('hexagonGroup');
 
 
@@ -67,14 +70,36 @@ bluePointElement.setAttribute('cx', bluePoint.x);
 });
 
 
-	socket.on('updatePlayers', function (updatedPlayers) {
+	
+/*	
+socket.on('updatePlayers', function (updatedPlayers) {
   // Itera sobre los jugadores actualizados y actualiza su posición en el mapa
   for (const playerId in updatedPlayers) {
     const updatedPlayer = updatedPlayers[playerId];
     updatePlayerPosition(updatedPlayer);
   }
 });
+*/
 
+socket.on('updatePlayers', function (updatedPlayers) {
+    // Limpiar el hexagonGroup antes de actualizar los jugadores
+    hexagonGroup.innerHTML = '';
+
+    // Iterar sobre el objeto de jugadores y actualizar la información
+    for (const playerId in updatedPlayers) {
+      const player = updatedPlayers[playerId];
+      const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      playerElement.setAttribute('id', playerId);
+      playerElement.setAttribute('r', '8');
+      playerElement.setAttribute('fill', player.color);
+      playerElement.setAttribute('cx', player.x);
+      playerElement.setAttribute('cy', player.y);
+      hexagonGroup.appendChild(playerElement);
+    }
+  });
+	
+
+	
 function updatePlayerPosition(player) {
   // Busca el elemento SVG del jugador por su identificación y actualiza la posición
   const playerElement = document.getElementById(player.id);
