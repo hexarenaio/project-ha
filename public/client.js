@@ -140,14 +140,27 @@ function updatePlayerPosition(player) {
 
 
 	function animateCircleLocally(circleElement, start, end) {
-    // Implementa la lógica de animación local aquí
-    // Puedes usar bibliotecas como GSAP o implementar tu propia lógica
-    // Por ejemplo:
-    // TweenMax.to(circleElement, 1, { cx: end.x, cy: end.y });
-    // Aquí debes poner la lógica específica para animar el círculo localmente
-    // Puedes usar GSAP u otras bibliotecas de animación para esto.
-    // Asegúrate de ajustar este código según tus necesidades específicas.
+  const duration = 1000; // Duración en milisegundos
+  const startTime = performance.now();
+
+  function update() {
+    const currentTime = performance.now();
+    const progress = Math.min((currentTime - startTime) / duration, 1);
+
+    const newX = start.x + progress * (end.x - start.x);
+    const newY = start.y + progress * (end.y - start.y);
+
+    circleElement.setAttribute('cx', newX);
+    circleElement.setAttribute('cy', newY);
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    }
   }
+
+  requestAnimationFrame(update);
+}
+
 
 
 	/*
