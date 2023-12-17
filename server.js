@@ -24,6 +24,32 @@ app.use(express.static('public'));
 
 io.on('connection', (socket) => {
 
+
+
+socket.join('hexagonGroup');
+
+    // Asignar el nombre al jugador actual
+    bluePoint.name = ''; // Asigna el nombre del jugador si es necesario
+
+    // Emitir información del nuevo jugador a todos los clientes en hexagonGroup
+    io.to('hexagonGroup').emit('newPlayer', bluePoint);
+
+    // Resto de la lógica
+
+    // Escuchar actualizaciones de posición del jugador
+    socket.on('updatePosition', function (newPosition) {
+        // Actualizar las coordenadas del jugador
+        bluePoint.x = newPosition.x;
+        bluePoint.y = newPosition.y;
+
+        // Emitir la actualización solo al grupo hexagonGroup
+        io.to('hexagonGroup').emit('updatePlayers', bluePoint);
+
+
+
+
+
+
     console.log(`Total de usuarios: ${connectedUsers.size}`);
 
   console.log('Nuevo usuario conectado');
