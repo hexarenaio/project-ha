@@ -49,6 +49,8 @@ socket.join('hexagonGroup');
         io.to('hexagonGroup').emit('updatePlayers', bluePoint);
 
 
+});
+
 
     console.log(`Total de usuarios: ${connectedUsers.size}`);
 
