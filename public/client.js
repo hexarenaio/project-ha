@@ -14,6 +14,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const hexagonGroup = document.getElementById('hexagonGroup');
 
+
+    const bluePoint = {
+        id: 'bluePoint',
+        name: '', // Agrega el nombre del jugador
+        x: 170, // Posición X inicial del jugador
+        y: 170, // Posición Y inicial del jugador
+        color: 'blue', // Color azul por defecto
+    };
+
+
 const bluePoint = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     bluePoint.setAttribute('id', 'bluePoint');
     bluePoint.setAttribute('cx', '170');
