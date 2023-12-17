@@ -20,8 +20,20 @@ io.on('connection', (socket) => {
     io.emit('userCount', connectedUsers.size);
 
 
+
+
+socket.on('updatePosition', (data) => {
+        const updatedPlayer = {
+            id: socket.id,
+            x: data.x,
+            y: data.y,
+            color: 'blue', // Puedes personalizar el color si es necesario
+        };
+
+        io.emit('updatePlayers', updatedPlayer);
+    });
     
-    //USUARIOS CONECTADOS
+    //USUARIOS DESCONECTADOS
     socket.on('disconnect', () => {
         console.log('Usuario desconectado');
         connectedUsers.delete(socket.id);
