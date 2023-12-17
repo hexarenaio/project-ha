@@ -614,19 +614,10 @@ function update() {
     const newX = startX + progress * (destinationX - startX);
     const newY = startY + progress * (destinationY - startY);
 
-    // Elimina el círculo existente
-    hexagonGroup.removeChild(bluePointElement);
-
-    // Crea un nuevo círculo en las nuevas coordenadas
-    const newBluePointElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    newBluePointElement.setAttribute('id', socket.id);
-    newBluePointElement.setAttribute('r', '8');
-    newBluePointElement.setAttribute('fill', assignedColors.get(socket.id));
-    newBluePointElement.setAttribute('cx', newX);
-    newBluePointElement.setAttribute('cy', newY);
-    hexagonGroup.appendChild(newBluePointElement);
-
     if (progress < 1) {
+        // Si la animación no ha terminado, actualiza las coordenadas del círculo
+        bluePointElement.setAttribute('cx', newX);
+        bluePointElement.setAttribute('cy', newY);
         requestAnimationFrame(update);
     } else {
         // Llamada a la devolución de llamada cuando la animación ha terminado
@@ -636,13 +627,23 @@ function update() {
             // Emitir el evento después de la animación
             socket.emit('updatePosition', { x: newX, y: newY });
         }
-        // Elimina el círculo temporal al final de la animación
-        hexagonGroup.removeChild(newBluePointElement);
+        
+        // Elimina el círculo original después de la animación
+        hexagonGroup.removeChild(bluePointElement);
+        
+        // Crea un nuevo círculo en las nuevas coordenadas
+        const newBluePointElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        newBluePointElement.setAttribute('id', socket.id);
+        newBluePointElement.setAttribute('r', '8');
+        newBluePointElement.setAttribute('fill', assignedColors.get(socket.id));
+        newBluePointElement.setAttribute('cx', newX);
+        newBluePointElement.setAttribute('cy', newY);
+        hexagonGroup.appendChild(newBluePointElement);
     }
 }
 
-
-    requestAnimationFrame(update);
+// Inicia la animación
+requestAnimationFrame(update);
 }
 
 
