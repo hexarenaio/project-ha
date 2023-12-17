@@ -11,7 +11,7 @@ const connectedUsers = new Set(); // Usamos un conjunto para mantener un registr
 
 
 
- Representación del jugador (círculo azul)
+//Representación del jugador (círculo azul)
 const bluePoint = {
     id: 'bluePoint',
     name: '', // Agrega el nombre del jugador
