@@ -153,6 +153,16 @@ function updatePlayerPosition(player) {
     circleElement.setAttribute('cx', newX);
     circleElement.setAttribute('cy', newY);
 
+
+
+
+       
+
+        socket.emit('updatePosition', { x: newX, y: newY });
+
+
+
+
     if (progress < 1) {
       requestAnimationFrame(update);
     }
