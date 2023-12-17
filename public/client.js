@@ -296,7 +296,7 @@ function drawCircle(x, y, radius, color, text) {
       
    
   		const closestLine = findClosestLine(
-        bluePoint.getAttribute('cx'), bluePoint.getAttribute('cy'));
+        bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
 
     	
             
@@ -306,8 +306,8 @@ function drawCircle(x, y, radius, color, text) {
         
         animateBluePoint(destinationX, destinationY, function() {
  
-        findClosestVertices(bluePoint.getAttribute('cx'), 	
-                            bluePoint.getAttribute('cy'));
+        findClosestVertices(bluePointElement.getAttribute('cx'), 	
+                            bluePointElement.getAttribute('cy'));
  
 });
 
@@ -487,8 +487,8 @@ function drawCircle(x, y, radius, color, text) {
     /////////////////////////////////////////////////
     
 function animateBluePoint(destinationX, destinationY, callback) {
-    const startX = parseFloat(bluePoint.getAttribute('cx'));
-    const startY = parseFloat(bluePoint.getAttribute('cy'));
+    const startX = parseFloat(bluePointElement.getAttribute('cx'));
+    const startY = parseFloat(bluePointElement.getAttribute('cy'));
 
     const startTime = performance.now();
     const duration = 100; // 1 segundo
@@ -501,8 +501,8 @@ function animateBluePoint(destinationX, destinationY, callback) {
         const newX = startX + progress * (destinationX - startX);
         const newY = startY + progress * (destinationY - startY);
 
-        bluePoint.setAttribute('cx', newX);
-        bluePoint.setAttribute('cy', newY);
+        bluePointElement.setAttribute('cx', newX);
+        bluePointElement.setAttribute('cy', newY);
         
       //  detectarColisiones();
 
@@ -561,7 +561,7 @@ function animateBluePoint(destinationX, destinationY, callback) {
            animateBluePoint(closestVertex.x, closestVertex.y, function() {
 
  
-        findClosestVertices(bluePoint.getAttribute('cx'), 				bluePoint.getAttribute('cy'));
+        findClosestVertices(bluePointElement.getAttribute('cx'), 				bluePointElement.getAttribute('cy'));
     console.log('La animación ha terminado');
     // Puedes realizar acciones adicionales después de que la animación ha terminado
 });
