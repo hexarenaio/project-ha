@@ -58,7 +58,6 @@ bluePointElement.setAttribute('cx', bluePoint.x);
 
 
         // Enviar las nuevas coordenadas al servidor
-   		 socket.emit('updatePosition', { x: mouseX, y: mouseY });
     });
 
 
@@ -523,6 +522,9 @@ function animateBluePoint(destinationX, destinationY, callback) {
 
         bluePointElement.setAttribute('cx', newX);
         bluePointElement.setAttribute('cy', newY);
+
+	socket.emit('updatePosition', { x: newX, y: newY });
+
         
       //  detectarColisiones();
 
