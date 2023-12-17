@@ -35,7 +35,7 @@ io.on('connection', (socket) => {
 
     socket.emit('assignColor', assignedColors.get(socket.id));
 
-    socket.on('updatePosition', (data) => {
+    /*socket.on('updatePosition', (data) => {
         console.log(`Actualizando posición para ${socket.id} a (${data.x}, ${data.y})`);
         
         const updatedPlayer = {
@@ -48,7 +48,7 @@ io.on('connection', (socket) => {
         io.emit('updatePlayers', updatedPlayer);
     });
 
-    
+    */
     
     socket.on('updatePosition', function (position) {
     // Actualiza la posición del jugador en el servidor
