@@ -642,6 +642,9 @@ function drawCircle(x, y, radius, color, text) {
     const startX = parseFloat(bluePointElement.getAttribute('cx'));
     const startY = parseFloat(bluePointElement.getAttribute('cy'));
 
+	console.log(`startX: ${startX}`);
+ 	 console.log(`startY: ${startY}`);
+
     const startTime = performance.now();
     const duration = 100; // 1 segundo
 
