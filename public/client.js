@@ -294,7 +294,7 @@ function drawCircle(x, y, radius, color, text) {
       
    
   		const closestLine = findClosestLine(
-        bluePointElement.getAttribute('cx'), bluePoint.getAttribute('cy'));
+        bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
 
     	
             
