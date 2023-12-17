@@ -61,6 +61,14 @@ moveBluePoint(mouseX, mouseY);
         socket.emit('updatePosition', { x: mouseX, y: mouseY });
     });
 
+
+	socket.on('assignColor', function (color) {
+    bluePoint.color = color; // Actualiza el color del jugador local
+    bluePointElement.setAttribute('fill', color); // Actualiza el color del círculo en el SVG
+});
+
+	
+
     // Escuchar actualizaciones de posición de otros jugadores
     socket.on('updatePlayers', function (updatedPlayer) {
         // Actualizar la posición del jugador en el hexagonGroup
