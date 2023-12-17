@@ -47,6 +47,17 @@ io.on('connection', (socket) => {
 
         io.emit('updatePlayers', updatedPlayer);
     });
+
+    
+    
+    socket.on('updatePosition', function (position) {
+    // Actualiza la posición del jugador en el servidor
+    players[socket.id].x = position.x;
+    players[socket.id].y = position.y;
+
+    // Emite la actualización a todos los clientes
+    io.emit('updatePlayers', players);
+  });
     
     //USUARIOS DESCONECTADOS
     socket.on('disconnect', () => {
