@@ -116,7 +116,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
 	    socket.on('assignColor', function (color) {
     bluePoint.color = color; // Actualiza el color del jugador local
  //   bluePointElement.setAttribute('fill', color); 
-		   //   playerElement.setAttribute('fill', color);
+		   //   playerElement.setAttribute('fill', player.color);
     
 		    // Actualiza el color del círculo en el SVG
 });
