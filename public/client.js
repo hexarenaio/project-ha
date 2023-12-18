@@ -682,6 +682,18 @@ function drawCircle(x, y, radius, color, text) {
 
     console.log('Movimiento terminado');
 
+
+        findClosestVertices(bluePointElement.getAttribute('cx'),         
+                            bluePointElement.getAttribute('cy'));
+console.log('Mov finalizado'); 
+});
+
+findClosestRedVertexToClick( clickX, clickY);
+
+
+
+
+
         }
     }
 
