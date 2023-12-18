@@ -698,7 +698,9 @@ console.log('/////MOVE PLAYER//////')
 
 
 
-// Agrega un console.log para mostrar el color
+const playerColor = assignedColors.get(socket.id);
+        bluePointElement.setAttribute('fill', playerColor);
+        // Agrega un console.log para mostrar el color
         console.log(`Color del jugador ${socket.id}: ${playerColor}`);
 
 
