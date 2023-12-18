@@ -397,8 +397,12 @@ function drawCircle(x, y, radius, color, text) {
 
 
 
-isMoving = true
 
+if (!isMoving) { 
+
+console.log('/////MOVE PLAYER//////')
+
+  isMoving = true  
 
 
 
@@ -439,6 +443,9 @@ isMoving = true
         
            	
             findClosestRedVertexToClick( clickX, clickY);
+
+
+}
 
 	
 	}
