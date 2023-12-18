@@ -700,8 +700,6 @@ console.log('/////MOVE PLAYER//////')
 console.log('Mov finalizado');
 
 
-// Utiliza el color asignado del jugador para establecer el atributo 'fill'
-        bluePointElement.setAttribute('fill', assignedColors.get(socket.id));
 
 
   isMoving = false
