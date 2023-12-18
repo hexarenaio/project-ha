@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', function () {
   let playerName;
   let connectedUsers = 0;
 
+
+let isMoving = false
+
+
   const hexagonAngle = 0.523598776; // 30 degrees in radians
 
   let circleX = 50;
