@@ -696,6 +696,12 @@ console.log('/////MOVE PLAYER//////')
             // Animación completada, emitir datos al servidor
             socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
 
+
+
+// Agrega un console.log para mostrar el color
+        console.log(`Color del jugador ${socket.id}: ${playerColor}`);
+
+
         findClosestVertices(bluePointElement.getAttribute('cx'),                         bluePointElement.getAttribute('cy'));
 console.log('Mov finalizado');
 
