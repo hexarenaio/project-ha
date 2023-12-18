@@ -702,6 +702,8 @@ console.log('Mov finalizado');
 
 
 
+  isMoving = false
+
 
 
         }
