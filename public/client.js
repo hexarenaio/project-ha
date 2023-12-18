@@ -420,7 +420,10 @@ function drawCircle(x, y, radius, color, text) {
  
         findClosestVertices(bluePointElement.getAttribute('cx'), 	
                             bluePointElement.getAttribute('cy'));
- 
+
+
+
+                console.log('Mov finalizado'); 
 });
 
         
