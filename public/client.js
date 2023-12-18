@@ -679,16 +679,9 @@ function drawCircle(x, y, radius, color, text) {
             // Animación completada, emitir datos al servidor
             socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
 
+        findClosestVertices(bluePointElement.getAttribute('cx'),                         bluePointElement.getAttribute('cy'));
+console.log('Mov finalizado');
 
-    console.log('Movimiento terminado');
-
-
-        findClosestVertices(bluePointElement.getAttribute('cx'),         
-                            bluePointElement.getAttribute('cy'));
-console.log('Mov finalizado'); 
-});
-
-findClosestRedVertexToClick( clickX, clickY);
 
 
 
