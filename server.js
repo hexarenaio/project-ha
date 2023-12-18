@@ -39,6 +39,21 @@ io.on('connection', (socket) => {
    //     assignedColors.set(socket.id, availableColor);
   //  }
 
+//////
+
+socket.on('assignColor', function () {
+    const userColor = colorsArray[colorIndex % colorsArray.length];
+    colorIndex++;
+    assignedColors.set(socket.id, userColor);
+    console.log(`Color asignado a ${socket.id}: ${assignedColors.get(socket.id)}`);
+    socket.emit('assignColor', assignedColors.get(socket.id));
+});
+
+/////
+
+
+
+
     console.log(`Color asignado a ${socket.id}: ${assignedColors.get(socket.id)}`);
 
     socket.emit('assignColor', assignedColors.get(socket.id));
