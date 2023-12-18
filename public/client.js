@@ -678,6 +678,10 @@ function drawCircle(x, y, radius, color, text) {
         } else {
             // Animación completada, emitir datos al servidor
             socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
+
+
+    console.log('Movimiento terminado');
+
         }
     }
 
