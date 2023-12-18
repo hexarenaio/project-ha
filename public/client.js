@@ -70,7 +70,7 @@ bluePointElement.setAttribute('cx', bluePoint.x);
 
 	socket.on('assignColor', function (color) {
     bluePoint.color = color; // Actualiza el color del jugador local
-    bluePointElement.setAttribute('fill', color); // Actualiza el color del círculo en el SVG
+    bluePointElement.setAttribute('fill', player.color); // Actualiza el color del círculo en el SVG
 });
 
 
