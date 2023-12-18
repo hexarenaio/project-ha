@@ -396,6 +396,12 @@ function drawCircle(x, y, radius, color, text) {
   function moveBluePoint( clickX, clickY ) {
 
 
+
+isMoving = true
+
+
+
+
 	      drawUserCount();
 
      
