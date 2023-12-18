@@ -699,12 +699,12 @@ console.log('/////MOVE PLAYER//////')
 
 
 
-const playerColor = assignedColors.get(socket.id);
-        bluePointElement.setAttribute('fill', playerColor);
 
-        // Agrega un console.log para mostrar el color
-        console.log(`Color del jugador ${socket.id}: ${playerColor}`);
-
+socket.on('assignColor', function (color) {
+    bluePoint.color = color; // Actualiza el color del jugador local
+    bluePointElement.setAttribute('fill', color);
+    console.log(`Color asignado al jugador local: ${color}`);
+});
 
         findClosestVertices(bluePointElement.getAttribute('cx'),                         bluePointElement.getAttribute('cy'));
 console.log('Mov finalizado');
