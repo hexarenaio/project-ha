@@ -39,6 +39,16 @@ let isMoving = false
  //   bluePoint.setAttribute('fill', 'blue');
 
 
+	// Crear un elemento de texto SVG para mostrar el nombre
+  const textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  textElement.setAttribute('x', adjustedX);
+  textElement.setAttribute('y', adjustedY - radius - 5); // Ajustar la posición vertical para que esté justo encima del círculo
+  textElement.setAttribute('text-anchor', 'middle'); // Centrar el texto horizontalmente
+  textElement.setAttribute('fill', 'white');
+  textElement.setAttribute('font-size', '12px');
+textElement.textContent = 'Hola';
+
+
 
 
 // Agregar el círculo azul al hexagonGroup
@@ -50,6 +60,7 @@ bluePointElement.setAttribute('cx', bluePoint.x);
    bluePointElement.setAttribute('cy', bluePoint.y);
  //   hexagonGroup.appendChild(bluePointElement);
 
+  bluePointElement.parentNode.appendChild(textElement);
 
 
 
