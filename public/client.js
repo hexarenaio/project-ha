@@ -41,8 +41,8 @@ let isMoving = false
 
 	// Crear un elemento de texto SVG para mostrar el nombre
   const textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-  textElement.setAttribute('x', adjustedX);
-  textElement.setAttribute('y', adjustedY - radius - 5); // Ajustar la posición vertical para que esté justo encima del círculo
+  textElement.setAttribute('x', bluePoint.x);
+  textElement.setAttribute('y', bluePoint.y - radius - 5); // Ajustar la posición vertical para que esté justo encima del círculo
   textElement.setAttribute('text-anchor', 'middle'); // Centrar el texto horizontalmente
   textElement.setAttribute('fill', 'white');
   textElement.setAttribute('font-size', '12px');
