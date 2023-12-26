@@ -60,7 +60,9 @@ bluePointElement.setAttribute('cx', bluePoint.x);
    bluePointElement.setAttribute('cy', bluePoint.y);
  //   hexagonGroup.appendChild(bluePointElement);
 
-  bluePointElement.parentNode.appendChild(textElement);
+	 if (hexagonGroup) {
+    hexagonGroup.appendChild(textElement);
+  }
 
 
 
