@@ -64,6 +64,26 @@ bluePointElement.setAttribute('cx', bluePoint.x);
     hexagonGroup.appendChild(textElement);
   }
 
+/////////////////
+
+
+
+
+
+const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+
+  // Agregar el círculo al grupo
+  groupElement.appendChild(bluePointElement);
+
+  // Agregar el texto al grupo
+  groupElement.appendChild(textElement);
+
+  // Asegúrate de que hexagonGroup esté disponible antes de agregar el grupo
+  if (hexagonGroup) {
+    hexagonGroup.appendChild(groupElement);
+  }
+
+//////////////////
 
 
 // Agregar un event listener para clics en el canvas
