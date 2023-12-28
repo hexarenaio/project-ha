@@ -691,6 +691,30 @@ findClosestVertices(groupElement.getAttribute('transform'));
 	////////////SERVER COSAS///////////
 
 
+	    function createHexagons() {
+    const hexagonSize = 50;
+    const numRows = 20;
+    const numCols = 40;
+    const hexWidth = hexagonSize * Math.sqrt(3);
+    const hexHeight = hexagonSize * Math.sqrt(3);
+
+    for (let row = 0; row < numRows; row++) {
+      for (let col = 0; col < numCols; col++) {
+        const x = col * (hexWidth * 0.87);
+        const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
+        const hexagon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        hexagon.setAttribute('points', getHexagonPoints(x, y, hexagonSize));
+        hexagon.setAttribute('fill', 'none');
+        hexagon.setAttribute('stroke', 'gray');
+        hexagon.setAttribute('stroke-width', '2');
+        hexagon.addEventListener('click', function () {
+          // Agregar el manejo de clic en hexágono aquí si es necesario
+        });
+        hexagonGroup.appendChild(hexagon);
+      }
+    }
+  }
+
 
 	 // Manejar la recepción de información sobre la cantidad de usuarios conectados
   socket.on('userCount', function (count) {
