@@ -668,8 +668,16 @@ console.log('/////MOVE PLAYER//////')
 
        
 
-        bluePointElement.setAttribute('cx', newX);
-        bluePointElement.setAttribute('cy', newY);
+ //       bluePointElement.setAttribute('cx', newX);
+ //       bluePointElement.setAttribute('cy', newY);
+
+
+
+// Actualizar posición del grupo (círculo y texto)
+     
+   groupElement.setAttribute('transform', `translate(${newX},${newY})`);
+
+
 
 	socket.emit('updatePosition', { x: newX, y: newY });
 
