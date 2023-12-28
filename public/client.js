@@ -58,8 +58,8 @@ bluePointElement.setAttribute('cx', bluePoint.x);
 
 		// Crear un elemento de texto SVG para mostrar el nombre
   const textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-  textElement.setAttribute('x', bluePointElement.x);
-  textElement.setAttribute('y', bluePointElement.y - 8 - 5); // Ajustar la posición vertical para que esté justo encima del círculo
+  textElement.setAttribute('x', bluePoint.x);
+  textElement.setAttribute('y', bluePoint.y - 8 - 5); // Ajustar la posición vertical para que esté justo encima del círculo
   textElement.setAttribute('text-anchor', 'middle'); // Centrar el texto horizontalmente
   textElement.setAttribute('fill', 'red');
   textElement.setAttribute('font-size', '12px');
@@ -730,9 +730,12 @@ console.log('/////MOVE PLAYER//////')
         const newX = startX + progress * (destinationX - startX);
         const newY = startY + progress * (destinationY - startY);
 
-        bluePointElement.setAttribute('cx', newX);
-        bluePointElement.setAttribute('cy', newY);
+       // bluePointElement.setAttribute('cx', newX);
+        //bluePointElement.setAttribute('cy', newY);
 
+        groupElement.setAttribute('transform', `translate(${newX},${newY})`);
+
+	    
         if (progress < 1) {
             requestAnimationFrame(update);
         } else {
