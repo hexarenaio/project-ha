@@ -44,7 +44,7 @@ let isMoving = false
   textElement.setAttribute('x', bluePoint.x);
   textElement.setAttribute('y', bluePoint.y - 8 - 5); // Ajustar la posición vertical para que esté justo encima del círculo
   textElement.setAttribute('text-anchor', 'middle'); // Centrar el texto horizontalmente
-  textElement.setAttribute('fill', 'white');
+  textElement.setAttribute('fill', 'red');
   textElement.setAttribute('font-size', '12px');
 textElement.textContent = 'Hola';
 
