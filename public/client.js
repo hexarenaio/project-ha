@@ -61,7 +61,7 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
 //////////////////
 
 
-	/*
+	
 //CLICK LISTENER HEAGONGROUP
     hexagonGroup.addEventListener('click', function (event) {
 	            console.log('HEXAGON GROUP LOG');
@@ -71,7 +71,7 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
 		moveBluePoint(mouseX, mouseY);
     });
 	
-*/
+
 
 //SERVER ANIMATEBLUEPOINT
 	socket.on('animateBluePoint', function (animationData) {
@@ -85,7 +85,7 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
     animateCircleLocally(playerElement, data.start, data.end);
   });
 
-/*	
+	
 socket.on('updatePlayers', function (updatedPlayers) {
 	        console.log('SOCKET UPDATE PLAYERS');
 	
@@ -102,9 +102,9 @@ socket.on('updatePlayers', function (updatedPlayers) {
     }
   });
 
-*/
 
-	/*
+
+	
 function updatePlayerPosition(player) {
 	        console.log('UPDATE PLAYER POSITION');
 
@@ -115,7 +115,6 @@ function updatePlayerPosition(player) {
     playerElement.setAttribute('cy', player.y);
   }
 }
-*/
 
 
 	function animateCircleLocally(circleElement, start, end) {
