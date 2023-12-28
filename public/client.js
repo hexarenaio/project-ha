@@ -61,7 +61,7 @@ bluePointElement.setAttribute('cx', bluePoint.x);
  //   hexagonGroup.appendChild(bluePointElement);
 
 	 if (hexagonGroup) {
-    hexagonGroup.appendChild(textElement);
+    //hexagonGroup.appendChild(textElement);
   }
 
 /////////////////
