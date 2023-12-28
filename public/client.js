@@ -784,9 +784,21 @@ console.log('Mov finalizado');
            animateBluePoint(closestVertex.x, closestVertex.y, function() {
 
  
-        findClosestVertices(bluePointElement.getAttribute('cx'), 				bluePointElement.getAttribute('cy'));
-    console.log('La animación ha terminado');
-    // Puedes realizar acciones adicionales después de que la animación ha terminado
+        //findClosestVertices(bluePointElement.getAttribute('cx'), 				bluePointElement.getAttribute('cy'));
+   
+
+
+
+findClosestVertices(groupElement.getAttribute('transform'));
+
+
+ console.log('La animación ha terminado');
+    
+
+
+// Puedes realizar acciones adicionales después de que la animación ha terminado
+
+
 });
 
 
