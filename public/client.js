@@ -61,6 +61,7 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
 //////////////////
 
 
+	/*
 //CLICK LISTENER HEAGONGROUP
     hexagonGroup.addEventListener('click', function (event) {
 	            console.log('HEXAGON GROUP LOG');
@@ -70,7 +71,7 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
 		moveBluePoint(mouseX, mouseY);
     });
 	
-
+*/
 
 //SERVER ANIMATEBLUEPOINT
 	socket.on('animateBluePoint', function (animationData) {
@@ -84,7 +85,7 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
     animateCircleLocally(playerElement, data.start, data.end);
   });
 
-	
+/*	
 socket.on('updatePlayers', function (updatedPlayers) {
 	        console.log('SOCKET UPDATE PLAYERS');
 	
@@ -101,7 +102,9 @@ socket.on('updatePlayers', function (updatedPlayers) {
     }
   });
 
-	
+*/
+
+	/*
 function updatePlayerPosition(player) {
 	        console.log('UPDATE PLAYER POSITION');
 
@@ -112,7 +115,7 @@ function updatePlayerPosition(player) {
     playerElement.setAttribute('cy', player.y);
   }
 }
-
+*/
 
 
 	function animateCircleLocally(circleElement, start, end) {
@@ -152,26 +155,7 @@ createHexagons();
 let lastCircleY = hexRectangleHeight;
 
 
-  // Esta función dibuja el fondo del canvas con hexágonos
-  function drawHexagons() {
-    hexHeight = Math.sin(hexagonAngle) * sideLength;
-    hexRadius = Math.cos(hexagonAngle) * sideLength;
-    hexRectangleHeight = sideLength + 2 * hexHeight;
-    hexRectangleWidth = 2 * hexRadius;
 
-
-    context.fillStyle = "#000000";
-    context.strokeStyle = "#CCCCCC";
-    context.lineWidth = 1;
-
-    drawBoard(context, 10, 10); // Puedes ajustar el tamaño del tablero según tus necesidades
-
-     const randomX = Math.random() * canvas.width;
-    const randomY = Math.random() * canvas.height;
-
-    // Dibujar un círculo rojo en la posición aleatoria
-    drawCircle(circleX, circleY, 4, "red", playerName);
-  }
 
 
 
@@ -192,69 +176,6 @@ let lastCircleY = hexRectangleHeight;
   }
 
   
-
-  // Esta función dibuja un hexágono en el canvas
-  function drawHexagon(canvasContext, x, y, fill) {
-	          console.log('Draw Hexagons');
-
-    const fillHex = fill || false;
-
-    canvasContext.beginPath();
-    canvasContext.moveTo(x + hexRadius, y);
-    canvasContext.lineTo(x + hexRectangleWidth, y + hexHeight);
-    canvasContext.lineTo(x + hexRectangleWidth, y + hexHeight + sideLength);
-    canvasContext.lineTo(x + hexRadius, y + hexRectangleHeight);
-    canvasContext.lineTo(x, y + sideLength + hexHeight);
-    canvasContext.lineTo(x, y + hexHeight);
-    canvasContext.closePath();
-
-    if (fillHex) {
-      canvasContext.fill();
-    } else {
-      canvasContext.stroke();
-    }
-  }
-
-  function drawBoard(canvasContext, width, height) {
-        console.log('Draw Board');
-
-	  
-    let i, j;
-
-    for (i = 0; i < width; ++i) {
-      for (j = 0; j < height; ++j) {
-        drawHexagon(
-          context,
-          i * hexRectangleWidth + ((j % 2) * hexRadius),
-          j * (sideLength + hexHeight),
-          false
-        );
-      }
-    }
-  }
-
-
-function drawCircle(x, y, radius, color, text) {
-  // Calcular la posición ajustada para que el círculo esté en la esquina superior del hexágono
-  
-  //const adjustedX = x + hexRadius * Math.cos(hexagonAngle);
-//  const adjustedY = y - hexHeight;
-
-   const adjustedX = x;
-  const adjustedY = y;
-
-
-  context.beginPath();
-  context.arc(adjustedX, adjustedY, radius, 0, 2 * Math.PI);
-  context.fillStyle = color;
-  context.fill();
-
-  // Mostrar el nombre del jugador encima del círculo
-  context.fillStyle = 'white';
-  context.font = '12px Arial';
-  context.fillText(text, adjustedX - 20, adjustedY - 15);
-}
-
 
 
   function moveBluePoint( clickX, clickY ) {
@@ -478,68 +399,6 @@ console.log('/////MOVE PLAYER//////')
       const dy = y - yy;
       return Math.sqrt(dx * dx + dy * dy);
     }
-   
-    //CODE END////////////////////////////////////////
-    /////////////////////////////////////////////////
-    
-/*function animateBluePoint(destinationX, destinationY, callback) {
-    const startX = parseFloat(bluePointElement.getAttribute('cx'));
-    const startY = parseFloat(bluePointElement.getAttribute('cy'));
-
-    const startTime = performance.now();
-    const duration = 100; // 1 segundo
-
-    function update() {
-        const currentTime = performance.now();
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-
-        const newX = startX + progress * (destinationX - startX);
-        const newY = startY + progress * (destinationY - startY);
-
-       
-
- //       bluePointElement.setAttribute('cx', newX);
- //       bluePointElement.setAttribute('cy', newY);
-
-
-
-// Actualizar posición del grupo (círculo y texto)
-     
-   groupElement.setAttribute('transform', `translate(${newX},${newY})`);
-
-
-
-	socket.emit('updatePosition', { x: newX, y: newY });
-
-        
-      //  detectarColisiones();
-
-        if (progress < 1) {
-            requestAnimationFrame(update);
-            
-            
-            
-          ////DETECTOR DE COLISIONES
-         
-            
-            
-                      ////DETECTOR DE COLISIONES
-
-            
-            
-             
-        } else {
-            // Llamada a la devolución de llamada cuando la animación ha terminado
-            if (callback) {
-                callback();
-            }
-        }
-    }
-
-    requestAnimationFrame(update);
-}
-*/
 
 	function animateBluePoint(destinationX, destinationY) {
     const startX = parseFloat(bluePointElement.getAttribute('cx'));
@@ -654,39 +513,6 @@ findClosestVertices(groupElement.getAttribute('transform'));
     return closestVertex;
 	}
 	
-
-
-
-    //  document.addEventListener('click', moveBluePoint);
-
-
-
-
-
-      /*
-
-  nameForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-    playerName = document.getElementById('playerName').value;
-    nameForm.style.display = 'none';
-    canvas.style.display = 'block';
-
-  //  drawHexagons(); // Llama a la función para dibujar hexágonos en el fondo
-
-        hexagonGroup.style.display = 'block';
-        bluePoint.style.display = 'block';
-
-        console.log('nameForm Comenzado');
-
-	  // Dibujar el texto con la cantidad de usuarios conectados
-
-
-  });
-
-
-*/
-
-
 
 	////////////SERVER COSAS///////////
 
