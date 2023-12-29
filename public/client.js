@@ -516,6 +516,29 @@ findClosestVertices(groupElement.getAttribute('transform'));
 	////////////SERVER COSAS///////////
 
 
+function findClosestVerticesFromTransform(transformAttribute) {
+    const transformValues = transformAttribute.match(/translate\(([^,]+),([^)]+)\)/);
+
+    if (transformValues) {
+        const translateX = parseFloat(transformValues[1]);
+        const translateY = parseFloat(transformValues[2]);
+
+        // Now you can use translateX and translateY as the group's new position
+        // Call findClosestVertices with these coordinates
+        const nearbyVertices = findClosestVertices(translateX, translateY);
+
+        // Optionally, do something with the nearbyVertices
+
+        return nearbyVertices;
+    } else {
+        console.error('Invalid transform attribute format');
+        return null;
+    }
+}
+
+
+
+
 	    function createHexagons() {
     const hexagonSize = 50;
     const numRows = 20;
