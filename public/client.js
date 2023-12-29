@@ -423,8 +423,8 @@ console.log('/////MOVE PLAYER//////')
         const newX = startX + progress * (destinationX - startX);
         const newY = startY + progress * (destinationY - startY);
 
-    //bluePointElement.setAttribute('cx', newX);
-     //bluePointElement.setAttribute('cy', newY);
+    bluePointElement.setAttribute('cx', newX);
+    bluePointElement.setAttribute('cy', newY);
 
         groupElement.setAttribute('transform', `translate(${newX},${newY})`);
 
