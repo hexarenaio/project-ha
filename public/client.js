@@ -68,7 +68,7 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
 
         const mouseX = event.clientX - hexagonGroup.getBoundingClientRect().left;
         const mouseY = event.clientY - hexagonGroup.getBoundingClientRect().top;
-		moveBluePoint(mouseX, mouseY);
+		//moveBluePoint(mouseX, mouseY);
     });
 	
 
