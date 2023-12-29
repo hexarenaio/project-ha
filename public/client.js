@@ -130,8 +130,8 @@ function updatePlayerPosition(player) {
     const newX = start.x + progress * (end.x - start.x);
     const newY = start.y + progress * (end.y - start.y);
 
-    circleElement.setAttribute('cx', newX);
-    circleElement.setAttribute('cy', newY);
+   // circleElement.setAttribute('cx', newX);
+   // circleElement.setAttribute('cy', newY);
 
 
     if (progress < 1) {
