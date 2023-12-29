@@ -216,8 +216,14 @@ console.log('/////MOVE PLAYER//////')
         
         animateBluePoint(destinationX, destinationY, function() {
  
-        findClosestVertices(bluePointElement.getAttribute('cx'), 	
-                            bluePointElement.getAttribute('cy'));
+    
+    //findClosestVertices(bluePointElement.getAttribute('cx'), 	
+                            //bluePointElement.getAttribute('cy'));
+
+
+
+const groupTransformAttribute = groupElement.getAttribute('transform');
+findClosestVerticesFromTransform(groupTransformAttribute);
 
 
 
