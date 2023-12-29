@@ -423,10 +423,10 @@ findClosestVerticesFromTransform(groupTransformAttribute);
         const newX = startX + progress * (destinationX - startX);
         const newY = startY + progress * (destinationY - startY);
 
-    //   bluePointElement.setAttribute('cx', newX);
-    //    bluePointElement.setAttribute('cy', newY);
+    bluePointElement.setAttribute('cx', newX);
+     bluePointElement.setAttribute('cy', newY);
 
-        groupElement.setAttribute('transform', `translate(${newX},${newY})`);
+     //   groupElement.setAttribute('transform', `translate(${newX},${newY})`);
 
 	    
         if (progress < 1) {
@@ -445,11 +445,11 @@ socket.on('assignColor', function (color) {
     console.log(`Color asignado al jugador local: ${color}`);
 });
 
-        //findClosestVertices(bluePointElement.getAttribute('cx'),                         //bluePointElement.getAttribute('cy'));
+        findClosestVertices(bluePointElement.getAttribute('cx'),                         bluePointElement.getAttribute('cy'));
 
 
-const groupTransformAttribute = groupElement.getAttribute('transform');
-findClosestVerticesFromTransform(groupTransformAttribute);
+//const groupTransformAttribute = //groupElement.getAttribute('transform');
+//findClosestVerticesFromTransform(groupTransformAttribute);
 
 
 console.log('Mov finalizado');
@@ -496,12 +496,12 @@ console.log('Mov finalizado');
            animateBluePoint(closestVertex.x, closestVertex.y, function() {
 
  
-        //findClosestVertices(bluePointElement.getAttribute('cx'), 				bluePointElement.getAttribute('cy'));
+findClosestVertices(bluePointElement.getAttribute('cx'), 				bluePointElement.getAttribute('cy'));
    
 
 
 
-findClosestVertices(groupElement.getAttribute('transform'));
+//findClosestVertices(groupElement.getAttribute('transform'));
 
 
  console.log('La animación ha terminado');
