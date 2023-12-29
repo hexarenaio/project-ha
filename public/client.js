@@ -445,7 +445,13 @@ socket.on('assignColor', function (color) {
     console.log(`Color asignado al jugador local: ${color}`);
 });
 
-        findClosestVertices(bluePointElement.getAttribute('cx'),                         bluePointElement.getAttribute('cy'));
+        //findClosestVertices(bluePointElement.getAttribute('cx'),                         //bluePointElement.getAttribute('cy'));
+
+
+const groupTransformAttribute = groupElement.getAttribute('transform');
+findClosestVerticesFromTransform(groupTransformAttribute);
+
+
 console.log('Mov finalizado');
 
 
