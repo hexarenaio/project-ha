@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+.document.addEventListener('DOMContentLoaded', function () {
 
   //VARIABLES
   const socket = io();
@@ -423,10 +423,10 @@ findClosestVerticesFromTransform(groupTransformAttribute);
         const newX = startX + progress * (destinationX - startX);
         const newY = startY + progress * (destinationY - startY);
 
-    bluePointElement.setAttribute('cx', newX);
-     bluePointElement.setAttribute('cy', newY);
+    //bluePointElement.setAttribute('cx', newX);
+     //bluePointElement.setAttribute('cy', newY);
 
-     //   groupElement.setAttribute('transform', `translate(${newX},${newY})`);
+        groupElement.setAttribute('transform', `translate(${newX},${newY})`);
 
 	    
         if (progress < 1) {
