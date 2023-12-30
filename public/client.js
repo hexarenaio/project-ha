@@ -94,7 +94,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
       const player = updatedPlayers[playerId];
       const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       playerElement.setAttribute('id', playerId);
-      playerElement.setAttribute('r', '8');
+      playerElement.setAttribute('r', '18');
       playerElement.setAttribute('fill', player.color);
       playerElement.setAttribute('cx', player.x+14);
       playerElement.setAttribute('cy', player.y+13);	    
