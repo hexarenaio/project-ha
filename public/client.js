@@ -93,8 +93,8 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
 
 
     // Realiza la animación localmente
-   // animateCircleLocally(playerElement, data.start, data.end);
-    animateCircleLocally(groupElement, data.start, data.end);
+    animateCircleLocally(playerElement, data.start, data.end);
+   // animateCircleLocally(groupElement, data.start, data.end);
 
 			         // groupElement.setAttribute('transform', `translate(${newX},${newY})`);
 
