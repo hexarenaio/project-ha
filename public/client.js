@@ -207,10 +207,10 @@ function findClosestRedVertexToClick(x, y) {
     	if (closestVertex) {
     		//bluePoint.setAttribute('cx',  closestVertex.x );
     		//bluePoint.setAttribute('cy',  closestVertex.y  );          
-		animateBluePoint(closestVertex.x, closestVertex.y, function() { 
-			findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
- 			console.log('La animación ha terminado');
-		});
+		//animateBluePoint(closestVertex.x, closestVertex.y, function() { 
+		//	findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+ 		//	console.log('La animación ha terminado');
+		//});
         	//console.log(`Vértice rojo más cercano a (${x}, ${y}): // (${closestVertex.x}, ${closestVertex.y})`);
     	} else {
         	console.log(`No se encontró vértice rojo cercano a las coordenadas (${x}, ${y}).`);
