@@ -94,7 +94,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
       const player = updatedPlayers[playerId];
       const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       playerElement.setAttribute('id', playerId);
-      playerElement.setAttribute('r', '18');
+      playerElement.setAttribute('r', '12');
       playerElement.setAttribute('fill', player.color);
       playerElement.setAttribute('cx', player.x);
       playerElement.setAttribute('cy', player.y);	    
@@ -130,8 +130,8 @@ function updatePlayerPosition(player) {
     const newX = start.x + progress * (end.x - start.x);
     const newY = start.y + progress * (end.y - start.y);
 
-   circleElement.setAttribute('cx', newX);
-   circleElement.setAttribute('cy', newY);
+   circleElement.setAttribute('cx', newX+12);
+   circleElement.setAttribute('cy', newY+16);
 
 
     if (progress < 1) {
