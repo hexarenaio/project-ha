@@ -83,6 +83,7 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
     const playerElement = document.getElementById(playerId);
 		      playerElement.setAttribute('r', '20');
 		      playerElement.setAttribute('fill', player.color);
+      hexagonGroup.appendChild(playerElement);	    
 
 
     // Realiza la animación localmente
