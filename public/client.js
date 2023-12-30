@@ -81,11 +81,13 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
     const data = animationData.data;
     // Encuentra el círculo correspondiente al jugador
     const playerElement = document.getElementById(playerId);
+		      playerElement.setAttribute('r', '20');
+
     // Realiza la animación localmente
     animateCircleLocally(playerElement, data.start, data.end);
   });
 
-	
+/*	
 socket.on('updatePlayers', function (updatedPlayers) {
 	        console.log('SOCKET UPDATE PLAYERS');
 	
@@ -101,7 +103,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
       hexagonGroup.appendChild(playerElement);	    
     }
   });
-
+*/
 
 
 	
