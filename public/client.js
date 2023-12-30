@@ -136,9 +136,10 @@ createHexagons();
 		console.log('/////MOVE PLAYER//////')
   		isMoving = true  
 		drawUserCount();
-        	//const closestLine = findClosestLine(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
-    		//const destinationX = closestLine.x2;
-        	//const destinationY = closestLine.y2;
+        	const closestLine = findClosestLine(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+    		const destinationX = closestLine.x2;
+        	const destinationY = closestLine.y2;
+		console.log(`ClosestLine: (${closestLine.x2}, ${closestLine.y2})`);
 		animateBluePoint(destinationX, destinationY, function() {
      			findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
         		console.log('Mov finalizado'); 
