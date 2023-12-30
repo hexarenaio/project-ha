@@ -118,9 +118,9 @@ socket.on('updatePlayers', function (updatedPlayers) {
       playerElement.setAttribute('cx', player.x);
       playerElement.setAttribute('cy', player.y);
 
-	    groupElement.appendChild(playerElement);
+	   // groupElement.appendChild(playerElement);
 
-	    hexagonGroup.appendChild(groupElement);
+	   // hexagonGroup.appendChild(groupElement);
 
      // hexagonGroup.appendChild(playerElement);	    
     }
