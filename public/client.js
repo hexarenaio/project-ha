@@ -96,8 +96,8 @@ socket.on('updatePlayers', function (updatedPlayers) {
       playerElement.setAttribute('id', playerId);
       playerElement.setAttribute('r', '8');
       playerElement.setAttribute('fill', player.color);
-      playerElement.setAttribute('cx', player.x);
-      playerElement.setAttribute('cy', player.y);	    
+      playerElement.setAttribute('cx', player.x+14);
+      playerElement.setAttribute('cy', player.y+13);	    
       hexagonGroup.appendChild(playerElement);	    
     }
   });
