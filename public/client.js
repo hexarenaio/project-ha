@@ -47,6 +47,8 @@ const textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text
   textElement.setAttribute('font-size', '12px');
   textElement.textContent = 'Hola';
 
+	
+
 
 //GROUP ELEMENT CIRCULO Y TEXTO
 const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
@@ -59,6 +61,9 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
     hexagonGroup.appendChild(groupElement);
   }
 //////////////////
+
+			const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+hexagonGroup.appendChild(playerElement);
 
 
 	
@@ -81,7 +86,6 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
     const data = animationData.data;
     // Encuentra el círculo correspondiente al jugador
     //const playerElement = document.getElementById(playerId);
-		const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       playerElement.setAttribute('id', playerId);
 		      playerElement.setAttribute('r', '20');
 		      playerElement.setAttribute('fill', data.color);
