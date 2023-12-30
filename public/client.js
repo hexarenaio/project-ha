@@ -82,7 +82,7 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
     // Encuentra el círculo correspondiente al jugador
     const playerElement = document.getElementById(playerId);
 		      playerElement.setAttribute('r', '20');
-		      playerElement.setAttribute('fill', player.color);
+		      playerElement.setAttribute('fill', data.color);
       hexagonGroup.appendChild(playerElement);	    
 
 
