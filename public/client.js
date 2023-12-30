@@ -136,16 +136,12 @@ createHexagons();
 		console.log('/////MOVE PLAYER//////')
   		isMoving = true  
 		drawUserCount();
-        	//const closestLine = findClosestLine(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
-    		//const destinationX = closestLine.x2;
-        	//const destinationY = closestLine.y2;
-
-		//let closestVertex = null;
+        
 		const closestVertex = findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
 		const destinationX = closestVertex.x;
         	const destinationY = closestVertex.y;
 		
-		console.log(`ClosestLine: (${closestVertex.x2}, ${closestVertex.y2})`);
+		console.log(`ClosestVertex: (${closestVertex.x2}, ${closestVertex.y2})`);
 		animateBluePoint(destinationX, destinationY, function() {
      			findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
         		console.log('Mov finalizado'); 
@@ -296,54 +292,7 @@ function findClosestRedVertexToClick(x, y) {
     		return Math.sqrt(dx * dx + dy * dy);
 	}
 
-//FIND CLOSEST LINE//////////////////////////////
-/////////////////////////////////////////////////
-    	function findClosestLine(x, y) {
-	//console.log('1. Coordenadas Azul:', 
-  	//bluePoint.getAttribute('cx'), bluePoint.getAttribute('cy'));
-      	const lines = document.querySelectorAll('#hexagonGroup polygon');
-      	let closestLine = null;
-      	let minDistance = Infinity;
-      	lines.forEach((hexagon) => {
-        	const points = hexagon.getAttribute('points').split(' ');
-        	for (let i = 0; i < points.length; i++) {
-          		const [x1, y1] = points[i].split(',').map(Number);
-          		const [x2, y2] = points[(i + 1) % points.length].split(',').map(Number);
-			const distance = pointToLineDistance(x, y, x1, y1, x2, y2);
-          		if (distance < minDistance) {
-     				minDistance = distance;
-            			closestLine = { x1, y1, x2, y2 };
-          		}
-       		}
-     	});
-	return closestLine;
-    	}
-   
-//POINT TO LINE DISTANCE//////////////////////////
-/////////////////////////////////////////////////
-    	function pointToLineDistance(x, y, x1, y1, x2, y2) {
-   		const A = x - x1;
-      		const B = y - y1;
-      		const C = x2 - x1;
-      		const D = y2 - y1;
-		const dot = A * C + B * D;
-     		const len_sq = C * C + D * D;
-      		const param = dot / len_sq;
-      		let xx, yy;
-      		if (param < 0 || (x1 === x2 && y1 === y2)) {
-        		xx = x1;
-        		yy = y1;
-      		} else if (param > 1) {
-        		xx = x2;
-        		yy = y2;
-      		} else {
-        		xx = x1 + param * C;
-        		yy = y1 + param * D;
-     		}
-		const dx = x - xx;
-      		const dy = y - yy;
-      		return Math.sqrt(dx * dx + dy * dy);
-    	}
+  
 
 //CREATE HEXAGONS///////////////////////////
 ///////////////////////////////////////////////// 
