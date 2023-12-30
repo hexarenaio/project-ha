@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   //VARIABLES
   const socket = io();
-  const context = canvas.getContext('2d');
   const nameForm = document.getElementById('nameForm');
 
   let playerName;
