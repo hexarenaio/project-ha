@@ -208,7 +208,7 @@ function findClosestRedVertexToClick(x, y) {
     		//bluePoint.setAttribute('cx',  closestVertex.x );
     		//bluePoint.setAttribute('cy',  closestVertex.y  );          
 		animateBluePoint(closestVertex.x, closestVertex.y, function() { 
-			//findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+			findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
  			console.log('La animación ha terminado');
 		});
         	//console.log(`Vértice rojo más cercano a (${x}, ${y}): // (${closestVertex.x}, ${closestVertex.y})`);
