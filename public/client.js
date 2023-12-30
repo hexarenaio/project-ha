@@ -79,7 +79,7 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
 
 
 
-	/*
+	
 	//SERVER ANIMATEBLUEPOINT
 	socket.on('animateBluePoint', function (animationData) {
 		        console.log('SOCKET ANIMATE BLUE POINT');
@@ -87,47 +87,19 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
     const playerId = animationData.playerId;
     const data = animationData.data;
     // Encuentra el círculo correspondiente al jugador
-    //const playerElement = document.getElementById(playerId);
-      playerElement.setAttribute('id', playerId);
-		      playerElement.setAttribute('r', '20');
-		      playerElement.setAttribute('fill', data.color);
-      hexagonGroup.appendChild(playerElement);	    
+    const playerElement = document.getElementById(playerId);
+        
 
 
     // Realiza la animación localmente
     animateCircleLocally(playerElement, data.start, data.end);
   });
-*/
+
 	
 
-	socket.on('animateBluePoint', function (animationData) {
-	        console.log('SOCKET UPDATE PLAYERS');
+
+
 	
-    // Iterar sobre el objeto de jugadores y actualizar la información
-    for (const playerId in animationData) {
-      const player = animationData[playerId];
-	        const data = animationData.data;
-
-      const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      playerElement.setAttribute('id', playerId);
-      playerElement.setAttribute('r', '12');
-      playerElement.setAttribute('fill', player.color);
-      playerElement.setAttribute('cx', player.x);
-      playerElement.setAttribute('cy', player.y);
-
-	    if (!playerElement) {
-
-      hexagonGroup.appendChild(playerElement);	
-
-
-	    }
-
-	        animateCircleLocally(playerElement, data.start, data.end);
-
-    }
-  });
-
-/*	
 socket.on('updatePlayers', function (updatedPlayers) {
 	        console.log('SOCKET UPDATE PLAYERS');
 	
@@ -143,7 +115,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
       hexagonGroup.appendChild(playerElement);	    
     }
   });
-*/
+
 
 
 	
