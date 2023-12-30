@@ -96,8 +96,8 @@ socket.on('updatePlayers', function (updatedPlayers) {
       playerElement.setAttribute('id', playerId);
       playerElement.setAttribute('r', '18');
       playerElement.setAttribute('fill', player.color);
-      playerElement.setAttribute('cx', player.x+14);
-      playerElement.setAttribute('cy', player.y+13);	    
+      playerElement.setAttribute('cx', player.x);
+      playerElement.setAttribute('cy', player.y);	    
       hexagonGroup.appendChild(playerElement);	    
     }
   });
@@ -111,8 +111,8 @@ function updatePlayerPosition(player) {
   // Busca el elemento SVG del jugador por su identificación y actualiza la posición
   const playerElement = document.getElementById(player.id);
   if (playerElement) {
-    playerElement.setAttribute('cx', player.x);
-    playerElement.setAttribute('cy', player.y);
+    playerElement.setAttribute('cx', player.x+13);
+    playerElement.setAttribute('cy', player.y+15);
   }
 }
 
