@@ -122,7 +122,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
 
 	   // hexagonGroup.appendChild(groupElement);
 
-     // hexagonGroup.appendChild(playerElement);	    
+     hexagonGroup.appendChild(playerElement);	    
     }
   });
 
