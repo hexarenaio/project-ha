@@ -62,7 +62,7 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
   }
 //////////////////
 
-			const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+			//const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
 //hexagonGroup.appendChild(playerElement);
 
 
@@ -78,7 +78,9 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
 	
 
 
-//SERVER ANIMATEBLUEPOINT
+
+	/*
+	//SERVER ANIMATEBLUEPOINT
 	socket.on('animateBluePoint', function (animationData) {
 		        console.log('SOCKET ANIMATE BLUE POINT');
 
@@ -94,6 +96,29 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
 
     // Realiza la animación localmente
     animateCircleLocally(playerElement, data.start, data.end);
+  });
+*/
+	
+
+	socket.on('animateBluePoint', function (animationData) {
+	        console.log('SOCKET UPDATE PLAYERS');
+	
+    // Iterar sobre el objeto de jugadores y actualizar la información
+    for (const playerId in animationData) {
+      const player = animationData[playerId];
+	        const data = animationData.data;
+
+      const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      playerElement.setAttribute('id', playerId);
+      playerElement.setAttribute('r', '12');
+      playerElement.setAttribute('fill', player.color);
+      playerElement.setAttribute('cx', player.x);
+      playerElement.setAttribute('cy', player.y);	    
+      hexagonGroup.appendChild(playerElement);	 
+
+	        animateCircleLocally(playerElement, data.start, data.end);
+
+    }
   });
 
 /*	
