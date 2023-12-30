@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const hexagonAngle = 0.523598776; // 30 degrees in radians
 
-  let circleX = 50;
-  let circleY = 50;
+  let circleX = 250;
+  let circleY = 250;
 
   const players = {}; // Objeto para almacenar la información de los jugadores
 
