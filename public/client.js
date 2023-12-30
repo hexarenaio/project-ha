@@ -111,8 +111,8 @@ function updatePlayerPosition(player) {
   // Busca el elemento SVG del jugador por su identificación y actualiza la posición
   const playerElement = document.getElementById(player.id);
   if (playerElement) {
-    playerElement.setAttribute('cx', player.x+13);
-    playerElement.setAttribute('cy', player.y+15);
+    playerElement.setAttribute('cx', player.x);
+    playerElement.setAttribute('cy', player.y);
   }
 }
 
@@ -130,8 +130,8 @@ function updatePlayerPosition(player) {
     const newX = start.x + progress * (end.x - start.x);
     const newY = start.y + progress * (end.y - start.y);
 
-   circleElement.setAttribute('cx', newX+12);
-   circleElement.setAttribute('cy', newY+16);
+   circleElement.setAttribute('cx', newX+24);
+   circleElement.setAttribute('cy', newY+13);
 
 
     if (progress < 1) {
