@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
   //VARIABLES
   const socket = io();
   const nameForm = document.getElementById('nameForm');
+  const canvas = document.getElementById('gameCanvas');
   const context = canvas.getContext('2d');
   let playerName;
   let connectedUsers = 0;
