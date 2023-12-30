@@ -111,8 +111,13 @@ socket.on('updatePlayers', function (updatedPlayers) {
       playerElement.setAttribute('r', '12');
       playerElement.setAttribute('fill', player.color);
       playerElement.setAttribute('cx', player.x);
-      playerElement.setAttribute('cy', player.y);	    
-      hexagonGroup.appendChild(playerElement);	    
+      playerElement.setAttribute('cy', player.y);
+
+	    groupElement.appendChild(playerElement);
+
+	    hexagonGroup.appendChild(groupElement);
+
+     // hexagonGroup.appendChild(playerElement);	    
     }
   });
 
