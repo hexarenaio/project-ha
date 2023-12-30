@@ -239,7 +239,7 @@ console.log('/////MOVE PLAYER//////')
         const destinationY = closestLine.y2;
 
         
-    /*    animateBluePoint(destinationX, destinationY, function() {
+       animateBluePoint(destinationX, destinationY, function() {
      
     findClosestVertices(bluePointElement.getAttribute('cx'), 	
                            bluePointElement.getAttribute('cy'));
@@ -248,7 +248,7 @@ console.log('/////MOVE PLAYER//////')
 
                 console.log('Mov finalizado'); 
 });
-*/
+
         
            	
             findClosestRedVertexToClick( clickX, clickY);
@@ -511,7 +511,7 @@ console.log('Mov finalizado');
     
     		//bluePoint.setAttribute('cx',  closestVertex.x );
     		//bluePoint.setAttribute('cy',  closestVertex.y  );
-            
+       /*     
            animateBluePoint(closestVertex.x, closestVertex.y, function() {
 
  
@@ -531,7 +531,7 @@ findClosestVertices(bluePointElement.getAttribute('cx'), 				bluePointElement.ge
 
 
 });
-
+*/
 
     
         	//console.log(`Vértice rojo más cercano a (${x}, ${y}): 
