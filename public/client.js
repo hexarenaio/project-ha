@@ -88,7 +88,8 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
     const data = animationData.data;
     // Encuentra el círculo correspondiente al jugador
     const playerElement = document.getElementById(playerId);
-        
+
+		
 
 
     // Realiza la animación localmente
@@ -151,6 +152,9 @@ function updatePlayerPosition(player) {
 
    circleElement.setAttribute('cx', newX);
    circleElement.setAttribute('cy', newY);
+
+	          groupElement.setAttribute('transform', `translate(${newX},${newY})`);
+
 
 
     if (progress < 1) {
@@ -445,7 +449,7 @@ console.log('/////MOVE PLAYER//////')
     bluePointElement.setAttribute('cx', newX);
     bluePointElement.setAttribute('cy', newY);
 
-        groupElement.setAttribute('transform', `translate(${newX},${newY})`);
+      //  groupElement.setAttribute('transform', `translate(${newX},${newY})`);
 
 	    
         if (progress < 1) {
