@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   //VARIABLES
   const socket = io();
-  const canvas = document.getElementById('gameCanvas');
   const context = canvas.getContext('2d');
   const nameForm = document.getElementById('nameForm');
 
@@ -184,80 +183,24 @@ let lastCircleY = hexRectangleHeight;
 
 
 
-
-
-  function getHexagonPoints(x, y, size) {
-	          console.log('Hexagon Points');
-
-    const points = [];
-    for (let i = 0; i < 6; i++) {
-      const angle = (2 * Math.PI / 6) * i;
-      const pointX = x + size * Math.cos(angle);
-      const pointY = y + size * Math.sin(angle);
-      points.push(`${pointX},${pointY}`);
-    }
-    return points.join(' ');
-  }
-
   
 
 
   function moveBluePoint( clickX, clickY ) {
-
-
-
-
-if (!isMoving) { 
-
-console.log('/////MOVE PLAYER//////')
-
-  isMoving = true  
-
-
-
-	      drawUserCount();
-
-     
-        console.log('///////////////////');
-
-  		//const clickX = event.clientX;
-  	//const clickY = event.clientY - 40;
-
-
-
-
-//const clickX2 = clickEvent.offsetX;
- //const clickY2 = clickEvent.offsetY;
-      
-   
-  		const closestLine = findClosestLine(
-        bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
-
-    	
-            
-             const destinationX = closestLine.x2;
-        const destinationY = closestLine.y2;
-
-        
-       animateBluePoint(destinationX, destinationY, function() {
-     
-    findClosestVertices(bluePointElement.getAttribute('cx'), 	
-                           bluePointElement.getAttribute('cy'));
-//const groupTransformAttribute = groupElement.getAttribute('transform');
-//findClosestVerticesFromTransform(groupTransformAttribute);
-
-                console.log('Mov finalizado'); 
-});
-
-        
-           	
-            findClosestRedVertexToClick( clickX, clickY);
-
-
-}
-
-	
-	}
+	if (!isMoving) { 
+		console.log('/////MOVE PLAYER//////')
+  		isMoving = true  
+		drawUserCount();
+        	const closestLine = findClosestLine(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+    		const destinationX = closestLine.x2;
+        	const destinationY = closestLine.y2;
+		animateBluePoint(destinationX, destinationY, function() {
+     			findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+        		console.log('Mov finalizado'); 
+			});
+        	findClosestRedVertexToClick( clickX, clickY);
+		}
+  }
 
 
 
@@ -464,7 +407,8 @@ socket.on('assignColor', function (color) {
     console.log(`Color asignado al jugador local: ${color}`);
 });
 
-        findClosestVertices(bluePointElement.getAttribute('cx'),                         bluePointElement.getAttribute('cy'));
+        findClosestVertices(bluePointElement.getAttribute('cx'),                         
+			    bluePointElement.getAttribute('cy'));
 
 
 //const groupTransformAttribute = //groupElement.getAttribute('transform');
@@ -491,86 +435,34 @@ console.log('Mov finalizado');
     /////////////////////////////////////////////////
     
 	function findClosestRedVertexToClick(x, y) {
-    
-    	let closestVertex = null;
-    	let minDistance = Infinity;
-
-    	redVerticesArray.forEach((redVertex) => {
-        const x1 = redVertex.x;
-        const y1 = redVertex.y;
-
-        const distance = pointToPointDistance2(x, y, x1, y1);
-
-        if (distance < minDistance) {
-            minDistance = distance;
-            closestVertex = { x: x1, y: y1 };
-        }
-    	});
-
-    	if (closestVertex) {
-    
-    		//bluePoint.setAttribute('cx',  closestVertex.x );
-    		//bluePoint.setAttribute('cy',  closestVertex.y  );
-       /*     
-           animateBluePoint(closestVertex.x, closestVertex.y, function() {
-
- 
-findClosestVertices(bluePointElement.getAttribute('cx'), 				bluePointElement.getAttribute('cy'));
-   
-
-
-
-//findClosestVertices(groupElement.getAttribute('transform'));
-
-
- console.log('La animación ha terminado');
-    
-
-
-// Puedes realizar acciones adicionales después de que la animación ha terminado
-
-
-});
-*/
-
-    
-        	//console.log(`Vértice rojo más cercano a (${x}, ${y}): 
-           // (${closestVertex.x}, ${closestVertex.y})`);
-    	} else {
-        console.log(`No se encontró vértice rojo cercano a las coordenadas (${x}, ${y}).`);
-    	}
-
-    return closestVertex;
+    		let closestVertex = null;
+    		let minDistance = Infinity;
+    		redVerticesArray.forEach((redVertex) => {
+        		const x1 = redVertex.x;
+        		const y1 = redVertex.y;
+        		const distance = pointToPointDistance2(x, y, x1, y1);
+        		if (distance < minDistance) {
+            			minDistance = distance;
+            			closestVertex = { x: x1, y: y1 };
+        		}
+    		});
+    		if (closestVertex) {
+    			//bluePoint.setAttribute('cx',  closestVertex.x );
+    			//bluePoint.setAttribute('cy',  closestVertex.y  );          
+			animateBluePoint(closestVertex.x, closestVertex.y, function() { 
+				findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+ 				console.log('La animación ha terminado');
+			});
+        	//console.log(`Vértice rojo más cercano a (${x}, ${y}): // (${closestVertex.x}, ${closestVertex.y})`);
+    		} else {
+        		console.log(`No se encontró vértice rojo cercano a las coordenadas (${x}, ${y}).`);
+    		}
+    		return closestVertex;
 	}
 	
 
-	////////////SERVER COSAS///////////
 
-
-function findClosestVerticesFromTransform(transformAttribute) {
-    const transformValues = transformAttribute.match(/translate\(([^,]+),([^)]+)\)/);
-
-    if (transformValues) {
-        const translateX = parseFloat(transformValues[1]);
-        const translateY = parseFloat(transformValues[2]);
-
-        // Now you can use translateX and translateY as the group's new position
-        // Call findClosestVertices with these coordinates
-        const nearbyVertices = findClosestVertices(translateX, translateY);
-
-        // Optionally, do something with the nearbyVertices
-
-        return nearbyVertices;
-    } else {
-        console.error('Invalid transform attribute format');
-        return null;
-    }
-}
-
-
-
-
-	    function createHexagons() {
+function createHexagons() {
     const hexagonSize = 50;
     const numRows = 20;
     const numCols = 40;
@@ -608,6 +500,20 @@ function findClosestVerticesFromTransform(transformAttribute) {
     context.fillText(`Usuarios conectados: ${connectedUsers}`, 10, 5);
   }
 
-  // Resto de tu código
+
+  //GET HEXAGON POINTS
+  function getHexagonPoints(x, y, size) {
+	console.log('Hexagon Points');
+
+    const points = [];
+    for (let i = 0; i < 6; i++) {
+      const angle = (2 * Math.PI / 6) * i;
+      const pointX = x + size * Math.cos(angle);
+      const pointY = y + size * Math.sin(angle);
+      points.push(`${pointX},${pointY}`);
+    }
+    return points.join(' ');
+  }
+	
 
 });
