@@ -82,6 +82,8 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
     // Encuentra el círculo correspondiente al jugador
     const playerElement = document.getElementById(playerId);
 		      playerElement.setAttribute('r', '20');
+		      playerElement.setAttribute('fill', player.color);
+
 
     // Realiza la animación localmente
     animateCircleLocally(playerElement, data.start, data.end);
