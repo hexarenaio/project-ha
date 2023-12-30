@@ -141,7 +141,7 @@ createHexagons();
 		const destinationX = closestVertex.x;
         	const destinationY = closestVertex.y;
 		
-		console.log(`ClosestVertex: (${closestVertex.x2}, ${closestVertex.y2})`);
+		console.log(`ClosestVertex: (${closestVertex.x}, ${closestVertex.y})`);
 		animateBluePoint(destinationX, destinationY, function() {
      			findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
         		console.log('Mov finalizado'); 
