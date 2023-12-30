@@ -113,8 +113,14 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
       playerElement.setAttribute('r', '12');
       playerElement.setAttribute('fill', player.color);
       playerElement.setAttribute('cx', player.x);
-      playerElement.setAttribute('cy', player.y);	    
-      hexagonGroup.appendChild(playerElement);	 
+      playerElement.setAttribute('cy', player.y);
+
+	    if (!playerElement) {
+
+      hexagonGroup.appendChild(playerElement);	
+
+
+	    }
 
 	        animateCircleLocally(playerElement, data.start, data.end);
 
