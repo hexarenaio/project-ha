@@ -239,22 +239,16 @@ console.log('/////MOVE PLAYER//////')
         const destinationY = closestLine.y2;
 
         
-        animateBluePoint(destinationX, destinationY, function() {
- 
-    
+    /*    animateBluePoint(destinationX, destinationY, function() {
+     
     findClosestVertices(bluePointElement.getAttribute('cx'), 	
                            bluePointElement.getAttribute('cy'));
-
-
-
 //const groupTransformAttribute = groupElement.getAttribute('transform');
 //findClosestVerticesFromTransform(groupTransformAttribute);
 
-
-
                 console.log('Mov finalizado'); 
 });
-
+*/
         
            	
             findClosestRedVertexToClick( clickX, clickY);
