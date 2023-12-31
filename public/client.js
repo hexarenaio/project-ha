@@ -98,7 +98,7 @@ hexagonGroup.addEventListener('click', function (event) {
 	if(FirstMove){
 
 	socket.on('assignColor', function (playerName) {
-	console.log('SOCKET ASIGN COLOR AND NAME');
+	console.log('SOCKET ASSIGN COLOR');
     	//const playerColor = playerName.color;
     	const playerNameT = playerName.name;
     	assignedColors = playerName.color;
@@ -142,6 +142,7 @@ socket.on('animateBluePoint', function (animationData) {
 //SERVER UPDATEPLAYERS
 //SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.
 socket.on('updatePlayers', function (updatedPlayers) {
+	console.log('SOCKET UPDATE PLAYERS');
 	 // Iterar sobre el objeto de jugadores y actualizar la información
     	for (const playerId in updatedPlayers) {
       	const player = updatedPlayers[playerId];
