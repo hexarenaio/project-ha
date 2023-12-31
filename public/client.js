@@ -106,8 +106,8 @@ socket.on('updatePlayers', function (updatedPlayers) {
       	playerElement.setAttribute('cy', player.y);
 	hexagonGroup.appendChild(playerElement);
 
-		textElement2.setAttribute('cx', player.x);
-    	textElement2.setAttribute('cy', player.y);
+		//textElement2.setAttribute('cx', player.x);
+    	//textElement2.setAttribute('cy', player.y);
 		
 		hexagonGroup.appendChild(textElement2);
 
@@ -130,8 +130,8 @@ function updatePlayerPosition(player) {
     		playerElement.setAttribute('cy', player.y);
 
 groupElement.setAttribute('transform', `translate(${player.x},${player.y})`); 
-		textElement2.setAttribute('cx', player.x);
-    	textElement2.setAttribute('cy', player.y);
+		//textElement2.setAttribute('cx', player.x);
+    //	textElement2.setAttribute('cy', player.y);
 
   	}
 }
@@ -218,8 +218,8 @@ function animateBluePoint(destinationX, destinationY) {
 
 
 	//TEXT ELEMENT 2	
-	textElement2.setAttribute('cx', newX);
-    	textElement2.setAttribute('cy', newY);
+	//textElement2.setAttribute('cx', newX);
+    	//textElement2.setAttribute('cy', newY);
 
 		  	console.log('textElement 3:', textElement2.getAttribute('x'), textElement2.getAttribute('y'));
 
