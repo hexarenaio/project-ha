@@ -153,13 +153,15 @@ socket.on('updatePlayers', function (updatedPlayers) {
       	playerElement.setAttribute('fill', player.color);
       	playerElement.setAttribute('cx', player.x);
       	playerElement.setAttribute('cy', player.y);
+	playerElement.setAttribute('fill', player.color);
+
 	hexagonGroup.appendChild(playerElement);
 
 	//TEXT ELEMENT 2 Nombre del Jugador	
 	//textElement2.textContent = player.name;
 	
-  textElement2.textContent = assignedName;
-//textElement2.textContent = assignedColors.get(playerId).name;
+  	textElement2.textContent = assignedName;
+	//textElement2.textContent = assignedColors.get(playerId).name;
 
 	
 	hexagonGroup.appendChild(textElement2);
@@ -172,19 +174,6 @@ socket.on('updatePlayers', function (updatedPlayers) {
     	}
   });
 
-/*
-	//SERVER UPDATEPLAYERPOSITION
-function updatePlayerPosition(player) {
-	console.log('UPDATE PLAYER POSITION');
-	// Busca el elemento SVG del jugador por su identificación y actualiza la posición
-  	const playerElement = document.getElementById(player.id);
-  	if (playerElement) {
-    		playerElement.setAttribute('cx', player.x);
-    		playerElement.setAttribute('cy', player.y);
-		playerElement.setAttribute('fill', assignedColors);
-  	}
-}
-*/
 
 //ANIMATE CIRCLE LOCALLY
 function animateCircleLocally(circleElement, start, end) {
