@@ -153,7 +153,6 @@ socket.on('updatePlayers', function (updatedPlayers) {
       	playerElement.setAttribute('fill', player.color);
       	playerElement.setAttribute('cx', player.x);
       	playerElement.setAttribute('cy', player.y);
-	playerElement.setAttribute('fill', player.color);
 
 	hexagonGroup.appendChild(playerElement);
 
@@ -260,13 +259,6 @@ function animateBluePoint(destinationX, destinationY) {
         	// Animación completada, emitir datos al servidor
         
 	socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
-
-	//SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.	
-	socket.on('assignColor', function (color) {
-    	bluePoint.color = color; // Actualiza el color del jugador local
-    	bluePointElement.setAttribute('fill', color);
-    	console.log(`Color asignado al jugador local: ${color}`);
-	});
 		
 	findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
 		
