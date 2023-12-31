@@ -172,7 +172,8 @@ socket.on('updatePlayers', function (updatedPlayers) {
     	}
   });
 
-//SERVER UPDATEPLAYERPOSITION
+/*
+	//SERVER UPDATEPLAYERPOSITION
 function updatePlayerPosition(player) {
 	console.log('UPDATE PLAYER POSITION');
 	// Busca el elemento SVG del jugador por su identificación y actualiza la posición
@@ -183,6 +184,7 @@ function updatePlayerPosition(player) {
 		playerElement.setAttribute('fill', assignedColors);
   	}
 }
+*/
 
 //ANIMATE CIRCLE LOCALLY
 function animateCircleLocally(circleElement, start, end) {
