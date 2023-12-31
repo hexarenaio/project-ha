@@ -122,14 +122,22 @@ socket.on('animateBluePoint', function (animationData) {
     	// Encuentra el círculo correspondiente al jugador
     	const playerElement = document.getElementById(playerId);
     	// Realiza la animación localmente    
-	playerElement.setAttribute('fill', 'green');
-
+	///
+	playerElement.setAttribute('id', playerId);
+      	playerElement.setAttribute('r', '9');
+      	playerElement.setAttribute('fill', 'red');
+      	//playerElement.setAttribute('cx', player.x);
+      	//playerElement.setAttribute('cy', player.y);
+	hexagonGroup.appendChild(playerElement);
+	console.log(`Player ID: ${playerId}, Color: ${player.color}`);
+	///
+	
 	animateCircleLocally(playerElement, data.start, data.end);
 });
 
 //SERVER UPDATEPLAYERS
 //SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.
-socket.on('updatePlayers', function (updatedPlayers) {
+/*socket.on('updatePlayers', function (updatedPlayers) {
 	 // Iterar sobre el objeto de jugadores y actualizar la información
     	for (const playerId in updatedPlayers) {
       	const player = updatedPlayers[playerId];
@@ -139,22 +147,16 @@ socket.on('updatePlayers', function (updatedPlayers) {
       	playerElement.setAttribute('fill', 'green');
       	playerElement.setAttribute('cx', player.x);
       	playerElement.setAttribute('cy', player.y);
-
 	hexagonGroup.appendChild(playerElement);
-
 	console.log(`Player ID: ${playerId}, Color: ${player.color}`);
-
 	//TEXT ELEMENT 2 Nombre del Jugador	
-	//textElement2.textContent = player.name;
-	
+	//textElement2.textContent = player.name;	
   	textElement2.textContent = assignedName;
-	//textElement2.textContent = assignedColors.get(playerId).name;
-	
+	//textElement2.textContent = assignedColors.get(playerId).name;	
 	hexagonGroup.appendChild(textElement2);	
-
     	}
   });
-
+*/
 
 //ANIMATE CIRCLE LOCALLY
 function animateCircleLocally(circleElement, start, end) {
