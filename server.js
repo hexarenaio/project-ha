@@ -40,7 +40,7 @@ io.on('connection', (socket) => {
   //  }
 
 //////
-
+/*
 socket.on('assignColor', function () {
     const userColor = colorsArray[colorIndex % colorsArray.length];
     colorIndex++;
@@ -48,8 +48,17 @@ socket.on('assignColor', function () {
     console.log(`Color asignado a ${socket.id}: ${assignedColors.get(socket.id)}`);
     socket.emit('assignColor', assignedColors.get(socket.id));
 });
-
+*/
 /////
+
+socket.on('assignColor', function (playerName) {
+    const userColor = colorsArray[colorIndex % colorsArray.length];
+    colorIndex++;
+    assignedColors.set(socket.id, { color: userColor, name: playerName });
+
+    console.log(`Jugador ${playerName} conectado. Color asignado: ${userColor}`);
+    socket.emit('assignColor', { color: userColor, name: playerName });
+});
 
 
 
