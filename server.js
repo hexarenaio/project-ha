@@ -39,7 +39,7 @@ io.on('connection', (socket) => {
         const userColor = colorsArray[colorIndex % colorsArray.length];
         colorIndex++;
         assignedColors.set(socket.id, { color: userColor, name: playerName });
-        console.log(`Jugador ${playerName} conectado. Color asignado: ${userColor}`);
+        console.log(`Jugador ${playerName} conectado. Color asignado: ${userColor}: ${assignedColors.get(socket.id)}`);
         socket.emit('assignColor', { color: userColor, name: playerName });
     });
 
@@ -50,7 +50,7 @@ io.on('connection', (socket) => {
     players[socket.id] = {
     x: Math.random() * 500,
     y: Math.random() * 500,
-        color: assignedColors.get(socket.id).color,
+        color: assignedColors.get(socket.id),
     };
 
     io.emit('updatePlayers', players); // Envía la información de los jugadores a todos los clientes
@@ -59,6 +59,9 @@ io.on('connection', (socket) => {
     // Actualiza la posición del jugador en el servidor
     players[socket.id].x = position.x;
     players[socket.id].y = position.y;
+        //NUEVO PRUEBA
+   // players[socket.id].color = position.assignedColors.get(socket.id);
+
     // Emite la actualización a todos los clientes
     io.emit('updatePlayers', players);
     });
