@@ -92,6 +92,24 @@ hexagonGroup.addEventListener('click', function (event) {
         const mouseY = event.clientY - hexagonGroup.getBoundingClientRect().top;
 	moveBluePoint(mouseX, mouseY);
 });
+
+socket.on('assignColor', function (playerName) {
+		console.log('SOCKET ASIGN COLOR AND NAME');
+
+    const playerColor = playerName.color;
+    const playerName = playerName.name;
+
+    // Actualiza el color del jugador local
+    bluePoint.color = playerColor;
+    bluePointElement.setAttribute('fill', playerColor);
+
+    // Actualiza el texto con el nombre del jugador
+    textElement2.textContent = playerName;
+
+	    console.log(`Nombre del jugador: ${playerName}`);
+
+});
+
 	
 //SERVER ANIMATEBLUEPOINT
 //SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.
@@ -122,7 +140,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
 	hexagonGroup.appendChild(playerElement);
 
 	//TEXT ELEMENT 2 Nombre del Jugador	
-	textElement2.textContent = player.name;
+	//textElement2.textContent = player.name;
 	hexagonGroup.appendChild(textElement2);
 
 	//GroupElement
