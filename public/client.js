@@ -86,16 +86,9 @@ socket.on('animateBluePoint', function (animationData) {
     	const data = animationData.data;
     	// Encuentra el círculo correspondiente al jugador
     	const playerElement = document.getElementById(playerId);
-    	// Realiza la animación localmente
-	  const textElement2 = document.getElementById('textElement2'); // Asegúrate de usar el ID correcto aquí	
-    
+    	// Realiza la animación localmente    
+	
 	animateCircleLocally(playerElement, data.start, data.end);
-	animateCircleLocally(textElement2, data.start, data.end);
-
-
-   	//animateCircleLocally(groupElement, data.start, data.end);
-
-	//groupElement.setAttribute('transform', `translate(${newX},${newY})`);
 });
 
 //SERVER UPDATEPLAYERS
@@ -156,7 +149,10 @@ function animateCircleLocally(circleElement, start, end) {
 	circleElement.setAttribute('cx', newX);
    	circleElement.setAttribute('cy', newY);
 
-groupElement.setAttribute('transform', `translate(${newX},${newY})`); 
+	textElement2.setAttribute('x', newX);
+   	textElement2.setAttribute('y', newY);
+
+	groupElement.setAttribute('transform', `translate(${newX},${newY})`); 
 
     	if (progress < 1) {
       	requestAnimationFrame(update);
