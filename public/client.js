@@ -65,14 +65,14 @@ const textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text
 
 
 //TEXT NAME DEFINIDO 222222222
-const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+/*const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
   textElement2.setAttribute('x', 170);
   textElement2.setAttribute('y', 170); 
   textElement2.setAttribute('text-anchor', 'middle');
   textElement2.setAttribute('fill', 'green');
   textElement2.setAttribute('font-size', '14px');
   textElement2.textContent = 'Player';
-
+*/
 //GROUP ELEMENT CIRCULO Y TEXTO
 const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
   //groupElement.appendChild(bluePointElement);
@@ -134,13 +134,21 @@ socket.on('updatePlayers', function (updatedPlayers) {
       	const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       	playerElement.setAttribute('id', playerId);
       	playerElement.setAttribute('r', '12');
-      	playerElement.setAttribute('fill', player.color);
+      	playerElement.setAttribute('fill', 'red');
       	playerElement.setAttribute('cx', player.x);
       	playerElement.setAttribute('cy', player.y);
 	hexagonGroup.appendChild(playerElement);
 
 	//TEXT ELEMENT 2 Nombre del Jugador	
 	//textElement2.textContent = player.name;
+	const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  textElement2.setAttribute('x', 170);
+  textElement2.setAttribute('y', 170); 
+  textElement2.setAttribute('text-anchor', 'middle');
+  textElement2.setAttribute('fill', 'green');
+  textElement2.setAttribute('font-size', '14px');
+  textElement2.textContent = 'Player';
+	
 	hexagonGroup.appendChild(textElement2);
 
 	//GroupElement
