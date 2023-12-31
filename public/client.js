@@ -50,7 +50,7 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
   groupElement.appendChild(bluePointElement);
   groupElement.appendChild(textElement);
   if (hexagonGroup) {
-   	hexagonGroup.appendChild(groupElement);
+  // 	hexagonGroup.appendChild(groupElement);
   }
 
 //////////////////
@@ -88,7 +88,12 @@ socket.on('updatePlayers', function (updatedPlayers) {
       	playerElement.setAttribute('fill', player.color);
       	playerElement.setAttribute('cx', player.x);
       	playerElement.setAttribute('cy', player.y);
-	hexagonGroup.appendChild(playerElement);	    
+	hexagonGroup.appendChild(playerElement);	 
+
+//GroupElement
+	hexagonGroup.appendChild(groupElement);	 
+        groupElement.setAttribute('transform', `translate(${player.x},${player.y})`); 
+  
     	}
   });
 
