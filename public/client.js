@@ -103,8 +103,11 @@ function updatePlayerPosition(player) {
 	// Busca el elemento SVG del jugador por su identificación y actualiza la posición
   	const playerElement = document.getElementById(player.id);
   	if (playerElement) {
-    		playerElement.setAttribute('cx', player.x+13);
-    		playerElement.setAttribute('cy', player.y+16);
+    		playerElement.setAttribute('cx', player.x);
+    		playerElement.setAttribute('cy', player.y);
+
+groupElement.setAttribute('transform', `translate(${player.x},${player.y})`); 
+
   	}
 }
 
