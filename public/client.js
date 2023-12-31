@@ -37,6 +37,14 @@ nameForm.addEventListener('submit', function (event) {
 
   const hexagonGroup = document.getElementById('hexagonGroup');
 
+	const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  textElement2.setAttribute('x', 170);
+  textElement2.setAttribute('y', 170); 
+  textElement2.setAttribute('text-anchor', 'middle');
+  textElement2.setAttribute('fill', 'green');
+  textElement2.setAttribute('font-size', '14px');
+  textElement2.textContent = 'Player';
+
   const bluePoint = {
 	id: socket.id,
         name: '', // Agrega el nombre del jugador
@@ -149,12 +157,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
 
 	//TEXT ELEMENT 2 Nombre del Jugador	
 	//textElement2.textContent = player.name;
-	const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-  textElement2.setAttribute('x', 170);
-  textElement2.setAttribute('y', 170); 
-  textElement2.setAttribute('text-anchor', 'middle');
-  textElement2.setAttribute('fill', 'green');
-  textElement2.setAttribute('font-size', '14px');
+	
   textElement2.textContent = assignedName;
 //textElement2.textContent = assignedColors.get(playerId).name;
 
