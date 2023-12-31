@@ -97,21 +97,9 @@ hexagonGroup.addEventListener('click', function (event) {
 
 	if(FirstMove){
 
-	socket.on('assignColor', function (playerName) {
-	console.log('SOCKET ASSIGN COLOR');
-    	//const playerColor = playerName.color;
-    	const playerNameT = playerName.name;
-    	assignedColors = playerName.color;
-    	assignedName = playerName.name;
-    	// Actualiza el color del jugador local
-    	bluePoint.color = assignedColors;
-    	bluePointElement.setAttribute('fill', assignedColors);
-    	// Actualiza el texto con el nombre del jugador
-  	//  textElement2.textContent = playerNameT;
-	console.log(`Nombre del jugador: ${playerNameT}`);
-	});
+	
 		
-	socket.emit('assignColor', playerName);
+	//socket.emit('assignColor', playerName);
 	FirstMove = true;
 
 	}
@@ -124,7 +112,19 @@ let assignedName = 'Player';
 
 
 
-
+socket.on('assignColor', function (playerName) {
+	console.log('SOCKET ASSIGN COLOR');
+    	//const playerColor = playerName.color;
+    	const playerNameT = playerName.name;
+    	assignedColors = playerName.color;
+    	assignedName = playerName.name;
+    	// Actualiza el color del jugador local
+    	bluePoint.color = assignedColors;
+    	bluePointElement.setAttribute('fill', assignedColors);
+    	// Actualiza el texto con el nombre del jugador
+  	//  textElement2.textContent = playerNameT;
+	console.log(`Nombre del jugador: ${playerNameT}`);
+	});
 	
 //SERVER ANIMATEBLUEPOINT
 //SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.
