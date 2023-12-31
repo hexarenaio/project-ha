@@ -53,6 +53,8 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
   // 	hexagonGroup.appendChild(groupElement);
   }
 
+groupElement.setAttribute('transform', `translate(${bluePoint.x},${bluePoint.y})`); 
+
 //////////////////
 	
 //CLICK LISTENER HEAGONGROUP
