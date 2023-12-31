@@ -19,7 +19,7 @@ nameForm.addEventListener('submit', function (event) {
     nameForm.style.display = 'none';
     gameCanvas.style.display = 'block';
     hexagonGroup.style.display = 'block';
-    bluePoint.style.display = 'block';
+//    bluePoint.style.display = 'block';
 });
   
   //let playerName;	
@@ -101,7 +101,7 @@ hexagonGroup.addEventListener('click', function (event) {
 	moveBluePoint(mouseX, mouseY);
 });
 
-const assignedColors = 'red';
+let assignedColors = 'red';
 let assignedName = 'Player';
 
 
