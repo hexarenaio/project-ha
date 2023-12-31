@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const hexagonGroup = document.getElementById('hexagonGroup');
 
   const bluePoint = {
-        id: socket.id,
+	id: socket.id,
         name: '', // Agrega el nombre del jugador
         x: 170, // Posición X inicial del jugador
         y: 170, // Posición Y inicial del jugador
@@ -47,80 +47,80 @@ const textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text
 
 //GROUP ELEMENT CIRCULO Y TEXTO
 const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-  	groupElement.appendChild(bluePointElement);
-  	groupElement.appendChild(textElement);
-  	if (hexagonGroup) {
-   		 hexagonGroup.appendChild(groupElement);
-  	}
+  groupElement.appendChild(bluePointElement);
+  groupElement.appendChild(textElement);
+  if (hexagonGroup) {
+   	hexagonGroup.appendChild(groupElement);
+  }
 
-	//////////////////
+//////////////////
 	
 //CLICK LISTENER HEAGONGROUP
-    hexagonGroup.addEventListener('click', function (event) {
+hexagonGroup.addEventListener('click', function (event) {
 	console.log('HEXAGON GROUP LOG');
-        const mouseX = event.clientX - hexagonGroup.getBoundingClientRect().left;
+	const mouseX = event.clientX - hexagonGroup.getBoundingClientRect().left;
         const mouseY = event.clientY - hexagonGroup.getBoundingClientRect().top;
 	moveBluePoint(mouseX, mouseY);
-    });
+});
 	
 //SERVER ANIMATEBLUEPOINT
-	socket.on('animateBluePoint', function (animationData) {
-		console.log('SOCKET ANIMATE BLUE POINT');
-		const playerId = animationData.playerId;
-    		const data = animationData.data;
-    		// Encuentra el círculo correspondiente al jugador
-    		const playerElement = document.getElementById(playerId);
-    		// Realiza la animación localmente
-    		animateCircleLocally(playerElement, data.start, data.end);
-   		//animateCircleLocally(groupElement, data.start, data.end);
-		//groupElement.setAttribute('transform', `translate(${newX},${newY})`);
-	});
+socket.on('animateBluePoint', function (animationData) {
+	console.log('SOCKET ANIMATE BLUE POINT');
+	const playerId = animationData.playerId;
+    	const data = animationData.data;
+    	// Encuentra el círculo correspondiente al jugador
+    	const playerElement = document.getElementById(playerId);
+    	// Realiza la animación localmente
+    	animateCircleLocally(playerElement, data.start, data.end);
+   	//animateCircleLocally(groupElement, data.start, data.end);
+	//groupElement.setAttribute('transform', `translate(${newX},${newY})`);
+});
 
 //SERVER UPDATEPLAYERS
-	socket.on('updatePlayers', function (updatedPlayers) {
-		console.log('SOCKET UPDATE PLAYERS');
-	 	// Iterar sobre el objeto de jugadores y actualizar la información
-    		for (const playerId in updatedPlayers) {
-      			const player = updatedPlayers[playerId];
-      			const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      			playerElement.setAttribute('id', playerId);
-      			playerElement.setAttribute('r', '12');
-      			playerElement.setAttribute('fill', player.color);
-      			playerElement.setAttribute('cx', player.x);
-      			playerElement.setAttribute('cy', player.y);
-			hexagonGroup.appendChild(playerElement);	    
-    		}
-  	});
+socket.on('updatePlayers', function (updatedPlayers) {
+	console.log('SOCKET UPDATE PLAYERS');
+	 // Iterar sobre el objeto de jugadores y actualizar la información
+    	for (const playerId in updatedPlayers) {
+      	const player = updatedPlayers[playerId];
+      	const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      	playerElement.setAttribute('id', playerId);
+      	playerElement.setAttribute('r', '12');
+      	playerElement.setAttribute('fill', player.color);
+      	playerElement.setAttribute('cx', player.x);
+      	playerElement.setAttribute('cy', player.y);
+	hexagonGroup.appendChild(playerElement);	    
+    	}
+  });
 
 //SERVER UPDATEPLAYERPOSITION
-	function updatePlayerPosition(player) {
-		console.log('UPDATE PLAYER POSITION');
-		// Busca el elemento SVG del jugador por su identificación y actualiza la posición
-  		const playerElement = document.getElementById(player.id);
-  		if (playerElement) {
-    			playerElement.setAttribute('cx', player.x+13);
-    			playerElement.setAttribute('cy', player.y+16);
-  		}
-	}
+function updatePlayerPosition(player) {
+	console.log('UPDATE PLAYER POSITION');
+	// Busca el elemento SVG del jugador por su identificación y actualiza la posición
+  	const playerElement = document.getElementById(player.id);
+  	if (playerElement) {
+    		playerElement.setAttribute('cx', player.x+13);
+    		playerElement.setAttribute('cy', player.y+16);
+  	}
+}
 
 //ANIMATE CIRCLE LOCALLY
-	function animateCircleLocally(circleElement, start, end) {
-		console.log('ANIMATE CIRCLE LOCALLY');
-		const duration = 100;
-  		const startTime = performance.now();
-		function update() {
-    			const currentTime = performance.now();
-    			const progress = Math.min((currentTime - startTime) / duration, 1);
-			const newX = start.x + progress * (end.x - start.x);
-    			const newY = start.y + progress * (end.y - start.y);
-			circleElement.setAttribute('cx', newX);
-   			circleElement.setAttribute('cy', newY);
-    			if (progress < 1) {
-      				requestAnimationFrame(update);
-    			}
-  		}
-		requestAnimationFrame(update);
-	}
+function animateCircleLocally(circleElement, start, end) {
+	console.log('ANIMATE CIRCLE LOCALLY');
+	const duration = 100;
+  	const startTime = performance.now();
+	function update() {
+    	const currentTime = performance.now();
+    	const progress = Math.min((currentTime - startTime) / duration, 1);
+	const newX = start.x + progress * (end.x - start.x);
+    	const newY = start.y + progress * (end.y - start.y);
+	circleElement.setAttribute('cx', newX);
+   	circleElement.setAttribute('cy', newY);
+    	if (progress < 1) {
+      	requestAnimationFrame(update);
+    	}
+  	}
+	requestAnimationFrame(update);
+}
 
 //CREATE HEXAGON PANAL
 createHexagons();
@@ -131,12 +131,11 @@ createHexagons();
 	let lastCircleY = hexRectangleHeight;
 
 //MOVE BLUE POINT
-	function moveBluePoint( clickX, clickY ) {
+function moveBluePoint( clickX, clickY ) {
 	if (!isMoving) { 
-		console.log('/////MOVE PLAYER//////')
-  		isMoving = true  
-		drawUserCount();
-        
+	console.log('/////MOVE PLAYER//////')
+  	isMoving = true  
+	drawUserCount();
 		/*const closestVertex = findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
 		const destinationX = closestVertex.x;
         	const destinationY = closestVertex.y;
@@ -146,31 +145,17 @@ createHexagons();
         		console.log('Mov finalizado'); 
 			});
 		*/
-		  		const closestLine = findClosestLine(
+	const closestLine = findClosestLine(
         bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
-
-    	
-            
-             const destinationX = closestLine.x2;
+	const destinationX = closestLine.x2;
         const destinationY = closestLine.y2;
-
-        
-        animateBluePoint(destinationX, destinationY, function() {
- 
-        findClosestVertices(bluePointElement.getAttribute('cx'), 	
-                            bluePointElement.getAttribute('cy'));
-
-
-
-                console.log('Mov finalizado'); 
-		});
-		
-        	findClosestRedVertexToClick( clickX, clickY);
-		}
-  	}
-
-
-
+	animateBluePoint(destinationX, destinationY, function() {
+        findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+	console.log('Mov finalizado'); 
+	});
+	findClosestRedVertexToClick( clickX, clickY);
+	}
+  }
 
 //ANIMATE BLUE POINT//////////////////////////
 /////////////////////////////////////////////////
