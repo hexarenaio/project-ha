@@ -170,15 +170,19 @@ function moveBluePoint( clickX, clickY ) {
         console.log('Mov finalizado'); 
 	});
 	*/
+		
 	const closestLine = findClosestLine(
         bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
 	const destinationX = closestLine.x2;
         const destinationY = closestLine.y2;
+		
 	animateBluePoint(destinationX, destinationY, function() {
         findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
 	console.log('Mov finalizado'); 
 	});
+		
 	findClosestRedVertexToClick( clickX, clickY);
+		
 	}
   }
 
@@ -197,20 +201,30 @@ function animateBluePoint(destinationX, destinationY) {
         const progress = Math.min(elapsed / duration, 1);
         const newX = startX + progress * (destinationX - startX);
         const newY = startY + progress * (destinationY - startY);
+		
     	bluePointElement.setAttribute('cx', newX);
     	bluePointElement.setAttribute('cy', newY);
+
+	//TEXT ELEMENT 2	
+	textElement2.setAttribute('cx', newX);
+    	textElement2.setAttribute('cy', newY);
+		
       	//groupElement.setAttribute('transform', `translate(${newX},${newY})`);    
         if (progress < 1) {
         requestAnimationFrame(update);
         } else {
         	// Animación completada, emitir datos al servidor
-        socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
+        
+	socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
+	
 	socket.on('assignColor', function (color) {
     	bluePoint.color = color; // Actualiza el color del jugador local
     	bluePointElement.setAttribute('fill', color);
     	console.log(`Color asignado al jugador local: ${color}`);
 	});
+		
 	findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
+		
 	console.log('Mov finalizado');
 	isMoving = false
 	}
