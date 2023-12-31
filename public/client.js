@@ -54,7 +54,7 @@ const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'tex
   textElement2.setAttribute('fill', 'green');
   textElement2.setAttribute('font-size', '14px');
   textElement2.textContent = 'Player';
-hexagonGroup.appendChild(textElement2);
+//hexagonGroup.appendChild(textElement2);
 
 //GROUP ELEMENT CIRCULO Y TEXTO
 const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
@@ -108,13 +108,18 @@ socket.on('updatePlayers', function (updatedPlayers) {
       	playerElement.setAttribute('fill', player.color);
       	playerElement.setAttribute('cx', player.x);
       	playerElement.setAttribute('cy', player.y);
-	hexagonGroup.appendChild(playerElement);	 
+	hexagonGroup.appendChild(playerElement);
+
+		textElement2.setAttribute('cx', player.x);
+    	textElement2.setAttribute('cy', player.y);
+		
+		hexagonGroup.appendChild(textElement2);
+
 
 //GroupElement
         groupElement.setAttribute('transform', `translate(${player.x},${player.y})`); 
   hexagonGroup.appendChild(groupElement);
-		textElement2.setAttribute('cx', player.x);
-    	textElement2.setAttribute('cy', player.y);
+		
 
     	}
   });
