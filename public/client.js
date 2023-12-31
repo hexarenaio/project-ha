@@ -152,7 +152,6 @@ socket.on('updatePlayers', function (updatedPlayers) {
       	playerElement.setAttribute('cx', player.x);
       	playerElement.setAttribute('cy', player.y);
 	hexagonGroup.appendChild(playerElement);
-	console.log(`Player ID: ${playerId}, Color: ${player.color}`);
 	//TEXT ELEMENT 2 Nombre del Jugador	
 	//textElement2.textContent = player.name;	
   	textElement2.textContent = assignedName;
