@@ -10,12 +10,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 nameForm.addEventListener('submit', function (event) {
     event.preventDefault();
-
     const playerName = document.getElementById('playerName').value;
-
     // Enviar el nombre del jugador al servidor junto con el evento 'assignColor'
     socket.emit('assignColor', playerName);
-
     nameForm.style.display = 'none';
     gameCanvas.style.display = 'block';
     hexagonGroup.style.display = 'block';
@@ -101,7 +98,6 @@ hexagonGroup.addEventListener('click', function (event) {
 let assignedColors = 'red';
 let assignedName = 'Player';
 
-
 socket.on('assignColor', function (playerName) {
 	console.log('SOCKET ASIGN COLOR AND NAME');
     	//const playerColor = playerName.color;
@@ -136,6 +132,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
 	console.log('SOCKET UPDATE PLAYERS');
 	 // Iterar sobre el objeto de jugadores y actualizar la información
     	for (const playerId in updatedPlayers) {
+	console.log(`Player ID: ${playerId}, Color: ${player.color}`);
       	const player = updatedPlayers[playerId];
       	const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       	playerElement.setAttribute('id', playerId);
