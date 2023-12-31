@@ -56,7 +56,6 @@ const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'tex
   textElement2.setAttribute('fill', 'green');
   textElement2.setAttribute('font-size', '14px');
   textElement2.textContent = 'Player';
-//hexagonGroup.appendChild(textElement2);
 
 //GROUP ELEMENT CIRCULO Y TEXTO
 const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
@@ -106,15 +105,12 @@ socket.on('updatePlayers', function (updatedPlayers) {
       	playerElement.setAttribute('cy', player.y);
 	hexagonGroup.appendChild(playerElement);
 
-		//textElement2.setAttribute('cx', player.x);
-    	//textElement2.setAttribute('cy', player.y);
-		
-		hexagonGroup.appendChild(textElement2);
+	//TEXT ELEMENT 2	
+	hexagonGroup.appendChild(textElement2);
 
-
-//GroupElement
+	//GroupElement
         groupElement.setAttribute('transform', `translate(${player.x},${player.y})`); 
-  hexagonGroup.appendChild(groupElement);
+  	hexagonGroup.appendChild(groupElement);
 		
 
     	}
@@ -128,11 +124,6 @@ function updatePlayerPosition(player) {
   	if (playerElement) {
     		playerElement.setAttribute('cx', player.x);
     		playerElement.setAttribute('cy', player.y);
-
-groupElement.setAttribute('transform', `translate(${player.x},${player.y})`); 
-		//textElement2.setAttribute('cx', player.x);
-    //	textElement2.setAttribute('cy', player.y);
-
   	}
 }
 
@@ -150,7 +141,7 @@ function animateCircleLocally(circleElement, start, end) {
    	circleElement.setAttribute('cy', newY);
 
 	textElement2.setAttribute('x', newX);
-   	textElement2.setAttribute('y', newY);
+   	textElement2.setAttribute('y', newY - 8);
 
 	groupElement.setAttribute('transform', `translate(${newX},${newY})`); 
 
@@ -213,16 +204,6 @@ function animateBluePoint(destinationX, destinationY) {
 		
     	bluePointElement.setAttribute('cx', newX);
     	bluePointElement.setAttribute('cy', newY);
-
-		  	console.log('textElement 2:', textElement2.getAttribute('x'), textElement2.getAttribute('y'));
-
-
-	//TEXT ELEMENT 2	
-	//textElement2.setAttribute('cx', newX);
-    	//textElement2.setAttribute('cy', newY);
-
-		  	console.log('textElement 3:', textElement2.getAttribute('x'), textElement2.getAttribute('y'));
-
 		
       	//groupElement.setAttribute('transform', `translate(${newX},${newY})`);    
         if (progress < 1) {
