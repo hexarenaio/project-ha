@@ -91,9 +91,9 @@ socket.on('updatePlayers', function (updatedPlayers) {
 	hexagonGroup.appendChild(playerElement);	 
 
 //GroupElement
-	hexagonGroup.appendChild(groupElement);	 
         groupElement.setAttribute('transform', `translate(${player.x},${player.y})`); 
-  
+  hexagonGroup.appendChild(groupElement);
+
     	}
   });
 
