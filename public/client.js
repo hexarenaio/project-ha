@@ -45,6 +45,17 @@ const textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text
   textElement.setAttribute('font-size', '12px');
   textElement.textContent = 'Hola';
 
+
+//TEXT NAME DEFINIDO 222222222
+const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  textElement2.setAttribute('x', 170);
+  textElement2.setAttribute('y', 170); 
+  textElement2.setAttribute('text-anchor', 'middle');
+  textElement2.setAttribute('fill', 'green');
+  textElement2.setAttribute('font-size', '14px');
+  textElement2.textContent = 'Player';
+hexagonGroup.appendChild(textElement2);
+
 //GROUP ELEMENT CIRCULO Y TEXTO
 const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
   //groupElement.appendChild(bluePointElement);
