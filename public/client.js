@@ -1,3 +1,5 @@
+//SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.
+
 document.addEventListener('DOMContentLoaded', function () {
 
   //VARIABLES
@@ -77,6 +79,7 @@ hexagonGroup.addEventListener('click', function (event) {
 });
 	
 //SERVER ANIMATEBLUEPOINT
+//SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.
 socket.on('animateBluePoint', function (animationData) {
 	console.log('SOCKET ANIMATE BLUE POINT');
 	const playerId = animationData.playerId;
@@ -84,14 +87,11 @@ socket.on('animateBluePoint', function (animationData) {
     	// Encuentra el círculo correspondiente al jugador
     	const playerElement = document.getElementById(playerId);
     	// Realiza la animación localmente
-	  const textElement2 = document.getElementById('textElement2'); // Asegúrate de usar el ID correcto aquí
-
-
-  	console.log('textElement 1:', textElement2.getAttribute('x'), textElement2.getAttribute('y'));
-	
+	  const textElement2 = document.getElementById('textElement2'); // Asegúrate de usar el ID correcto aquí	
     
 	animateCircleLocally(playerElement, data.start, data.end);
 	animateCircleLocally(textElement2, data.start, data.end);
+
 
    	//animateCircleLocally(groupElement, data.start, data.end);
 
@@ -99,6 +99,7 @@ socket.on('animateBluePoint', function (animationData) {
 });
 
 //SERVER UPDATEPLAYERS
+//SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.
 socket.on('updatePlayers', function (updatedPlayers) {
 	console.log('SOCKET UPDATE PLAYERS');
 	 // Iterar sobre el objeto de jugadores y actualizar la información
@@ -234,7 +235,8 @@ function animateBluePoint(destinationX, destinationY) {
         	// Animación completada, emitir datos al servidor
         
 	socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
-	
+
+	//SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.	
 	socket.on('assignColor', function (color) {
     	bluePoint.color = color; // Actualiza el color del jugador local
     	bluePointElement.setAttribute('fill', color);
@@ -396,6 +398,7 @@ function createHexagons() {
 
 //CONNECTED USERS////////////////////////////////
 ///////////////////////////////////////////////// 
+//SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.
   socket.on('userCount', function (count) {
     connectedUsers = count;
     drawUserCount(); // Llamar a la función para actualizar el texto en el canvas
