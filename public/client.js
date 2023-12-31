@@ -97,16 +97,16 @@ socket.on('assignColor', function (playerName) {
 		console.log('SOCKET ASIGN COLOR AND NAME');
 
     const playerColor = playerName.color;
-    const playerName = playerName.name;
+    const playerNameT = playerName.name;
 
     // Actualiza el color del jugador local
     bluePoint.color = playerColor;
     bluePointElement.setAttribute('fill', playerColor);
 
     // Actualiza el texto con el nombre del jugador
-    textElement2.textContent = playerName;
+    textElement2.textContent = playerNameT;
 
-	    console.log(`Nombre del jugador: ${playerName}`);
+	    console.log(`Nombre del jugador: ${playerNameT}`);
 
 });
 
