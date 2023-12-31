@@ -108,7 +108,7 @@ let assignedName = 'Player';
 socket.on('assignColor', function (playerName) {
 		console.log('SOCKET ASIGN COLOR AND NAME');
 
-    const playerColor = playerName.color;
+    //const playerColor = playerName.color;
     const playerNameT = playerName.name;
 
 	assignedColors = playerName.color;
@@ -195,6 +195,8 @@ function animateCircleLocally(circleElement, start, end) {
     	const newY = start.y + progress * (end.y - start.y);
 	circleElement.setAttribute('cx', newX);
    	circleElement.setAttribute('cy', newY);
+	circleElement.setAttribute('fill', 'green');
+
 
 	textElement2.setAttribute('x', newX);
    	textElement2.setAttribute('y', newY - 8);
