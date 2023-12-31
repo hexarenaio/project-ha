@@ -19,11 +19,8 @@ nameForm.addEventListener('submit', function (event) {
     nameForm.style.display = 'none';
     gameCanvas.style.display = 'block';
     hexagonGroup.style.display = 'block';
-//    bluePoint.style.display = 'block';
 });
-  
-  //let playerName;	
-	
+  	
   let connectedUsers = 0;
 
   let isMoving = false
@@ -81,6 +78,7 @@ const textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text
   textElement2.setAttribute('font-size', '14px');
   textElement2.textContent = 'Player';
 */
+	
 //GROUP ELEMENT CIRCULO Y TEXTO
 const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
   //groupElement.appendChild(bluePointElement);
@@ -88,8 +86,7 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
   if (hexagonGroup) {
   // 	hexagonGroup.appendChild(groupElement);
   }
-
-groupElement.setAttribute('transform', `translate(${bluePoint.x},${bluePoint.y})`); 
+//groupElement.setAttribute('transform', `translate(${bluePoint.x},${bluePoint.y})`); 
 
 //////////////////
 	
@@ -106,24 +103,17 @@ let assignedName = 'Player';
 
 
 socket.on('assignColor', function (playerName) {
-		console.log('SOCKET ASIGN COLOR AND NAME');
-
-    //const playerColor = playerName.color;
-    const playerNameT = playerName.name;
-
-	assignedColors = playerName.color;
-     assignedName = playerName.name;
-
-	
-    // Actualiza el color del jugador local
-    bluePoint.color = assignedColors;
-    bluePointElement.setAttribute('fill', assignedColors);
-
-    // Actualiza el texto con el nombre del jugador
-  //  textElement2.textContent = playerNameT;
-
-	    console.log(`Nombre del jugador: ${playerNameT}`);
-
+	console.log('SOCKET ASIGN COLOR AND NAME');
+    	//const playerColor = playerName.color;
+    	const playerNameT = playerName.name;
+    	assignedColors = playerName.color;
+    	assignedName = playerName.name;
+    	// Actualiza el color del jugador local
+    	bluePoint.color = assignedColors;
+    	bluePointElement.setAttribute('fill', assignedColors);
+    	// Actualiza el texto con el nombre del jugador
+  	//  textElement2.textContent = playerNameT;
+	console.log(`Nombre del jugador: ${playerNameT}`);
 });
 
 	
@@ -149,7 +139,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
       	const player = updatedPlayers[playerId];
       	const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       	playerElement.setAttribute('id', playerId);
-      	playerElement.setAttribute('r', '12');
+      	playerElement.setAttribute('r', '3');
       	playerElement.setAttribute('fill', player.color);
       	playerElement.setAttribute('cx', player.x);
       	playerElement.setAttribute('cy', player.y);
@@ -161,14 +151,8 @@ socket.on('updatePlayers', function (updatedPlayers) {
 	
   	textElement2.textContent = assignedName;
 	//textElement2.textContent = assignedColors.get(playerId).name;
-
 	
-	hexagonGroup.appendChild(textElement2);
-
-	//GroupElement
-        //groupElement.setAttribute('transform', `translate(${player.x},${player.y})`); 
-  	hexagonGroup.appendChild(groupElement);
-		
+	hexagonGroup.appendChild(textElement2);	
 
     	}
   });
@@ -189,8 +173,6 @@ function animateCircleLocally(circleElement, start, end) {
 
 	textElement2.setAttribute('x', newX);
    	textElement2.setAttribute('y', newY - 8);
-
-	groupElement.setAttribute('transform', `translate(${newX},${newY})`); 
 
     	if (progress < 1) {
       	requestAnimationFrame(update);
@@ -252,7 +234,6 @@ function animateBluePoint(destinationX, destinationY) {
     	bluePointElement.setAttribute('cx', newX);
     	bluePointElement.setAttribute('cy', newY);
 		
-      	//groupElement.setAttribute('transform', `translate(${newX},${newY})`);    
         if (progress < 1) {
         requestAnimationFrame(update);
         } else {
@@ -291,7 +272,6 @@ function findClosestRedVertexToClick(x, y) {
 	findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
  	console.log('La animación ha terminado');
 	});
-        //console.log(`Vértice rojo más cercano a (${x}, ${y}): // (${closestVertex.x}, ${closestVertex.y})`);
     	} else {
         console.log(`No se encontró vértice rojo cercano a las coordenadas (${x}, ${y}).`);
     	}
