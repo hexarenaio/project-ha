@@ -180,6 +180,7 @@ function updatePlayerPosition(player) {
   	if (playerElement) {
     		playerElement.setAttribute('cx', player.x);
     		playerElement.setAttribute('cy', player.y);
+		playerElement.setAttribute('fill', assignedColors);
   	}
 }
 
@@ -195,8 +196,6 @@ function animateCircleLocally(circleElement, start, end) {
     	const newY = start.y + progress * (end.y - start.y);
 	circleElement.setAttribute('cx', newX);
    	circleElement.setAttribute('cy', newY);
-	circleElement.setAttribute('fill', assignedColors);
-
 
 	textElement2.setAttribute('x', newX);
    	textElement2.setAttribute('y', newY - 8);
