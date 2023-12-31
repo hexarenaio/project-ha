@@ -123,7 +123,7 @@ socket.on('animateBluePoint', function (animationData) {
     	const playerElement = document.getElementById(playerId);
     	// Realiza la animación localmente    
 	///
-	playerElement.setAttribute('id', playerId);
+	//playerElement.setAttribute('id', playerId);
       	playerElement.setAttribute('r', '9');
       	playerElement.setAttribute('fill', 'red');
       	//playerElement.setAttribute('cx', player.x);
