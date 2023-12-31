@@ -47,7 +47,7 @@ const textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text
 
 //GROUP ELEMENT CIRCULO Y TEXTO
 const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-  groupElement.appendChild(bluePointElement);
+  //groupElement.appendChild(bluePointElement);
   groupElement.appendChild(textElement);
   if (hexagonGroup) {
   // 	hexagonGroup.appendChild(groupElement);
