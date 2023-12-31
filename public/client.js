@@ -72,7 +72,9 @@ socket.on('animateBluePoint', function (animationData) {
     	const playerElement = document.getElementById(playerId);
     	// Realiza la animación localmente
     	animateCircleLocally(playerElement, data.start, data.end);
+
    	//animateCircleLocally(groupElement, data.start, data.end);
+
 	//groupElement.setAttribute('transform', `translate(${newX},${newY})`);
 });
 
@@ -123,6 +125,9 @@ function animateCircleLocally(circleElement, start, end) {
     	const newY = start.y + progress * (end.y - start.y);
 	circleElement.setAttribute('cx', newX);
    	circleElement.setAttribute('cy', newY);
+
+groupElement.setAttribute('transform', `translate(${newX},${newY})`); 
+
     	if (progress < 1) {
       	requestAnimationFrame(update);
     	}
