@@ -21,6 +21,7 @@ nameForm.addEventListener('submit', function (event) {
   let connectedUsers = 0;
 
   let isMoving = false
+  let FirstMove = false
 
   const hexagonAngle = 0.523598776; // 30 degrees in radians
 
@@ -93,6 +94,14 @@ hexagonGroup.addEventListener('click', function (event) {
 	const mouseX = event.clientX - hexagonGroup.getBoundingClientRect().left;
         const mouseY = event.clientY - hexagonGroup.getBoundingClientRect().top;
 	moveBluePoint(mouseX, mouseY);
+
+	if(FirstMove){
+			    socket.emit('assignColor', playerName);
+		FirstMove = true;
+
+	}
+
+	
 });
 
 let assignedColors = 'red';
@@ -111,8 +120,6 @@ socket.on('assignColor', function (playerName) {
   	//  textElement2.textContent = playerNameT;
 	console.log(`Nombre del jugador: ${playerNameT}`);
 });
-
-    socket.emit('assignColor', playerName);
 
 
 	
