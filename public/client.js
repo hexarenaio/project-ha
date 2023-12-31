@@ -195,7 +195,7 @@ function animateCircleLocally(circleElement, start, end) {
     	const newY = start.y + progress * (end.y - start.y);
 	circleElement.setAttribute('cx', newX);
    	circleElement.setAttribute('cy', newY);
-	circleElement.setAttribute('fill', 'green');
+	circleElement.setAttribute('fill', assignedColors);
 
 
 	textElement2.setAttribute('x', newX);
