@@ -122,7 +122,8 @@ socket.on('animateBluePoint', function (animationData) {
     	// Encuentra el círculo correspondiente al jugador
     	const playerElement = document.getElementById(playerId);
     	// Realiza la animación localmente    
-	
+	playerElement.setAttribute('fill', 'green');
+
 	animateCircleLocally(playerElement, data.start, data.end);
 });
 
