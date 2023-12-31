@@ -124,6 +124,8 @@ socket.on('assignColor', function (playerName) {
     	// Actualiza el texto con el nombre del jugador
   	//  textElement2.textContent = playerNameT;
 	console.log(`Nombre del jugador: ${playerNameT}`);
+	console.log(`Color del jugador: ${assignedColors}`);
+
 	});
 	
 //SERVER ANIMATEBLUEPOINT
