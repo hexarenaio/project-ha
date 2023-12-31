@@ -113,6 +113,8 @@ socket.on('updatePlayers', function (updatedPlayers) {
 //GroupElement
         groupElement.setAttribute('transform', `translate(${player.x},${player.y})`); 
   hexagonGroup.appendChild(groupElement);
+		textElement2.setAttribute('cx', player.x);
+    	textElement2.setAttribute('cy', player.y);
 
     	}
   });
@@ -127,6 +129,8 @@ function updatePlayerPosition(player) {
     		playerElement.setAttribute('cy', player.y);
 
 groupElement.setAttribute('transform', `translate(${player.x},${player.y})`); 
+		textElement2.setAttribute('cx', player.x);
+    	textElement2.setAttribute('cy', player.y);
 
   	}
 }
