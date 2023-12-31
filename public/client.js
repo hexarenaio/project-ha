@@ -129,10 +129,8 @@ socket.on('animateBluePoint', function (animationData) {
 //SERVER UPDATEPLAYERS
 //SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.
 socket.on('updatePlayers', function (updatedPlayers) {
-	console.log('SOCKET UPDATE PLAYERS');
 	 // Iterar sobre el objeto de jugadores y actualizar la información
     	for (const playerId in updatedPlayers) {
-	console.log(`Player ID: ${playerId}, Color: ${player.color}`);
       	const player = updatedPlayers[playerId];
       	const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       	playerElement.setAttribute('id', playerId);
@@ -142,6 +140,8 @@ socket.on('updatePlayers', function (updatedPlayers) {
       	playerElement.setAttribute('cy', player.y);
 
 	hexagonGroup.appendChild(playerElement);
+
+	console.log(`Player ID: ${playerId}, Color: ${player.color}`);
 
 	//TEXT ELEMENT 2 Nombre del Jugador	
 	//textElement2.textContent = player.name;
