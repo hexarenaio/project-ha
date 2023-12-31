@@ -93,12 +93,20 @@ hexagonGroup.addEventListener('click', function (event) {
 	moveBluePoint(mouseX, mouseY);
 });
 
+const assignedColors = 'red';
+let assignedName = 'Player';
+
+
 socket.on('assignColor', function (playerName) {
 		console.log('SOCKET ASIGN COLOR AND NAME');
 
     const playerColor = playerName.color;
     const playerNameT = playerName.name;
 
+	assignedColors = playerName.color;
+     assignedName = playerName.name;
+
+	
     // Actualiza el color del jugador local
     bluePoint.color = playerColor;
     bluePointElement.setAttribute('fill', playerColor);
@@ -134,7 +142,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
       	const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       	playerElement.setAttribute('id', playerId);
       	playerElement.setAttribute('r', '12');
-      	playerElement.setAttribute('fill', assignedColors.get(playerId).color);
+      	playerElement.setAttribute('fill', assignedColors);
       	playerElement.setAttribute('cx', player.x);
       	playerElement.setAttribute('cy', player.y);
 	hexagonGroup.appendChild(playerElement);
@@ -147,8 +155,8 @@ socket.on('updatePlayers', function (updatedPlayers) {
   textElement2.setAttribute('text-anchor', 'middle');
   textElement2.setAttribute('fill', 'green');
   textElement2.setAttribute('font-size', '14px');
-  textElement2.textContent = 'Player';
-textElement2.textContent = assignedColors.get(playerId).name;
+  textElement2.textContent = assignedName;
+//textElement2.textContent = assignedColors.get(playerId).name;
 
 	
 	hexagonGroup.appendChild(textElement2);
