@@ -116,8 +116,8 @@ socket.on('assignColor', function (playerName) {
 
 	
     // Actualiza el color del jugador local
-    bluePoint.color = playerColor;
-    bluePointElement.setAttribute('fill', playerColor);
+    bluePoint.color = assignedColors;
+    bluePointElement.setAttribute('fill', assignedColors);
 
     // Actualiza el texto con el nombre del jugador
   //  textElement2.textContent = playerNameT;
