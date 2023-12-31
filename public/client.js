@@ -104,7 +104,7 @@ socket.on('assignColor', function (playerName) {
     bluePointElement.setAttribute('fill', playerColor);
 
     // Actualiza el texto con el nombre del jugador
-    textElement2.textContent = playerNameT;
+  //  textElement2.textContent = playerNameT;
 
 	    console.log(`Nombre del jugador: ${playerNameT}`);
 
@@ -134,7 +134,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
       	const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       	playerElement.setAttribute('id', playerId);
       	playerElement.setAttribute('r', '12');
-      	playerElement.setAttribute('fill', 'red');
+      	playerElement.setAttribute('fill', assignedColors.get(playerId).color);
       	playerElement.setAttribute('cx', player.x);
       	playerElement.setAttribute('cy', player.y);
 	hexagonGroup.appendChild(playerElement);
@@ -148,6 +148,8 @@ socket.on('updatePlayers', function (updatedPlayers) {
   textElement2.setAttribute('fill', 'green');
   textElement2.setAttribute('font-size', '14px');
   textElement2.textContent = 'Player';
+textElement2.textContent = assignedColors.get(playerId).name;
+
 	
 	hexagonGroup.appendChild(textElement2);
 
