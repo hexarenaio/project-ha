@@ -160,6 +160,8 @@ socket.on('updatePlayers', function (updatedPlayers) {
   	textElement2.textContent = assignedName;
 	//textElement2.textContent = assignedColors.get(playerId).name;	
 	hexagonGroup.appendChild(textElement2);	
+	console.log(`Color del jugador2: ${player.color}`);
+
     	}
   });
 
