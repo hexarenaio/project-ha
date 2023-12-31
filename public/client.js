@@ -84,11 +84,12 @@ socket.on('animateBluePoint', function (animationData) {
     	// Encuentra el círculo correspondiente al jugador
     	const playerElement = document.getElementById(playerId);
     	// Realiza la animación localmente
+
+  	console.log('textElement 1:', textElement2.getAttribute('x'), textElement2.getAttribute('y'));
+
     
 	animateCircleLocally(playerElement, data.start, data.end);
-
-
-animateCircleLocally(textElement2, data.start, data.end);
+	animateCircleLocally(textElement2, data.start, data.end);
 
    	//animateCircleLocally(groupElement, data.start, data.end);
 
@@ -205,9 +206,15 @@ function animateBluePoint(destinationX, destinationY) {
     	bluePointElement.setAttribute('cx', newX);
     	bluePointElement.setAttribute('cy', newY);
 
+		  	console.log('textElement 2:', textElement2.getAttribute('x'), textElement2.getAttribute('y'));
+
+
 	//TEXT ELEMENT 2	
 	textElement2.setAttribute('cx', newX);
     	textElement2.setAttribute('cy', newY);
+
+		  	console.log('textElement 3:', textElement2.getAttribute('x'), textElement2.getAttribute('y'));
+
 		
       	//groupElement.setAttribute('transform', `translate(${newX},${newY})`);    
         if (progress < 1) {
