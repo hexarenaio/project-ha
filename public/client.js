@@ -1,13 +1,29 @@
 //SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.
 
 document.addEventListener('DOMContentLoaded', function () {
-
-  //VARIABLES
+	
+	//VARIABLES
   const socket = io();
   const nameForm = document.getElementById('nameForm');
   const canvas = document.getElementById('gameCanvas');
   const context = canvas.getContext('2d');
-  let playerName;
+
+nameForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const playerName = document.getElementById('playerName').value;
+
+    // Enviar el nombre del jugador al servidor junto con el evento 'assignColor'
+    socket.emit('assignColor', playerName);
+
+    nameForm.style.display = 'none';
+    gameCanvas.style.display = 'block';
+    hexagonGroup.style.display = 'block';
+    bluePoint.style.display = 'block';
+});
+  
+  //let playerName;	
+	
   let connectedUsers = 0;
 
   let isMoving = false
@@ -105,11 +121,12 @@ socket.on('updatePlayers', function (updatedPlayers) {
       	playerElement.setAttribute('cy', player.y);
 	hexagonGroup.appendChild(playerElement);
 
-	//TEXT ELEMENT 2	
+	//TEXT ELEMENT 2 Nombre del Jugador	
+	textElement2.textContent = player.name;
 	hexagonGroup.appendChild(textElement2);
 
 	//GroupElement
-        groupElement.setAttribute('transform', `translate(${player.x},${player.y})`); 
+        //groupElement.setAttribute('transform', `translate(${player.x},${player.y})`); 
   	hexagonGroup.appendChild(groupElement);
 		
 
