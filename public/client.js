@@ -96,18 +96,8 @@ hexagonGroup.addEventListener('click', function (event) {
 	moveBluePoint(mouseX, mouseY);
 
 	if(FirstMove){
-			    socket.emit('assignColor', playerName);
-		FirstMove = true;
 
-	}
-
-	
-});
-
-let assignedColors = 'red';
-let assignedName = 'Player';
-
-socket.on('assignColor', function (playerName) {
+	socket.on('assignColor', function (playerName) {
 	console.log('SOCKET ASIGN COLOR AND NAME');
     	//const playerColor = playerName.color;
     	const playerNameT = playerName.name;
@@ -119,7 +109,20 @@ socket.on('assignColor', function (playerName) {
     	// Actualiza el texto con el nombre del jugador
   	//  textElement2.textContent = playerNameT;
 	console.log(`Nombre del jugador: ${playerNameT}`);
+	});
+		
+	socket.emit('assignColor', playerName);
+	FirstMove = true;
+
+	}
+
+	
 });
+
+let assignedColors = 'red';
+let assignedName = 'Player';
+
+
 
 
 	
