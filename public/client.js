@@ -227,7 +227,7 @@ function animateNameLocally(circleElement, start, end) {
 	
 	circleElement.setAttribute('x', newX);
    	circleElement.setAttribute('y', newY - 8);
-	circleElement.setAttribute('fill', 'green');
+	circleElement.setAttribute('fill', 'red');
 
 
     	if (progress < 1) {
