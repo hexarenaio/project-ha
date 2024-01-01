@@ -183,11 +183,7 @@ function animateCircleLocally(circleElement, start, end) {
 
 	textElement2.setAttribute('x', newX);
    	textElement2.setAttribute('y', newY - 8);
-
-
-
-        hexagonGroup.appendChild(playerElement);
-        hexagonGroup.appendChild(textElement2);        
+      
 
     	if (progress < 1) {
       	requestAnimationFrame(update);
@@ -201,6 +197,13 @@ createHexagons();
 	
 //MOVE BLUE POINT
 function moveBluePoint( clickX, clickY ) {
+
+
+
+        textElement2.textContent = 'Hey';             
+        hexagonGroup.appendChild(textElement2);        
+
+
 	if (!isMoving) { 
 	console.log('/////MOVE PLAYER//////')
   	isMoving = true  
