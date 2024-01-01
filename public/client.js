@@ -174,7 +174,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
   	textElement2.setAttribute('font-size', '14px');
 	//textElement2.textContent = 'Hey';	
 	textElement2.setAttribute('id', playerId + '-name');
-	textElement2.textContent = 'Hey';	
+	textElement2.textContent = player.name;	
 
 	hexagonGroup.appendChild(textElement2);	
 		
