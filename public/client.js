@@ -144,7 +144,7 @@ socket.on('animateBluePoint', function (animationData) {
 	console.log('SOCKET ANIMATE BLUE POINT');
 	const playerId = animationData.playerId;
     	const data = animationData.data;
-//const txt = animationData.playerName;
+const txt = animationData.playerName;
     	// Encuentra el círculo correspondiente al jugador
     	const playerElement = document.getElementById(playerId);
 
@@ -154,7 +154,7 @@ socket.on('animateBluePoint', function (animationData) {
 	
 	animateCircleLocally(playerElement, data.start, data.end);
 
-	animateNameLocally(textElement2, data.start, data.end, data.playerName);
+	animateNameLocally(textElement2, data.start, data.end, txt);
 
 });
 
