@@ -73,7 +73,7 @@ io.on('connection', (socket) => {
         // Emitir datos a todos los clientes
         io.emit('animateBluePoint', { playerId: socket.id, data: data, playerName: playerName });
 
-            console.log(`Annimation name: ${playerName.size}`);
+            console.log(`Annimation name: ${playerName}`);
 
         
     });
