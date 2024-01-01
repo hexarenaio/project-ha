@@ -235,6 +235,8 @@ createHexagons();
 //MOVE BLUE POINT
 function moveBluePoint( clickX, clickY ) {      
 
+	    socket.emit('updatePlayers'); // Emitir un nuevo evento al servidor
+
 
 	if (!isMoving) { 
 	console.log('/////MOVE PLAYER//////')
