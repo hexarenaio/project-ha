@@ -144,16 +144,17 @@ socket.on('animateBluePoint', function (animationData) {
 	console.log('SOCKET ANIMATE BLUE POINT');
 	const playerId = animationData.playerId;
     	const data = animationData.data;
+//const txt = animationData.playerName;
     	// Encuentra el círculo correspondiente al jugador
     	const playerElement = document.getElementById(playerId);
 
-    	const textElement2 = document.getElementById(playerId + '-name');
+    	const textElement2 = document.getElementById(playerId);
 
     	// Realiza la animación localmente    
 	
 	animateCircleLocally(playerElement, data.start, data.end);
 
-	animateNameLocally(textElement2, data.start, data.end);
+	animateNameLocally(textElement2, data.start, data.end, data.playerName);
 
 });
 
@@ -186,7 +187,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
   	textElement2.setAttribute('fill', 'green');
   	textElement2.setAttribute('font-size', '14px');
 	//textElement2.textContent = 'Hey';	
-	textElement2.setAttribute('id', playerId + '-name');
+	textElement2.setAttribute('id', playerId);
 	//textElement2.textContent = playerName2;	
         textElement2.textContent = assignedName; // Usa la variable global para mostrar el nombre del jugador
 
@@ -226,7 +227,7 @@ function animateCircleLocally(circleElement, start, end) {
 
 //ANIMATE TEXT NAME
 //ANIMATE CIRCLE LOCALLY
-function animateNameLocally(circleElement, start, end) {
+function animateNameLocally(circleElement, start, end, txt) {
 	console.log('ANIMATE CIRCLE LOCALLY');
 	const duration = 100;
   	const startTime = performance.now();
@@ -238,8 +239,8 @@ function animateNameLocally(circleElement, start, end) {
 	
 	circleElement.setAttribute('x', newX);
    	circleElement.setAttribute('y', newY - 8);
-	//circleElement.setAttribute('fill', 'red');
-		      //  circleElement.textContent = assignedName; 
+	circleElement.setAttribute('fill', 'blue');
+		        circleElement.textContent = txt; 
 
 
 
