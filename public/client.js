@@ -228,6 +228,8 @@ function animateNameLocally(circleElement, start, end) {
 	circleElement.setAttribute('x', newX);
    	circleElement.setAttribute('y', newY - 8);
 	circleElement.setAttribute('fill', 'red');
+		        circleElement.textContent = assignedName; 
+
 
 
     	if (progress < 1) {
