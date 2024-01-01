@@ -132,7 +132,7 @@ socket.on('assignColor', function (playerName) {
 
 	    //socket.emit('playerNameAssigned', assignedName);
 
-	    document.dispatchEvent(playerNameReadyEvent);
+	    //document.dispatchEvent(playerNameReadyEvent);
 
 
 
@@ -161,7 +161,7 @@ const txt = animationData.playerName;
 //SERVER UPDATEPLAYERS
 //SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.
 socket.on('updatePlayers', function (updatedPlayers) {
-    document.addEventListener('playerNameReady', function () {
+//    document.addEventListener('playerNameReady', function () {
 
 	
 	console.log('SOCKET UPDATE PLAYERS');
@@ -200,7 +200,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
 //console.log(`Nombre del jugador2: ${player.name}`);
     	}
 
-	    });
+	  //  });
   });
 
 
