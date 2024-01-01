@@ -68,8 +68,14 @@ io.on('connection', (socket) => {
     });
 
     socket.on('animationData', function (data) {
+                const playerName = assignedColors.get(socket.id).name;
+
         // Emitir datos a todos los clientes
-        io.emit('animateBluePoint', { playerId: socket.id, data: data });
+        io.emit('animateBluePoint', { playerId: socket.id, data: data, playerName: playerName });
+
+            console.log(`Annimation name: ${playerName.size}`);
+
+        
     });
     
     //USUARIOS DESCONECTADOS
