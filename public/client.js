@@ -97,44 +97,6 @@ hexagonGroup.addEventListener('click', function (event) {
 
 	if(FirstMove){
 
-	//SERVER UPDATEPLAYERS
-//SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.
-socket.on('updatePlayers', function (updatedPlayers) {
-	console.log('SOCKET UPDATE PLAYERS');
-	 // Iterar sobre el objeto de jugadores y actualizar la información
-    	for (const playerId in updatedPlayers) {
-      	const player = updatedPlayers[playerId];
-      	const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      	playerElement.setAttribute('id', playerId);
-      	playerElement.setAttribute('r', '9');
-      	playerElement.setAttribute('fill', player.color);
-      	playerElement.setAttribute('cx', player.x);
-      	playerElement.setAttribute('cy', player.y);
-	hexagonGroup.appendChild(playerElement);
-	//TEXT ELEMENT 2 Nombre del Jugador	
-	//textElement2.textContent = 'Hey';	
-//  	textElement2.textContent = assignedName;
-	//textElement2.textContent = assignedColors.get(playerId).name;	
-	const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-	//textElement.setAttribute('id', playerId + '-name'); // Agrega el playerId al ID
-	textElement2.setAttribute('x', player.x);
- 	textElement2.setAttribute('y', player.y - 8); 
-  	textElement2.setAttribute('text-anchor', 'middle');
-  	textElement2.setAttribute('fill', 'green');
-  	textElement2.setAttribute('font-size', '14px');
-	//textElement2.textContent = 'Hey';	
-	textElement2.setAttribute('id', playerId + '-name');
-	textElement2.textContent = player.name;	
-	console.log(`NOMBREEEEEEE: ${player.name}`);
-
-	hexagonGroup.appendChild(textElement2);	
-		
-	console.log(`Color del jugador2: ${player.color}`);
-
-
-//console.log(`Nombre del jugador2: ${player.name}`);
-    	}
-  });
 		
 	//socket.emit('assignColor', playerName);
 	FirstMove = true;
