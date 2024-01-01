@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const nameForm = document.getElementById('nameForm');
   const canvas = document.getElementById('gameCanvas');
   const context = canvas.getContext('2d');
-const assignedName = ''; // Variable global para almacenar el nombre asignado
+let assignedName = ''; // Variable global para almacenar el nombre asignado
 
 
 nameForm.addEventListener('submit', function (event) {
