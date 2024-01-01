@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const canvas = document.getElementById('gameCanvas');
   const context = canvas.getContext('2d');
 
+	    const playerName2 = document.getElementById('playerName').value;
+
+
 nameForm.addEventListener('submit', function (event) {
     event.preventDefault();
     const playerName = document.getElementById('playerName').value;
@@ -173,12 +176,12 @@ socket.on('updatePlayers', function (updatedPlayers) {
   	textElement2.setAttribute('font-size', '14px');
 	//textElement2.textContent = 'Hey';	
 	textElement2.setAttribute('id', playerId + '-name');
-	textElement2.textContent = player.name;	
+	textElement2.textContent = playerName2;	
 
 	hexagonGroup.appendChild(textElement2);	
 		
 	console.log(`Color del jugador2: ${player.color}`);
-	console.log(`NOMBREEEEEE2E: ${player.name}`);
+	console.log(`NOMBREEEEEE2E: ${playerName2}`);
 
 
 //console.log(`Nombre del jugador2: ${player.name}`);
