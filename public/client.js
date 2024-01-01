@@ -32,13 +32,13 @@ nameForm.addEventListener('submit', function (event) {
 
   const hexagonGroup = document.getElementById('hexagonGroup');
 
-	const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-  textElement2.setAttribute('x', 170);
-  textElement2.setAttribute('y', 170); 
-  textElement2.setAttribute('text-anchor', 'middle');
-  textElement2.setAttribute('fill', 'green');
-  textElement2.setAttribute('font-size', '14px');
-  textElement2.textContent = 'Player';
+	//const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  //textElement2.setAttribute('x', 170);
+  //textElement2.setAttribute('y', 170); 
+  //textElement2.setAttribute('text-anchor', 'middle');
+  //textElement2.setAttribute('fill', 'green');
+  //textElement2.setAttribute('font-size', '14px');
+  //textElement2.textContent = 'Player';
 
   const bluePoint = {
 	id: socket.id,
@@ -136,9 +136,15 @@ socket.on('animateBluePoint', function (animationData) {
     	const data = animationData.data;
     	// Encuentra el círculo correspondiente al jugador
     	const playerElement = document.getElementById(playerId);
+
+    	const textElement2 = document.getElementById(playerId + '-name');
+
     	// Realiza la animación localmente    
 	
 	animateCircleLocally(playerElement, data.start, data.end);
+
+	animateNameLocally(textElement2, data.start, data.end);
+
 });
 
 //SERVER UPDATEPLAYERS
@@ -156,10 +162,20 @@ socket.on('updatePlayers', function (updatedPlayers) {
       	playerElement.setAttribute('cy', player.y);
 	hexagonGroup.appendChild(playerElement);
 	//TEXT ELEMENT 2 Nombre del Jugador	
-	textElement2.textContent = 'Hey';	
+	//textElement2.textContent = 'Hey';	
 //  	textElement2.textContent = assignedName;
 	//textElement2.textContent = assignedColors.get(playerId).name;	
+	const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+	//textElement.setAttribute('id', playerId + '-name'); // Agrega el playerId al ID
+	textElement2.setAttribute('x', player.x);
+ 	textElement2.setAttribute('y', player.y - 8); 
+  	textElement2.setAttribute('text-anchor', 'middle');
+  	textElement2.setAttribute('fill', 'green');
+  	textElement2.setAttribute('font-size', '14px');
+	//textElement2.textContent = 'Hey';	
+	textElement2.setAttribute('id', playerId + '-name');
 	hexagonGroup.appendChild(textElement2);	
+		
 	console.log(`Color del jugador2: ${player.color}`);
 
 
@@ -180,10 +196,29 @@ function animateCircleLocally(circleElement, start, end) {
     	const newY = start.y + progress * (end.y - start.y);
 	circleElement.setAttribute('cx', newX);
    	circleElement.setAttribute('cy', newY);
+	//textElement2.setAttribute('x', newX);
+   	//textElement2.setAttribute('y', newY - 8);
+    	if (progress < 1) {
+      	requestAnimationFrame(update);
+    	}
+  	}
+	requestAnimationFrame(update);
+}
 
-	textElement2.setAttribute('x', newX);
-   	textElement2.setAttribute('y', newY - 8);
-      
+//ANIMATE TEXT NAME
+//ANIMATE CIRCLE LOCALLY
+function animateNameLocally(circleElement, start, end) {
+	console.log('ANIMATE CIRCLE LOCALLY');
+	const duration = 100;
+  	const startTime = performance.now();
+	function update() {
+    	const currentTime = performance.now();
+    	const progress = Math.min((currentTime - startTime) / duration, 1);
+	const newX = start.x + progress * (end.x - start.x);
+    	const newY = start.y + progress * (end.y - start.y);
+	
+	circleElement.setAttribute('x', newX);
+   	circleElement.setAttribute('y', newY - 8);
 
     	if (progress < 1) {
       	requestAnimationFrame(update);
