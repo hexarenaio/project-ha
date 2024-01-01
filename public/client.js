@@ -163,7 +163,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
 	console.log(`Color del jugador2: ${player.color}`);
 
 
-console.log(`Nombre del jugador2: ${assignedName}`);
+console.log(`Nombre del jugador2: ${player.name}`);
     	}
   });
 
