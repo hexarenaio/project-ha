@@ -127,6 +127,9 @@ socket.on('assignColor', function (playerName) {
 	console.log(`Nombre del jugador: ${playerNameT}`);
 	console.log(`Color del jugador: ${assignedColors}`);
 
+	    socket.emit('playerNameAssigned', assignedName);
+
+
 	});
 	
 //SERVER ANIMATEBLUEPOINT
