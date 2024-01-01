@@ -151,7 +151,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
       	const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       	playerElement.setAttribute('id', playerId);
       	playerElement.setAttribute('r', '9');
-      	playerElement.setAttribute('fill',' player.color');
+      	playerElement.setAttribute('fill', player.color);
       	playerElement.setAttribute('cx', player.x);
       	playerElement.setAttribute('cy', player.y);
 	hexagonGroup.appendChild(playerElement);
