@@ -162,6 +162,8 @@ socket.on('updatePlayers', function (updatedPlayers) {
 	hexagonGroup.appendChild(textElement2);	
 	console.log(`Color del jugador2: ${player.color}`);
 
+
+console.log(`Nombre del jugador2: ${assignedName}`);
     	}
   });
 
