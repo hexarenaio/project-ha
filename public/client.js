@@ -12,7 +12,7 @@ nameForm.addEventListener('submit', function (event) {
     event.preventDefault();
     const playerName = document.getElementById('playerName').value;
     // Enviar el nombre del jugador al servidor junto con el evento 'assignColor'
-   // socket.emit('assignColor', playerName);
+   socket.emit('assignColor', playerName);
     nameForm.style.display = 'none';
     gameCanvas.style.display = 'block';
     hexagonGroup.style.display = 'block';
