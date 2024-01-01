@@ -40,6 +40,9 @@ io.on('connection', (socket) => {
         colorIndex++;
         assignedColors.set(socket.id, { color: userColor, name: playerName });
         console.log(`Jugador ${playerName} conectado. Color asignado: ${userColor}: ${assignedColors.get(socket.id)}`);
+        
+        io.emit('updatePlayers', players);
+
         socket.emit('assignColor', { color: userColor, name: playerName });
     });
 
