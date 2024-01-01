@@ -19,6 +19,9 @@ nameForm.addEventListener('submit', function (event) {
     gameCanvas.style.display = 'block';
     hexagonGroup.style.display = 'block';
 });
+
+	const playerNameReadyEvent = new Event('playerNameReady');
+
   	
   let connectedUsers = 0;
 
@@ -127,7 +130,10 @@ socket.on('assignColor', function (playerName) {
 	console.log(`Nombre del jugador: ${playerNameT}`);
 	console.log(`Color del jugador: ${assignedColors}`);
 
-	    socket.emit('playerNameAssigned', assignedName);
+	    //socket.emit('playerNameAssigned', assignedName);
+
+	    document.dispatchEvent(playerNameReadyEvent);
+
 
 
 	});
@@ -154,6 +160,9 @@ socket.on('animateBluePoint', function (animationData) {
 //SERVER UPDATEPLAYERS
 //SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.
 socket.on('updatePlayers', function (updatedPlayers) {
+    document.addEventListener('playerNameReady', function () {
+
+	
 	console.log('SOCKET UPDATE PLAYERS');
 	 // Iterar sobre el objeto de jugadores y actualizar la información
     	for (const playerId in updatedPlayers) {
@@ -189,6 +198,8 @@ socket.on('updatePlayers', function (updatedPlayers) {
 
 //console.log(`Nombre del jugador2: ${player.name}`);
     	}
+
+	    });
   });
 
 
