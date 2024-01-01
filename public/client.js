@@ -7,8 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const nameForm = document.getElementById('nameForm');
   const canvas = document.getElementById('gameCanvas');
   const context = canvas.getContext('2d');
-
-	    const playerName2 = document.getElementById('playerName').value;
+const assignedName = ''; // Variable global para almacenar el nombre asignado
 
 
 nameForm.addEventListener('submit', function (event) {
@@ -110,7 +109,7 @@ hexagonGroup.addEventListener('click', function (event) {
 });
 
 let assignedColors = 'red';
-let assignedName = 'Player';
+//let assignedName = 'Player';
 
 
 
@@ -176,12 +175,13 @@ socket.on('updatePlayers', function (updatedPlayers) {
   	textElement2.setAttribute('font-size', '14px');
 	//textElement2.textContent = 'Hey';	
 	textElement2.setAttribute('id', playerId + '-name');
-	textElement2.textContent = playerName2;	
+	//textElement2.textContent = playerName2;	
+        textElement2.textContent = assignedName; // Usa la variable global para mostrar el nombre del jugador
 
 	hexagonGroup.appendChild(textElement2);	
 		
 	console.log(`Color del jugador2: ${player.color}`);
-	console.log(`NOMBREEEEEE2E: ${playerName2}`);
+	console.log(`NOMBREEEEEE2E: ${assignedName}`);
 
 
 //console.log(`Nombre del jugador2: ${player.name}`);
