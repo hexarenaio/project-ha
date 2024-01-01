@@ -81,6 +81,13 @@ io.on('connection', (socket) => {
 
         
     });
+
+    socket.on('playerNameAssigned', (assignedName) => {
+        console.log(`Nombre del jugador asignado: ${assignedName}`);
+        // Ahora puedes emitir 'updatePlayers' ya que el nombre se ha asignado
+        io.emit('updatePlayers', players);
+    });
+
     
     //USUARIOS DESCONECTADOS
     socket.on('disconnect', () => {
