@@ -125,6 +125,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
 	//textElement2.textContent = 'Hey';	
 	textElement2.setAttribute('id', playerId + '-name');
 	textElement2.textContent = player.name;	
+	console.log(`NOMBREEEEEEE: ${player.name}`);
 
 	hexagonGroup.appendChild(textElement2);	
 		
