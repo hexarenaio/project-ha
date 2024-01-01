@@ -188,7 +188,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
 	//textElement2.textContent = 'Hey';	
 	textElement2.setAttribute('id', playerId + '-name');
 	//textElement2.textContent = playerName2;	
-        textElement2.textContent = 'Hey'; // Usa la variable global para mostrar el nombre del jugador
+        textElement2.textContent = assignedName; // Usa la variable global para mostrar el nombre del jugador
 
 	hexagonGroup.appendChild(textElement2);	
 		
@@ -238,8 +238,8 @@ function animateNameLocally(circleElement, start, end) {
 	
 	circleElement.setAttribute('x', newX);
    	circleElement.setAttribute('y', newY - 8);
-	circleElement.setAttribute('fill', 'red');
-		        circleElement.textContent = assignedName; 
+	//circleElement.setAttribute('fill', 'red');
+		      //  circleElement.textContent = assignedName; 
 
 
 
