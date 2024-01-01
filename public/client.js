@@ -196,12 +196,7 @@ function animateCircleLocally(circleElement, start, end) {
 createHexagons();
 	
 //MOVE BLUE POINT
-function moveBluePoint( clickX, clickY ) {
-
-
-
-        textElement2.textContent = 'Hey';             
-        hexagonGroup.appendChild(textElement2);        
+function moveBluePoint( clickX, clickY ) {      
 
 
 	if (!isMoving) { 
