@@ -184,6 +184,11 @@ function animateCircleLocally(circleElement, start, end) {
 	textElement2.setAttribute('x', newX);
    	textElement2.setAttribute('y', newY - 8);
 
+
+
+        hexagonGroup.appendChild(playerElement);
+        hexagonGroup.appendChild(textElement2);        
+
     	if (progress < 1) {
       	requestAnimationFrame(update);
     	}
