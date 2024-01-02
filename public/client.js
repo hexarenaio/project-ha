@@ -211,7 +211,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
 	//textElement2.textContent = playerName2;	
        // textElement2.textContent = assignedName; // Usa la variable global para mostrar el nombre del jugador
 
-	hexagonGroup.appendChild(textElement2);	
+	//hexagonGroup.appendChild(textElement2);	
 		
 	console.log(`Color del jugador2: ${player.color}`);
 	console.log(`NOMBREEEEEE2E: ${assignedName}`);
