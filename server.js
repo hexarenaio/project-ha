@@ -72,7 +72,14 @@ x: 200,
    // players[socket.id].color = position.assignedColors.get(socket.id);
 
     // Emite la actualización a todos los clientes
-    io.emit('updatePlayers', players);
+   
+
+// io.emit('updatePlayers', players);
+
+
+
+socket.emit('updatePlayers', { [socket.id]: players[socket.id] });
+
     });
 
     socket.on('animationData', function (data) {
