@@ -23,6 +23,9 @@ nameForm.addEventListener('submit', function (event) {
 	const playerNameReadyEvent = new Event('playerNameReady');
 
   	
+
+let textElement2;  
+
   let connectedUsers = 0;
 
   let isMoving = false
