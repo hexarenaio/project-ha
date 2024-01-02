@@ -24,7 +24,7 @@ nameForm.addEventListener('submit', function (event) {
 
   	
 
-let textElement2;  
+//let textElement2;  
 
   let connectedUsers = 0;
 
