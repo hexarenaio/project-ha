@@ -147,8 +147,8 @@ socket.on('assignColor', function (playerName) {
 
         
 textElement2.setAttribute('id', socket.id + '-name');
-        textElement2.setAttribute('x', player.x);
-         textElement2.setAttribute('y', player.y - 8); 
+        textElement2.setAttribute('x', 300);
+         textElement2.setAttribute('y', 300 - 8); 
           textElement2.setAttribute('text-anchor', 'middle');
           textElement2.setAttribute('fill', 'green');
           textElement2.setAttribute('font-size', '14px');
