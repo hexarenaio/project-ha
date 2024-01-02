@@ -181,13 +181,15 @@ socket.on('updatePlayers', function (updatedPlayers) {
 	//textElement2.textContent = assignedColors.get(playerId).name;	
 	const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
 	//textElement.setAttribute('id', playerId + '-name'); // Agrega el playerId al ID
-	textElement2.setAttribute('x', player.x);
+
+
+	textElement2.setAttribute('id', playerId);	textElement2.setAttribute('x', player.x);
  	textElement2.setAttribute('y', player.y - 8); 
   	textElement2.setAttribute('text-anchor', 'middle');
   	textElement2.setAttribute('fill', 'green');
   	textElement2.setAttribute('font-size', '14px');
 	textElement2.textContent = 'Hey';	
-	textElement2.setAttribute('id', playerId);
+
 	//textElement2.textContent = playerName2;	
        // textElement2.textContent = assignedName; // Usa la variable global para mostrar el nombre del jugador
 
