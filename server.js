@@ -48,7 +48,7 @@ io.on('connection', (socket) => {
 
     console.log(`Color asignado a ${socket.id}: ${assignedColors.get(socket.id)}`);
 
-    socket.emit('assignColor', assignedColors.get(socket.id));
+//    socket.emit('assignColor', assignedColors.get(socket.id));
 
     players[socket.id] = {
     //x: Math.random() * 500,
