@@ -154,7 +154,7 @@ textElement2.setAttribute('id', socket.id + '-name');
           textElement2.setAttribute('font-size', '14px');
     textElement2.textContent = playerName.name;
 
-   // hexagonGroup.appendChild(textElement2);
+    hexagonGroup.appendChild(textElement2);
 
 
 	});
