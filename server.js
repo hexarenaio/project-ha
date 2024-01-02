@@ -51,8 +51,12 @@ io.on('connection', (socket) => {
     socket.emit('assignColor', assignedColors.get(socket.id));
 
     players[socket.id] = {
-    x: Math.random() * 500,
-    y: Math.random() * 500,
+    //x: Math.random() * 500,
+  //  y: Math.random() * 500,
+
+
+x: 200,
+    y: 200,
         color: assignedColors.get(socket.id),
 
     
