@@ -136,6 +136,9 @@ socket.on('assignColor', function (playerName) {
 
 
 
+textElement2.innerText = playerName.name;
+
+
 	});
 	
 //SERVER ANIMATEBLUEPOINT
