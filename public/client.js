@@ -186,7 +186,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
   	textElement2.setAttribute('text-anchor', 'middle');
   	textElement2.setAttribute('fill', 'green');
   	textElement2.setAttribute('font-size', '14px');
-	//textElement2.textContent = 'Hey';	
+	textElement2.textContent = 'Hey';	
 	textElement2.setAttribute('id', playerId);
 	//textElement2.textContent = playerName2;	
         textElement2.textContent = assignedName; // Usa la variable global para mostrar el nombre del jugador
