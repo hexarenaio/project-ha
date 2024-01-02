@@ -239,8 +239,8 @@ function animateNameLocally(circleElement, start, end, txt) {
 	
 	circleElement.setAttribute('x', newX);
    	circleElement.setAttribute('y', newY - 8);
-	circleElement.setAttribute('fill', 'blue');
-		        circleElement.textContent = txt; 
+//	circleElement.setAttribute('fill', 'blue');
+		       // circleElement.textContent = txt; 
 
 
 
