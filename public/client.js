@@ -148,7 +148,11 @@ const txt = animationData.playerName;
     	// Encuentra el círculo correspondiente al jugador
     	const playerElement = document.getElementById(playerId);
 
-  //  	const textElement2 = document.getElementById(playerId);
+    	const textElement2 = document.getElementById(playerId + '-name');
+
+
+   //   textElement.setAttribute('id', playerId + '-name'); // Agrega el playerId al ID
+
 
     	// Realiza la animación localmente    
 	
@@ -183,7 +187,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
 	//textElement.setAttribute('id', playerId + '-name'); // Agrega el playerId al ID
 
 
-	textElement2.setAttribute('id', playerId);	textElement2.setAttribute('x', player.x);
+	textElement2.setAttribute('id', playerId + '-name');	textElement2.setAttribute('x', player.x);
  	textElement2.setAttribute('y', player.y - 8); 
   	textElement2.setAttribute('text-anchor', 'middle');
   	textElement2.setAttribute('fill', 'green');
