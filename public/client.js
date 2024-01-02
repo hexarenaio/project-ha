@@ -145,7 +145,9 @@ socket.on('assignColor', function (playerName) {
         //textElement.setAttribute('id', playerId + '-name'); // Agrega el playerId al ID
 
 
-        textElement2.setAttribute('id', playerId + '-name');        textElement2.setAttribute('x', player.x);
+        
+textElement2.setAttribute('id', socket.id + '-name');
+        textElement2.setAttribute('x', player.x);
          textElement2.setAttribute('y', player.y - 8); 
           textElement2.setAttribute('text-anchor', 'middle');
           textElement2.setAttribute('fill', 'green');
