@@ -138,13 +138,18 @@ socket.on('assignColor', function (playerName) {
 	    //document.dispatchEvent(playerNameReadyEvent);
 
 
-const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    textElement2.setAttribute('id', socket.id + '-name');
-    textElement2.setAttribute('x', players[socket.id].x);
-    textElement2.setAttribute('y', players[socket.id].y - 8);
-    textElement2.setAttribute('text-anchor', 'middle');
-    textElement2.setAttribute('fill', 'green');
-    textElement2.setAttribute('font-size', '14px');
+
+
+
+        const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        //textElement.setAttribute('id', playerId + '-name'); // Agrega el playerId al ID
+
+
+        textElement2.setAttribute('id', playerId + '-name');        textElement2.setAttribute('x', player.x);
+         textElement2.setAttribute('y', player.y - 8); 
+          textElement2.setAttribute('text-anchor', 'middle');
+          textElement2.setAttribute('fill', 'green');
+          textElement2.setAttribute('font-size', '14px');
     textElement2.textContent = playerName.name;
 
     hexagonGroup.appendChild(textElement2);
