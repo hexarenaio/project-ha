@@ -62,7 +62,7 @@ x: 200,
     
     };
 
-    io.emit('updatePlayers', players); // Envía la información de los jugadores a todos los clientes
+//    io.emit('updatePlayers', players); // Envía la información de los jugadores a todos los clientes
 
     socket.on('updatePosition', function (position) {
     // Actualiza la posición del jugador en el servidor
