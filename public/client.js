@@ -12,7 +12,7 @@ nameForm.addEventListener('submit', function (event) {
     event.preventDefault();
     const playerName = document.getElementById('playerName').value;
     // Enviar el nombre del jugador al servidor junto con el evento 'assignColor'
-   socket.emit('assignColor', playerName);
+    socket.emit('assignColor', playerName);
     nameForm.style.display = 'none';
     gameCanvas.style.display = 'block';
     hexagonGroup.style.display = 'block';
@@ -83,17 +83,14 @@ socket.on('assignColor', function (playerName) {
     	const playerNameT = playerName.name;
     	assignedColors = playerName.color;
     	assignedName = playerName.name;
-    	// Actualiza el color del jugador local
-    	bluePoint.color = assignedColors;
-    	bluePointElement.setAttribute('fill', assignedColors);
-    	// Actualiza el texto con el nombre del jugador
-  	//  textElement2.textContent = playerNameT;
-	console.log(`Nombre del jugador: ${playerNameT}`);
-	console.log(`Color del jugador: ${assignedColors}`);
+    	//bluePoint.color = assignedColors;
+    	//bluePointElement.setAttribute('fill', assignedColors);
+	console.log(`Assign Nombre: ${playerNameT}`);
+	console.log(`Asssign Color: ${assignedColors}`);
 	//socket.emit('playerNameAssigned', assignedName);
-	assignedColors.set(socket.id, { color, name: playerName });
-	const playerName3 = assignedColors.get(socket.id).name;
-	console.log(`Newbje: ${playerName3}`);
+	//assignedColors.set(socket.id, { color, name: playerName });
+	//const playerName3 = assignedColors.get(socket.id).name;
+	//console.log(`Newbje: ${playerName3}`);
 	//document.dispatchEvent(playerNameReadyEvent);
 	/*
         const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -119,12 +116,12 @@ socket.on('animateBluePoint', function (animationData) {
 	const playerId = animationData.playerId;
     	const data = animationData.data;
 	const txt = animationData.playerName;
+	
     	// Encuentra el círculo correspondiente al jugador
     	const playerElement = document.getElementById(playerId);
-   	const textElement2 = document.getElementById(playerId + '-name');
-   //   textElement.setAttribute('id', playerId + '-name'); // Agrega el playerId al ID
-    	// Realiza la animación localmente    
 	
+   	const textElement2 = document.getElementById(playerId + '-name');
+  
 	animateCircleLocally(playerElement, data.start, data.end);
 
 	animateNameLocally(textElement2, data.start, data.end, txt);
@@ -140,6 +137,9 @@ socket.on('updatePlayers', function (updatedPlayers) {
 	 // Iterar sobre el objeto de jugadores y actualizar la información
     	for (const playerId in updatedPlayers) {
       	const player = updatedPlayers[playerId];
+
+	//PLAYER ELEMENT 
+		
       	const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       	playerElement.setAttribute('id', playerId);
       	playerElement.setAttribute('r', '9');
@@ -147,49 +147,26 @@ socket.on('updatePlayers', function (updatedPlayers) {
       	playerElement.setAttribute('cx', player.x);
       	playerElement.setAttribute('cy', player.y);
 	hexagonGroup.appendChild(playerElement);
-	//TEXT ELEMENT 2 Nombre del Jugador	
-	//textElement2.textContent = 'Hey';	
-//  	textElement2.textContent = assignedName;
-	//textElement2.textContent = assignedColors.get(playerId).name;	
+
+	//TEXT ELEMENT
+		
 	const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-	//textElement.setAttribute('id', playerId + '-name'); // Agrega el playerId al ID
-	textElement2.setAttribute('id', playerId + '-name');	textElement2.setAttribute('x', player.x);
+	textElement2.setAttribute('id', playerId + '-name');	
+	textElement2.setAttribute('x', player.x);
  	textElement2.setAttribute('y', player.y - 8); 
   	textElement2.setAttribute('text-anchor', 'middle');
   	textElement2.setAttribute('fill', 'green');
   	textElement2.setAttribute('font-size', '14px');
-	//textElement2.textContent = 'Hey';	
-
-
-textElement2.textContent = assignedName;
-
+	textElement2.textContent = assignedName;
         hexagonGroup.appendChild(textElement2);
-	//textElement2.textContent = playerName2;	
-       // textElement2.textContent = assignedName; // Usa la variable global para mostrar el nombre del jugador
 
-	//hexagonGroup.appendChild(textElement2);	
-		
-	console.log(`Color del jugador2: ${player.color}`);
+	//LOGS		
 	console.log(`NOMBREEEEEE2E: ${assignedName}`);
+	console.log(`NAAAAMEEEEE2E: ${player.name}`);
+	console.log(`PlayerID!!!!!: ${playerId}, ${player.color}`);
 
-
-
-console.log(`NAAAAMEEEEE2E: ${player.name}`);
-
-
-
-console.log(`PlayerID!!!!!: ${playerId}, ${player.color}  `);
-
-//console.log(`Nombre del jugador2: ${player.name}`);
     	}
-
-	  //  });
-// Acceder al color y nombre asociados al socket.id del cliente
-const colorm = assignedColors.get(socket.id).color;
-const playerNamem = assignedColors.get(socket.id).name;
-
-console.log(`NUEVO!!!!!: ${colorm}, ${playerNamem}  `);
-
+	// });
   });
 
 
@@ -207,12 +184,8 @@ function animateCircleLocally(circleElement, start, end) {
     	const newY = start.y + progress * (end.y - start.y);
 	circleElement.setAttribute('cx', newX);
    	circleElement.setAttribute('cy', newY);
-	//textElement2.setAttribute('x', newX);
-   	//textElement2.setAttribute('y', newY - 8);
     	if (progress < 1) {
-      	requestAnimationFrame(update);
-    	}
-  	}
+      	requestAnimationFrame(update); } }
 	requestAnimationFrame(update);
 }
 
@@ -232,7 +205,6 @@ function animateNameLocally(circleElement, start, end, txt) {
 	
 	circleElement.setAttribute('x', newX);
    	circleElement.setAttribute('y', newY - 8);
-	//circleElement.setAttribute('fill', 'blue');
 	//circleElement.textContent = txt; 
 
     	if (progress < 1) {
