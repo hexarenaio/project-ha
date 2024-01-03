@@ -90,6 +90,8 @@ position: absolute;
  document.addEventListener('DOMContentLoaded', function () {
     const nameForm = document.getElementById('nameForm');
     const gameCanvas = document.getElementById('gameCanvas');
+const canvas = document.getElementById('gameCanvas');
+  const context = canvas.getContext('2d');
 
     const socket = io();
 
@@ -103,8 +105,7 @@ position: absolute;
 	    
       const playerName = document.getElementById('playerName').value;
 socket.emit('assignColor', playerName);
-	      const canvas = document.getElementById('gameCanvas');
-  const context = canvas.getContext('2d');
+	      
   let assignedName = ''; // Variable global para almacenar el nombre asignado 
 
 
