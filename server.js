@@ -63,7 +63,7 @@ io.on('connection', (socket) => {
   //  y: Math.random() * 500,
         x: 200,
         y: 200,
-        color: assignedColors.get(socket.id),
+        color: assignedColors.get(socket.id).color,
        // nombre: assignedColors.get(socket.id).name,
         nombre: 'nene',
 
