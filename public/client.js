@@ -1,14 +1,12 @@
 //SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.
-
 document.addEventListener('DOMContentLoaded', function () {
 	
-	//VARIABLES
+//VARIABLES
   const socket = io();
   const nameForm = document.getElementById('nameForm');
   const canvas = document.getElementById('gameCanvas');
   const context = canvas.getContext('2d');
-let assignedName = ''; // Variable global para almacenar el nombre asignado 
-
+  let assignedName = ''; // Variable global para almacenar el nombre asignado 
 
 nameForm.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -20,41 +18,18 @@ nameForm.addEventListener('submit', function (event) {
     hexagonGroup.style.display = 'block';
 });
 
-	const playerNameReadyEvent = new Event('playerNameReady');
-
-  	
-
-//let textElement2;  
-
+  const playerNameReadyEvent = new Event('playerNameReady');
   let connectedUsers = 0;
-
   let isMoving = false
-  let FirstMove = false
-
+  let FirstMove = true
   const hexagonAngle = 0.523598776; // 30 degrees in radians
-
   let circleX = 250;
   let circleY = 250;
-
   const players = {}; // Objeto para almacenar la información de los jugadores
-
   const hexagonGroup = document.getElementById('hexagonGroup');
+  const bluePoint = {id: socket.id, name: '', x: 170,  y: 170,  color: 'blue', };
+  let assignedColors = 'red';
 
-	//const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-  //textElement2.setAttribute('x', 170);
-  //textElement2.setAttribute('y', 170); 
-  //textElement2.setAttribute('text-anchor', 'middle');
-  //textElement2.setAttribute('fill', 'green');
-  //textElement2.setAttribute('font-size', '14px');
-  //textElement2.textContent = 'Player';
-
-  const bluePoint = {
-	id: socket.id,
-        name: '', // Agrega el nombre del jugador
-        x: 170, // Posición X inicial del jugador
-        y: 170, // Posición Y inicial del jugador
-        color: 'blue', // Color azul por defecto
-    };
 
 //CIRCULO AZUL DEFINIDO
 const bluePointElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
@@ -63,7 +38,6 @@ const bluePointElement = document.createElementNS('http://www.w3.org/2000/svg', 
     bluePointElement.setAttribute('fill', bluePoint.color);
     bluePointElement.setAttribute('cx', bluePoint.x);
     bluePointElement.setAttribute('cy', bluePoint.y);
-    //hexagonGroup.appendChild(bluePointElement);
 
 //TEXT NAME DEFINIDO
 const textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -73,17 +47,6 @@ const textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text
   textElement.setAttribute('fill', 'red');
   textElement.setAttribute('font-size', '12px');
   textElement.textContent = 'Hola';
-
-
-//TEXT NAME DEFINIDO 222222222
-/*const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-  textElement2.setAttribute('x', 170);
-  textElement2.setAttribute('y', 170); 
-  textElement2.setAttribute('text-anchor', 'middle');
-  textElement2.setAttribute('fill', 'green');
-  textElement2.setAttribute('font-size', '14px');
-  textElement2.textContent = 'Player';
-*/
 	
 //GROUP ELEMENT CIRCULO Y TEXTO
 const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
@@ -96,29 +59,24 @@ const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g')
 
 //////////////////
 	
-//CLICK LISTENER HEAGONGROUP
+//CLICK LISTENER HEAGONGROUP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	
 hexagonGroup.addEventListener('click', function (event) {
 	console.log('HEXAGON GROUP LOG');
 	const mouseX = event.clientX - hexagonGroup.getBoundingClientRect().left;
         const mouseY = event.clientY - hexagonGroup.getBoundingClientRect().top;
+	
 	moveBluePoint(mouseX, mouseY);
 
-	if(FirstMove){
-
-		
-	//socket.emit('assignColor', playerName);
-	FirstMove = true;
-
+	if(FirstMove){		
+	FirstMove = false;
 	}
-
 	
 });
 
-let assignedColors = 'red';
-//let assignedName = 'Player';
-
-
-
+//ASIGN COLOR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
 socket.on('assignColor', function (playerName) {
 	console.log('SOCKET ASSIGN COLOR');
     	//const playerColor = playerName.color;
@@ -132,75 +90,52 @@ socket.on('assignColor', function (playerName) {
   	//  textElement2.textContent = playerNameT;
 	console.log(`Nombre del jugador: ${playerNameT}`);
 	console.log(`Color del jugador: ${assignedColors}`);
-
-	    //socket.emit('playerNameAssigned', assignedName);
-
-
-
-
-assignedColors.set(socket.id, { color, name: playerName });
-
-
-
-
-const playerName3 = assignedColors.get(socket.id).name;
-
-
-console.log(`Newbje: ${playerName3}`);
-	    //document.dispatchEvent(playerNameReadyEvent);
-
-
-/*
-
-
+	//socket.emit('playerNameAssigned', assignedName);
+	assignedColors.set(socket.id, { color, name: playerName });
+	const playerName3 = assignedColors.get(socket.id).name;
+	console.log(`Newbje: ${playerName3}`);
+	//document.dispatchEvent(playerNameReadyEvent);
+	/*
         const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        //textElement.setAttribute('id', playerId + '-name'); // Agrega el playerId al ID
-
-
-        
-textElement2.setAttribute('id', socket.id + '-name');
+        //textElement.setAttribute('id', playerId + '-name'); // Agrega el playerId al ID     
+	textElement2.setAttribute('id', socket.id + '-name');
         textElement2.setAttribute('x', 300);
-         textElement2.setAttribute('y', 300 - 8); 
-          textElement2.setAttribute('text-anchor', 'middle');
-          textElement2.setAttribute('fill', 'green');
-          textElement2.setAttribute('font-size', '14px');
-    textElement2.textContent = playerName.name;
-
-    hexagonGroup.appendChild(textElement2);
-*/
+        textElement2.setAttribute('y', 300 - 8); 
+        textElement2.setAttribute('text-anchor', 'middle');
+        textElement2.setAttribute('fill', 'green');
+        textElement2.setAttribute('font-size', '14px');
+    	textElement2.textContent = playerName.name;
+    	hexagonGroup.appendChild(textElement2);
+	*/
 
 	});
+		
 	
-//SERVER ANIMATEBLUEPOINT
-//SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.
+//ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
 socket.on('animateBluePoint', function (animationData) {
 	console.log('SOCKET ANIMATE BLUE POINT');
 	const playerId = animationData.playerId;
     	const data = animationData.data;
-const txt = animationData.playerName;
+	const txt = animationData.playerName;
     	// Encuentra el círculo correspondiente al jugador
     	const playerElement = document.getElementById(playerId);
-
    	const textElement2 = document.getElementById(playerId + '-name');
-
-
    //   textElement.setAttribute('id', playerId + '-name'); // Agrega el playerId al ID
-
-
     	// Realiza la animación localmente    
 	
 	animateCircleLocally(playerElement, data.start, data.end);
 
 	animateNameLocally(textElement2, data.start, data.end, txt);
-
 });
 
-//SERVER UPDATEPLAYERS
-//SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.
+
+//UPDATE PLAYERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
 socket.on('updatePlayers', function (updatedPlayers) {
 //    document.addEventListener('playerNameReady', function () {
-
-	
 	console.log('SOCKET UPDATE PLAYERS');
 	 // Iterar sobre el objeto de jugadores y actualizar la información
     	for (const playerId in updatedPlayers) {
@@ -218,8 +153,6 @@ socket.on('updatePlayers', function (updatedPlayers) {
 	//textElement2.textContent = assignedColors.get(playerId).name;	
 	const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
 	//textElement.setAttribute('id', playerId + '-name'); // Agrega el playerId al ID
-
-
 	textElement2.setAttribute('id', playerId + '-name');	textElement2.setAttribute('x', player.x);
  	textElement2.setAttribute('y', player.y - 8); 
   	textElement2.setAttribute('text-anchor', 'middle');
@@ -251,27 +184,18 @@ console.log(`PlayerID!!!!!: ${playerId}, ${player.color}  `);
     	}
 
 	  //  });
-
-
-
-
-
-
-
 // Acceder al color y nombre asociados al socket.id del cliente
 const colorm = assignedColors.get(socket.id).color;
 const playerNamem = assignedColors.get(socket.id).name;
 
-
-
 console.log(`NUEVO!!!!!: ${colorm}, ${playerNamem}  `);
-
-
 
   });
 
 
-//ANIMATE CIRCLE LOCALLY
+//ANIMATE CIRCLE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+			  
 function animateCircleLocally(circleElement, start, end) {
 	console.log('ANIMATE CIRCLE LOCALLY');
 	const duration = 100;
@@ -292,8 +216,10 @@ function animateCircleLocally(circleElement, start, end) {
 	requestAnimationFrame(update);
 }
 
-//ANIMATE TEXT NAME
-//ANIMATE CIRCLE LOCALLY
+
+//ANIMATE TEXT NAME !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
 function animateNameLocally(circleElement, start, end, txt) {
 	console.log('ANIMATE CIRCLE LOCALLY');
 	const duration = 100;
@@ -306,22 +232,20 @@ function animateNameLocally(circleElement, start, end, txt) {
 	
 	circleElement.setAttribute('x', newX);
    	circleElement.setAttribute('y', newY - 8);
-//	circleElement.setAttribute('fill', 'blue');
-		       // circleElement.textContent = txt; 
-
-
+	//circleElement.setAttribute('fill', 'blue');
+	//circleElement.textContent = txt; 
 
     	if (progress < 1) {
-      	requestAnimationFrame(update);
-    	}
-  	}
+      	requestAnimationFrame(update); } }
 	requestAnimationFrame(update);
 }
 
 //CREATE HEXAGON PANAL
 createHexagons();
+
+//MOVE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////	
 	
-//MOVE BLUE POINT
 function moveBluePoint( clickX, clickY ) {      
 
 	  //  socket.emit('updatePlayers'); // Emitir un nuevo evento al servidor
@@ -356,8 +280,10 @@ function moveBluePoint( clickX, clickY ) {
 	}
   }
 
-//ANIMATE BLUE POINT//////////////////////////
-/////////////////////////////////////////////////
+
+//ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
 function animateBluePoint(destinationX, destinationY) {
 	const startX = parseFloat(bluePointElement.getAttribute('cx'));
     	const startY = parseFloat(bluePointElement.getAttribute('cy'));
@@ -392,8 +318,10 @@ function animateBluePoint(destinationX, destinationY) {
 }
 
 
-//FIND CLOSES TO CLICK///////////////////////////
-///////////////////////////////////////////////// 
+
+//FIND CLOSEST RED VERTEX !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////	
+	
 function findClosestRedVertexToClick(x, y) {
     	let closestVertex = null;
     	let minDistance = Infinity;
@@ -418,9 +346,11 @@ function findClosestRedVertexToClick(x, y) {
     	}
     	return closestVertex;
 }
+	
 
-//FIND CLOSEST VERTICES//////////////////////////
-/////////////////////////////////////////////////	
+//FIND AND DRAW RED VERTEX !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
 let redVerticesArray = [];
 function findClosestVertices(x, y) {
     	const hexagons = document.querySelectorAll('#hexagonGroup polygon');
@@ -482,16 +412,24 @@ function findClosestVertices(x, y) {
 	}
     	return nearbyVertices;
 }
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////	
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////	
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////	
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////		
 	
 //POINT TO DISTANCE//////////////////////////////
 /////////////////////////////////////////////////
+	
 function pointToPointDistance2(x1, y1, x2, y2) {
     	const dx = x1 - x2;
     	const dy = y1 - y2;
     	return Math.sqrt(dx * dx + dy * dy);
 }
-
-  
 
 //CREATE HEXAGONS///////////////////////////
 ///////////////////////////////////////////////// 
@@ -518,7 +456,6 @@ function createHexagons() {
       }
     }
   }
-
 
 //GET HEXAGON POINTS///////////////////////////
 ///////////////////////////////////////////////// 
