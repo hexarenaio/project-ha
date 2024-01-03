@@ -56,7 +56,7 @@ io.on('connection', (socket) => {
 //    socket.emit('assignColor', assignedColors.get(socket.id));
 
 
-    const assignedColorInfo = assignedColors.get(socket.id);
+  //  const assignedColorInfo = assignedColors.get(socket.id);
     const assignedColorInfo = assignedColors.get(socket.id) || { color: 'defaultColor', name: 'defaultName' };
 
 
