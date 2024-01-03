@@ -239,6 +239,23 @@ console.log(`PlayerID!!!!!: ${playerId}, ${player.color}  `);
     	}
 
 	  //  });
+
+
+
+
+
+
+
+// Acceder al color y nombre asociados al socket.id del cliente
+const colorm = assignedColors.get(socket.id).color;
+const playerNamem = assignedColors.get(socket.id).name;
+
+
+
+console.log(`NUEVO!!!!!: ${colorm}, ${playerNamem}  `);
+
+
+
   });
 
 
