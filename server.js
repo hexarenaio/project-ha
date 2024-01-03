@@ -64,7 +64,9 @@ io.on('connection', (socket) => {
         x: 200,
         y: 200,
         color: assignedColors.get(socket.id),
-        nombre: assignedColors.get(socket.id).name,
+       // nombre: assignedColors.get(socket.id).name,
+        nombre: 'nene',
+
     };
      console.log(`NOMBRE NUEVO a ${socket.id}: ${assignedColorInfo.name}`);
     console.log(`NOMBRE NUEVO2 a ${socket.id}: ${assignedColors.get(socket.id).name}`);
