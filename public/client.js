@@ -233,7 +233,7 @@ console.log(`NAAAAMEEEEE2E: ${player.name}`);
 
 
 
-console.log(`PlayerID!!!!!: ${playerId}`);
+console.log(`PlayerID!!!!!: ${playerId}, ${player.color}  `);
 
 //console.log(`Nombre del jugador2: ${player.name}`);
     	}
