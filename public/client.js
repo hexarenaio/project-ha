@@ -135,6 +135,18 @@ socket.on('assignColor', function (playerName) {
 
 	    //socket.emit('playerNameAssigned', assignedName);
 
+
+
+
+assignedColors.set(socket.id, { color, name: playerName });
+
+
+
+
+const playerName3 = assignedColors.get(socket.id).name;
+
+
+console.log(`Newbje: ${playerName3}`);
 	    //document.dispatchEvent(playerNameReadyEvent);
 
 
