@@ -63,12 +63,13 @@ io.emit('updatePlayers', players);
 
 x: 200,
     y: 200,
-        color: assignedColors.get(socket.id),
+        color: assignedColors.get(socket.id).color,
         nombre: assignedColors.get(socket.id).name,
-    console.log(`NOMBRE NUEVO a ${socket.id}: ${assignedColors.get(socket.id).name}`);
-
     
     };
+
+    console.log(`NOMBRE NUEVO a ${socket.id}: ${assignedColors.get(socket.id).name}`);
+
 
 //    io.emit('updatePlayers', players); // Envía la información de los jugadores a todos los clientes
 
