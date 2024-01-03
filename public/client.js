@@ -231,6 +231,10 @@ textElement2.textContent = assignedName;
 
 console.log(`NAAAAMEEEEE2E: ${player.name}`);
 
+
+
+console.log(`PlayerID!!!!!: ${playerId}`);
+
 //console.log(`Nombre del jugador2: ${player.name}`);
     	}
 
