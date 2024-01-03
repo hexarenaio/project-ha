@@ -91,7 +91,7 @@ socket.on('assignColor', function (playerName) {
 	
 	});
 
-	socket.emit('playerNameEntered', playerName);
+	//socket.emit('playerNameEntered', playerName);
 	
 		
 
