@@ -57,19 +57,27 @@ io.emit('updatePlayers', players);
 
 //    socket.emit('assignColor', assignedColors.get(socket.id));
 
+
+    const assignedColorInfo = assignedColors.get(socket.id);
+if (assignedColorInfo) {
+
     players[socket.id] = {
     //x: Math.random() * 500,
   //  y: Math.random() * 500,
-
-
-x: 200,
-    y: 200,
+        x: 200,
+        y: 200,
         color: assignedColors.get(socket.id),
         nombre: assignedColors.get(socket.id).name,
-    
     };
+     console.log(`NOMBRE NUEVO a ${socket.id}: ${assignedColorInfo.name}`);
+} else {
+    console.error(`Error: No se encontró información de color para el socket ID ${socket.id}`);
+}
 
-    console.log(`NOMBRE NUEVO a ${socket.id}: ${assignedColors.get(socket.id).name}`);
+
+    
+
+    console.log(`NOMBRE NUEVO2 a ${socket.id}: ${assignedColors.get(socket.id).name}`);
 
 
 //    io.emit('updatePlayers', players); // Envía la información de los jugadores a todos los clientes
