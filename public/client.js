@@ -1,11 +1,8 @@
 //SOCKET.ON SIGNIFICA QUE ESTA ESCUCHANDO AL SERVIDOR. Son datos que vienen del servidor.
 document.addEventListener('DOMContentLoaded', function () {
-
-	socket.emit('playerNameEntered', playerName);
-
 	
 //VARIABLES
-  const socket = io();
+  const socket = io();	
   const nameForm = document.getElementById('nameForm');
   const canvas = document.getElementById('gameCanvas');
   const context = canvas.getContext('2d');
@@ -93,6 +90,9 @@ socket.on('assignColor', function (playerName) {
 	//document.dispatchEvent(playerNameReadyEvent);
 	
 	});
+
+	socket.emit('playerNameEntered', playerName);
+	
 		
 
 
