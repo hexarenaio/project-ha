@@ -18,6 +18,11 @@ const players = {};
 app.use(express.static('public'));
 
 io.on('connection', (socket) => {
+
+
+    socket.on('playerNameEntered', (playerName) => {
+        console.log(`Nombre del jugador introducido: ${playerName}`);
+
     
 //START SOCKET CONNECTION ///////    ///////    ///////  ///////    ///////    ///////    ///////    ///////    ///////    
     ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    
@@ -118,7 +123,8 @@ io.on('connection', (socket) => {
 
 //END SOCKET CONNECTION////////////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////   
     ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    
-    
+
+        });
 });
 
 const PORT = process.env.PORT || 3000;
