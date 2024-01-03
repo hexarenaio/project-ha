@@ -169,7 +169,7 @@ const txt = animationData.playerName;
     	// Encuentra el círculo correspondiente al jugador
     	const playerElement = document.getElementById(playerId);
 
-    	const textElement2 = document.getElementById(playerId + '-name');
+ //   	const textElement2 = document.getElementById(playerId + '-name');
 
 
    //   textElement.setAttribute('id', playerId + '-name'); // Agrega el playerId al ID
