@@ -57,7 +57,6 @@ io.on('connection', (socket) => {
 
 
     const assignedColorInfo = assignedColors.get(socket.id);
-if (assignedColorInfo) {
 
     players[socket.id] = {
     //x: Math.random() * 500,
@@ -69,10 +68,8 @@ if (assignedColorInfo) {
     };
      console.log(`NOMBRE NUEVO a ${socket.id}: ${assignedColorInfo.name}`);
     console.log(`NOMBRE NUEVO2 a ${socket.id}: ${assignedColors.get(socket.id).name}`);
-
-} else {
     console.error(`Error: No se encontró información de color para el socket ID ${socket.id}`);
-}
+
 
 
 
