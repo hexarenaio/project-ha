@@ -213,10 +213,10 @@ socket.on('updatePlayers', function (updatedPlayers) {
   	textElement2.setAttribute('text-anchor', 'middle');
   	textElement2.setAttribute('fill', 'green');
   	textElement2.setAttribute('font-size', '14px');
-//	textElement2.textContent = 'Hey';	
+	textElement2.textContent = 'Hey';	
 
 
-textElement2.textContent = player.name;
+//textElement2.textContent = player.name;
 
         hexagonGroup.appendChild(textElement2);
 	//textElement2.textContent = playerName2;	
