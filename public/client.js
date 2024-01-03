@@ -228,6 +228,9 @@ socket.on('updatePlayers', function (updatedPlayers) {
 	console.log(`NOMBREEEEEE2E: ${assignedName}`);
 
 
+
+console.log(`NAAAAMEEEEE2E: ${player.name}`);
+
 //console.log(`Nombre del jugador2: ${player.name}`);
     	}
 
