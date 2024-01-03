@@ -130,6 +130,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
 	console.log(`NOMBREEEEEE2E: ${assignedName}`);
 	console.log(`NAAAAMEEEEE2E: ${player.name}`);
 	console.log(`PlayerID!!!!!: ${playerId}, ${player.color}`);
+	console.log(`Nombre Nuevo!!!!!: ${playerId}, ${player.nombre}`);
 
     	}
 	// });
