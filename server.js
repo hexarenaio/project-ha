@@ -34,7 +34,7 @@ io.on('connection', (socket) => {
     colorIndex++;
 
    // assignedColors.set(socket.id, userColor);
-    assignedColors.set(socket.id, { color: userColor, name: playerName });
+    //assignedColors.set(socket.id, { color: userColor, name: playerName });
 
     socket.on('assignColor', function (playerName) {
         const userColor = colorsArray[colorIndex % colorsArray.length];
