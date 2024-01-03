@@ -67,6 +67,11 @@ position: absolute;
     <button type="button" id="submitButton">Aceptar</button>
   </form>
 
+	
+
+
+	
+
   <canvas id="gameCanvas" height="30"  style="background-color: #ff0000;"    ></canvas>
 <svg id="hexagonGroup" style="background-color: #ffffff;" ></svg>
   <circle id="bluePoint" cx="170" cy="170" r="8" fill="blue" />
@@ -78,6 +83,7 @@ position: absolute;
 
   <script>
       document.getElementById('submitButton').addEventListener('click', function () {
+
       const nameForm = document.getElementById('nameForm');
       const gameCanvas = document.getElementById('gameCanvas');
 
@@ -114,15 +120,13 @@ document.addEventListener('DOMContentLoaded', function () {
   const context = canvas.getContext('2d');
   let assignedName = ''; // Variable global para almacenar el nombre asignado 
 
-nameForm.addEventListener('submit', function (event) {
-    event.preventDefault();
     const playerName = document.getElementById('playerName').value;
     // Enviar el nombre del jugador al servidor junto con el evento 'assignColor'
     socket.emit('assignColor', playerName);
     nameForm.style.display = 'none';
     gameCanvas.style.display = 'block';
     hexagonGroup.style.display = 'block';
-});
+
 
   const playerNameReadyEvent = new Event('playerNameReady');
   let connectedUsers = 0;
