@@ -57,24 +57,26 @@ io.on('connection', (socket) => {
 
 
     const assignedColorInfo = assignedColors.get(socket.id);
+    const assignedColorInfo = assignedColors.get(socket.id) || { color: 'defaultColor', name: 'defaultName' };
+
 
     players[socket.id] = {
     //x: Math.random() * 500,
   //  y: Math.random() * 500,
         x: 200,
         y: 200,
-        color: assignedColors.get(socket.id).color,
+       // color: assignedColors.get(socket.id).color,
        // nombre: assignedColors.get(socket.id).name,
-        nombre: 'nene',
+       // nombre: 'nene',
+
+        color: assignedColorInfo.color,
+        nombre: assignedColorInfo.name,
+    
 
     };
     // console.log(`NOMBRE NUEVO a ${socket.id}: ${assignedColorInfo.name}`);
 //    console.log(`NOMBRE NUEVO2 a ${socket.id}: ${assignedColors.get(socket.id).name}`);
   //  console.error(`Error: No se encontró información de color para el socket ID ${socket.id}`);
-
-
-
-
 
 //    io.emit('updatePlayers', players); // Envía la información de los jugadores a todos los clientes
 
@@ -82,29 +84,18 @@ io.on('connection', (socket) => {
     // Actualiza la posición del jugador en el servidor
     players[socket.id].x = position.x;
     players[socket.id].y = position.y;
-        //NUEVO PRUEBA
+    //NUEVO PRUEBA
    // players[socket.id].color = position.assignedColors.get(socket.id);
-
     // Emite la actualización a todos los clientes
-   
-
-// io.emit('updatePlayers', players);
-
-
-
-socket.emit('updatePlayers', { [socket.id]: players[socket.id] });
-
+    //io.emit('updatePlayers', players);
+    socket.emit('updatePlayers', { [socket.id]: players[socket.id] });
     });
 
     socket.on('animationData', function (data) {
-                const playerName = assignedColors.get(socket.id).name;
-
+        const playerName = assignedColors.get(socket.id).name;
         // Emitir datos a todos los clientes
         io.emit('animateBluePoint', { playerId: socket.id, data: data, playerName: playerName });
-
-            console.log(`Annimation name: ${playerName}`);
-
-        
+        console.log(`Annimation name: ${playerName}`);
     });
 
     socket.on('playerNameAssigned', (assignedName) => {
