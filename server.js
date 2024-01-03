@@ -68,14 +68,13 @@ if (assignedColorInfo) {
         nombre: assignedColors.get(socket.id).name,
     };
      console.log(`NOMBRE NUEVO a ${socket.id}: ${assignedColorInfo.name}`);
+    console.log(`NOMBRE NUEVO2 a ${socket.id}: ${assignedColors.get(socket.id).name}`);
+
 } else {
     console.error(`Error: No se encontró información de color para el socket ID ${socket.id}`);
 }
 
 
-    
-
-    console.log(`NOMBRE NUEVO2 a ${socket.id}: ${assignedColors.get(socket.id).name}`);
 
 
 //    io.emit('updatePlayers', players); // Envía la información de los jugadores a todos los clientes
