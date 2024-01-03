@@ -79,61 +79,27 @@ hexagonGroup.addEventListener('click', function (event) {
 	
 socket.on('assignColor', function (playerName) {
 	console.log('SOCKET ASSIGN COLOR');
-    	//const playerColor = playerName.color;
+	
     	const playerNameT = playerName.name;
     	assignedColors = playerName.color;
     	assignedName = playerName.name;
-    	//bluePoint.color = assignedColors;
-    	//bluePointElement.setAttribute('fill', assignedColors);
+    	
 	console.log(`Assign Nombre: ${playerNameT}`);
 	console.log(`Asssign Color: ${assignedColors}`);
-	//socket.emit('playerNameAssigned', assignedName);
-	//assignedColors.set(socket.id, { color, name: playerName });
-	//const playerName3 = assignedColors.get(socket.id).name;
-	//console.log(`Newbje: ${playerName3}`);
+	
 	//document.dispatchEvent(playerNameReadyEvent);
-	/*
-        const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        //textElement.setAttribute('id', playerId + '-name'); // Agrega el playerId al ID     
-	textElement2.setAttribute('id', socket.id + '-name');
-        textElement2.setAttribute('x', 300);
-        textElement2.setAttribute('y', 300 - 8); 
-        textElement2.setAttribute('text-anchor', 'middle');
-        textElement2.setAttribute('fill', 'green');
-        textElement2.setAttribute('font-size', '14px');
-    	textElement2.textContent = playerName.name;
-    	hexagonGroup.appendChild(textElement2);
-	*/
-
+	
 	});
 		
-	
-//ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////
-	
-socket.on('animateBluePoint', function (animationData) {
-	console.log('SOCKET ANIMATE BLUE POINT');
-	const playerId = animationData.playerId;
-    	const data = animationData.data;
-	const txt = animationData.playerName;
-	
-    	// Encuentra el círculo correspondiente al jugador
-    	const playerElement = document.getElementById(playerId);
-	
-   	const textElement2 = document.getElementById(playerId + '-name');
-  
-	animateCircleLocally(playerElement, data.start, data.end);
-
-	animateNameLocally(textElement2, data.start, data.end, txt);
-});
 
 
 //UPDATE PLAYERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
 	
 socket.on('updatePlayers', function (updatedPlayers) {
-//    document.addEventListener('playerNameReady', function () {
+	//document.addEventListener('playerNameReady', function () {
 	console.log('SOCKET UPDATE PLAYERS');
+	
 	 // Iterar sobre el objeto de jugadores y actualizar la información
     	for (const playerId in updatedPlayers) {
       	const player = updatedPlayers[playerId];
@@ -168,6 +134,26 @@ socket.on('updatePlayers', function (updatedPlayers) {
     	}
 	// });
   });
+	
+
+//ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
+socket.on('animateBluePoint', function (animationData) {
+	console.log('SOCKET ANIMATE BLUE POINT');
+	const playerId = animationData.playerId;
+    	const data = animationData.data;
+	const txt = animationData.playerName;
+	
+    	// Encuentra el círculo correspondiente al jugador
+    	const playerElement = document.getElementById(playerId);
+	
+   	const textElement2 = document.getElementById(playerId + '-name');
+  
+	animateCircleLocally(playerElement, data.start, data.end);
+
+	animateNameLocally(textElement2, data.start, data.end, txt);
+});	
 
 
 //ANIMATE CIRCLE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -219,14 +205,14 @@ createHexagons();
 //////////////////////////////////////////////////////////////////////	
 	
 function moveBluePoint( clickX, clickY ) {      
-
-	  //  socket.emit('updatePlayers'); // Emitir un nuevo evento al servidor
-
+	
+	//socket.emit('updatePlayers'); // Emitir un nuevo evento al servidor
 
 	if (!isMoving) { 
 	console.log('/////MOVE PLAYER//////')
   	isMoving = true  
 	drawUserCount();
+		
 	/*const closestVertex = findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
 	const destinationX = closestVertex.x;
         const destinationY = closestVertex.y;
@@ -276,8 +262,8 @@ function animateBluePoint(destinationX, destinationY) {
         if (progress < 1) {
         requestAnimationFrame(update);
         } else {
-        	// Animación completada, emitir datos al servidor
         
+	// Animación completada, emitir datos al servidor
 	socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
 		
 	findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
