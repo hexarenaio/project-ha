@@ -138,7 +138,7 @@ socket.on('assignColor', function (playerName) {
 	    //document.dispatchEvent(playerNameReadyEvent);
 
 
-
+/*
 
 
         const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -155,7 +155,7 @@ textElement2.setAttribute('id', socket.id + '-name');
     textElement2.textContent = playerName.name;
 
     hexagonGroup.appendChild(textElement2);
-
+*/
 
 	});
 	
