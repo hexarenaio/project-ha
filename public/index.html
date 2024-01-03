@@ -60,10 +60,11 @@ position: absolute;
   </style>
 </head>
 <body>
-  <form id="nameForm">
+
+   <form id="nameForm">
     <label for="playerName">Introduce tu nombre:</label>
     <input type="text" id="playerName" name="playerName" required>
-    <button type="submit">Aceptar</button>
+    <button type="button" id="submitButton">Aceptar</button>
   </form>
 
   <canvas id="gameCanvas" height="30"  style="background-color: #ff0000;"    ></canvas>
@@ -76,7 +77,7 @@ position: absolute;
     <script src="client.js" defer></script>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('submitButton').addEventListener('click', function () {
       const nameForm = document.getElementById('nameForm');
       const gameCanvas = document.getElementById('gameCanvas');
 
@@ -92,6 +93,10 @@ position: absolute;
         gameCanvas.style.display = 'block';
         hexagonGroup.style.display = 'block';
         bluePoint.style.display = 'block';
+
+
+         const socket = io();
+        socket.emit('playerNameEntered', playerName);
 
 
       });
