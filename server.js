@@ -140,6 +140,15 @@ io.on('connection', (socket) => {
 
     //   io.emit('updatePlayers', players);
 
+
+
+
+socket.on('updatePlayersRequest', () => {
+        // Realiza la acción que deseas ejecutar al recibir la solicitud de updatePlayers
+        io.emit('updatePlayers', players);
+    });
+
+
     
     //USUARIOS DESCONECTADOS
     socket.on('disconnect', () => {
