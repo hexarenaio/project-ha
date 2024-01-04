@@ -53,11 +53,10 @@ const nameForm = document.getElementById('nameForm');
 const gameCanvas = document.getElementById('gameCanvas');
 const canvas = document.getElementById('gameCanvas');
 const context = canvas.getContext('2d');
-
 const socket = io();
 
 
-// DESPUES DE INTRODUCIR EL NOMBRE
+// DESPUES DE INTRODUCIR EL NOMBRE !!!!!!!!!!!!!!!!!!!!!!!!!
 	
 document.getElementById('submitButton').addEventListener('click', function () {
 	console.log('CLIENTE EJECUTADO');
@@ -66,7 +65,7 @@ document.getElementById('submitButton').addEventListener('click', function () {
 	});
 	
 	const playerName = document.getElementById('playerName').value;
-	console.log(`Nombre jugador cliente: ${playerName}`);	    
+	console.log(`Nombre Cliente: ${playerName}`);	    
 
 	//Ocultar el formulario y mostrar el canvas
 	nameForm.style.display = 'none';
@@ -75,29 +74,16 @@ document.getElementById('submitButton').addEventListener('click', function () {
 
 	// ACTIVAR EL SERVIDOR
 	socket.emit('playerNameEntered', playerName);
-	
-	//socket.emit('assignColor', playerName);
-	});
+});
 
-	
-
-let assignedName = ''; // Variable global para almacenar el nombre asignado 
-
-const playerNameReadyEvent = new Event('playerNameReady');
-
-console.log(`Comprobar erro3r: ${playerName}`);
-
+//VARIABLES 	
   let connectedUsers = 0;
   let isMoving = false
   let FirstMove = true
   const hexagonAngle = 0.523598776; // 30 degrees in radians
-  let circleX = 250;
-  let circleY = 250;
   const players = {}; // Objeto para almacenar la información de los jugadores
   const hexagonGroup = document.getElementById('hexagonGroup');
   const bluePoint = {id: socket.id, name: '', x: 170,  y: 170,  color: 'blue', };
-  let assignedColors = 'red';
-
 
 //CIRCULO AZUL DEFINIDO
 const bluePointElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
@@ -116,17 +102,7 @@ const textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text
   textElement.setAttribute('font-size', '12px');
   textElement.textContent = 'Hola';
 	
-//GROUP ELEMENT CIRCULO Y TEXTO
-const groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-  //groupElement.appendChild(bluePointElement);
-  groupElement.appendChild(textElement);
-  if (hexagonGroup) {
-  // 	hexagonGroup.appendChild(groupElement);
-  }
-//groupElement.setAttribute('transform', `translate(${bluePoint.x},${bluePoint.y})`); 
 
-//////////////////
-	
 //CLICK LISTENER HEAGONGROUP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	
 hexagonGroup.addEventListener('click', function (event) {
@@ -149,13 +125,8 @@ socket.on('assignColor', function (playerName) {
 	console.log('SOCKET ASSIGN COLOR');
 	
     	const playerNameT = playerName.name;
-    	assignedColors = playerName.color;
-    	assignedName = playerName.name;
     	
-	console.log(`Assign Nombre: ${playerNameT}`);
-	console.log(`Asssign Color: ${assignedColors}`);
-	
-	//document.dispatchEvent(playerNameReadyEvent);
+	console.log(`Assign Nombre: ${playerNameT}`);	
 
 
 
@@ -202,7 +173,6 @@ socket.on('updatePlayers', function (updatedPlayers) {
         hexagonGroup.appendChild(textElement2);
 
 	//LOGS		
-	console.log(`NOMBREEEEEE2E: ${assignedName}`);
 	console.log(`NAAAAMEEEEE2E: ${player.nombre}`);
 	console.log(`PlayerID!!!!!: ${playerId}, ${player.color}`);
 	console.log(`Nombre Nuevo!!!!!: ${playerId}, ${player.nombre}`);
