@@ -41,7 +41,8 @@ io.on('connection', (socket) => {
 
    // assignedColors.set(socket.id, userColor);
     //assignedColors.set(socket.id, { color: userColor, name: playerName });
-    socket.emit('assignColor', { color: userColor, name: playerName });
+
+    assignedColors.set(socket.id, { color: userColor, name: playerName });
 
    
 
