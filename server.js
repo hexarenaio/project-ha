@@ -138,7 +138,7 @@ io.on('connection', (socket) => {
 
        socket.emit('assignColor', { color: userColor, name: playerName });
 
-       io.emit('updatePlayers', players);
+    //   io.emit('updatePlayers', players);
 
     
     //USUARIOS DESCONECTADOS
