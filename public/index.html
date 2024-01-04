@@ -107,12 +107,15 @@ socket.on('connect_error', (error) => {
 
 
 
-        console.log(`Comprobar error: ${playerName}`);
-
-	    
+        
       const playerName = document.getElementById('playerName').value;
 
 
+
+
+console.log(`Comprobar error: ${playerName}`);
+
+	    
 socket.emit('assignColor', playerName);
 
 
