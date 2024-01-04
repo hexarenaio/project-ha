@@ -45,7 +45,7 @@
   <script>
 	  
 // COMIENZA EL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-///////////////////////////////////////////////////////////////
+// CLIENT /////////////////////////////////////////////////////
 	  
 document.addEventListener('DOMContentLoaded', function () {
 	
@@ -56,27 +56,28 @@ const context = canvas.getContext('2d');
 
 const socket = io();
 
+
+// DESPUES DE INTRODUCIR EL NOMBRE
 	
-
-// Agregar el evento 'click' al botón
 document.getElementById('submitButton').addEventListener('click', function () {
-socket.on('connect_error', (error) => {
-    console.error('Error de conexión:', error);
-});
-const playerName = document.getElementById('playerName').value;
-console.log(`Comprobar error: ${playerName}`);	    
-console.log('CLIENTE EJECUTADO');
-// Ocultar el formulario y mostrar el canvas
-nameForm.style.display = 'none';
-gameCanvas.style.display = 'block';
-hexagonGroup.style.display = 'block';
-//bluePoint.style.display = 'block';
-// Emitir el evento 'playerNameEntered' al servidor
-socket.emit('playerNameEntered', playerName);
-socket.emit('assignColor', playerName);
+	console.log('CLIENTE EJECUTADO');
+	socket.on('connect_error', (error) => {
+    	console.error('Error de conexión:', error);
+	});
+	
+	const playerName = document.getElementById('playerName').value;
+	console.log(`Nombre jugador cliente: ${playerName}`);	    
 
-console.log(`Comprobar error2: ${playerName}`);
-});
+	//Ocultar el formulario y mostrar el canvas
+	nameForm.style.display = 'none';
+	gameCanvas.style.display = 'block';
+	hexagonGroup.style.display = 'block';
+
+	// ACTIVAR EL SERVIDOR
+	socket.emit('playerNameEntered', playerName);
+	
+	//socket.emit('assignColor', playerName);
+	});
 
 	
 
