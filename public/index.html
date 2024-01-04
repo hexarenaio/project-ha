@@ -558,6 +558,41 @@ function createHexagons() {
     }
    
     //CODE END////////////////////////////////////////
+
+
+
+function drawVerticesOnHexagons() {
+  const hexagons = document.querySelectorAll('#hexagonGroup polygon');
+
+  hexagons.forEach((hexagon) => {
+    const points = hexagon.getAttribute('points').split(' ');
+
+    points.forEach((point) => {
+      const [x, y] = point.split(',').map(Number);
+
+
+
+console.log(' Vértice (${x}, ${y})');
+   
+
+    });
+  });
+}
+
+
+drawVerticesOnHexagons();
+
+
+
+
+
+
+
+
+
+
+
+
     /////////////////////////////////////////////////
 	
 	 
