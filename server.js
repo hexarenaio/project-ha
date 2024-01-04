@@ -21,7 +21,6 @@ io.on('connection', (socket) => {
 
 
     socket.on('playerNameEntered', (playerName) => {
-        socket.emit('assignColor', { color: userColor, name: playerName });
 
         console.log(`Nombre del jugador introducido: ${playerName}`);
 
@@ -42,6 +41,7 @@ io.on('connection', (socket) => {
 
    // assignedColors.set(socket.id, userColor);
     //assignedColors.set(socket.id, { color: userColor, name: playerName });
+    socket.emit('assignColor', { color: userColor, name: playerName });
 
    
 
