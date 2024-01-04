@@ -65,7 +65,6 @@ socket.on('connect_error', (error) => {
 });
 const playerName = document.getElementById('playerName').value;
 console.log(`Comprobar error: ${playerName}`);	    
-socket.emit('assignColor', playerName);
 console.log('CLIENTE EJECUTADO');
 // Ocultar el formulario y mostrar el canvas
 nameForm.style.display = 'none';
@@ -74,6 +73,8 @@ hexagonGroup.style.display = 'block';
 //bluePoint.style.display = 'block';
 // Emitir el evento 'playerNameEntered' al servidor
 socket.emit('playerNameEntered', playerName);
+socket.emit('assignColor', playerName);
+
 console.log(`Comprobar error2: ${playerName}`);
 });
 
