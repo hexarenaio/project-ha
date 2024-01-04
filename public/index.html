@@ -203,6 +203,10 @@ socket.on('assignColor', function (playerName) {
 	console.log(`Asssign Color: ${assignedColors}`);
 	
 	//document.dispatchEvent(playerNameReadyEvent);
+
+
+
+socket.emit('updatePlayersRequest');
 	
 	});
 
