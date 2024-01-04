@@ -1,7 +1,6 @@
 const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
-
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
@@ -19,14 +18,13 @@ app.use(express.static('public'));
 
 io.on('connection', (socket) => {
 
-
+    //CONFIRMATION NOMBRE PARA INICIAR SERVER
     socket.on('playerNameEntered', (playerName) => {
 
-        console.log(`Nombre del jugador introducido: ${playerName}`);
+        console.log(`Nombre jugador Server: ${playerName}`);
 
-    
 //START SOCKET CONNECTION ///////    ///////    ///////  ///////    ///////    ///////    ///////    ///////    ///////    
-    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    
+///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    
 
  
     //USUARIOS CONECTADOS
@@ -35,80 +33,39 @@ io.on('connection', (socket) => {
     connectedUsers.add(socket.id);
     io.emit('userCount', connectedUsers.size);
 
-    const colorsArray = Array.from(availableColors); // Convierte el conjunto a un array para obtener un índice
+    //OBTENER COLOR PARA JUGADOR    
+    const colorsArray = Array.from(availableColors);
     const userColor = colorsArray[colorIndex % colorsArray.length];
     colorIndex++;
-
-   // assignedColors.set(socket.id, userColor);
-    //assignedColors.set(socket.id, { color: userColor, name: playerName });
-
     assignedColors.set(socket.id, { color: userColor, name: playerName });
-
-   
-
 
 /////////ASSIGNED COLOR///////////////
 
-
-
-
- socket.on('assignColor', function (playerName) {
-
+socket.on('assignColor', function (playerName) {
         const userColor = colorsArray[colorIndex % colorsArray.length];
-
         colorIndex++;
-
         assignedColors.set(socket.id, { color: userColor, name: playerName });
-
-        console.log(`Jugador ${playerName} conectado. Color asignado: ${userColor}: ${assignedColors.get(socket.id)}`);
-        
-       
-    // Envía una respuesta al cliente con el nombre asignado y el color
-
-
-
-
-
-
-       socket.emit('assignColor', { color: userColor, name: playerName });
-       
-       io.emit('updatePlayers', players);
-
-
-    });
-
-
+        console.log(`Jugador ${playerName} conectado. Color asignado: ${userColor}: ${assignedColors.get(socket.id)}`); 
+        //Envía una respuesta al cliente con el nombre asignado y el color
+        socket.emit('assignColor', { color: userColor, name: playerName });
+        io.emit('updatePlayers', players);
+});
 
 ///////////!!!!!!!!!!!!!//////////////////
-
-
 
     console.log(`Color asignado a ${socket.id}: ${assignedColors.get(socket.id)}`);
 
 //    socket.emit('assignColor', assignedColors.get(socket.id));
 
 
-  //  const assignedColorInfo = assignedColors.get(socket.id);
-    const assignedColorInfo = assignedColors.get(socket.id) || { color: 'defaultColor', name: 'defaultName' };
-
-
     players[socket.id] = {
     //x: Math.random() * 500,
-  //  y: Math.random() * 500,
-        x: 200,
-        y: 200,
-       color: assignedColors.get(socket.id).color,
-       nombre: assignedColors.get(socket.id).name,
-       // nombre: 'nene',
-
-    //    color: assignedColorInfo.color,
-    //    nombre: assignedColorInfo.name,
-    
-
+    //y: Math.random() * 500,
+    x: 200,
+    y: 200,
+    color: assignedColors.get(socket.id).color,
+    nombre: assignedColors.get(socket.id).name,
     };
-    // console.log(`NOMBRE NUEVO a ${socket.id}: ${assignedColorInfo.name}`);
-//    console.log(`NOMBRE NUEVO2 a ${socket.id}: ${assignedColors.get(socket.id).name}`);
-  //  console.error(`Error: No se encontró información de color para el socket ID ${socket.id}`);
 
 //    io.emit('updatePlayers', players); // Envía la información de los jugadores a todos los clientes
 
@@ -116,8 +73,6 @@ io.on('connection', (socket) => {
     // Actualiza la posición del jugador en el servidor
     players[socket.id].x = position.x;
     players[socket.id].y = position.y;
-    //NUEVO PRUEBA
-   // players[socket.id].color = position.assignedColors.get(socket.id);
     // Emite la actualización a todos los clientes
     //io.emit('updatePlayers', players);
     socket.emit('updatePlayers', { [socket.id]: players[socket.id] });
@@ -136,21 +91,15 @@ io.on('connection', (socket) => {
        // io.emit('updatePlayers', players);
     });
 
-
-
-
        socket.emit('assignColor', { color: userColor, name: playerName });
 
     //   io.emit('updatePlayers', players);
-
-
 
 
 socket.on('updatePlayersRequest', () => {
         // Realiza la acción que deseas ejecutar al recibir la solicitud de updatePlayers
         io.emit('updatePlayers', players);
     });
-
 
     
     //USUARIOS DESCONECTADOS
@@ -165,7 +114,7 @@ socket.on('updatePlayersRequest', () => {
 
 
 //END SOCKET CONNECTION////////////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////   
-    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    
+///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    ///////    
 
         });
 });
