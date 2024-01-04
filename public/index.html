@@ -6,165 +6,89 @@
   <title>Mi Juego Multijugador</title>
   <style>
     body {
-      margin: 0;
-      display: flex;
-      /*
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-
-overflow: hidden;
-
-
-
-      */
-
-
- 
-
-      background-color: #0000FF;
-    }
+      	margin: 0;
+	display: flex;
+	background-color: #0000FF; }
     form {
-      text-align: center;
-    }
+      	text-align: center; }
     #gameCanvas {
-
-
-top: 0;
-  left: 0;
-  width: 100vw; /* Ancho del 100% del viewport */
-  
-
-position: absolute;
-
-
-
-      display: none; /* Ocultar el canvas inicialmente */
-    }
+	top: 0;
+  	left: 0;
+  	width: 100vw;
+	position: absolute;
+	display: none; }
     #hexagonGroup {
-
-
-
-top: 40;
-  left: 0;
-  width: 100vw; /* Ancho del 100% del viewport */
-  height: 100vh;
-
-position: absolute;
-
-      display: none; /* Ocultar inicialmente */
-    }
+	top: 40;
+  	left: 0;
+  	width: 100vw;
+  	height: 100vh;
+	position: absolute;
+      	display: none; }
     #bluePoint {
-      display: none; /* Ocultar inicialmente */
-    }
+      display: none; /* Ocultar inicialmente */ }
   </style>
 </head>
 <body>
 
-   <form id="nameForm">
+  <form id="nameForm">
     <label for="playerName">Introduce tu nombre:</label>
     <input type="text" id="playerName" name="playerName" required>
     <button type="button" id="submitButton">Aceptar</button>
   </form>
 
-	
-
-
-	
-
-  <canvas id="gameCanvas" height="30"  style="background-color: #ff0000;"    ></canvas>
-<svg id="hexagonGroup" style="background-color: #ffffff;" ></svg>
+  <canvas id="gameCanvas" height="30"  style="background-color: #ff0000;"></canvas>
+  <svg id="hexagonGroup" style="background-color: #ffffff;" ></svg>
   <circle id="bluePoint" cx="170" cy="170" r="8" fill="blue" />
 
-
-  
   <script src="/socket.io/socket.io.js"></script>
-    
-
-
-
-
-
-	  
+    	  
   <script>
- document.addEventListener('DOMContentLoaded', function () {
-    const nameForm = document.getElementById('nameForm');
-    const gameCanvas = document.getElementById('gameCanvas');
+	  
+// COMIENZA EL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+///////////////////////////////////////////////////////////////
+	  
+document.addEventListener('DOMContentLoaded', function () {
+	
+const nameForm = document.getElementById('nameForm');
+const gameCanvas = document.getElementById('gameCanvas');
 const canvas = document.getElementById('gameCanvas');
-  const context = canvas.getContext('2d');
+const context = canvas.getContext('2d');
 
-    const socket = io();
+const socket = io();
 
-    // Agregar el evento 'click' al botón
-    document.getElementById('submitButton').addEventListener('click', function () {
-
-
-
+// Agregar el evento 'click' al botón
+document.getElementById('submitButton').addEventListener('click', function () {
 
 socket.on('connect_error', (error) => {
     console.error('Error de conexión:', error);
 });
 
-
-
-        
-      const playerName = document.getElementById('playerName').value;
-
-
-
+const playerName = document.getElementById('playerName').value;
 
 console.log(`Comprobar error: ${playerName}`);
-
 	    
 socket.emit('assignColor', playerName);
 
-
-
 console.log('CLIENTE EJECUTADO');
     
-	      
-  let assignedName = ''; // Variable global para almacenar el nombre asignado 
+let assignedName = ''; // Variable global para almacenar el nombre asignado 
 
+// Ocultar el formulario y mostrar el canvas
+nameForm.style.display = 'none';
+gameCanvas.style.display = 'block';
+hexagonGroup.style.display = 'block';
+//bluePoint.style.display = 'block';
 
-
-
-
-      // Ocultar el formulario y mostrar el canvas
-      nameForm.style.display = 'none';
-      gameCanvas.style.display = 'block';
-      hexagonGroup.style.display = 'block';
-    //  bluePoint.style.display = 'block';
-
-      // Emitir el evento 'playerNameEntered' al servidor
-      socket.emit('playerNameEntered', playerName);
-
-
+// Emitir el evento 'playerNameEntered' al servidor
+socket.emit('playerNameEntered', playerName);
 
 console.log(`Comprobar error2: ${playerName}`);
 
-/*
+});
 
-      // Escuchar el evento 'playerNameAssigned' del servidor
-      socket.on('playerNameAssigned', (assignedName) => {
-        console.log(`Nombre del jugador asignado: ${assignedName}`);
-        // Puedes realizar acciones adicionales si es necesario
-      });
-    });
-
-*/
-
-
-    });
-
-
-	 /////////
 const playerNameReadyEvent = new Event('playerNameReady');
 
-
-
 console.log(`Comprobar erro3r: ${playerName}`);
-
-	    
 
   let connectedUsers = 0;
   let isMoving = false
@@ -669,28 +593,10 @@ function createHexagons() {
     //CODE END////////////////////////////////////////
     /////////////////////////////////////////////////
 	
-
-	 /////////
-
-
-
-
-
-    
-
 	 
   });
+	  
   </script>
-
-
-
-
-
-
-
-
-
-
 
 	  
 </body>
