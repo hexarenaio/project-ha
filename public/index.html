@@ -104,9 +104,17 @@ const canvas = document.getElementById('gameCanvas');
 socket.on('connect_error', (error) => {
     console.error('Error de conexión:', error);
 });
+
+
+
+        console.log(`Comprobar error: ${playerName}`);
+
 	    
       const playerName = document.getElementById('playerName').value;
+
+
 socket.emit('assignColor', playerName);
+
 
 
 console.log('CLIENTE EJECUTADO');
@@ -126,6 +134,12 @@ console.log('CLIENTE EJECUTADO');
 
       // Emitir el evento 'playerNameEntered' al servidor
       socket.emit('playerNameEntered', playerName);
+
+
+
+console.log(`Comprobar error2: ${playerName}`);
+
+
 
       // Escuchar el evento 'playerNameAssigned' del servidor
       socket.on('playerNameAssigned', (assignedName) => {
