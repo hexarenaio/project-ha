@@ -101,7 +101,9 @@ const canvas = document.getElementById('gameCanvas');
 
 
 
-
+socket.on('connect_error', (error) => {
+    console.error('Error de conexión:', error);
+});
 	    
       const playerName = document.getElementById('playerName').value;
 socket.emit('assignColor', playerName);
