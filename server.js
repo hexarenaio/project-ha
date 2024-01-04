@@ -49,7 +49,7 @@ io.on('connection', (socket) => {
 
 
 
- socket.on('assignColor', function (playerName, callback) {
+ socket.on('assignColor', function (playerName) {
 
         const userColor = colorsArray[colorIndex % colorsArray.length];
 
@@ -63,10 +63,7 @@ io.on('connection', (socket) => {
     // Envía una respuesta al cliente con el nombre asignado y el color
 
 
-const assignedColor = userColor;
 
-
-    callback({ playerName, assignedColor });
 
 
 
