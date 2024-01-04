@@ -21,6 +21,8 @@ io.on('connection', (socket) => {
 
 
     socket.on('playerNameEntered', (playerName) => {
+        socket.emit('assignColor', { color: userColor, name: playerName });
+
         console.log(`Nombre del jugador introducido: ${playerName}`);
 
     
