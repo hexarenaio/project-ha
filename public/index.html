@@ -56,35 +56,30 @@ const context = canvas.getContext('2d');
 
 const socket = io();
 
+	
+
 // Agregar el evento 'click' al botón
 document.getElementById('submitButton').addEventListener('click', function () {
-
 socket.on('connect_error', (error) => {
     console.error('Error de conexión:', error);
 });
-
 const playerName = document.getElementById('playerName').value;
-
-console.log(`Comprobar error: ${playerName}`);
-	    
+console.log(`Comprobar error: ${playerName}`);	    
 socket.emit('assignColor', playerName);
-
 console.log('CLIENTE EJECUTADO');
-    
-let assignedName = ''; // Variable global para almacenar el nombre asignado 
-
 // Ocultar el formulario y mostrar el canvas
 nameForm.style.display = 'none';
 gameCanvas.style.display = 'block';
 hexagonGroup.style.display = 'block';
 //bluePoint.style.display = 'block';
-
 // Emitir el evento 'playerNameEntered' al servidor
 socket.emit('playerNameEntered', playerName);
-
 console.log(`Comprobar error2: ${playerName}`);
-
 });
+
+	
+
+let assignedName = ''; // Variable global para almacenar el nombre asignado 
 
 const playerNameReadyEvent = new Event('playerNameReady');
 
