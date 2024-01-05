@@ -475,14 +475,39 @@ function createHexagons() {
 
 //GET HEXAGON POINTS///////////////////////////
 ///////////////////////////////////////////////// 
-  function getHexagonPoints2(x, y, size) {
+
+
+  function getHexagonPoints(x, y, size) {
+
+
+const randomValues = getRandomValues(1, 500, 30);
+
+console.log(randomValues);
+
+
+
 	console.log('Hexagon Points');
     	const points = [];
     	for (let i = 0; i < 6; i++) {
       		const angle = (2 * Math.PI / 6) * i;
       		const pointX = x + size * Math.cos(angle);
       		const pointY = y + size * Math.sin(angle);
-      		points.push(`${pointX},${pointY}`);
+      //		points.push(`${pointX},${pointY}`);
+
+///////////
+
+
+const coordinate = `${pointX},${pointY}`;
+    
+//console.log(`Coordenada: (${coordinate})`); 
+
+// Imprime la coordenada en consola
+   
+points.push(coordinate);
+
+
+///////////
+
     	}
     	return points.join(' ');
   }
@@ -491,27 +516,17 @@ function createHexagons() {
 
 
 
-function getHexagonPoints(x, y, size) {
-  const points = [];
 
-  for (let i = 0; i < 30; i++) {
-    const angle = (2 * Math.PI / 6) * i;
-    const pointX = x + size * Math.cos(angle);
-    const pointY = y + size * Math.sin(angle);
-    points.push(`${pointX},${pointY}`);
+function getRandomValues(min, max, count) {
+  const values = [];
+
+  for (let i = 0; i < count; i++) {
+    const randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
+    values.push(randomValue);
   }
 
-  // Imprime las 30 coordenadas aleatorias
-  points.forEach(coord => {
-    console.log(`Coordenada: (${coord})`);
-  });
-
-  return points.join(' ');
+  return values;
 }
-
-// Llama a esta función para obtener e imprimir 30 coordenadas aleatorias
-const hexagonPoints = getHexagonPoints(0, 0, 50);
-
 
 
 
