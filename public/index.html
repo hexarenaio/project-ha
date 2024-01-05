@@ -74,6 +74,21 @@ document.getElementById('submitButton').addEventListener('click', function () {
 
 	// ACTIVAR EL SERVIDOR
 	socket.emit('playerNameEntered', playerName);
+
+
+socket.on('allPlayersInfo', (allPlayers) => {
+
+
+
+console.log('ACTUALIZANDO JUGADORES');
+
+    // Actualizar la información de todos los jugadores
+    players = allPlayers;
+    // ... (otros códigos relacionados con la actualización de la interfaz gráfica)
+});
+
+
+
 });
 
 //VARIABLES 
