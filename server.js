@@ -34,7 +34,8 @@ io.on('connection', (socket) => {
     io.emit('userCount', connectedUsers.size);
 
 
-        io.emit('updatePlayers', players);
+socket.emit('allPlayersInfo', players);
+   //     io.emit('updatePlayers', players);
 
 
     //OBTENER COLOR PARA JUGADOR    
