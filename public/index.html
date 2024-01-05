@@ -312,7 +312,7 @@ function moveBluePoint( clickX, clickY ) {
 //drawRandomVerticesOnHexagons();
 
 
-drawGreenCirclesOnRandomLocations();
+
 
 	
 	//socket.emit('updatePlayers'); // Emitir un nuevo evento al servidor
@@ -519,7 +519,7 @@ function pointToPointDistance2(x1, y1, x2, y2) {
 
 //CREATE HEXAGONS///////////////////////////
 ///////////////////////////////////////////////// 
-function createHexagons() {
+function createHexagons(callback) {
 
 
 
@@ -562,7 +562,24 @@ console.log(randomV2);
       }
     }
 
+
+
+if (callback) {
+        callback();
+    }
+
   }
+
+
+createHexagons(function() {
+    console.log("createHexagons has finished executing.");
+
+
+drawGreenCirclesOnRandomLocations();
+
+});
+
+
 
 //GET HEXAGON POINTS///////////////////////////
 ///////////////////////////////////////////////// 
