@@ -171,10 +171,21 @@ socket.on('updatePlayers', function (updatedPlayers) {
 
 const existingPlayerElement = document.getElementById(playerId);
 
+
+const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+
 if (existingPlayerElement) {
+
+
     // Si existe, actualiza sus atributos
     existingPlayerElement.setAttribute('cx', player.x);
     existingPlayerElement.setAttribute('cy', player.y);
+
+
+
+textElement2.setAttribute('x', player.x);
+ 	textElement2.setAttribute('y', player.y - 8);
+
 } else {
 		
       	const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
@@ -184,15 +195,19 @@ if (existingPlayerElement) {
       	playerElement.setAttribute('cx', player.x);
       	playerElement.setAttribute('cy', player.y);
 	hexagonGroup.appendChild(playerElement);
-}
+
 
 console.log(`ID: ${playerId}, ${player.x}
 , ${player.y}`);
 
 
+
+
+
+
 	//TEXT ELEMENT
 		
-	const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+	
 	textElement2.setAttribute('id', playerId + '-name');	
 	textElement2.setAttribute('x', player.x);
  	textElement2.setAttribute('y', player.y - 8); 
@@ -201,6 +216,10 @@ console.log(`ID: ${playerId}, ${player.x}
   	textElement2.setAttribute('font-size', '14px');
 	textElement2.textContent = player.nombre;
         hexagonGroup.appendChild(textElement2);
+
+
+}
+
 
 	//LOGS		
 	console.log(`NAAAAMEEEEE2E: ${player.nombre}`);
