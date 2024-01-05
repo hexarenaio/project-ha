@@ -171,23 +171,12 @@ socket.on('updatePlayers', function (updatedPlayers) {
 
 const existingPlayerElement = document.getElementById(playerId);
 
-
-const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-
-textElement2.setAttribute('id', playerId + '-name');	
-
-
 if (existingPlayerElement) {
-
 
     // Si existe, actualiza sus atributos
     existingPlayerElement.setAttribute('cx', player.x);
     existingPlayerElement.setAttribute('cy', player.y);
 
-
-
-textElement2.setAttribute('x', player.x);
- 	textElement2.setAttribute('y', player.y - 8);
 
 } else {
 		
@@ -203,25 +192,32 @@ textElement2.setAttribute('x', player.x);
 console.log(`ID: ${playerId}, ${player.x}
 , ${player.y}`);
 
-
-
-
-
-
-	//TEXT ELEMENT
-		
-	
-	
-	textElement2.setAttribute('x', player.x);
- 	textElement2.setAttribute('y', player.y - 8); 
-  	textElement2.setAttribute('text-anchor', 'middle');
-  	textElement2.setAttribute('fill', 'green');
-  	textElement2.setAttribute('font-size', '14px');
-	textElement2.textContent = player.nombre;
-        hexagonGroup.appendChild(textElement2);
-
-
 }
+
+
+
+// Verifica si el elemento de texto ya existe
+const existingTextElement = document.getElementById(playerId + '-name');
+if (existingTextElement) {
+    // Si existe, actualiza sus atributos
+    existingTextElement.setAttribute('x', player.x);
+    existingTextElement.setAttribute('y', player.y - 8);
+    existingTextElement.textContent = player.nombre;
+} else {
+    // Si no existe, crea un nuevo elemento de texto
+    const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    textElement2.setAttribute('id', playerId + '-name');
+    textElement2.setAttribute('x', player.x);
+    textElement2.setAttribute('y', player.y - 8);
+    textElement2.setAttribute('text-anchor', 'middle');
+    textElement2.setAttribute('fill', 'green');
+    textElement2.setAttribute('font-size', '14px');
+    textElement2.textContent = player.nombre;
+    hexagonGroup.appendChild(textElement2);
+}
+
+
+
 
 
 	//LOGS		
