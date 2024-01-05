@@ -76,7 +76,8 @@ document.getElementById('submitButton').addEventListener('click', function () {
 	socket.emit('playerNameEntered', playerName);
 });
 
-//VARIABLES 	
+//VARIABLES 
+  let randomV2 = 0;	
   let connectedUsers = 0;
   let isMoving = false
   let FirstMove = true
@@ -452,9 +453,9 @@ function createHexagons() {
 
 
 
-cost randomV = printRandomValue(1, 500);
+randomV2 = printRandomValue(1, 500);
 
-console.log(randomV);
+console.log(randomV2);
 
 
     const hexagonSize = 50;
@@ -515,6 +516,13 @@ const coordinate = `${pointX},${pointY}`;
 // Imprime la coordenada en consola
    
 points.push(coordinate);
+
+
+if(randomV2 == i)
+{
+
+console.log(`Coordenada: (${coordinate})`);
+}
 
 
 ///////////
