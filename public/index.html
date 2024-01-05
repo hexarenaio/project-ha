@@ -580,12 +580,39 @@ console.log(' Vértice (${x}, ${y})');
 }
 
 
-drawVerticesOnHexagons();
+//drawVerticesOnHexagons();
 
 
 
 
+function drawRandomVerticesOnHexagons() {
+  const hexagons = document.querySelectorAll('#hexagonGroup polygon');
+  const totalPoints = 800;
+  const pointsToPrint = 30;
 
+  const selectedIndices = new Set();
+
+  while (selectedIndices.size < pointsToPrint) {
+    const randomIndex = Math.floor(Math.random() * totalPoints);
+    selectedIndices.add(randomIndex);
+  }
+
+  hexagons.forEach((hexagon) => {
+    const points = hexagon.getAttribute('points').split(' ');
+
+    points.forEach((point, index) => {
+      if (selectedIndices.has(index)) {
+        const [x, y] = point.split(',').map(Number);
+        console.log(`Vértice (${x}, ${y})`);
+      }
+    });
+  });
+}
+
+
+
+
+drawRandomVerticesOnHexagons();
 
 
 
