@@ -475,7 +475,7 @@ function createHexagons() {
 
 //GET HEXAGON POINTS///////////////////////////
 ///////////////////////////////////////////////// 
-  function getHexagonPoints(x, y, size) {
+  function getHexagonPoints2(x, y, size) {
 	console.log('Hexagon Points');
     	const points = [];
     	for (let i = 0; i < 6; i++) {
@@ -486,6 +486,46 @@ function createHexagons() {
     	}
     	return points.join(' ');
   }
+
+
+
+
+
+function getHexagonPoints(x, y, size) {
+  const coordinates = [];
+
+  for (let hexagonIndex = 0; hexagonIndex < 10; hexagonIndex++) { // Puedes ajustar el número total de hexágonos
+    for (let i = 0; i < 6; i++) {
+      const angle = (2 * Math.PI / 6) * i;
+      const pointX = x + size * Math.cos(angle);
+      const pointY = y + size * Math.sin(angle);
+
+      coordinates.push({ hexagon: hexagonIndex + 1, vertex: i + 1, x: pointX, y: pointY });
+    }
+  }
+
+  // Imprime 30 coordenadas aleatorias
+  const randomCoordinates = [];
+  while (randomCoordinates.length < 30 && coordinates.length > 0) {
+    const randomIndex = Math.floor(Math.random() * coordinates.length);
+    randomCoordinates.push(coordinates.splice(randomIndex, 1)[0]);
+  }
+
+  // Imprime las 30 coordenadas aleatorias
+  randomCoordinates.forEach(coord => {
+    console.log(`Hexágono ${coord.hexagon}, Vértice ${coord.vertex}: (${coord.x}, ${coord.y})`);
+  });
+
+  // Retorna solo los puntos del primer hexágono
+  return coordinates.slice(0, 6).map(coord => `${coord.x},${coord.y}`).join(' ');
+}
+
+// Llama a esta función para obtener e imprimir 30 coordenadas aleatorias
+const hexagonPoints = getHexagonPoints(0, 0, 50);
+
+
+
+
 
 //CONNECTED USERS////////////////////////////////
 ///////////////////////////////////////////////// 
