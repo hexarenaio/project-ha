@@ -33,6 +33,10 @@ io.on('connection', (socket) => {
     connectedUsers.add(socket.id);
     io.emit('userCount', connectedUsers.size);
 
+
+        io.emit('updatePlayers', players);
+
+
     //OBTENER COLOR PARA JUGADOR    
     const colorsArray = Array.from(availableColors);
     const userColor = colorsArray[colorIndex % colorsArray.length];
