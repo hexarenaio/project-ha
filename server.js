@@ -12,7 +12,7 @@ const availableColors = ['blue', 'red', 'green', 'purple', 'orange']; // Puedes 
 const assignedColors = new Map(); // Mapa para almacenar el color asignado a cada jugador
 let colorIndex = 0; // Índice para asignar colores a usuarios
 
-const players = {};
+let players = {};
 
 app.use(express.static('public'));
 
