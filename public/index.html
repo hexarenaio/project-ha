@@ -306,6 +306,15 @@ function moveBluePoint( clickX, clickY ) {
 	});
 		
 	findClosestRedVertexToClick( clickX, clickY);
+
+
+
+// Supongamos que newPosition es un objeto con las nuevas coordenadas
+const newPosition = { x:  destinationX , y: destinationY };
+socket.emit('updatePosition', newPosition);
+
+
+
 		
 	}
   }
@@ -337,6 +346,11 @@ function animateBluePoint(destinationX, destinationY) {
         
 	// Animación completada, emitir datos al servidor
 	socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
+
+
+
+
+
 		
 	findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
 		
