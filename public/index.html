@@ -167,6 +167,15 @@ socket.on('updatePlayers', function (updatedPlayers) {
       	const player = updatedPlayers[playerId];
 
 	//PLAYER ELEMENT 
+
+
+const existingPlayerElement = document.getElementById(playerId);
+
+if (existingPlayerElement) {
+    // Si existe, actualiza sus atributos
+    existingPlayerElement.setAttribute('cx', player.x);
+    existingPlayerElement.setAttribute('cy', player.y);
+} else {
 		
       	const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       	playerElement.setAttribute('id', playerId);
@@ -175,7 +184,7 @@ socket.on('updatePlayers', function (updatedPlayers) {
       	playerElement.setAttribute('cx', player.x);
       	playerElement.setAttribute('cy', player.y);
 	hexagonGroup.appendChild(playerElement);
-
+}
 
 console.log(`ID: ${playerId}, ${player.x}
 , ${player.y}`);
