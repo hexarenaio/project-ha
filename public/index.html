@@ -526,7 +526,7 @@ points.push(coordinate);
 if(randomV2 === i)
 {
 
-console.log(`Coordenada: (    ${pointX},${pointY}  )`);
+//console.log(`Coordenada: (    ${pointX},${pointY}  )`);
 }
 
 
@@ -720,6 +720,33 @@ function printRandomValue(min, max) {
 
 // Llama a esta función para imprimir un valor aleatorio entre 1 y 500
 //printRandomValue(1, 500);
+
+
+
+
+
+function getCoordinatesOfVertex(hexagons, targetVertexNumber) {
+  let currentVertex = 0;
+
+  for (const hexagon of hexagons) {
+    const points = hexagon.getAttribute('points').split(' ');
+
+    for (const point of points) {
+      const [x, y] = point.split(',').map(Number);
+      currentVertex++;
+
+      if (currentVertex === targetVertexNumber) {
+        console.log(`Coordenadas del vértice ${targetVertexNumber}: (${x}, ${y})`);
+        return; // Termina la función después de encontrar el vértice deseado
+      }
+    }
+  }
+
+  console.log(`No se encontraron coordenadas para el vértice ${targetVertexNumber}`);
+}
+
+// Llamada a la función con el número del vértice deseado (en este caso, 33)
+drawVerticesOnHexagons(document.querySelectorAll('#hexagonGroup polygon'), 33);
 
     /////////////////////////////////////////////////
 	
