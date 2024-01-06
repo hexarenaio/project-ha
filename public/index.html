@@ -246,6 +246,9 @@ socket.on('animateBluePoint', function (animationData) {
   
 	animateCircleLocally(playerElement, data.start, data.end);
 
+			        detectarColisiones();
+
+
 	animateNameLocally(textElement2, data.start, data.end, txt);
 });	
 
@@ -265,7 +268,6 @@ function animateCircleLocally(circleElement, start, end) {
 	circleElement.setAttribute('cx', newX);
    	circleElement.setAttribute('cy', newY);
 
-		        detectarColisiones();
 
 		
     	if (progress < 1) {
