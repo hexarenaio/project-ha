@@ -159,52 +159,35 @@ socket.emit('updatePlayersRequest');
 //////////////////////////////////////////////////////////////////////
 	
 socket.on('updatePlayers', function (updatedPlayers) {
-	//document.addEventListener('playerNameReady', function () {
+
 	console.log('SOCKET UPDATE PLAYERS');
 	
-	 // Iterar sobre el objeto de jugadores y actualizar la información
-    	for (const playerId in updatedPlayers) {
-      	const player = updatedPlayers[playerId];
+//Iterar sobre el objeto de jugadores y actualizar la información
+for (const playerId in updatedPlayers) {
+const player = updatedPlayers[playerId];
 
-	//PLAYER ELEMENT 
-
-
+//PLAYER ELEMENT 
 const existingPlayerElement = document.getElementById(playerId);
-
 if (existingPlayerElement) {
-
-    // Si existe, actualiza sus atributos
-    existingPlayerElement.setAttribute('cx', player.x);
-    existingPlayerElement.setAttribute('cy', player.y);
-
-
-} else {
-		
-      	const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+	existingPlayerElement.setAttribute('cx', player.x);
+	existingPlayerElement.setAttribute('cy', player.y);
+} else {		
+	const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       	playerElement.setAttribute('id', playerId);
       	playerElement.setAttribute('r', '9');
       	playerElement.setAttribute('fill', player.color);
       	playerElement.setAttribute('cx', player.x);
       	playerElement.setAttribute('cy', player.y);
 	hexagonGroup.appendChild(playerElement);
-
-
-console.log(`ID: ${playerId}, ${player.x}
-, ${player.y}`);
-
 }
 
-
-
-// Verifica si el elemento de texto ya existe
+//TEXT ELEMENT
 const existingTextElement = document.getElementById(playerId + '-name');
 if (existingTextElement) {
-    // Si existe, actualiza sus atributos
     existingTextElement.setAttribute('x', player.x);
     existingTextElement.setAttribute('y', player.y - 8);
-    existingTextElement.textContent = player.nombre;
+    existingTextElement.textContent = player.nombre + ' ('+ player.puntos + ')';
 } else {
-    // Si no existe, crea un nuevo elemento de texto
     const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     textElement2.setAttribute('id', playerId + '-name');
     textElement2.setAttribute('x', player.x);
@@ -212,22 +195,16 @@ if (existingTextElement) {
     textElement2.setAttribute('text-anchor', 'middle');
     textElement2.setAttribute('fill', 'green');
     textElement2.setAttribute('font-size', '14px');
-    textElement2.textContent = player.nombre;
+    textElement2.textContent = player.nombre + '(0)';
     hexagonGroup.appendChild(textElement2);
 }
 
+//LOGS		
+console.log(`PLAYER: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${player.color}`);
+console.log(`PLAYER POINTS: ${player.puntos}`);
 
-
-
-
-	//LOGS		
-	console.log(`NAAAAMEEEEE2E: ${player.nombre}`);
-	console.log(`PlayerID!!!!!: ${playerId}, ${player.color}`);
-	console.log(`Nombre Nuevo!!!!!: ${playerId}, ${player.nombre}`);
-
-    	}
-	// });
-  });
+    }
+});
 	
 
 //ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -238,15 +215,12 @@ socket.on('animateBluePoint', function (animationData) {
 	const playerId = animationData.playerId;
     	const data = animationData.data;
 	const txt = animationData.playerName;
-	
     	// Encuentra el círculo correspondiente al jugador
     	const playerElement = document.getElementById(playerId);
-	
    	const textElement2 = document.getElementById(playerId + '-name');
   
 	animateCircleLocally(playerElement, data.start, data.end);
-
-	animateNameLocally(textElement2, data.start, data.end, txt);
+	animateNameLocally(textElement2, data.start, data.end);
 });	
 
 
@@ -262,10 +236,9 @@ function animateCircleLocally(circleElement, start, end) {
     	const progress = Math.min((currentTime - startTime) / duration, 1);
 	const newX = start.x + progress * (end.x - start.x);
     	const newY = start.y + progress * (end.y - start.y);
+		
 	circleElement.setAttribute('cx', newX);
    	circleElement.setAttribute('cy', newY);
-
-
 		
     	if (progress < 1) {
       	requestAnimationFrame(update); } }
@@ -276,7 +249,7 @@ function animateCircleLocally(circleElement, start, end) {
 //ANIMATE TEXT NAME !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
 	
-function animateNameLocally(circleElement, start, end, txt) {
+function animateNameLocally(circleElement, start, end) {
 	console.log('ANIMATE CIRCLE LOCALLY');
 	const duration = 100;
   	const startTime = performance.now();
@@ -288,7 +261,6 @@ function animateNameLocally(circleElement, start, end, txt) {
 	
 	circleElement.setAttribute('x', newX);
    	circleElement.setAttribute('y', newY - 8);
-	//circleElement.textContent = txt; 
 
     	if (progress < 1) {
       	requestAnimationFrame(update); } }
@@ -298,26 +270,11 @@ function animateNameLocally(circleElement, start, end, txt) {
 //CREATE HEXAGON PANAL
 createHexagons();
 
-
-//drawRandomVerticesOnHexagons();
-
-
-
 //MOVE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////	
 	
 function moveBluePoint( clickX, clickY ) {   
 
-
-
-
-   
-//drawRandomVerticesOnHexagons();
-
-
-
-
-	
 	//socket.emit('updatePlayers'); // Emitir un nuevo evento al servidor
 
 	if (!isMoving) { 
@@ -346,12 +303,6 @@ function moveBluePoint( clickX, clickY ) {
 	});
 		
 	findClosestRedVertexToClick( clickX, clickY);
-
-
-
-
-
-
 		
 	}
   }
@@ -385,16 +336,10 @@ function animateBluePoint(destinationX, destinationY) {
 	socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
 
 
-
-
-
-		
 	findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
 		
 	console.log('Mov finalizado');
 	isMoving = false
-
-
 
 // Supongamos que newPosition es un objeto con las nuevas coordenadas
 const newPosition = { x:  newX , y: newY };
@@ -404,8 +349,6 @@ socket.emit('updatePosition', newPosition);
 
 		const playerElement = document.getElementById('nombreDeTuElementoJugador');
 detectarColisiones(bluePointElement);
-
-
 
 	}
     	}
