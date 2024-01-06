@@ -107,6 +107,18 @@ socket.on('updatePlayersRequest', () => {
         io.emit('updatePlayers', players);
     });
 
+
+    ///SISTEMA PUNTOS////////////////////
+    socket.on('greenCircleEaten', () => {
+    const playerId = socket.id;
+    players[playerId].puntos += 10; // Sumar 10 puntos por cada círculo verde comido
+   // io.emit('updateScores', { playerId, score: players[playerId].puntos, playerName: players[playerId].nombre });          
+    console.log(`Puntos actualizados : ${players[playerId].puntos}`);
+
+    });
+
+    //////////////////////    
+
     
     //USUARIOS DESCONECTADOS
     socket.on('disconnect', () => {
