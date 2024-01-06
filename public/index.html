@@ -910,7 +910,7 @@ function detectarColisiones(playerElement) {
             greenCircle.parentNode.removeChild(greenCircle);
             console.log('Colisión detectada. Círculo verde eliminado.');
 
-		socket.emit('greenCircleEaten');
+		io.emit('greenCircleEaten');
 
         }
     });
