@@ -575,8 +575,9 @@ createHexagons(function() {
     console.log("createHexagons has finished executing.");
 
 
-drawGreenCirclesOnRandomLocations();
+drawGreenCirclesOnRandomPoints();
 
+	
 });
 
 
@@ -875,6 +876,42 @@ function drawGreenCirclesOnRandomLocations() {
         hexagonGroup.appendChild(greenCircle);
     }
 }
+
+
+
+
+
+function drawGreenCirclesOnRandomPoints() {
+  const hexagons = document.querySelectorAll('#hexagonGroup polygon');
+    const svg = document.querySelector('svg');
+
+    for (let i = 0; i < 30; i++) {
+        // Selecciona un hexágono al azar
+        const randomHexagon = hexagons[Math.floor(Math.random() * hexagons.length)];
+        const points = randomHexagon.getAttribute('points').split(' ');
+
+        // Selecciona dos puntos aleatorios que conformen una línea dentro del hexágono
+        const randomPointIndex1 = Math.floor(Math.random() * points.length);
+        const randomPointIndex2 = (randomPointIndex1 + 1) % points.length;
+
+        const [x1, y1] = points[randomPointIndex1].split(',').map(Number);
+        const [x2, y2] = points[randomPointIndex2].split(',').map(Number);
+
+        // Elije un punto aleatorio entre los dos puntos seleccionados
+        const randomT = Math.random();
+        const x = x1 + randomT * (x2 - x1);
+        const y = y1 + randomT * (y2 - y1);
+
+        // Crea y agrega un círculo verde en el punto seleccionado
+        const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        greenCircle.setAttribute('cx', x);
+        greenCircle.setAttribute('cy', y);
+        greenCircle.setAttribute('r', '3');
+        greenCircle.setAttribute('fill', 'green');
+
+        svg.appendChild(greenCircle);
+    }
+}	
 
 
 
