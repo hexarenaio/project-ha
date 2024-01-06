@@ -246,9 +246,6 @@ socket.on('animateBluePoint', function (animationData) {
   
 	animateCircleLocally(playerElement, data.start, data.end);
 
-			        detectarColisiones();
-
-
 	animateNameLocally(textElement2, data.start, data.end, txt);
 });	
 
@@ -402,6 +399,9 @@ function animateBluePoint(destinationX, destinationY) {
 // Supongamos que newPosition es un objeto con las nuevas coordenadas
 const newPosition = { x:  newX , y: newY };
 socket.emit('updatePosition', newPosition);
+
+		            detectarColisiones();
+
 
 
 	}
