@@ -400,7 +400,10 @@ function animateBluePoint(destinationX, destinationY) {
 const newPosition = { x:  newX , y: newY };
 socket.emit('updatePosition', newPosition);
 
-		            detectarColisiones();
+		          //  detectarColisiones();
+
+		const playerElement = document.getElementById('nombreDeTuElementoJugador');
+detectarColisiones(bluePointElement);
 
 
 
@@ -912,7 +915,7 @@ function drawGreenCirclesOnRandomPoints() {
         const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         greenCircle.setAttribute('cx', x);
         greenCircle.setAttribute('cy', y);
-        greenCircle.setAttribute('r', '3');
+        greenCircle.setAttribute('r', '8');
         greenCircle.setAttribute('fill', 'green');
 
         svg.appendChild(greenCircle);
@@ -923,10 +926,11 @@ function drawGreenCirclesOnRandomPoints() {
 
 	//////////////////////////////////////////
 
-function detectarColisiones() {
+function detectarColisiones(playerElement) {
     // Obtener las coordenadas del círculo azul
-    const blueX = parseFloat(bluePoint.getAttribute('cx'));
-    const blueY = parseFloat(bluePoint.getAttribute('cy'));
+     const blueX = parseFloat(playerElement.getAttribute('cx'));
+    const blueY = parseFloat(playerElement.getAttribute('cy'));
+    const blueRadius = 9; // Radio del círculo azul (jugador)
 
     // Iterar sobre los círculos verdes y verificar colisiones con el círculo azul
     document.querySelectorAll('circle[fill="green"]').forEach((greenCircle) => {
@@ -934,7 +938,7 @@ function detectarColisiones() {
         const greenY = parseFloat(greenCircle.getAttribute('cy'));
 
         // Obtener los radios de los círculos
-        const blueRadius = 3; // Radio del círculo azul
+     //   const blueRadius = 9; // Radio del círculo azul
         const greenRadius = parseFloat(greenCircle.getAttribute('r'));
 
         // Calcular las coordenadas de los cuadros delimitadores
