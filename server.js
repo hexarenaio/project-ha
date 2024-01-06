@@ -70,6 +70,7 @@ socket.on('assignColor', function (playerName) {
     y: 200,
     color: assignedColors.get(socket.id).color,
     nombre: assignedColors.get(socket.id).name,
+    puntos: 0,
     };
 
 //    io.emit('updatePlayers', players); // Envía la información de los jugadores a todos los clientes
