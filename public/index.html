@@ -264,6 +264,10 @@ function animateCircleLocally(circleElement, start, end) {
     	const newY = start.y + progress * (end.y - start.y);
 	circleElement.setAttribute('cx', newX);
    	circleElement.setAttribute('cy', newY);
+
+		        detectarColisiones();
+
+		
     	if (progress < 1) {
       	requestAnimationFrame(update); } }
 	requestAnimationFrame(update);
@@ -915,7 +919,52 @@ function drawGreenCirclesOnRandomPoints() {
 
 
 
+	//////////////////////////////////////////
 
+function detectarColisiones() {
+    // Obtener las coordenadas del círculo azul
+    const blueX = parseFloat(bluePoint.getAttribute('cx'));
+    const blueY = parseFloat(bluePoint.getAttribute('cy'));
+
+    // Iterar sobre los círculos verdes y verificar colisiones con el círculo azul
+    document.querySelectorAll('circle[fill="green"]').forEach((greenCircle) => {
+        const greenX = parseFloat(greenCircle.getAttribute('cx'));
+        const greenY = parseFloat(greenCircle.getAttribute('cy'));
+
+        // Obtener los radios de los círculos
+        const blueRadius = 3; // Radio del círculo azul
+        const greenRadius = parseFloat(greenCircle.getAttribute('r'));
+
+        // Calcular las coordenadas de los cuadros delimitadores
+        const blueBoundingBox = {
+            x1: blueX - blueRadius,
+            y1: blueY - blueRadius,
+            x2: blueX + blueRadius,
+            y2: blueY + blueRadius
+        };
+
+        const greenBoundingBox = {
+            x1: greenX - greenRadius,
+            y1: greenY - greenRadius,
+            x2: greenX + greenRadius,
+            y2: greenY + greenRadius
+        };
+
+        // Verificar la colisión entre los cuadros delimitadores
+        if (
+            blueBoundingBox.x1 < greenBoundingBox.x2 &&
+            blueBoundingBox.x2 > greenBoundingBox.x1 &&
+            blueBoundingBox.y1 < greenBoundingBox.y2 &&
+            blueBoundingBox.y2 > greenBoundingBox.y1
+        ) {
+            // Eliminar el círculo verde del SVG
+            greenCircle.parentNode.removeChild(greenCircle);
+            console.log('Colisión detectada. Círculo verde eliminado.');
+        }
+    });
+
+    console.log('La detección de colisiones ha terminado.');
+}
 
 
 
