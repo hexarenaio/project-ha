@@ -99,12 +99,13 @@ document.getElementById('submitButton').addEventListener('click', function () {
 	// ACTIVAR EL SERVIDOR
 	socket.emit('playerNameEntered', playerName);
 
-socket.on('allPlayersInfo', (allPlayers) => {
+/*socket.on('allPlayersInfo', (allPlayers) => {
 console.log('ACTUALIZANDO JUGADORES');
     // Actualizar la información de todos los jugadores
     players = allPlayers;
 });
-	
+*/
+ 
 });
 
 function preventZoom(event) {
