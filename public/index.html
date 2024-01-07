@@ -887,49 +887,68 @@ function detectarColisiones(playerElement) {
     document.querySelectorAll('circle[fill="green"]').forEach((greenCircle) => {
         const greenX = parseFloat(greenCircle.getAttribute('cx'));
         const greenY = parseFloat(greenCircle.getAttribute('cy'));
-
-
-
-const playerIdN = greenCircle.getAttribute('id');
-
-
-console.log(`Colision con: (${playerIdN})`); 
-
-
         // Obtener los radios de los círculos
      //   const blueRadius = 9; // Radio del círculo azul
         const greenRadius = parseFloat(greenCircle.getAttribute('r'));
-
         // Calcular las coordenadas de los cuadros delimitadores
         const blueBoundingBox = {
             x1: blueX - blueRadius,
             y1: blueY - blueRadius,
             x2: blueX + blueRadius,
-            y2: blueY + blueRadius
-        };
-
+            y2: blueY + blueRadius };
         const greenBoundingBox = {
             x1: greenX - greenRadius,
             y1: greenY - greenRadius,
             x2: greenX + greenRadius,
-            y2: greenY + greenRadius
-        };
-
+            y2: greenY + greenRadius};
         // Verificar la colisión entre los cuadros delimitadores
         if (
             blueBoundingBox.x1 < greenBoundingBox.x2 &&
             blueBoundingBox.x2 > greenBoundingBox.x1 &&
             blueBoundingBox.y1 < greenBoundingBox.y2 &&
-            blueBoundingBox.y2 > greenBoundingBox.y1
-        ) {
+            blueBoundingBox.y2 > greenBoundingBox.y1 ) {
             // Eliminar el círculo verde del SVG
             greenCircle.parentNode.removeChild(greenCircle);
             console.log('Colisión detectada. Círculo verde eliminado.');
-
-		socket.emit('greenCircleEaten');
-
-        }
+		socket.emit('greenCircleEaten');}
     });
+
+	//DETECTAR JUGADORES
+
+document.querySelectorAll('circle').forEach((otherCircle) => {
+        const greenX = parseFloat(otherCircle.getAttribute('cx'));
+        const greenY = parseFloat(otherCircle.getAttribute('cy'));
+const playerIdN = otherCircle.getAttribute('id');
+console.log(`Colision con: (${playerIdN})`); 
+        // Obtener los radios de los círculos
+     //   const blueRadius = 9; // Radio del círculo azul
+        const greenRadius = parseFloat(otherCircle.getAttribute('r'));
+        // Calcular las coordenadas de los cuadros delimitadores
+        const blueBoundingBox = {
+            x1: blueX - blueRadius,
+            y1: blueY - blueRadius,
+            x2: blueX + blueRadius,
+            y2: blueY + blueRadius };
+        const greenBoundingBox = {
+            x1: greenX - greenRadius,
+            y1: greenY - greenRadius,
+            x2: greenX + greenRadius,
+            y2: greenY + greenRadius};
+        // Verificar la colisión entre los cuadros delimitadores
+        if (
+            blueBoundingBox.x1 < greenBoundingBox.x2 &&
+            blueBoundingBox.x2 > greenBoundingBox.x1 &&
+            blueBoundingBox.y1 < greenBoundingBox.y2 &&
+            blueBoundingBox.y2 > greenBoundingBox.y1 ) {
+            // Eliminar el círculo verde del SVG
+            greenCircle.parentNode.removeChild(otherCircle);
+            console.log('Colisión detectada. Círculo verde eliminado.');
+		socket.emit('greenCircleEaten');}
+    });
+
+
+
+	
 
     console.log('La detección de colisiones ha terminado.');
 }
