@@ -174,7 +174,14 @@ if (existingPlayerElement) {
 } else {		
 	const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       	playerElement.setAttribute('id', playerId);
-      	playerElement.setAttribute('r', '9');
+
+const sizeCalc = player.puntos * 0.1;
+
+
+      	playerElement.setAttribute('r', 9 + sizeCalc);
+
+
+
       	playerElement.setAttribute('fill', player.color);
       	playerElement.setAttribute('cx', player.x);
       	playerElement.setAttribute('cy', player.y);
