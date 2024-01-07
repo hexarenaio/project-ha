@@ -8,7 +8,9 @@ const io = socketIo(server);
 const connectedUsers = new Set();
 
 //COLORES PARA JUGADOR
-const availableColors = ['blue', 'red', 'green', 'purple', 'orange']; // Puedes agregar más colores según sea necesario
+//const availableColors = ['blue', 'red', 'green', 'purple', 'orange']; // Puedes agregar más colores según sea necesario
+const availableColors = ['blue', 'purple', 'orange', 'pink', 'yellow', 'cyan', 'teal', 'maroon', 'lime', 'brown', 'indigo', 'gray', 'gold', 'silver', 'olive', 'navy', 'magenta', 'peach', 'violet', 'turquoise', 'lavender', 'salmon', 'beige'];
+
 const assignedColors = new Map(); // Mapa para almacenar el color asignado a cada jugador
 let colorIndex = 0; // Índice para asignar colores a usuarios
 
