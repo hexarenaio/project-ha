@@ -920,6 +920,8 @@ document.querySelectorAll('circle').forEach((otherCircle) => {
         const greenY = parseFloat(otherCircle.getAttribute('cy'));
 const playerIdN = otherCircle.getAttribute('id');
 console.log(`Colision con: (${playerIdN})`); 
+	console.log(`SOCKET ID: (${socket.id})`); 
+
         // Obtener los radios de los círculos
      //   const blueRadius = 9; // Radio del círculo azul
         const greenRadius = parseFloat(otherCircle.getAttribute('r'));
@@ -941,9 +943,10 @@ console.log(`Colision con: (${playerIdN})`);
             blueBoundingBox.y1 < greenBoundingBox.y2 &&
             blueBoundingBox.y2 > greenBoundingBox.y1 ) {
             // Eliminar el círculo verde del SVG
-            otherCircle.parentNode.removeChild(otherCircle);
+          //  otherCircle.parentNode.removeChild(otherCircle);
             console.log('Colisión detectada. Círculo verde eliminado.');
-		socket.emit('greenCircleEaten');}
+		//socket.emit('greenCircleEaten');
+	}
     });
 
 
