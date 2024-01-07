@@ -5,6 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi Juego Multijugador</title>
   <style>
+
+
+
+
+@keyframes circleAnimationWithDuration {
+  from {
+    r: 3;
+  }
+  to {
+    r: 9;
+  }
+}
+
+/* Establece la duración de la animación circleAnimationWithDuration */
+.circleAnimationWithDuration {
+  animation: circleAnimationWithDuration 2s ease-in-out infinite alternate;
+}
+
+
+
     body {
       	margin: 0;
 	display: flex;
@@ -873,6 +893,11 @@ function drawGreenCirclesOnRandomLocations() {
         greenCircle.setAttribute('cy', y);
         greenCircle.setAttribute('r', '6');
         greenCircle.setAttribute('fill', 'green');
+
+
+// Añade una animación CSS para el cambio de tamaño (radio) del círculo
+greenCircle.style.animation = 'circleAnimationWithDuration 2s ease-in-out infinite alternate';
+
 
         hexagonGroup.appendChild(greenCircle);
     }
