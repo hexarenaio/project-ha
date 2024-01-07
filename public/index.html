@@ -195,7 +195,9 @@ if (existingTextElement) {
     textElement2.setAttribute('text-anchor', 'middle');
     textElement2.setAttribute('fill', 'green');
     textElement2.setAttribute('font-size', '14px');
-    textElement2.textContent = player.nombre + '(0)';
+    textElement2.textContent = 
+player.nombre + ' ('+ player.puntos + ')';
+
     hexagonGroup.appendChild(textElement2);
 }
 
@@ -209,7 +211,7 @@ console.log(`PLAYER POINTS: ${player.puntos}`);
 
 
    
-socket.emit('greenCircleEaten');	
+//socket.emit('greenCircleEaten');	
 
 
 
