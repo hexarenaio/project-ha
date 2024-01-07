@@ -941,9 +941,9 @@ console.log(`Colision con: (${playerIdN})`);
             blueBoundingBox.y1 < greenBoundingBox.y2 &&
             blueBoundingBox.y2 > greenBoundingBox.y1 ) {
             // Eliminar el círculo verde del SVG
-            greenCircle.parentNode.removeChild(otherCircle);
+            otherCircle.parentNode.removeChild(otherCircle);
             console.log('Colisión detectada. Círculo verde eliminado.');
-		socket.emit('greenCircleEaten');}
+		//socket.emit('greenCircleEaten');}
     });
 
 
