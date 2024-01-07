@@ -919,7 +919,7 @@ document.querySelectorAll('circle').forEach((otherCircle) => {
 
 	const playerIdN = otherCircle.getAttribute('id');
 
-	if(playerIdN !== socket.id){
+if (playerIdN !== socket.id && playerIdN !== null) {
 
 	
         const greenX = parseFloat(otherCircle.getAttribute('cx'));
