@@ -11,6 +11,15 @@
 	background-color: #0000FF; }
     form {
       	text-align: center; }
+
+
+#svg-container {
+            width: 100vw; /* 100% del ancho de la ventana */
+            height: 100vh; /* 100% de la altura de la ventana */
+            overflow: auto; /* Permitir el desplazamiento cuando el contenido excede el tamaño del contenedor */
+        }
+
+
     #gameCanvas {
 	top: 0;
   	left: 0;
@@ -37,7 +46,15 @@
   </form>
 
   <canvas id="gameCanvas" height="30"  style="background-color: #ff0000;"></canvas>
+
+<div id="svg-container">
+
   <svg id="hexagonGroup" width="3000" height= "3000" style="background-color: #ffffff;" ></svg>
+
+
+
+</div>
+
   <circle id="bluePoint" cx="170" cy="170" r="8" fill="blue" />
 
   <script src="/socket.io/socket.io.js"></script>
