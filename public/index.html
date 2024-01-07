@@ -331,8 +331,7 @@ function moveBluePoint( clickX, clickY ) {
   	isMoving = true  
 	drawUserCount();
 
-
-		getTopPlayers();
+	getTopPlayers();
 		
 	/*const closestVertex = findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
 	const destinationX = closestVertex.x;
@@ -357,7 +356,7 @@ function moveBluePoint( clickX, clickY ) {
 	findClosestRedVertexToClick( clickX, clickY);
 		
 	}
-  }
+}
 
 
 //ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -383,27 +382,23 @@ function animateBluePoint(destinationX, destinationY) {
         if (progress < 1) {
         requestAnimationFrame(update);
         } else {
-        
 	// Animación completada, emitir datos al servidor
 	socket.emit('animationData', { start: { x: startX, y: startY }, end: { x: newX, y: newY } });
-
 
 	findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
 		
 	console.log('Mov finalizado');
 	isMoving = false
 
-// Supongamos que newPosition es un objeto con las nuevas coordenadas
-const newPosition = { x:  newX , y: newY };
-socket.emit('updatePosition', newPosition);
+	// Supongamos que newPosition es un objeto con las nuevas coordenadas
+	const newPosition = { x:  newX , y: newY };
+	socket.emit('updatePosition', newPosition);
 
-		          //  detectarColisiones();
-
-		const playerElement = document.getElementById('nombreDeTuElementoJugador');
-detectarColisiones(bluePointElement);
+	const playerElement = document.getElementById('nombreDeTuElementoJugador');
+	detectarColisiones(bluePointElement);
 
 	}
-    	}
+	}
 	requestAnimationFrame(update);
 }
 
@@ -521,29 +516,15 @@ function pointToPointDistance2(x1, y1, x2, y2) {
     	return Math.sqrt(dx * dx + dy * dy);
 }
 
-//CREATE HEXAGONS///////////////////////////
-///////////////////////////////////////////////// 
+//CREATE HEXAGONS///////////////////////////!!!!!!!!!!!
+///////////////////////////////////////////////// !!!!!
+
 function createHexagons(callback) {
-
-
-
-//const randomValues = getRandomValues(1, 500, 30);
-
-//console.log(randomValues);
-
-
-
-randomV2 = printRandomValue(1, 500);
-
-console.log(randomV2);
-
-
     const hexagonSize = 50;
     const numRows = 20;
     const numCols = 40;
     const hexWidth = hexagonSize * Math.sqrt(3);
     const hexHeight = hexagonSize * Math.sqrt(3);
-
     for (let row = 0; row < numRows; row++) {
       for (let col = 0; col < numCols; col++) {
         const x = col * (hexWidth * 0.87);
@@ -557,95 +538,37 @@ console.log(randomV2);
           // Agregar el manejo de clic en hexágono aquí si es necesario
         });
         hexagonGroup.appendChild(hexagon);
-
-
-
-
-
-
       }
-    }
-
-
-
+}
 if (callback) {
-        callback();
-    }
-
-  }
-
+callback(); }
+}
 
 createHexagons(function() {
-    console.log("createHexagons has finished executing.");
-
-
-drawGreenCirclesOnRandomPoints();
-
-	
+console.log("createHexagons has finished executing.");
+//DRAW GREEN RANDOM CIRCLES	
+drawGreenCirclesOnRandomPoints();	
 });
 
 
+//GET HEXAGON POINTS///////////////////////////!!!!!!!!!
+///////////////////////////////////////////////!!!!!!!!!
 
-//GET HEXAGON POINTS///////////////////////////
-///////////////////////////////////////////////// 
-
-
-  function getHexagonPoints(x, y, size) {
-
-
-
-
-
-	console.log('Hexagon Points');
-    	const points = [];
-    	for (let i = 0; i < 6; i++) {
-      		const angle = (2 * Math.PI / 6) * i;
-      		const pointX = x + size * Math.cos(angle);
-      		const pointY = y + size * Math.sin(angle);
-      //		points.push(`${pointX},${pointY}`);
-
-///////////
-
-
-const coordinate = `${pointX},${pointY}`;
-    
+function getHexagonPoints(x, y, size) {
+console.log('Hexagon Points');
+const points = [];
+for (let i = 0; i < 6; i++) {
+const angle = (2 * Math.PI / 6) * i;
+const pointX = x + size * Math.cos(angle);
+const pointY = y + size * Math.sin(angle);
+//points.push(`${pointX},${pointY}`);
+const coordinate = `${pointX},${pointY}`;   
 //console.log(`Coordenada: (${coordinate})`); 
-
 // Imprime la coordenada en consola
-   
 points.push(coordinate);
-
-
-if(randomV2 === i)
-{
-
-//console.log(`Coordenada: (    ${pointX},${pointY}  )`);
 }
-
-
-///////////
-
-    	}
-    	return points.join(' ');
-  }
-
-
-
-
-
-
-function getRandomValues(min, max, count) {
-  const values = [];
-
-  for (let i = 0; i < count; i++) {
-    const randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
-    values.push(randomValue);
-  }
-
-  return values;
+return points.join(' ');
 }
-
-
 
 
 //CONNECTED USERS////////////////////////////////
@@ -665,159 +588,65 @@ function getRandomValues(min, max, count) {
 //END CODE DOM///////////////////////////////////
 ///////////////////////////////////////////////// 
 
-	//FIND CLOSEST LINE//////////////////////////////
-    /////////////////////////////////////////////////
+//FIND CLOSEST LINE//////////////////////////////
+/////////////////////////////////////////////////
     
-	function findClosestLine(x, y) {
-
-    //console.log('1. Coordenadas Azul:', 
-  //  bluePoint.getAttribute('cx'), bluePoint.getAttribute('cy'));
-   
+function findClosestLine(x, y) {
       const lines = document.querySelectorAll('#hexagonGroup polygon');
       let closestLine = null;
       let minDistance = Infinity;
-
       lines.forEach((hexagon) => {
         const points = hexagon.getAttribute('points').split(' ');
         for (let i = 0; i < points.length; i++) {
           const [x1, y1] = points[i].split(',').map(Number);
           const [x2, y2] = points[(i + 1) % points.length].split(',').map(Number);
-
           const distance = pointToLineDistance(x, y, x1, y1, x2, y2);
           if (distance < minDistance) {
-     
             minDistance = distance;
             closestLine = { x1, y1, x2, y2 };
-          }
-        }
-      });
-
+          }}});
       return closestLine;
-    }
+}
+
    
-    //POINT TO LINE DISTANCE//////////////////////////
-    /////////////////////////////////////////////////
+//POINT TO LINE DISTANCE//////////////////////////
+/////////////////////////////////////////////////
 
-    function pointToLineDistance(x, y, x1, y1, x2, y2) {
-   
-      const A = x - x1;
-      const B = y - y1;
-      const C = x2 - x1;
-      const D = y2 - y1;
-
-      const dot = A * C + B * D;
-      const len_sq = C * C + D * D;
-      const param = dot / len_sq;
-
-      let xx, yy;
-
-      if (param < 0 || (x1 === x2 && y1 === y2)) {
-        xx = x1;
-        yy = y1;
-   
-      } else if (param > 1) {
-
-        xx = x2;
-        yy = y2;
-      } else {
-   
-        xx = x1 + param * C;
-        yy = y1 + param * D;
-      }
-
-      const dx = x - xx;
-      const dy = y - yy;
-      return Math.sqrt(dx * dx + dy * dy);
-    }
+function pointToLineDistance(x, y, x1, y1, x2, y2) {   
+const A = x - x1;
+const B = y - y1;
+const C = x2 - x1;
+const D = y2 - y1;
+const dot = A * C + B * D;
+const len_sq = C * C + D * D;
+const param = dot / len_sq;
+let xx, yy;
+if (param < 0 || (x1 === x2 && y1 === y2)) {
+xx = x1;
+yy = y1;
+} else if (param > 1) {
+xx = x2;
+yy = y2;
+} else {
+xx = x1 + param * C;
+yy = y1 + param * D;
+}
+const dx = x - xx;
+const dy = y - yy;
+return Math.sqrt(dx * dx + dy * dy);
+}
    
     //CODE END////////////////////////////////////////
 
-
-
-function drawVerticesOnHexagons() {
-  const hexagons = document.querySelectorAll('#hexagonGroup polygon');
-
-  hexagons.forEach((hexagon) => {
-    const points = hexagon.getAttribute('points').split(' ');
-
-    points.forEach((point) => {
-      const [x, y] = point.split(',').map(Number);
-
-
-
-console.log(' Vértice (${x}, ${y})');
-   
-
-    });
-  });
-}
-
-
-//drawVerticesOnHexagons();
-
-
-
-
-function drawRandomVerticesOnHexagons() {
-  const hexagons = document.querySelectorAll('#hexagonGroup polygon');
-  const totalPoints = 800;
-  const pointsToPrint = 30;
-
-  const selectedIndices = new Set();
-
-  while (selectedIndices.size < pointsToPrint) {
-    const randomIndex = Math.floor(Math.random() * totalPoints);
-    selectedIndices.add(randomIndex);
-  }
-
-  hexagons.forEach((hexagon) => {
-    const points = hexagon.getAttribute('points').split(' ');
-
-    points.forEach((point, index) => {
-      if (selectedIndices.has(index)) {
-        const [x, y] = point.split(',').map(Number);
-
-
-
-const vertexDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      vertexDot.setAttribute('cx', x);
-      vertexDot.setAttribute('cy', y);
-      vertexDot.setAttribute('r', '9');
-      vertexDot.setAttribute('fill', 'green');
-
-      hexagonGroup.appendChild(vertexDot);
-
-
-
-
-        console.log(`Vértice (${x}, ${y})`);
-      }
-    });
-  });
-}
-
-
-
-
-//drawRandomVerticesOnHexagons();
-
-
-
-
-
+//COORDS OF RANDOM VERTEX!! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
 
 function printRandomValue(min, max) {
   const randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
  return randomValue;
 }
-
-// Llama a esta función para imprimir un valor aleatorio entre 1 y 500
-//printRandomValue(1, 500);
-
-
-
-//COORDS OF RANDOM VERTEX!! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//////////////////////////////////////////////////////////////////////
+randomV2 = printRandomValue(1, 500);
+console.log(randomV2);	
 
 function getCoordinatesOfVertex(hexagons, targetVertexNumber) {
 let currentVertex = 0;
