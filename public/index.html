@@ -20,8 +20,8 @@
     #hexagonGroup {
 	top: 40;
   	left: 0;
-  	width: 3000;
-  	height: 3000;
+  	width: 100vw;
+  	height: 100vh;
 	position: absolute;
       	display: none; }
     #bluePoint {
@@ -37,7 +37,7 @@
   </form>
 
   <canvas id="gameCanvas" height="30"  style="background-color: #ff0000;"></canvas>
-  <svg id="hexagonGroup" style="background-color: #ffffff;" ></svg>
+  <svg id="hexagonGroup" width="3000" height: "3000" style="background-color: #ffffff;" ></svg>
   <circle id="bluePoint" cx="170" cy="170" r="8" fill="blue" />
 
   <script src="/socket.io/socket.io.js"></script>
