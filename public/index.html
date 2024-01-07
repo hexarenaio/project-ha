@@ -172,7 +172,7 @@ if (existingPlayerElement) {
 	existingPlayerElement.setAttribute('cx', player.x);
 	existingPlayerElement.setAttribute('cy', player.y);
 
-
+const sizeCalc = player.puntos * 0.1;
 playerElement.setAttribute('r', 9 + sizeCalc * 10);
 
 
@@ -180,7 +180,7 @@ playerElement.setAttribute('r', 9 + sizeCalc * 10);
 	const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       	playerElement.setAttribute('id', playerId);
 
-const sizeCalc = player.puntos * 0.1;
+
 
 
       	playerElement.setAttribute('r', 9);
