@@ -153,7 +153,8 @@ function addPlayer(nombre, puntos) {
     // Crea un nuevo objeto jugador.
     const nuevoJugador = {
         nombre: nombre,
-        puntos: puntos
+        puntos: puntos,
+color: color
     };
 
     // Agrega el jugador al array.
@@ -299,7 +300,7 @@ player.nombre + ' ('+ player.puntos + ')';
 console.log(`PLAYER: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${player.color}`);
 console.log(`PLAYER POINTS: ${player.puntos}`);
 
-addPlayer(player.nombre, player.puntos);
+addPlayer(player.nombre, player.puntos, player.color);
 	
 
     }
