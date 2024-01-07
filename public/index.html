@@ -148,6 +148,19 @@ function preventZoom(event) {
   const hexagonGroup = document.getElementById('hexagonGroup');
   const bluePoint = {id: socket.id, name: '', x: 170,  y: 170,  color: 'blue', };
 
+  let topaplayers = [];
+function addPlayer(nombre, puntos) {
+    // Crea un nuevo objeto jugador.
+    const nuevoJugador = {
+        nombre: nombre,
+        puntos: puntos
+    };
+
+    // Agrega el jugador al array.
+    topplayers.push(nuevoJugador);
+}
+
+
 //CIRCULO AZUL DEFINIDO
 const bluePointElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     bluePointElement.setAttribute('id', bluePoint.id);
@@ -164,7 +177,26 @@ const textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text
   textElement.setAttribute('fill', 'red');
   textElement.setAttribute('font-size', '12px');
   textElement.textContent = 'Hola';
-	
+
+/////////////////////////////////////////////////////////////////////
+
+	function getTopPlayers() {
+    // Ordena los jugadores por puntos de forma descendente.
+    const sortedPlayers = topplayers.sort((a, b) => b.puntos - a.puntos);
+
+    // Toma solo los primeros 5 jugadores.
+    const topPlayersx = sortedPlayers.slice(0, 5);
+
+    // Imprime en la consola en formato "Jugador: Puntos".
+    console.log('Top 5 jugadores:');
+    topPlayersx.forEach(topplayer => {
+        console.log(`${player.nombre}: ${player.puntos}`);
+    });
+
+    // Devuelve la lista de los mejores jugadores.
+    return topPlayersx;
+}
+
 
 //CLICK LISTENER HEAGONGROUP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	
@@ -208,6 +240,9 @@ socket.emit('updatePlayersRequest');
 socket.on('updatePlayers', function (updatedPlayers) {
 
 	console.log('SOCKET UPDATE PLAYERS');
+
+	topplayers = [];
+
 	
 //Iterar sobre el objeto de jugadores y actualizar la información
 for (const playerId in updatedPlayers) {
@@ -263,6 +298,9 @@ player.nombre + ' ('+ player.puntos + ')';
 //LOGS		
 console.log(`PLAYER: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${player.color}`);
 console.log(`PLAYER POINTS: ${player.puntos}`);
+
+addPlayer(player.nombre, player.puntos);
+	
 
     }
 });
@@ -348,6 +386,9 @@ function moveBluePoint( clickX, clickY ) {
 	console.log('/////MOVE PLAYER//////')
   	isMoving = true  
 	drawUserCount();
+
+
+		getTopPlayers();
 		
 	/*const closestVertex = findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
 	const destinationX = closestVertex.x;
