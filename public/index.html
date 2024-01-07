@@ -98,14 +98,6 @@ document.getElementById('submitButton').addEventListener('click', function () {
 
 	// ACTIVAR EL SERVIDOR
 	socket.emit('playerNameEntered', playerName);
-
-/*socket.on('allPlayersInfo', (allPlayers) => {
-console.log('ACTUALIZANDO JUGADORES');
-    // Actualizar la información de todos los jugadores
-    players = allPlayers;
-});
-*/
- 
 });
 
 function preventZoom(event) {
@@ -142,7 +134,6 @@ const bluePointElement = document.createElementNS('http://www.w3.org/2000/svg', 
 
 /////////////////////////////////////////////////////////////////////
 
-
 //CLICK LISTENER HEAGONGROUP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	
 hexagonGroup.addEventListener('click', function (event) {
@@ -155,40 +146,26 @@ hexagonGroup.addEventListener('click', function (event) {
 	if(FirstMove){		
 	FirstMove = false;
 	}
-	
 });
 
 //ASIGN COLOR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
 	
 socket.on('assignColor', function (playerName) {
-	console.log('SOCKET ASSIGN COLOR');
-	
-    	const playerNameT = playerName.name;
-    	
-	console.log(`Assign Nombre: ${playerNameT}`);	
-
-
-
+console.log('SOCKET ASSIGN COLOR');
+const playerNameT = playerName.name;
+console.log(`Assign Nombre: ${playerNameT}`);	
 socket.emit('updatePlayersRequest');
-	
-	});
-
-	//socket.emit('playerNameEntered', playerName);
-	
-		
+});
 
 
 //UPDATE PLAYERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////
 	
 socket.on('updatePlayers', function (updatedPlayers) {
+console.log('SOCKET UPDATE PLAYERS');
+topplayers = [];
 
-	console.log('SOCKET UPDATE PLAYERS');
-
-	topplayers = [];
-
-	
 //Iterar sobre el objeto de jugadores y actualizar la información
 for (const playerId in updatedPlayers) {
 const player = updatedPlayers[playerId];
@@ -196,28 +173,18 @@ const player = updatedPlayers[playerId];
 //PLAYER ELEMENT 
 const existingPlayerElement = document.getElementById(playerId);
 if (existingPlayerElement) {
-	existingPlayerElement.setAttribute('cx', player.x);
-	existingPlayerElement.setAttribute('cy', player.y);
-
+existingPlayerElement.setAttribute('cx', player.x);
+existingPlayerElement.setAttribute('cy', player.y);
 const sizeCalc = player.puntos * 0.1;
- existingPlayerElement.setAttribute('r', 9 + sizeCalc * 10);
-
-
+existingPlayerElement.setAttribute('r', 9 + sizeCalc * 10);
 } else {		
-	const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      	playerElement.setAttribute('id', playerId);
-
-
-
-
-      	playerElement.setAttribute('r', 9);
-
-
-
-      	playerElement.setAttribute('fill', player.color);
-      	playerElement.setAttribute('cx', player.x);
-      	playerElement.setAttribute('cy', player.y);
-	hexagonGroup.appendChild(playerElement);
+const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+playerElement.setAttribute('id', playerId);
+playerElement.setAttribute('r', 9);
+playerElement.setAttribute('fill', player.color);
+playerElement.setAttribute('cx', player.x);
+playerElement.setAttribute('cy', player.y);
+hexagonGroup.appendChild(playerElement);
 }
 
 //TEXT ELEMENT
@@ -249,12 +216,6 @@ addPlayer(player.nombre, player.puntos, player.color);
 
     }
 });
-
-
-
-   
-//socket.emit('greenCircleEaten');	
-
 
 
 //ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
