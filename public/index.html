@@ -916,10 +916,15 @@ function detectarColisiones(playerElement) {
 	//DETECTAR JUGADORES
 
 document.querySelectorAll('circle').forEach((otherCircle) => {
+
+	const playerIdN = otherCircle.getAttribute('id');
+
+	if(playerIdN !== socket.id){
+
+	
         const greenX = parseFloat(otherCircle.getAttribute('cx'));
         const greenY = parseFloat(otherCircle.getAttribute('cy'));
-const playerIdN = otherCircle.getAttribute('id');
-console.log(`Colision con: (${playerIdN})`); 
+	console.log(`Colision con: (${playerIdN})`); 
 	console.log(`SOCKET ID: (${socket.id})`); 
 
         // Obtener los radios de los círculos
@@ -950,7 +955,7 @@ console.log(`Colision con: (${playerIdN})`);
     });
 
 
-
+}
 	
 
     console.log('La detección de colisiones ha terminado.');
