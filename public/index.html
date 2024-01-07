@@ -19,7 +19,7 @@
             overflow: auto;
 
 
-touch-action: none;
+
 
  /* Permitir el desplazamiento cuando el contenido excede el tamaño del contenedor */
         }
@@ -52,7 +52,7 @@ touch-action: none;
 
   <canvas id="gameCanvas" height="30"  style="background-color: #ff0000;"></canvas>
 
-<div id="svg-container">
+<div id="svg-container"   ondblclick="preventZoom(event)"   >
 
   <svg id="hexagonGroup" width="3000" height= "3000" style="background-color: #ffffff;" ></svg>
 
@@ -112,6 +112,13 @@ console.log('ACTUALIZANDO JUGADORES');
 
 
 });
+
+
+
+function preventZoom(event) {
+            event.preventDefault();
+        }
+
 
 //VARIABLES 
   let randomV2 = 0;	
