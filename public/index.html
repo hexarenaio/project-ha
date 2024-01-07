@@ -171,6 +171,11 @@ const existingPlayerElement = document.getElementById(playerId);
 if (existingPlayerElement) {
 	existingPlayerElement.setAttribute('cx', player.x);
 	existingPlayerElement.setAttribute('cy', player.y);
+
+
+playerElement.setAttribute('r', 9 + sizeCalc * 10);
+
+
 } else {		
 	const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       	playerElement.setAttribute('id', playerId);
@@ -178,7 +183,7 @@ if (existingPlayerElement) {
 const sizeCalc = player.puntos * 0.1;
 
 
-      	playerElement.setAttribute('r', 9 + sizeCalc);
+      	playerElement.setAttribute('r', 9);
 
 
 
