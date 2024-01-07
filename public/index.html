@@ -3,86 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Juego Multijugador</title>
-  <style>
+  <title>Not-Hex-A</title>
+  
+<style>
+//CSS STYLE SCRITPS
 
-
-
-
+//GREEN CIRCLES ANIMATION	  
 @keyframes circleAnimationWithDuration {
-  from {
-    r: 5;
-  }
-  to {
-    r: 7;
-  }
+  from { r: 5; }  to { r: 7; }
 }
 
-
-
-
-
-
-    body {
-      	margin: 0;
-	display: flex;
-	background-color: #0000FF; }
-    form {
-      	text-align: center; }
-
+body {
+margin: 0;
+display: flex;
+background-color: #0000FF; }
+form {
+text-align: center; }
 
 #svg-container {
-            width: 100vw; /* 100% del ancho de la ventana */
-            height: 100vh; /* 100% de la altura de la ventana */
-            overflow: auto;
-
-
+width: 100vw; /* 100% del ancho de la ventana */
+height: 100vh; /* 100% de la altura de la ventana */
+overflow: auto;
 touch-action: pinch-zoom;
+}
 
- /* Permitir el desplazamiento cuando el contenido excede el tamaño del contenedor */
-        }
+#gameCanvas {
+top: 0;
+left: 0;
+width: 100vw;
+position: absolute;
+display: none; }
+    
+#hexagonGroup {
+top: 40;
+left: 0;
+width: 3000px;
+height: 3000px;
+position: absolute;
+display: none; }
+    
+#bluePoint {
+display: none; }
+  
+</style>
 
-
-    #gameCanvas {
-	top: 0;
-  	left: 0;
-  	width: 100vw;
-	position: absolute;
-	display: none; }
-    #hexagonGroup {
-	top: 40;
-  	left: 0;
-  	width: 3000px;
-  	height: 3000px;
-	position: absolute;
-      	display: none; }
-    #bluePoint {
-      display: none; /* Ocultar inicialmente */ }
-  </style>
 </head>
+
 <body>
 
-  <form id="nameForm">
+<form id="nameForm">
     <label for="playerName">Introduce tu nombre:</label>
     <input type="text" id="playerName" name="playerName" required>
     <button type="button" id="submitButton">Aceptar</button>
-  </form>
+</form>
 
-  <canvas id="gameCanvas" height="30"  style="background-color: #ff0000;"></canvas>
+<canvas id="gameCanvas" height="30" style="background-color: #ff0000;"></canvas>
 
-<div id="svg-container"   ondblclick="preventZoom(event)"   >
-
+<div id="svg-container" ondblclick="preventZoom(event)">
   <svg id="hexagonGroup" width="3000" height= "3000" style="background-color: #ffffff;" ></svg>
-
-
-
 </div>
 
-  <circle id="bluePoint" cx="170" cy="170" r="8" fill="blue" />
+<circle id="bluePoint" cx="170" cy="170" r="8" fill="blue" />
 
-  <script src="/socket.io/socket.io.js"></script>
+<script src="/socket.io/socket.io.js"></script>
     	  
-  <script>
+<script>
 	  
 // COMIENZA EL JUEGO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // CLIENT /////////////////////////////////////////////////////
@@ -94,7 +79,6 @@ const gameCanvas = document.getElementById('gameCanvas');
 const canvas = document.getElementById('gameCanvas');
 const context = canvas.getContext('2d');
 const socket = io();
-
 
 // DESPUES DE INTRODUCIR EL NOMBRE !!!!!!!!!!!!!!!!!!!!!!!!!
 	
@@ -115,52 +99,37 @@ document.getElementById('submitButton').addEventListener('click', function () {
 	// ACTIVAR EL SERVIDOR
 	socket.emit('playerNameEntered', playerName);
 
-
 socket.on('allPlayersInfo', (allPlayers) => {
-
-
-
 console.log('ACTUALIZANDO JUGADORES');
-
     // Actualizar la información de todos los jugadores
     players = allPlayers;
-    // ... (otros códigos relacionados con la actualización de la interfaz gráfica)
 });
-
-
-
+	
 });
-
-
 
 function preventZoom(event) {
-            event.preventDefault();
-        }
-
-
-//VARIABLES 
-  let randomV2 = 0;	
-  let connectedUsers = 0;
-  let isMoving = false
-  let FirstMove = true
-  const hexagonAngle = 0.523598776; // 30 degrees in radians
-  const players = {}; // Objeto para almacenar la información de los jugadores
-  const hexagonGroup = document.getElementById('hexagonGroup');
-  const bluePoint = {id: socket.id, name: '', x: 170,  y: 170,  color: 'blue', };
-
-  let topaplayers = [];
-function addPlayer(nombre, puntos) {
-    // Crea un nuevo objeto jugador.
-    const nuevoJugador = {
-        nombre: nombre,
-        puntos: puntos,
-color: color
-    };
-
-    // Agrega el jugador al array.
-    topplayers.push(nuevoJugador);
+	event.preventDefault();
 }
 
+//VARIABLES 
+let randomV2 = 0;	
+let connectedUsers = 0;
+let isMoving = false
+let FirstMove = true
+const hexagonAngle = 0.523598776; // 30 degrees in radians
+const players = {}; // Objeto para almacenar la información de los jugadores
+const hexagonGroup = document.getElementById('hexagonGroup');
+const bluePoint = {id: socket.id, name: '', x: 170,  y: 170,  color: 'blue', };
+let topaplayers = [];
+
+function addPlayer(nombre, puntos) {
+	const nuevoJugador = {
+	nombre: nombre,
+	puntos: puntos,
+	color: color
+	};
+	topplayers.push(nuevoJugador);
+}
 
 //CIRCULO AZUL DEFINIDO
 const bluePointElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
@@ -170,33 +139,7 @@ const bluePointElement = document.createElementNS('http://www.w3.org/2000/svg', 
     bluePointElement.setAttribute('cx', bluePoint.x);
     bluePointElement.setAttribute('cy', bluePoint.y);
 
-//TEXT NAME DEFINIDO
-const textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-  textElement.setAttribute('x', bluePoint.x);
-  textElement.setAttribute('y', bluePoint.y - 8 - 5); 
-  textElement.setAttribute('text-anchor', 'middle');
-  textElement.setAttribute('fill', 'red');
-  textElement.setAttribute('font-size', '12px');
-  textElement.textContent = 'Hola';
-
 /////////////////////////////////////////////////////////////////////
-
-	function getTopPlayers() {
-    // Ordena los jugadores por puntos de forma descendente.
-    const sortedPlayers = topplayers.sort((a, b) => b.puntos - a.puntos);
-
-    // Toma solo los primeros 5 jugadores.
-    const topPlayersx = sortedPlayers.slice(0, 5);
-
-    // Imprime en la consola en formato "Jugador: Puntos".
-    console.log('Top 5 jugadores:');
-    topPlayersx.forEach(topplayer => {
-        console.log(`${topplayer.nombre}: ${topplayer.puntos}`);
-    });
-
-    // Devuelve la lista de los mejores jugadores.
-    return topPlayersx;
-}
 
 
 //CLICK LISTENER HEAGONGROUP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -873,224 +816,155 @@ function printRandomValue(min, max) {
 
 
 
-
+//COORDS OF RANDOM VERTEX!! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
 
 function getCoordinatesOfVertex(hexagons, targetVertexNumber) {
-  let currentVertex = 0;
-
-  for (const hexagon of hexagons) {
-    const points = hexagon.getAttribute('points').split(' ');
-
-    for (const point of points) {
-      const [x, y] = point.split(',').map(Number);
-      currentVertex++;
-
-      if (currentVertex === targetVertexNumber) {
-        console.log(`Coordenadas del vértice ${targetVertexNumber}: (${x}, ${y})`);
-        return; // Termina la función después de encontrar el vértice deseado
-      }
-    }
-  }
-
-  console.log(`No se encontraron coordenadas para el vértice ${targetVertexNumber}`);
+let currentVertex = 0;
+for (const hexagon of hexagons) {
+const points = hexagon.getAttribute('points').split(' ');
+for (const point of points) {
+const [x, y] = point.split(',').map(Number);
+currentVertex++;
+if (currentVertex === targetVertexNumber) {
+console.log(`Coordenadas del vértice ${targetVertexNumber}: (${x}, ${y})`);
+return; // Termina la función después de encontrar el vértice deseado
+}}} console.log(`No se encontraron coordenadas para el vértice ${targetVertexNumber}`);
 }
-
-// Llamada a la función con el número del vértice deseado (en este caso, 33)
- getCoordinatesOfVertex(document.querySelectorAll('#hexagonGroup polygon'), randomV2);
+getCoordinatesOfVertex(document.querySelectorAll('#hexagonGroup polygon'), randomV2);
 
 
-
-
-
-
-
-
-
-function drawGreenCirclesOnRandomLocations() {
-    const hexagons = document.querySelectorAll('#hexagonGroup polygon');
-    const svg = document.querySelector('#hexagonGroup');
-
-    for (let i = 0; i < 30; i++) {
-        // Selecciona un hexágono al azar
-        const randomHexagon = hexagons[Math.floor(Math.random() * hexagons.length)];
-        const points = randomHexagon.getAttribute('points').split(' ');
-
-        // Selecciona dos puntos aleatorios que conformen una línea dentro del hexágono
-        const randomPointIndex1 = Math.floor(Math.random() * points.length);
-        const randomPointIndex2 = (randomPointIndex1 + 1) % points.length;
-
-        const [x1, y1] = points[randomPointIndex1].split(',').map(Number);
-        const [x2, y2] = points[randomPointIndex2].split(',').map(Number);
-
-        // Elije un punto aleatorio entre los dos puntos seleccionados
-        const randomT = Math.random();
-        const x = x1 + randomT * (x2 - x1);
-        const y = y1 + randomT * (y2 - y1);
-
-        // Crea y agrega un círculo verde en el punto seleccionado
-        const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        greenCircle.setAttribute('cx', x);
-        greenCircle.setAttribute('cy', y);
-        greenCircle.setAttribute('r', '6');
-        greenCircle.setAttribute('fill', 'green');
-
-
-// Añade una animación CSS para el cambio de tamaño (radio) del círculo
-greenCircle.style.animation = 'circleAnimationWithDuration 2s ease-in-out infinite alternate';
-
-
-        hexagonGroup.appendChild(greenCircle);
-    }
-}
-
-
-
-
+//DRAW GREEN CIRCLES RANDOM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
 
 function drawGreenCirclesOnRandomPoints() {
-  const hexagons = document.querySelectorAll('#hexagonGroup polygon');
-    const svg = document.querySelector('svg');
+const hexagons = document.querySelectorAll('#hexagonGroup polygon');
+const svg = document.querySelector('svg');
+for (let i = 0; i < 30; i++) {
+// Selecciona un hexágono al azar
+const randomHexagon = hexagons[Math.floor(Math.random() * hexagons.length)];
+const points = randomHexagon.getAttribute('points').split(' ');
 
-    for (let i = 0; i < 30; i++) {
-        // Selecciona un hexágono al azar
-        const randomHexagon = hexagons[Math.floor(Math.random() * hexagons.length)];
-        const points = randomHexagon.getAttribute('points').split(' ');
+// Selecciona dos puntos aleatorios que conformen una línea dentro del hexágono
+const randomPointIndex1 = Math.floor(Math.random() * points.length);
+const randomPointIndex2 = (randomPointIndex1 + 1) % points.length;
 
-        // Selecciona dos puntos aleatorios que conformen una línea dentro del hexágono
-        const randomPointIndex1 = Math.floor(Math.random() * points.length);
-        const randomPointIndex2 = (randomPointIndex1 + 1) % points.length;
+const [x1, y1] = points[randomPointIndex1].split(',').map(Number);
+const [x2, y2] = points[randomPointIndex2].split(',').map(Number);
 
-        const [x1, y1] = points[randomPointIndex1].split(',').map(Number);
-        const [x2, y2] = points[randomPointIndex2].split(',').map(Number);
+// Elije un punto aleatorio entre los dos puntos seleccionados
+const randomT = Math.random();
+const x = x1 + randomT * (x2 - x1);
+const y = y1 + randomT * (y2 - y1);
 
-        // Elije un punto aleatorio entre los dos puntos seleccionados
-        const randomT = Math.random();
-        const x = x1 + randomT * (x2 - x1);
-        const y = y1 + randomT * (y2 - y1);
-
-        // Crea y agrega un círculo verde en el punto seleccionado
-        const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        greenCircle.setAttribute('cx', x);
-        greenCircle.setAttribute('cy', y);
-        greenCircle.setAttribute('r', '8');
-        greenCircle.setAttribute('fill', 'green');
-
-
+// Crea y agrega un círculo verde en el punto seleccionado
+const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+greenCircle.setAttribute('cx', x);
+greenCircle.setAttribute('cy', y);
+greenCircle.setAttribute('r', '8');
+greenCircle.setAttribute('fill', 'green');
 
 greenCircle.style.animation = 'circleAnimationWithDuration 2s ease-in-out infinite alternate';
-
-
-
-        svg.appendChild(greenCircle);
-
-
-
-        console.log(`green cire: (${x}, ${y})`); 
-
-
+svg.appendChild(greenCircle);
+//console.log(`green cire: (${x}, ${y})`); 
     }
-}	
+}
+	
 
-
-
-	//////////////////////////////////////////
-
+//DETECTAR COLISION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
+	
 function detectarColisiones(playerElement) {
-    // Obtener las coordenadas del círculo azul
-     const blueX = parseFloat(playerElement.getAttribute('cx'));
-    const blueY = parseFloat(playerElement.getAttribute('cy'));
-    const blueRadius = 9; // Radio del círculo azul (jugador)
-
-    // Iterar sobre los círculos verdes y verificar colisiones con el círculo azul
-    document.querySelectorAll('circle[fill="green"]').forEach((greenCircle) => {
+	//Obtener las coordenadas del círculo azul
+	const blueX = parseFloat(playerElement.getAttribute('cx'));
+	const blueY = parseFloat(playerElement.getAttribute('cy'));
+	const blueRadius = 9; // Radio del círculo azul (jugador)
+	// Iterar sobre los círculos verdes y verificar colisiones con el círculo azul
+    	document.querySelectorAll('circle[fill="green"]').forEach((greenCircle) => {
         const greenX = parseFloat(greenCircle.getAttribute('cx'));
         const greenY = parseFloat(greenCircle.getAttribute('cy'));
         // Obtener los radios de los círculos
-     //   const blueRadius = 9; // Radio del círculo azul
         const greenRadius = parseFloat(greenCircle.getAttribute('r'));
         // Calcular las coordenadas de los cuadros delimitadores
         const blueBoundingBox = {
-            x1: blueX - blueRadius,
-            y1: blueY - blueRadius,
-            x2: blueX + blueRadius,
-            y2: blueY + blueRadius };
+        x1: blueX - blueRadius,
+        y1: blueY - blueRadius,
+        x2: blueX + blueRadius,
+        y2: blueY + blueRadius };
         const greenBoundingBox = {
-            x1: greenX - greenRadius,
-            y1: greenY - greenRadius,
-            x2: greenX + greenRadius,
-            y2: greenY + greenRadius};
+        x1: greenX - greenRadius,
+        y1: greenY - greenRadius,
+        x2: greenX + greenRadius,
+        y2: greenY + greenRadius};
         // Verificar la colisión entre los cuadros delimitadores
-        if (
-            blueBoundingBox.x1 < greenBoundingBox.x2 &&
+        if (blueBoundingBox.x1 < greenBoundingBox.x2 &&
             blueBoundingBox.x2 > greenBoundingBox.x1 &&
             blueBoundingBox.y1 < greenBoundingBox.y2 &&
             blueBoundingBox.y2 > greenBoundingBox.y1 ) {
             // Eliminar el círculo verde del SVG
             greenCircle.parentNode.removeChild(greenCircle);
             console.log('Colisión detectada. Círculo verde eliminado.');
-		socket.emit('greenCircleEaten');}
-    });
+	    socket.emit('greenCircleEaten');}
+    	});
 
-	//DETECTAR JUGADORES
-
-document.querySelectorAll('circle').forEach((otherCircle) => {
-
-	const playerIdN = otherCircle.getAttribute('id');
-
-if (playerIdN !== socket.id && playerIdN !== null) {
-
+	//COLISION DETECTAR JUGADORES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	
-        const greenX = parseFloat(otherCircle.getAttribute('cx'));
+	document.querySelectorAll('circle').forEach((otherCircle) => {
+	const playerIdN = otherCircle.getAttribute('id');
+	if (playerIdN !== socket.id && playerIdN !== null) {
+	const greenX = parseFloat(otherCircle.getAttribute('cx'));
         const greenY = parseFloat(otherCircle.getAttribute('cy'));
 	console.log(`Colision con: (${playerIdN})`); 
 	console.log(`SOCKET ID: (${socket.id})`); 
-
         // Obtener los radios de los círculos
-     //   const blueRadius = 9; // Radio del círculo azul
         const greenRadius = parseFloat(otherCircle.getAttribute('r'));
         // Calcular las coordenadas de los cuadros delimitadores
         const blueBoundingBox = {
-            x1: blueX - blueRadius,
-            y1: blueY - blueRadius,
-            x2: blueX + blueRadius,
-            y2: blueY + blueRadius };
+        x1: blueX - blueRadius,
+        y1: blueY - blueRadius,
+        x2: blueX + blueRadius,
+        y2: blueY + blueRadius };
         const greenBoundingBox = {
-            x1: greenX - greenRadius,
-            y1: greenY - greenRadius,
-            x2: greenX + greenRadius,
-            y2: greenY + greenRadius};
+        x1: greenX - greenRadius,
+        y1: greenY - greenRadius,
+        x2: greenX + greenRadius,
+        y2: greenY + greenRadius};
         // Verificar la colisión entre los cuadros delimitadores
-        if (
-            blueBoundingBox.x1 < greenBoundingBox.x2 &&
+        if (blueBoundingBox.x1 < greenBoundingBox.x2 &&
             blueBoundingBox.x2 > greenBoundingBox.x1 &&
             blueBoundingBox.y1 < greenBoundingBox.y2 &&
             blueBoundingBox.y2 > greenBoundingBox.y1 ) {
             // Eliminar el círculo verde del SVG
-          //  otherCircle.parentNode.removeChild(otherCircle);
+            //otherCircle.parentNode.removeChild(otherCircle);
             console.log('Colisión detectada. Círculo verde eliminado.');
-		//socket.emit('greenCircleEaten');
-	}
-
-		}
-    });
-
-
-
-	
-
-    console.log('La detección de colisiones ha terminado.');
+	    //socket.emit('greenCircleEaten');
+	}}});
+console.log('La detección de colisiones ha terminado.');
 }
 
-
-
-    /////////////////////////////////////////////////
+//GET TOP PLAYERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////
 	
-	 
-  });
-	  
-  </script>
+function getTopPlayers() {
+// Ordena los jugadores por puntos de forma descendente.
+const sortedPlayers = topplayers.sort((a, b) => b.puntos - a.puntos);
+// Toma solo los primeros 5 jugadores.
+const topPlayersx = sortedPlayers.slice(0, 5);
+// Imprime en la consola en formato "Jugador: Puntos".
+console.log('Top 5 jugadores:');
+topPlayersx.forEach(topplayer => {
+console.log(`${topplayer.nombre}: ${topplayer.puntos}`);
+});
+// Devuelve la lista de los mejores jugadores.
+return topPlayersx;
+}
 
-	  
+/////////////////////////////////////////////////
+//END DOM	 
+});
+//END DOM
+	
+</script>
+  
 </body>
 </html>
-
