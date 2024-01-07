@@ -888,6 +888,14 @@ function detectarColisiones(playerElement) {
         const greenX = parseFloat(greenCircle.getAttribute('cx'));
         const greenY = parseFloat(greenCircle.getAttribute('cy'));
 
+
+
+const playerIdN = greenCircle.getAttribute('playerId');
+
+
+console.log(`Colision con: (${playerIdN})`); 
+
+
         // Obtener los radios de los círculos
      //   const blueRadius = 9; // Radio del círculo azul
         const greenRadius = parseFloat(greenCircle.getAttribute('r'));
