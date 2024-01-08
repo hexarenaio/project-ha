@@ -13,6 +13,15 @@
   from { r: 5; }  to { r: 7; }
 }
 
+//Top Player Container
+.fixed-container {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 10px;
+      text-align: right;
+}
+
 body {
 margin: 0;
 display: flex;
@@ -50,6 +59,10 @@ display: none; }
 </head>
 
 <body>
+
+<div class="fixed-container" id="playersContainer">
+    <!-- El contenido se añadirá dinámicamente aquí mediante JavaScript -->
+  </div>
 
 <form id="nameForm">
     <label for="playerName">Introduce tu nombre:</label>
@@ -113,7 +126,7 @@ const hexagonAngle = 0.523598776; // 30 degrees in radians
 const players = {}; // Objeto para almacenar la información de los jugadores
 const hexagonGroup = document.getElementById('hexagonGroup');
 const bluePoint = {id: socket.id, name: '', x: 170,  y: 170,  color: 'blue', };
-let topaplayers = [];
+let topplayers = [];
 
 function addPlayer(nombre, puntos, color) {
 	const nuevoJugador = {
@@ -294,6 +307,18 @@ function moveBluePoint( clickX, clickY ) {
 	drawUserCount();
 
 	getTopPlayers();
+
+
+
+const playersContainer = document.getElementById('playersContainer');
+
+    // Recorre la variable players y agrega cada jugador al contenedor
+    topplayers.forEach(player => {
+      const playerLine = document.createElement('p');
+      playerLine.style.color = topplayera.color;
+      playerLine.textContent = topplayers.nombre;
+      playersContainer.appendChild(playerLine);
+    });
 		
 	/*const closestVertex = findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
 	const destinationX = closestVertex.x;
