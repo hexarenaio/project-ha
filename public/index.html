@@ -315,7 +315,7 @@ const playersContainer = document.getElementById('playersContainer');
     // Recorre la variable players y agrega cada jugador al contenedor
     topplayers.forEach(player => {
       const playerLine = document.createElement('p');
-      playerLine.style.color = topplayera.color;
+      playerLine.style.color = topplayers.color;
       playerLine.textContent = topplayers.nombre;
       playersContainer.appendChild(playerLine);
     });
