@@ -145,6 +145,14 @@ const hexagonGroup = document.getElementById('hexagonGroup');
 const bluePoint = {id: socket.id, name: '', x: 170,  y: 170,  color: 'blue', };
 let topplayers = [];
 
+
+let textLine1 = document.getElementById('textLine1');
+    let textLine2 = document.getElementById('textLine2');
+    let textLine3 = document.getElementById('textLine3');
+    let textLine4 = document.getElementById('textLine4');
+    let textLine5 = document.getElementById('textLine5');
+
+
 function addPlayer(nombre, puntos, color) {
 	const nuevoJugador = {
 	nombre: nombre,
@@ -326,6 +334,13 @@ function moveBluePoint( clickX, clickY ) {
 	getTopPlayers();
 
 
+
+
+textLine1.textContent = topplayers[0].nombre;
+    textLine2.textContent =topplayers[1].nombre ;
+    textLine3.textContent =   topplayers[2].nombre ;
+    textLine4.textContent = topplayers[3].nombre;
+    textLine5.textContent = topplayers[4].nombre;
 
 const playersContainer = document.getElementById('playersContainer');
 
