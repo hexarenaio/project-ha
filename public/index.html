@@ -13,6 +13,19 @@
   from { r: 5; }  to { r: 7; }
 }
 
+
+    #fixedText {
+      position: fixed;
+      top: 10px; /* Ajusta la distancia desde la parte superior según sea necesario */
+      right: 10px; /* Ajusta la distancia desde la derecha según sea necesario */
+      z-index: 999; /* Ajusta el z-index según sea necesario para estar encima de otros elementos */
+      background-color: red;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+
 //Top Player Container
 .fixed-container {
       position: fixed;
@@ -85,11 +98,18 @@ display: none; }
 
 
 
+
+
+<div id="fixedText">    
+
 <text x="10" y="20" fill="red" id="textLine1"></text>
     <text x="10" y="40" fill="blue" id="textLine2"></text>
     <text x="10" y="60" fill="green" id="textLine3"></text>
     <text x="10" y="80" fill="orange" id="textLine4"></text>
     <text x="10" y="100" fill="purple" id="textLine5"></text>
+
+
+</div>
 
 </svg>
 </div>
