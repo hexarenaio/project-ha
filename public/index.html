@@ -15,7 +15,7 @@
 
 
     #fixedText {
-      position: fixed;
+      position: absolute;
       top: 5vh; /* Ajusta la distancia desde la parte superior según sea necesario */
       right: 5vw; /* Ajusta la distancia desde la derecha según sea necesario */
       z-index: 999; /* Ajusta el z-index según sea necesario para estar encima de otros elementos */
@@ -25,6 +25,11 @@
       border-radius: 5px;
     }
 
+
+
+#mainContainer {
+      position: relative;
+    }
 
 //Top Player Container
 .fixed-container {
@@ -94,15 +99,22 @@ display: none; }
 <canvas id="gameCanvas" height="30" style="background-color: #ff0000;"></canvas>
 
 <div id="svg-container" ondblclick="preventZoom(event)">
-  <svg id="hexagonGroup" width="3000" height= "3000" style="background-color: #ffffff;" >
-
-
-
-
-</svg>
+ 
 </div>
 
 
+
+<div id="mainContainer">
+
+    <!-- Hexágono (simulación) -->
+    
+ <svg id="hexagonGroup" width="3000" height= "3000" style="background-color: #ffffff;" >
+</svg>
+
+    <!-- Texto fijo en la esquina superior derecha -->
+    
+
+  
 
 
 
@@ -113,6 +125,9 @@ display: none; }
     <text x="10" y="60" fill="green" id="textLine3"></text>
     <text x="10" y="80" fill="orange" id="textLine4"></text>
     <text x="10" y="100" fill="purple" id="textLine5"></text>
+
+
+</div>
 
 
 </div>
