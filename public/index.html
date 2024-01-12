@@ -15,14 +15,18 @@
 
 
     #fixedText {
-      position: absolute;
-      top: 5vh; /* Ajusta la distancia desde la parte superior según sea necesario */
-      right: 5vw; /* Ajusta la distancia desde la derecha según sea necesario */
-      z-index: 999; /* Ajusta el z-index según sea necesario para estar encima de otros elementos */
-      background-color: red;
-      color: white;
-      padding: 10px;
-      border-radius: 5px;
+      
+
+position: fixed;
+  top: 5vh;
+  right: 5vw;
+  z-index: 999;
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px; /* Ajusta el tamaño del texto según sea necesario */
+
     }
 
 
@@ -106,14 +110,7 @@ display: none; }
 
 <div id="mainContainer">
 
-    <!-- Hexágono (simulación) -->
     
- <svg id="hexagonGroup" width="3000" height= "3000" style="background-color: #ffffff;" >
-</svg>
-
-    <!-- Texto fijo en la esquina superior derecha -->
-    
-
   
 
 
@@ -128,6 +125,17 @@ display: none; }
 
 
 </div>
+
+
+
+
+<!-- Hexágono (simulación) -->
+    
+ <svg id="hexagonGroup" width="3000" height= "3000" style="background-color: #ffffff;" >
+</svg>
+
+    <!-- Texto fijo en la esquina superior derecha -->
+    
 
 
 </div>
