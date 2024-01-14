@@ -235,8 +235,6 @@ socket.emit('updatePlayersRequest');
 	
 socket.on('updatePlayers', function (updatedPlayers) {
 console.log('SOCKET UPDATE PLAYERS');
-//topplayers = [];
-
 //Iterar sobre el objeto de jugadores y actualizar la información
 for (const playerId in updatedPlayers) {
 const player = updatedPlayers[playerId];
@@ -272,85 +270,35 @@ if (existingTextElement) {
     textElement2.setAttribute('text-anchor', 'middle');
     textElement2.setAttribute('fill', 'green');
     textElement2.setAttribute('font-size', '16px');
-    textElement2.textContent = 
-player.nombre + ' ('+ player.puntos + ')';
-
+    textElement2.textContent = player.nombre + ' ('+ player.puntos + ')';
     hexagonGroup.appendChild(textElement2);
 }
-
 //LOGS		
 console.log(`PLAYER: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${player.color}`);
 console.log(`PLAYER POINTS: ${player.puntos}`);
-
-//addPlayer(player.nombre, player.puntos, player.color);
-
-
-	
-
     }
-
-	/*textLine1.textContent = topplayers.length >= 1 ? '#1 '+topplayers[0].nombre + ': '+topplayers[0].puntos : '';
-     textLine2.textContent = topplayers.length >= 2 ? '#2 '+ topplayers[1].nombre+ ': '+topplayers[1].puntos : '';
-     textLine3.textContent = topplayers.length >= 3 ? '#3 '+topplayers[2].nombre+ ': '+topplayers[2].puntos : '';
-      textLine4.textContent = topplayers.length >= 4 ? '#4 '+topplayers[3].nombre+ ': '+topplayers[3].puntos : '';
-     textLine5.textContent = topplayers.length >= 5 ? '#5 '+topplayers[4].nombre+ ': '+topplayers[4].puntos : '';
-*/	
-
 });
 
-	socket.on('updatePlayers2', function (updatedPlayers2) {
+//UPDATE TOP PLAYERS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//////////////////////////////////////////////////////////////////////	
+
+socket.on('updatePlayers2', function (updatedPlayers2) {
 console.log('SOCKET UPDATE PLAYERS2');
 topplayers = [];
-
 //Iterar sobre el objeto de jugadores y actualizar la información
 for (const playerId in updatedPlayers2) {
 const player = updatedPlayers2[playerId];
-
-
 //LOGS		
 console.log(`PLAYER2: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${player.color}`);
 console.log(`PLAYER POINTS2: ${player.puntos}`);
-
 addPlayer(player.nombre, player.puntos, player.color);
-
-
-	
-
     }
-
-	textLine1.textContent = topplayers.length >= 1 ? '#1 '+topplayers[0].nombre + ': '+topplayers[0].puntos : '';
-     textLine2.textContent = topplayers.length >= 2 ? '#2 '+ topplayers[1].nombre+ ': '+topplayers[1].puntos : '';
-     textLine3.textContent = topplayers.length >= 3 ? '#3 '+topplayers[2].nombre+ ': '+topplayers[2].puntos : '';
-      textLine4.textContent = topplayers.length >= 4 ? '#4 '+topplayers[3].nombre+ ': '+topplayers[3].puntos : '';
-     textLine5.textContent = topplayers.length >= 5 ? '#5 '+topplayers[4].nombre+ ': '+topplayers[4].puntos : '';
-	
-
+textLine1.textContent = topplayers.length >= 1 ? '#1 '+topplayers[0].nombre + ': '+topplayers[0].puntos : '';
+textLine2.textContent = topplayers.length >= 2 ? '#2 '+ topplayers[1].nombre+ ': '+topplayers[1].puntos : '';
+textLine3.textContent = topplayers.length >= 3 ? '#3 '+topplayers[2].nombre+ ': '+topplayers[2].puntos : '';
+textLine4.textContent = topplayers.length >= 4 ? '#4 '+topplayers[3].nombre+ ': '+topplayers[3].puntos : '';
+textLine5.textContent = topplayers.length >= 5 ? '#5 '+topplayers[4].nombre+ ': '+topplayers[4].puntos : '';
 });
-
-
-function mostrarJugadoresConectados() {
-
-let playerInfo = [];
-
-
-	socket.emit('requestPlayerInfo');
-
-// Maneja la respuesta del servidor
-socket.on('playerInfoResponse', (updatedPlayerInfo) => {
-	    playerInfo = updatedPlayerInfo;
-
-    // Ahora puedes acceder a la información de los jugadores en el cliente
-    console.log('Información de jugadores:');
-    playerInfo.forEach((player, index) => {
-        console.log(`${index + 1}. ${player.nombre} - Puntos: ${player.puntos}`);
-    });
-    // Puedes realizar cualquier acción necesaria con la información de los jugadores
-});
-
-
-}
-
-	
 
 
 //ANIMATE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
