@@ -300,13 +300,18 @@ addPlayer(player.nombre, player.puntos, player.color);
 
 
 function mostrarJugadoresConectados() {
-    console.log("Jugadores Conectados:");
-    for (const playerId in players) {
-    //    if (players.hasOwnProperty(playerId)) {
-            const jugador = players[playerId];
-            console.log(`ID: ${playerId}, Nombre: ${jugador.nombre}, Color: ${jugador.color}, Puntos: ${jugador.puntos}`);
-      //  }
-    }
+   socket.emit('requestPlayerNames');
+
+// Maneja la respuesta del servidor
+socket.on('playerNamesResponse', (playerNames) => {
+    // Ahora puedes acceder a los nombres de los jugadores en el cliente
+    console.log('Nombres de jugadores:');
+    playerNames.forEach((name, index) => {
+        console.log(`${index + 1}. ${name}`);
+    });
+    // Puedes realizar cualquier acción necesaria con los nombres de los jugadores
+});
+
 }
 
 	
