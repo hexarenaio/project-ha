@@ -56,6 +56,8 @@ socket.on('assignColor', function (playerName) {
         //Envía una respuesta al cliente con el nombre asignado y el color
         socket.emit('assignColor', { color: userColor, name: playerName });
         io.emit('updatePlayers', players);
+                    io.emit('updatePlayers2', players);
+
 });
 
 ///////////!!!!!!!!!!!!!//////////////////
