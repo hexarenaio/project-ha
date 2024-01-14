@@ -293,11 +293,25 @@ console.log(`PLAYER2: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${
 console.log(`PLAYER POINTS2: ${player.puntos}`);
 addPlayer(player.nombre, player.puntos, player.color);
     }
+
+//getTopPlayers();
+const topPlayers = getTopPlayers();
+
+/*	
 textLine1.textContent = topplayers.length >= 1 ? '#1 '+topplayers[0].nombre + ': '+topplayers[0].puntos : '';
 textLine2.textContent = topplayers.length >= 2 ? '#2 '+ topplayers[1].nombre+ ': '+topplayers[1].puntos : '';
 textLine3.textContent = topplayers.length >= 3 ? '#3 '+topplayers[2].nombre+ ': '+topplayers[2].puntos : '';
 textLine4.textContent = topplayers.length >= 4 ? '#4 '+topplayers[3].nombre+ ': '+topplayers[3].puntos : '';
 textLine5.textContent = topplayers.length >= 5 ? '#5 '+topplayers[4].nombre+ ': '+topplayers[4].puntos : '';
+*/
+textLine1.textContent = topPlayers.length >= 1 ? `#1 ${topPlayers[0].nombre}: ${topPlayers[0].puntos}` : '';
+textLine2.textContent = topPlayers.length >= 2 ? `#2 ${topPlayers[1].nombre}: ${topPlayers[1].puntos}` : '';
+textLine3.textContent = topPlayers.length >= 3 ? `#3 ${topPlayers[2].nombre}: ${topPlayers[2].puntos}` : '';
+textLine4.textContent = topPlayers.length >= 4 ? `#4 ${topPlayers[3].nombre}: ${topPlayers[3].puntos}` : '';
+textLine5.textContent = topPlayers.length >= 5 ? `#5 ${topPlayers[4].nombre}: ${topPlayers[4].puntos}` : '';
+
+	
+	
 });
 
 
@@ -379,7 +393,6 @@ function moveBluePoint( clickX, clickY ) {
   	isMoving = true  
 	drawUserCount();
 
-	getTopPlayers();
 
 //textLine1.textContent =  'bmvjk';
 
