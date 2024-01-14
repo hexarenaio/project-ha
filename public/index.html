@@ -235,7 +235,7 @@ socket.emit('updatePlayersRequest');
 	
 socket.on('updatePlayers', function (updatedPlayers) {
 console.log('SOCKET UPDATE PLAYERS');
-topplayers = [];
+//topplayers = [];
 
 //Iterar sobre el objeto de jugadores y actualizar la información
 for (const playerId in updatedPlayers) {
@@ -281,6 +281,35 @@ player.nombre + ' ('+ player.puntos + ')';
 //LOGS		
 console.log(`PLAYER: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${player.color}`);
 console.log(`PLAYER POINTS: ${player.puntos}`);
+
+//addPlayer(player.nombre, player.puntos, player.color);
+
+
+	
+
+    }
+
+	/*textLine1.textContent = topplayers.length >= 1 ? '#1 '+topplayers[0].nombre + ': '+topplayers[0].puntos : '';
+     textLine2.textContent = topplayers.length >= 2 ? '#2 '+ topplayers[1].nombre+ ': '+topplayers[1].puntos : '';
+     textLine3.textContent = topplayers.length >= 3 ? '#3 '+topplayers[2].nombre+ ': '+topplayers[2].puntos : '';
+      textLine4.textContent = topplayers.length >= 4 ? '#4 '+topplayers[3].nombre+ ': '+topplayers[3].puntos : '';
+     textLine5.textContent = topplayers.length >= 5 ? '#5 '+topplayers[4].nombre+ ': '+topplayers[4].puntos : '';
+*/	
+
+});
+
+	socket.on('updatePlayers2', function (updatedPlayers2) {
+console.log('SOCKET UPDATE PLAYERS2');
+topplayers = [];
+
+//Iterar sobre el objeto de jugadores y actualizar la información
+for (const playerId in updatedPlayers2) {
+const player = updatedPlayers2[playerId];
+
+
+//LOGS		
+console.log(`PLAYER2: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${player.color}`);
+console.log(`PLAYER POINTS2: ${player.puntos}`);
 
 addPlayer(player.nombre, player.puntos, player.color);
 
@@ -393,7 +422,7 @@ createHexagons();
 function moveBluePoint( clickX, clickY ) {   
 
 
-	mostrarJugadoresConectados();
+	//mostrarJugadoresConectados();
 
 	//socket.emit('updatePlayers'); // Emitir un nuevo evento al servidor
 
