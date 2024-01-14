@@ -874,7 +874,7 @@ const topPlayersx = sortedPlayers.slice(0, 5);
 // Imprime en la consola en formato "Jugador: Puntos".
 console.log('Top 5 jugadores:');
 topPlayersx.forEach(topplayer => {
-console.log(`${topplayer.nombre}: ${topplayer.puntos}`);
+console.log(`${topplayer.nombre}: ${topplayer.puntos}: ${topplayer.color}`);
 });
 // Devuelve la lista de los mejores jugadores.
 return topPlayersx;
