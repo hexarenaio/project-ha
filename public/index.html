@@ -300,17 +300,21 @@ addPlayer(player.nombre, player.puntos, player.color);
 
 
 function mostrarJugadoresConectados() {
-   socket.emit('requestPlayerNames');
+
+
+
+	socket.emit('requestPlayerInfo');
 
 // Maneja la respuesta del servidor
-socket.on('playerNamesResponse', (playerNames) => {
-    // Ahora puedes acceder a los nombres de los jugadores en el cliente
-    console.log('Nombres de jugadores:');
-    playerNames.forEach((name, index) => {
-        console.log(`${index + 1}. ${name}`);
+socket.on('playerInfoResponse', (playerInfo) => {
+    // Ahora puedes acceder a la información de los jugadores en el cliente
+    console.log('Información de jugadores:');
+    playerInfo.forEach((player, index) => {
+        console.log(`${index + 1}. ${player.nombre} - Puntos: ${player.puntos}`);
     });
-    // Puedes realizar cualquier acción necesaria con los nombres de los jugadores
+    // Puedes realizar cualquier acción necesaria con la información de los jugadores
 });
+
 
 }
 
