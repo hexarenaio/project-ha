@@ -15,9 +15,7 @@
 
 
     #fixedText {
-      
-
-position: fixed;
+  position: fixed;
   top: 5vh;
   right: 5vw;
   z-index: 999;
@@ -26,13 +24,8 @@ position: fixed;
   padding: 10px;
   border-radius: 5px;
   font-size: 2vw; /* Ajusta el tamaño del texto según sea necesario */
-
-
-max-width: 90%; 
-
+  max-width: 90%; 
     }
-
-
 
 #mainContainer {
       position: relative;
@@ -45,10 +38,8 @@ max-width: 90%;
       right: 0;
       padding: 10px;
       text-align: right;
-
-
-z-index: 2;
-width: 100px; /* Añade el ancho deseado */
+      z-index: 2;
+      width: 100px; /* Añade el ancho deseado */
       height: 100px; /* Añade la altura deseada */
       background-color: red; 
 }
@@ -80,7 +71,6 @@ left: 0;
 width: 100vw;
 height: 100vh;
 position: absolute;
-
 z-index: 1;
 display: none; }
     
@@ -108,21 +98,11 @@ display: none; }
 <div id="svg-container" ondblclick="preventZoom(event)">
  
 </div>
-
-
-
     
- <svg id="hexagonGroup" width="3000" height= "3000" style="background-color: #ffffff;" >
+<svg id="hexagonGroup" width="3000" height= "3000" style="background-color: #ffffff;" >
 </svg>
 
-
 <div id="mainContainer">
-
-    
-  
-
-
-
 <div id="fixedText">    
 
 <text x="10" y="20" fill="red" id="textLine1"></text>
@@ -131,19 +111,7 @@ display: none; }
     <text x="10" y="80" fill="orange" id="textLine4"></text>
     <text x="10" y="100" fill="purple" id="textLine5"></text>
 
-
 </div>
-
-
-
-
-<!-- Hexágono (simulación) -->
-
-
-    <!-- Texto fijo en la esquina superior derecha -->
-    
-
-
 </div>
 
 <circle id="bluePoint" cx="170" cy="170" r="8" fill="blue" />
@@ -386,13 +354,18 @@ function moveBluePoint( clickX, clickY ) {
 
 	getTopPlayers();
 
-
 //textLine1.textContent =  'bmvjk';
-textLine1.textContent = topplayers.length >= 1 ? '1. '+topplayers[0].nombre + ': '+topplayers[0].puntos : '';
+/*textLine1.textContent = topplayers.length >= 1 ? '1. '+topplayers[0].nombre + ': '+topplayers[0].puntos : '';
      textLine2.textContent = topplayers.length >= 2 ? topplayers[1].nombre : '';
      textLine3.textContent = topplayers.length >= 3 ? topplayers[2].nombre : '';
       textLine4.textContent = topplayers.length >= 4 ? topplayers[3].nombre : '';
      textLine5.textContent = topplayers.length >= 5 ? topplayers[4].nombre : '';
+*/
+		textLine1.textContent = 'dsaads';
+     textLine2.textContent =  'adssda';
+     textLine3.textContent = 'adsdsa';
+      textLine4.textContent = 'fff';
+     textLine5.textContent = 'qqq';
  
 
 const playersContainer = document.getElementById('playersContainer');
