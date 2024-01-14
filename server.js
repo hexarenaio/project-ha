@@ -129,7 +129,8 @@ socket.on('updatePlayersRequest', () => {
     });
 */
         socket.on('requestPlayerInfo', () => {
-    const playerInfo = Object.values(players); // Obtén la información de todos los jugadores
+            let playerInfo = [];
+     playerInfo = Object.values(players); // Obtén la información de todos los jugadores
     // Envía la información al cliente que hizo la solicitud
     socket.emit('playerInfoResponse', playerInfo);
 });
