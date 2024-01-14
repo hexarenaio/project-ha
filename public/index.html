@@ -302,10 +302,10 @@ addPlayer(player.nombre, player.puntos, player.color);
 function mostrarJugadoresConectados() {
   console.log("Jugadores Conectados:");
   for (const playerId in players) {
-    if (players.hasOwnProperty(playerId)) {
+  //  if (players.hasOwnProperty(playerId)) {
       const player = players[playerId];
       console.log(`ID: ${playerId}, Nombre: ${player.nombre}, Color: ${player.color}, Puntos: ${player.puntos}`);
-    }
+   // }
   }
 }
 	
