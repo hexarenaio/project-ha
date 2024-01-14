@@ -1,4 +1,4 @@
-.<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -367,18 +367,19 @@ function moveBluePoint( clickX, clickY ) {
 	getTopPlayers();
 
 //textLine1.textContent =  'bmvjk';
-/*textLine1.textContent = topplayers.length >= 1 ? '1. '+topplayers[0].nombre + ': '+topplayers[0].puntos : '';
-     textLine2.textContent = topplayers.length >= 2 ? topplayers[1].nombre : '';
-     textLine3.textContent = topplayers.length >= 3 ? topplayers[2].nombre : '';
-      textLine4.textContent = topplayers.length >= 4 ? topplayers[3].nombre : '';
-     textLine5.textContent = topplayers.length >= 5 ? topplayers[4].nombre : '';
-*/
-		textLine1.textContent = 'dsaads'+ '\n';
+
+textLine1.textContent = topplayers.length >= 1 ? '#1 '+topplayers[0].nombre + ': '+topplayers[0].puntos : '';
+     textLine2.textContent = topplayers.length >= 2 ? '#2 '+ topplayers[1].nombre+ ': '+topplayers[1].puntos : '';
+     textLine3.textContent = topplayers.length >= 3 ? '#3 '+topplayers[2].nombre+ ': '+topplayers[2].puntos : '';
+      textLine4.textContent = topplayers.length >= 4 ? '#4 '+topplayers[3].nombre+ ': '+topplayers[3].puntos : '';
+     textLine5.textContent = topplayers.length >= 5 ? '#5 '+topplayers[4].nombre+ ': '+topplayers[4].puntos : '';
+
+/*		textLine1.textContent = 'dsaads'+ '\n';
      textLine2.textContent =  'adssda'+ '\n';
      textLine3.textContent = 'adsdsa'+ '\n';
       textLine4.textContent = 'fff'+ '\n';
      textLine5.textContent = 'qqq'+ '\n';
-
+*/
 		
 
 const playersContainer = document.getElementById('playersContainer');
