@@ -283,9 +283,19 @@ console.log(`PLAYER: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${p
 console.log(`PLAYER POINTS: ${player.puntos}`);
 
 addPlayer(player.nombre, player.puntos, player.color);
+
+
 	
 
     }
+
+	textLine1.textContent = topplayers.length >= 1 ? '#1 '+topplayers[0].nombre + ': '+topplayers[0].puntos : '';
+     textLine2.textContent = topplayers.length >= 2 ? '#2 '+ topplayers[1].nombre+ ': '+topplayers[1].puntos : '';
+     textLine3.textContent = topplayers.length >= 3 ? '#3 '+topplayers[2].nombre+ ': '+topplayers[2].puntos : '';
+      textLine4.textContent = topplayers.length >= 4 ? '#4 '+topplayers[3].nombre+ ': '+topplayers[3].puntos : '';
+     textLine5.textContent = topplayers.length >= 5 ? '#5 '+topplayers[4].nombre+ ': '+topplayers[4].puntos : '';
+	
+
 });
 
 
@@ -368,11 +378,6 @@ function moveBluePoint( clickX, clickY ) {
 
 //textLine1.textContent =  'bmvjk';
 
-textLine1.textContent = topplayers.length >= 1 ? '#1 '+topplayers[0].nombre + ': '+topplayers[0].puntos : '';
-     textLine2.textContent = topplayers.length >= 2 ? '#2 '+ topplayers[1].nombre+ ': '+topplayers[1].puntos : '';
-     textLine3.textContent = topplayers.length >= 3 ? '#3 '+topplayers[2].nombre+ ': '+topplayers[2].puntos : '';
-      textLine4.textContent = topplayers.length >= 4 ? '#4 '+topplayers[3].nombre+ ': '+topplayers[3].puntos : '';
-     textLine5.textContent = topplayers.length >= 5 ? '#5 '+topplayers[4].nombre+ ': '+topplayers[4].puntos : '';
 
 /*		textLine1.textContent = 'dsaads'+ '\n';
      textLine2.textContent =  'adssda'+ '\n';
