@@ -121,6 +121,14 @@ socket.on('updatePlayersRequest', () => {
 
     //////////////////////    
 
+    socket.on('requestPlayerNames', () => {
+        // Obtiene solo los nombres de los jugadores
+        const playerNames = Object.values(players).map(player => player.nombre);
+        // Emite los nombres al cliente que hizo la solicitud
+        io.to(socket.id).emit('playerNamesResponse', playerNames);
+    });
+    
+
     
     //USUARIOS DESCONECTADOS
     socket.on('disconnect', () => {
