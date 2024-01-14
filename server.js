@@ -83,7 +83,7 @@ socket.on('assignColor', function (playerName) {
     players[socket.id].y = position.y;
     // Emite la actualización a todos los clientes
     //io.emit('updatePlayers', players);
-    io.emit('updatePlayers', { [socket.id]: players[socket.id] });
+    socket.emit('updatePlayers', { [socket.id]: players[socket.id] });
     });
 
     socket.on('animationData', function (data) {
