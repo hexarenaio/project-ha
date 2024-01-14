@@ -301,12 +301,15 @@ addPlayer(player.nombre, player.puntos, player.color);
 
 function mostrarJugadoresConectados() {
 
+let playerInfo = [];
 
 
 	socket.emit('requestPlayerInfo');
 
 // Maneja la respuesta del servidor
-socket.on('playerInfoResponse', (playerInfo) => {
+socket.on('playerInfoResponse', (updatedPlayerInfo) => {
+	    playerInfo = updatedPlayerInfo;
+
     // Ahora puedes acceder a la información de los jugadores en el cliente
     console.log('Información de jugadores:');
     playerInfo.forEach((player, index) => {
