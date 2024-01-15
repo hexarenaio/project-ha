@@ -653,7 +653,7 @@ callback(); }
 createHexagons(function() {
 console.log("createHexagons has finished executing.");
 //DRAW GREEN RANDOM CIRCLES	
-drawGreenCirclesOnRandomPoints();	
+//drawGreenCirclesOnRandomPoints();	
 });
 
 
@@ -904,7 +904,51 @@ console.log(`${topplayer.nombre}: ${topplayer.puntos}: ${topplayer.color}`);
 return topPlayersx;
 }
 
+
+
+	
+
+/////////PRUEBA CIRCULOS PARA TODOS VERDES?//////
+// Agrega la función para generar círculos verdes
+function generateGreenCircles() {
+    const svg = document.querySelector('svg');
+    const hexagons = document.querySelectorAll('#hexagonGroup polygon');
+
+    // Borra los círculos verdes existentes
+    document.querySelectorAll('circle[fill="green"]').forEach(circle => {
+        circle.parentNode.removeChild(circle);
+    });
+
+    // Genera 30 círculos verdes en posiciones aleatorias
+    for (let i = 0; i < 30; i++) {
+        const randomHexagon = hexagons[Math.floor(Math.random() * hexagons.length)];
+        const points = randomHexagon.getAttribute('points').split(' ');
+        const randomPointIndex = Math.floor(Math.random() * points.length);
+        const [x, y] = points[randomPointIndex].split(',').map(Number);
+
+        const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        greenCircle.setAttribute('cx', x);
+        greenCircle.setAttribute('cy', y);
+        greenCircle.setAttribute('r', '8');
+        greenCircle.setAttribute('fill', 'green');
+        svg.appendChild(greenCircle);
+    }
+
+    // Emitir evento al servidor para que lo comparta con los demás jugadores
+    socket.emit('greenCirclesGenerated');
+}
+
+
+
+
+
+	
+
 /////////////////////////////////////////////////
+
+
+
+	
 //END DOM	 
 });
 //END DOM
