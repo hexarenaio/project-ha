@@ -143,17 +143,23 @@ function generateGreenCircles() {
     for (let i = 0; i < 30; i++) {
         const position = getRandomPosition();
         greenCircles.push(position);
+
     }
+    	console.log(`LENGTH0: ${greenCircles.length}:`);
+
 }
 
 // Llamar a la función al iniciar el servidor para generar círculos iniciales
 //generateGreenCircles();
 
         socket.emit('greenCirclesGenerated', greenCircles);
+	console.log(`LENGTH1: ${greenCircles.length}:`);
 
     // Manejar la generación de nuevos círculos verdes
     socket.on('generateGreenCircles', () => {
         generateGreenCircles();
+        	console.log(`LENGTH2: ${greenCircles.length}:`);
+
     });
 
 
