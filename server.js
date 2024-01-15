@@ -56,7 +56,6 @@ socket.on('assignColor', function (playerName) {
         //Envía una respuesta al cliente con el nombre asignado y el color
         socket.emit('assignColor', { color: userColor, name: playerName });
         io.emit('updatePlayers', players);
-                    io.emit('updatePlayers2', players);
 
 });
 
@@ -99,6 +98,8 @@ socket.on('assignColor', function (playerName) {
         console.log(`Nombre del jugador asignado: ${assignedName}`);
         // Ahora puedes emitir 'updatePlayers' ya que el nombre se ha asignado
        // io.emit('updatePlayers', players);
+                            io.emit('updatePlayers2', players);
+
     });
 
        socket.emit('assignColor', { color: userColor, name: playerName });
