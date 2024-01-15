@@ -914,6 +914,8 @@ return topPlayersx;
 	let greenCircles = [];
 
 function generateGreenCircles() {
+	            console.log('GENERATE GREEN CIRCLES 1.');
+
     const svg = document.querySelector('svg');
     const hexagons = document.querySelectorAll('#hexagonGroup polygon');
 
@@ -924,6 +926,8 @@ function generateGreenCircles() {
 
     // Dibuja los círculos verdes en las coordenadas recibidas del servidor
     greenCircles.forEach(({ x, y }) => {
+console.log(`${x}: ${y}:`);
+
         const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         greenCircle.setAttribute('cx', x);
         greenCircle.setAttribute('cy', y);
@@ -935,6 +939,8 @@ function generateGreenCircles() {
 
 // Manejar el evento 'greenCirclesGenerated' para actualizar los círculos verdes
 socket.on('greenCirclesGenerated', (circles) => {
+	            console.log('GREEN CIRCLES GENERATED 2.');
+
     greenCircles.length = 0;
     greenCircles.push(...circles);
     generateGreenCircles();
