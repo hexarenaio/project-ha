@@ -16,6 +16,14 @@ let colorIndex = 0; // Índice para asignar colores a usuarios
 
 let players = {};
 
+const greenCircles = [];
+function getRandomPosition() {
+    const x = Math.floor(Math.random() * 4); // Ajusta según el tamaño de tu área de juego
+    const y = Math.floor(Math.random() * 4);
+    return { x, y };
+}
+
+
 app.use(express.static('public'));
 
 io.on('connection', (socket) => {
@@ -126,14 +134,21 @@ socket.on('updatePlayersRequest', () => {
     });
 
     //////////////////////   
+    socket.emit('generateGreenCircles', greenCircles);
 
-    socket.emit('generateGreenCircles');
 
-    // Escuchar evento del cliente para notificar colisión y eliminar círculos verdes
-    socket.on('greenCircleEaten', function (position) {
-        // Emitir evento a todos los clientes para eliminar el círculo verde
-        io.emit('removeGreenCircle', position);
-    });
+// Función para generar círculos verdes
+function generateGreenCircles() {
+    for (let i = 0; i < 30; i++) {
+        const position = getRandomPosition();
+        greenCircles.push(position);
+    }
+}
+
+// Llamar a la función al iniciar el servidor para generar círculos iniciales
+generateGreenCircles();
+
+        
     //////////////////////    
 
 
