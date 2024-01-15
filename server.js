@@ -134,7 +134,8 @@ socket.on('updatePlayersRequest', () => {
     });
 
     //////////////////////   
-    socket.emit('generateGreenCircles', greenCircles);
+    
+        socket.emit('generateGreenCircles', greenCircles);
 
 
 // Función para generar círculos verdes
@@ -146,7 +147,15 @@ function generateGreenCircles() {
 }
 
 // Llamar a la función al iniciar el servidor para generar círculos iniciales
-generateGreenCircles();
+//generateGreenCircles();
+
+        socket.emit('greenCirclesGenerated', greenCircles);
+
+    // Manejar la generación de nuevos círculos verdes
+    socket.on('generateGreenCircles', () => {
+        generateGreenCircles();
+    });
+
 
         
     //////////////////////    
