@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
   <title>Not-Hex-A</title>
   
 <style>
@@ -800,11 +802,14 @@ greenCircle.setAttribute('fill', 'green');
 //greenCircle.style.animation = 'circleAnimationWithDuration 2s ease-in-out infinite alternate';
 svg.appendChild(greenCircle);
 
-	 setInterval(() => {
-      const currentRadius = parseFloat(greenCircle.getAttribute('r'));
-      const newRadius = currentRadius === 5 ? 7 : 5;
-      greenCircle.setAttribute('r', newRadius.toString());
-    }, 2000); // Cambia el radio cada 2 segundos
+	   anime({
+          targets: greenCircle,
+          r: 7,
+          duration: 2000, // 2 segundos
+          easing: 'easeInOutSine',
+          direction: 'alternate',
+          loop: true
+        });
   
 //console.log(`green cire: (${x}, ${y})`); 
     }
