@@ -797,8 +797,15 @@ greenCircle.setAttribute('cy', y);
 greenCircle.setAttribute('r', '8');
 greenCircle.setAttribute('fill', 'green');
 
-greenCircle.style.animation = 'circleAnimationWithDuration 2s ease-in-out infinite alternate';
+//greenCircle.style.animation = 'circleAnimationWithDuration 2s ease-in-out infinite alternate';
 svg.appendChild(greenCircle);
+
+	 setInterval(() => {
+      const currentRadius = parseFloat(greenCircle.getAttribute('r'));
+      const newRadius = currentRadius === 5 ? 7 : 5;
+      greenCircle.setAttribute('r', newRadius.toString());
+    }, 2000); // Cambia el radio cada 2 segundos
+  }
 //console.log(`green cire: (${x}, ${y})`); 
     }
 }
