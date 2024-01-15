@@ -938,6 +938,10 @@ function generateGreenCircles() {
     socket.emit('greenCirclesGenerated');
 }
 
+	// Escuchar evento del servidor para generar círculos verdes
+socket.on('generateGreenCircles', function () {
+    generateGreenCircles();
+});
 
 
 
