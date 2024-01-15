@@ -306,7 +306,14 @@ textLine5.textContent = topplayers.length >= 5 ? '#5 '+topplayers[4].nombre+ ': 
 */
 textLine1.textContent = topPlayers.length >= 1 ? `#1 ${topPlayers[0].nombre}: ${topPlayers[0].puntos}` : '';
 
-if (topPlayers[0] && topPlayers[0].color) {textLine1.style.color = topPlayers[0].color; } else {}
+if (topPlayers[0] && topPlayers[0].color) {
+	textLine1.style.color = topPlayers[0].color; 
+		      console.log('SII');
+
+					  } else {
+	      console.log('NOO');
+
+					  }
 
 textLine2.textContent = topPlayers.length >= 2 ? `#2 ${topPlayers[1].nombre}: ${topPlayers[1].puntos}` : '';
 if (topPlayers[1] && topPlayers[1].color) {textLine2.style.color = topPlayers[1].color; } else {}
