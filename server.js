@@ -18,8 +18,8 @@ let players = {};
 
 const greenCircles = [];
 function getRandomPosition() {
-    const x = Math.floor(Math.random() * 4); // Ajusta según el tamaño de tu área de juego
-    const y = Math.floor(Math.random() * 4);
+    const x = Math.floor(Math.random() * 800); // Ajusta según el tamaño de tu área de juego
+    const y = Math.floor(Math.random() * 800);
     return { x, y };
 }
 
