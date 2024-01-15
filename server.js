@@ -125,6 +125,15 @@ socket.on('updatePlayersRequest', () => {
 
     });
 
+    //////////////////////   
+
+    socket.emit('generateGreenCircles');
+
+    // Escuchar evento del cliente para notificar colisión y eliminar círculos verdes
+    socket.on('greenCircleEaten', function (position) {
+        // Emitir evento a todos los clientes para eliminar el círculo verde
+        io.emit('removeGreenCircle', position);
+    });
     //////////////////////    
 
 
