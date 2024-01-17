@@ -175,7 +175,9 @@ function generateGreenCircles() {
         greenCircles.splice(collisionIndex, 1);
         
         // Emitir evento a todos los clientes para actualizar los círculos verdes
-        io.emit('updateGreenCircles', greenCircles);
+       // io.emit('updateGreenCircles', greenCircles);
+	    	        io.emit('greenCirclesGenerated', greenCircles);
+
     }
 });
 
