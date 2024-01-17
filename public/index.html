@@ -913,7 +913,7 @@ return topPlayersx;
 
 	let greenCircles = [];
 
-function generateGreenCircles() {
+/*function generateGreenCircles() {
 	            console.log('GENERATE GREEN CIRCLES 1.');
 
     const svg = document.querySelector('svg');
@@ -939,7 +939,36 @@ console.log(`${x}: ${y}:`);
         svg.appendChild(greenCircle);
     });
 }
+*/
 
+	function generateGreenCircles() {
+    const svg = document.querySelector('svg');
+    const hexagons = document.querySelectorAll('#hexagonGroup polygon');
+
+    document.querySelectorAll('circle[fill="green"]').forEach(circle => {
+        circle.parentNode.removeChild(circle);
+    });
+
+    greenCircles = [];
+    for (let i = 0; i < 30; i++) {
+        const randomHexagon = hexagons[Math.floor(Math.random() * hexagons.length)];
+        const points = randomHexagon.getAttribute('points').split(' ');
+        const randomPointIndex = Math.floor(Math.random() * points.length);
+        const [x, y] = points[randomPointIndex].split(',').map(Number);
+
+        const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        greenCircle.setAttribute('cx', x);
+        greenCircle.setAttribute('cy', y);
+        greenCircle.setAttribute('r', '8');
+        greenCircle.setAttribute('fill', 'green');
+        svg.appendChild(greenCircle);
+
+        // Almacena las coordenadas y el índice de cada círculo verde
+        greenCircles.push({ x, y, index: i });
+    }
+
+    socket.emit('greenCirclesGenerated', greenCircles);
+}
 // Manejar el evento 'greenCirclesGenerated' para actualizar los círculos verdes
 socket.on('greenCirclesGenerated', (circles) => {
 	            console.log('GREEN CIRCLES GENERATED 2.');
@@ -950,6 +979,20 @@ socket.on('greenCirclesGenerated', (circles) => {
 
     generateGreenCircles();
 });
+
+	function handleCollisionWithGreenCircle(playerX, playerY) {
+    // Verificar colisión con cada círculo verde
+    for (const circle of greenCircles) {
+        const distance = Math.sqrt((playerX - circle.x) ** 2 + (playerY - circle.y) ** 2);
+        if (distance < 8) {
+            // Emitir evento al servidor indicando el índice del círculo verde colisionado
+            socket.emit('collisionWithGreenCircle', circle.index);
+            break; // No es necesario verificar más círculos
+        }
+    }
+}
+
+
 
 
 	
