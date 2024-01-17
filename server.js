@@ -168,6 +168,18 @@ function generateGreenCircles() {
 
     });
 
+	    socket.on('collisionWithGreenCircle', (collisionIndex) => {
+    // Verificar si el índice es válido
+    if (collisionIndex >= 0 && collisionIndex < greenCircles.length) {
+        // Eliminar el círculo verde colisionado
+        greenCircles.splice(collisionIndex, 1);
+        
+        // Emitir evento a todos los clientes para actualizar los círculos verdes
+        io.emit('updateGreenCircles', greenCircles);
+    }
+});
+
+
 
         
     //////////////////////    
