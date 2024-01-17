@@ -501,7 +501,8 @@ function animateBluePoint(destinationX, destinationY) {
 	socket.emit('updatePosition', newPosition);
 
 	const playerElement = document.getElementById('nombreDeTuElementoJugador');
-	detectarColisiones(bluePointElement);
+	//detectarColisiones(bluePointElement);
+		handleCollisionWithGreenCircle(newX, newY)
 
 	}
 	}
