@@ -968,7 +968,7 @@ console.log(`${x}: ${y}:`);
         greenCircles.push({ x, y, index: i });
     }
 
-    socket.emit('greenCirclesGenerated', greenCircles);
+ //   socket.emit('greenCirclesGenerated', greenCircles);
 }
 // Manejar el evento 'greenCirclesGenerated' para actualizar los círculos verdes
 socket.on('greenCirclesGenerated', (circles) => {
