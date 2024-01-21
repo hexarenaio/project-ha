@@ -1002,6 +1002,10 @@ console.log(`COLISION133: ${circle.lenght}:`);
 console.log(`COLISION 1334: ${distance}:`);
 
         if (distance < 8) {
+
+
+console.log(`COLISION 1999: ${cirle.index}:`);
+
             // Emitir evento al servidor indicando el índice del círculo verde colisionado
             socket.emit('collisionWithGreenCircle', circle.index);
             break; // No es necesario verificar más círculos
