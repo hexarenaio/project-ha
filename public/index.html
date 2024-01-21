@@ -991,7 +991,16 @@ socket.on('greenCirclesGenerated', (circles) => {
 	function handleCollisionWithGreenCircle(playerX, playerY) {
     // Verificar colisión con cada círculo verde
     for (const circle of greenCircles) {
+
+
+console.log(`COLISION133: ${circle.lenght}:`);
+
         const distance = Math.sqrt((playerX - circle.x) ** 2 + (playerY - circle.y) ** 2);
+
+
+
+console.log(`COLISION 1334: ${distance}:`);
+
         if (distance < 8) {
             // Emitir evento al servidor indicando el índice del círculo verde colisionado
             socket.emit('collisionWithGreenCircle', circle.index);
