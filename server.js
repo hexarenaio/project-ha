@@ -133,58 +133,62 @@ socket.on('updatePlayersRequest', () => {
 
     });
 
-    //////////////////////   
-    
-        socket.emit('generateGreenCircles', greenCircles);
 
+
+
+
+	    
+
+/////////////////////////////////////////////////////////////////////// 
+
+
+	    
+    
+socket.emit('generateGreenCircles', greenCircles);
 	    
 generateGreenCircles();
 
 // Función para generar círculos verdes
 function generateGreenCircles() {
 	if (greenCircles.length<50){
-    for (let i = 0; i < 30; i++) {
-        const position = getRandomPosition();
-        greenCircles.push(position);
-
-    }
+		for (let i = 0; i < 30; i++) {
+			const position = getRandomPosition();
+			greenCircles.push(position);
+		}
 	}
-    	console.log(`LENGTH0: ${greenCircles.length}:`);
-	     //   socket.emit('greenCirclesGenerated', greenCircles);
-	        io.emit('greenCirclesGenerated', greenCircles);
-
-
+	console.log(`LENGTH0: ${greenCircles.length}:`);
+	//socket.emit('greenCirclesGenerated', greenCircles);
+	io.emit('greenCirclesGenerated', greenCircles);
 }
 
 // Llamar a la función al iniciar el servidor para generar círculos iniciales
 //generateGreenCircles();
 
-	console.log(`LENGTH1: ${greenCircles.length}:`);
+console.log(`LENGTH1: ${greenCircles.length}:`);
 
-    // Manejar la generación de nuevos círculos verdes
-    socket.on('generateGreenCircles', () => {
-        generateGreenCircles();
-        	console.log(`LENGTH2: ${greenCircles.length}:`);
+// Manejar la generación de nuevos círculos verdes
+socket.on('generateGreenCircles', () => 
+{
+	generateGreenCircles();
+	console.log(`LENGTH2: ${greenCircles.length}:`);
+});
 
-    });
-
-	    socket.on('collisionWithGreenCircle', (collisionIndex) => {
-    // Verificar si el índice es válido
-    if (collisionIndex >= 0 && collisionIndex < greenCircles.length) {
-        // Eliminar el círculo verde colisionado
-        greenCircles.splice(collisionIndex, 1);
-        
-        // Emitir evento a todos los clientes para actualizar los círculos verdes
-       // io.emit('updateGreenCircles', greenCircles);
-	    	        io.emit('greenCirclesGenerated', greenCircles);
-
-    }
+	    
+socket.on('collisionWithGreenCircle', (collisionIndex) => 
+{
+	// Verificar si el índice es válido
+	if (collisionIndex >= 0 && collisionIndex < greenCircles.length) 
+	{
+		// Eliminar el círculo verde colisionado
+		greenCircles.splice(collisionIndex, 1);
+		//Emitir evento a todos los clientes para actualizar los círculos verdes
+		//io.emit('updateGreenCircles', greenCircles);
+		io.emit('greenCirclesGenerated', greenCircles);
+	}
 });
 
 
-
-        
-    //////////////////////    
+////////////////////////////////////////////////////////////////////////////    
 
 
     
