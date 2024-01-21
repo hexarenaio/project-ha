@@ -926,7 +926,7 @@ function generateGreenCircles() {
     });
 
 		console.log(`LENGTH: ${greenCircles.length}:`);
-
+let i = 0;
 
     // Dibuja los círculos verdes en las coordenadas recibidas del servidor
     greenCircles.forEach(({ x, y }) => {
@@ -941,6 +941,8 @@ console.log(`${x}: ${y}:`);
 
 
         greenCircles.push({ x, y, index: i });
+i=+1;
+
     });
 }
 
