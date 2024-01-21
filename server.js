@@ -144,9 +144,9 @@ socket.on('updatePlayersRequest', () => {
 
 	    
     
-//socket.emit('generateGreenCircles', greenCircles);
+socket.emit('generateGreenCircles', greenCircles);
 	    
-generateGreenCircles();
+//generateGreenCircles();
 
 // Función para generar círculos verdes
 function generateGreenCircles() 
