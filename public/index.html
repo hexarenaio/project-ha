@@ -148,13 +148,13 @@ const socket = io();
 // DESPUES DE INTRODUCIR EL NOMBRE !!!!!!!!!!!!!!!!!!!!!!!!!
 	
 document.getElementById('submitButton').addEventListener('click', function () {
-	console.log('CLIENTE EJECUTADO');
+	//console.log('CLIENTE EJECUTADO');
 	socket.on('connect_error', (error) => {
     	console.error('Error de conexión:', error);
 	});
 	
 	const playerName = document.getElementById('playerName').value;
-	console.log(`Nombre Cliente: ${playerName}`);	    
+	console.log(`CLIENT EJEC. Name: ${playerName}`);	    
 
 	//Ocultar el formulario y mostrar el canvas
 	nameForm.style.display = 'none';
@@ -226,8 +226,8 @@ hexagonGroup.addEventListener('click', function (event) {
 	
 socket.on('assignColor', function (playerName) {
 console.log('SOCKET ASSIGN COLOR');
-const playerNameT = playerName.name;
-console.log(`Assign Nombre: ${playerNameT}`);	
+//const playerNameT = playerName.name;
+//console.log(`Assign Nombre: ${playerNameT}`);	
 socket.emit('updatePlayersRequest');
 });
 
@@ -276,8 +276,8 @@ if (existingTextElement) {
     hexagonGroup.appendChild(textElement2);
 }
 //LOGS		
-console.log(`PLAYER: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${player.color}`);
-console.log(`PLAYER POINTS: ${player.puntos}`);
+//console.log(`PLAYER: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${player.color}`);
+//console.log(`PLAYER POINTS: ${player.puntos}`);
     }
 });
 
@@ -285,14 +285,14 @@ console.log(`PLAYER POINTS: ${player.puntos}`);
 //////////////////////////////////////////////////////////////////////	
 
 socket.on('updatePlayers2', function (updatedPlayers2) {
-console.log('SOCKET UPDATE PLAYERS2');
+console.log('SOCKET UPDATE PLAYERS 2');
 topplayers = [];
 //Iterar sobre el objeto de jugadores y actualizar la información
 for (const playerId in updatedPlayers2) {
 const player = updatedPlayers2[playerId];
 //LOGS		
-console.log(`PLAYER2: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${player.color}`);
-console.log(`PLAYER POINTS2: ${player.puntos}`);
+console.log(`PLAYER2: ${playerId}, ${player.x}, ${player.y}, ${player.nombre},${player.color},${player.puntos}`);
+//console.log(`PLAYER POINTS2: ${player.puntos}`);
 addPlayer(player.nombre, player.puntos, player.color);
     }
 
@@ -310,10 +310,10 @@ textLine1.textContent = topPlayers.length >= 1 ? `#1 ${topPlayers[0].nombre}: ${
 
 if (topPlayers[0] && topPlayers[0].color) {
 	textLine1.style.fill = topPlayers[0].color; 
-		      console.log('SII');
+		     // console.log('SII');
 
 					  } else {
-	      console.log('NOO');
+	    //  console.log('NOO');
 
 					  }
 
@@ -662,7 +662,7 @@ console.log("createHexagons has finished executing.");
 ///////////////////////////////////////////////!!!!!!!!!
 
 function getHexagonPoints(x, y, size) {
-console.log('Hexagon Points');
+//console.log('Hexagon Points');
 const points = [];
 for (let i = 0; i < 6; i++) {
 const angle = (2 * Math.PI / 6) * i;
@@ -753,7 +753,7 @@ function printRandomValue(min, max) {
  return randomValue;
 }
 randomV2 = printRandomValue(1, 500);
-console.log(randomV2);	
+//console.log(randomV2);	
 
 function getCoordinatesOfVertex(hexagons, targetVertexNumber) {
 let currentVertex = 0;
@@ -897,9 +897,9 @@ const sortedPlayers = topplayers.sort((a, b) => b.puntos - a.puntos);
 // Toma solo los primeros 5 jugadores.
 const topPlayersx = sortedPlayers.slice(0, 5);
 // Imprime en la consola en formato "Jugador: Puntos".
-console.log('Top 5 jugadores:');
+//console.log('Top 5 jugadores:');
 topPlayersx.forEach(topplayer => {
-console.log(`${topplayer.nombre}: ${topplayer.puntos}: ${topplayer.color}`);
+//console.log(`${topplayer.nombre}: ${topplayer.puntos}: ${topplayer.color}`);
 });
 // Devuelve la lista de los mejores jugadores.
 return topPlayersx;
