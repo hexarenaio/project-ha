@@ -115,7 +115,7 @@ display: none; }
 
      		</div>
 
-<svg id="hexagonGroup" width="3000" height= "3000" style="background-color: #ffffff;" >
+<g id="hexagonGroup" width="3000" height= "3000" style="background-color: #ffffff;" >
 
 	<text id="textLine1" x="10" y="20" fill="red">
   </text>
@@ -128,7 +128,7 @@ display: none; }
   <text id="textLine5" x="10" y="100" fill="purple">
   </text>
 
-</svg>
+</g>
 
 <div id="mainContainer">
 
@@ -437,10 +437,17 @@ createHexagons();
 
 //MOVE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////	
+
+	let cameraX=0;
+	let cameraY=0;
 	
 function moveBluePoint( clickX, clickY ) {   
 
+	cameraX += 20;
+	cameraY += 20;
+
     console.log('Camara:', Camara);
+    hexagonGroup.setAttribute('transform', `translate(${-cameraX},${-cameraY})`);
 
 	
 	//mostrarJugadoresConectados();
