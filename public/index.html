@@ -210,7 +210,7 @@ const bluePointElement = document.createElementNS('http://www.w3.org/2000/svg', 
 //CLICK LISTENER HEAGONGROUP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	
 hexagonGroup.addEventListener('click', function (event) {
-	console.log('HEXAGON GROUP LOG');
+	//console.log('HEXAGON GROUP LOG');
 	const mouseX = event.clientX - hexagonGroup.getBoundingClientRect().left;
         const mouseY = event.clientY - hexagonGroup.getBoundingClientRect().top;
 	
@@ -382,7 +382,7 @@ function animateCircleLocally(circleElement, start, end) {
 //////////////////////////////////////////////////////////////////////
 	
 function animateNameLocally(circleElement, start, end) {
-	console.log('ANIMATE CIRCLE LOCALLY');
+	//console.log('ANIMATE CIRCLE LOCALLY');
 	const duration = 100;
   	const startTime = performance.now();
 	function update() {
@@ -471,8 +471,8 @@ const playersContainer = document.getElementById('playersContainer');
 function animateBluePoint(destinationX, destinationY) {
 	const startX = parseFloat(bluePointElement.getAttribute('cx'));
     	const startY = parseFloat(bluePointElement.getAttribute('cy'));
-	console.log(`startX: ${startX}`);
- 	console.log(`startY: ${startY}`);
+	console.log(`start: ${startX},${startY}`);
+ 	//console.log(`startY: ${startY}`);
 	const startTime = performance.now();
     	const duration = 100; // 1 segundo
 	function update() {
@@ -534,7 +534,7 @@ function findClosestRedVertexToClick(x, y) {
  	console.log('La animación ha terminado');
 	});
     	} else {
-        console.log(`No se encontró vértice rojo cercano a las coordenadas (${x}, ${y}).`);
+        console.log(`No se encontró vértice rojo (${x}, ${y}).`);
     	}
     	return closestVertex;
 }
@@ -652,7 +652,7 @@ callback(); }
 }
 
 createHexagons(function() {
-console.log("createHexagons has finished executing.");
+console.log("createHexagons end");
 //DRAW GREEN RANDOM CIRCLES	
 //drawGreenCirclesOnRandomPoints();	
 });
@@ -763,7 +763,7 @@ for (const point of points) {
 const [x, y] = point.split(',').map(Number);
 currentVertex++;
 if (currentVertex === targetVertexNumber) {
-console.log(`Coordenadas del vértice ${targetVertexNumber}: (${x}, ${y})`);
+console.log(`Random: ${targetVertexNumber}: (${x}, ${y})`);
 return; // Termina la función después de encontrar el vértice deseado
 }}} console.log(`No se encontraron coordenadas para el vértice ${targetVertexNumber}`);
 }
