@@ -942,6 +942,15 @@ let i = 0;
         greenCircle.setAttribute('fill', 'green');
         svg.appendChild(greenCircle);
 
+	     anime({
+          targets: greenCircle,
+          r: 7,
+          duration: 2000, // 2 segundos
+          easing: 'easeInOutSine',
+          direction: 'alternate',
+          loop: true
+        });
+
         greenCircles2.push({ x, y, index: i });
 
 i+=1;
@@ -953,7 +962,7 @@ console.log(`Valor de I: ${i}:${x}:${y}`);
    socket.emit('greenCirclesGenerated', greenCircles);
 }
 
-
+/*
 	function generateGreenCircles3() {
     const svg = document.querySelector('svg');
     const hexagons = document.querySelectorAll('#hexagonGroup polygon');
@@ -984,6 +993,10 @@ console.log(`Valor de I: ${i}:${x}:${y}`);
 
  //   socket.emit('greenCirclesGenerated', greenCircles);
 }
+
+*/
+
+	
 // Manejar el evento 'greenCirclesGenerated' para actualizar los círculos verdes
 socket.on('greenCirclesGenerated', (circles) => {
 	            console.log('GREEN CIRCLES GENERATED 2.');
