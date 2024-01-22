@@ -28,6 +28,18 @@ app.use(express.static('public'));
 
 io.on('connection', (socket) => {
 
+    socket.on('sendCoordinates', (coordinates) => {
+        // 'coordinates' ahora contiene las coordenadas enviadas desde el cliente
+        console.log('Coordenadas recibidas:', coordinates);
+        
+        // Puedes hacer lo que necesites con estas coordenadas, por ejemplo:
+        coordinates.forEach(({ x, y }) => {
+	    console.log(`Coordenada X: ${x}, Coordenada Y: ${y}`);
+	
+            // ... (tu código para procesar las coordenadas en el servidor)
+        });
+    });	
+
     //CONFIRMATION NOMBRE PARA INICIAR SERVER
     socket.on('playerNameEntered', (playerName) => {
 
@@ -193,17 +205,7 @@ socket.on('collisionWithGreenCircle', (collisionIndex) =>
 
 	    /////////////////////
 
-	    socket.on('sendCoordinates', (coordinates) => {
-        // 'coordinates' ahora contiene las coordenadas enviadas desde el cliente
-        console.log('Coordenadas recibidas:', coordinates);
-        
-        // Puedes hacer lo que necesites con estas coordenadas, por ejemplo:
-        coordinates.forEach(({ x, y }) => {
-	    console.log(`Coordenada X: ${x}, Coordenada Y: ${y}`);
 	
-            // ... (tu código para procesar las coordenadas en el servidor)
-        });
-    });
 
 
 ////////////////////////////////////////////////////////////////////////////    
