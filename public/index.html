@@ -53,7 +53,31 @@ background-color: #0000FF; }
 form {
 text-align: center; }
 
+#svg-container {
+width: 100vw; /* 100% del ancho de la ventana */
+height: 100vh; /* 100% de la altura de la ventana */
+overflow: auto;
+touch-action: pinch-zoom;
+}
 
+#gameCanvas {
+top: 0;
+left: 0;
+width: 0;
+position: absolute;
+display: none; }
+    
+#hexagonGroup {
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+position: absolute;
+z-index: 1;
+display: none; }
+    
+#bluePoint {
+display: none; }
   
 </style>
 
@@ -91,6 +115,7 @@ text-align: center; }
 
      		</div>
 
+<svg id="hexagonGroup" width="3000" height= "3000" style="background-color: #ffffff;" >
 
 	<text id="textLine1" x="10" y="20" fill="red">
   </text>
@@ -101,15 +126,9 @@ text-align: center; }
   <text id="textLine4" x="10" y="80" fill="orange">
   </text>
   <text id="textLine5" x="10" y="100" fill="purple">
-  </text>	
+  </text>
 
- <g id="camera">
-  <!-- Grupo de hexágonos -->
-  <g id="hexagonGroup"></g>
-  <!-- Líneas de trayectoria -->
-  <!-- Punto azul -->
-  <circle id="bluePoint" cx="170" cy="170" r="8" fill="blue" />
-	</g>
+</svg>
 
 <div id="mainContainer">
 
@@ -140,10 +159,6 @@ const socket = io();
 
 let Camara = null;
 
-			const cameraGroup = document.getElementById('camera'); 
-
-
-	
 // Evento para manejar cambios en los radio buttons
 document.getElementById('cameraOptions').addEventListener('change', function(event) {
     const selectedValue = event.target.value;
@@ -193,9 +208,6 @@ const players = {}; // Objeto para almacenar la información de los jugadores
 const hexagonGroup = document.getElementById('hexagonGroup');
 const bluePoint = {id: socket.id, name: '', x: 170,  y: 170,  color: 'blue', };
 let topplayers = [];
-
-	createHexagons();
-
 
 
 let textLine1 = document.getElementById('textLine1');
@@ -421,6 +433,7 @@ function animateNameLocally(circleElement, start, end) {
 }
 
 //CREATE HEXAGON PANAL
+createHexagons();
 
 //MOVE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////	
@@ -575,8 +588,7 @@ function findClosestVertices(x, y) {
         const existingRedDot = document.querySelector
         (`circle[fill="red"][cx="${redVertex.x}"][cy="${redVertex.y}"]`);
         if (existingRedDot) {
-		        cameraGroup.removeChild(existingRedDot);
-
+        svg.removeChild(existingRedDot);
         }
     	});
     	// Limpiar el arreglo de coordenadas de los vértices rojos
@@ -599,7 +611,7 @@ function findClosestVertices(x, y) {
         redDot.setAttribute('cy', y1);
         redDot.setAttribute('r', '3');
         redDot.setAttribute('fill', 'red');
-	cameraGroup.appendChild(redDot);
+	svg.appendChild(redDot);
 	// Mostramos las coordenadas en la consola
         //console.log(`Vértice (${x1}, ${y1}) marcado con círculo rojo.`);
         }
@@ -965,7 +977,7 @@ let i = 0;
         greenCircle.setAttribute('cy', y);
         greenCircle.setAttribute('r', '8');
         greenCircle.setAttribute('fill', 'green');
-        cameraGroup.appendChild(greenCircle);
+        svg.appendChild(greenCircle);
 
 	     anime({
           targets: greenCircle,
