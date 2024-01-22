@@ -195,12 +195,18 @@ document.getElementById('submitButton').addEventListener('click', function () {
 	// ACTIVAR EL SERVIDOR
 	socket.emit('playerNameEntered', playerName);
 });
+const svgWidth = document.documentElement.clientWidth;
+const svgHeight = document.documentElement.clientHeight;
+
+const initialCameraX = svgWidth / 2 ;
+const initialCameraY = svgHeight / 2 ;
+
 
 
 const camera = document.getElementById('camera');
 
-camera.setAttribute('transform', `translate(0, 0)`);
-
+//camera.setAttribute('transform', `translate(0, 0)`);
+camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
 
 	
 
