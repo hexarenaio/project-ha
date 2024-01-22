@@ -155,6 +155,25 @@ const canvas = document.getElementById('gameCanvas');
 const context = canvas.getContext('2d');
 const socket = io();
 
+///CAM OPTIONS
+
+let Camara = null;
+
+// Evento para manejar cambios en los radio buttons
+document.getElementById('cameraOptions').addEventListener('change', function(event) {
+    const selectedValue = event.target.value;
+
+    // Actualizar la variable Camara según la selección
+    if (selectedValue === '1') {
+        Camara = 1;
+    } else if (selectedValue === '2') {
+        Camara = 2;
+    }
+
+    // Puedes imprimir la variable para verificar en la consola del navegador
+    console.log('Camara:', Camara);
+});	
+
 // DESPUES DE INTRODUCIR EL NOMBRE !!!!!!!!!!!!!!!!!!!!!!!!!
 	
 document.getElementById('submitButton').addEventListener('click', function () {
@@ -421,7 +440,9 @@ createHexagons();
 	
 function moveBluePoint( clickX, clickY ) {   
 
+    console.log('Camara:', Camara);
 
+	
 	//mostrarJugadoresConectados();
 
 	//socket.emit('updatePlayers'); // Emitir un nuevo evento al servidor
