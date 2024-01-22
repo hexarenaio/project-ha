@@ -463,6 +463,14 @@ function animateCircleLocally(circleElement, start, end) {
 		
 	circleElement.setAttribute('cx', newX);
    	circleElement.setAttribute('cy', newY);
+
+		/////
+		 const newXCam = svgWidth / 2 - newX;
+        const newYCam = svgHeight / 2 - newY;
+     camera.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
+
+
+		////
 		
     	if (progress < 1) {
       	requestAnimationFrame(update); } }
@@ -542,6 +550,31 @@ const playersContainer = document.getElementById('playersContainer');
         console.log('Mov finalizado'); 
 	});
 	*/
+
+//CAMARA/////////////////////
+		// Obtener el atributo 'transform' del elemento camera
+		const transformAttribute = camera.getAttribute('transform');
+		// Utilizar expresiones regulares para extraer los valores de traslación (translate)
+		const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
+		// Verificar si se encontraron las coordenadas de traslación
+		if (match) {
+    		// Las coordenadas actuales de la cámara
+    		 currentCameraX4 = parseFloat(match[1]);
+    		 currentCameraY4 = parseFloat(match[2]);
+    		// Haz algo con las coordenadas actuales de la cámara
+    		console.log('Coordenadas finales de la cámara:', currentCameraX4, currentCameraY4);  
+		} else {
+    		console.error('No se pudieron obtener las coordenadas de la cámara.');
+		}
+        //CAMARA END/////////////////////
+
+
+
+
+
+
+
+		
 		
 	const closestLine = findClosestLine(
         bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
