@@ -239,9 +239,9 @@ let currentCameraY4 = 0;
 
 const camera = document.getElementById('camera');
 
-	camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
-	 initialCameraX = 0;
- initialCameraY = 0;
+	//camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
+	 initialCameraX = svgWidth / 2 ;
+ initialCameraY = svgHeight / 2;
 
 	
 	camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
