@@ -196,6 +196,14 @@ document.getElementById('submitButton').addEventListener('click', function () {
 	socket.emit('playerNameEntered', playerName);
 });
 
+
+const camera = document.getElementById('camera');
+
+camera.setAttribute('transform', `translate(0, 0)`);
+
+
+	
+
 function preventZoom(event) {
 	event.preventDefault();
 }
