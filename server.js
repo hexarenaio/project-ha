@@ -35,7 +35,9 @@ io.on('connection', (socket) => {
         // Puedes hacer lo que necesites con estas coordenadas, por ejemplo:
         coordinates.forEach(({ x, y }) => {
 	    console.log(`Coordenada X: ${x}, Coordenada Y: ${y}`);
-	
+
+
+greenCircles.push({ x, y });	
             // ... (tu código para procesar las coordenadas en el servidor)
         });
     });	
@@ -166,11 +168,11 @@ generateGreenCircles();
 function generateGreenCircles() 
 {
 	if (greenCircles.length<50)	{
-		for (let i = 0; i < 30; i++) 
-		{
-			const position = getRandomPosition();
-			greenCircles.push(position);
-		}
+//		for (let i = 0; i < 30; i++) 
+//		{
+//			const position = getRandomPosition();
+//			greenCircles.push(position);
+//		}
 	}
 	console.log(`LENGTH0: ${greenCircles.length}:`);
 	//socket.emit('greenCirclesGenerated', greenCircles);
