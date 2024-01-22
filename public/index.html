@@ -197,22 +197,7 @@ document.getElementById('submitButton').addEventListener('click', function () {
 });
 
 	
-createHexagons();
 
-
-	
-const svgWidth = document.documentElement.clientWidth;
-const svgHeight = document.documentElement.clientHeight;
-
-const initialCameraX = svgWidth / 2 ;
-const initialCameraY = svgHeight / 2 ;
-
-
-
-const camera = document.getElementById('camera');
-
-//camera.setAttribute('transform', `translate(0, 0)`);
-camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
 
 	
 
@@ -247,6 +232,24 @@ function addPlayer(nombre, puntos, color) {
 	};
 	topplayers.push(nuevoJugador);
 }
+
+
+createHexagons();
+
+
+	
+const svgWidth = document.documentElement.clientWidth;
+const svgHeight = document.documentElement.clientHeight;
+
+const initialCameraX = svgWidth / 2 ;
+const initialCameraY = svgHeight / 2 ;
+
+
+
+const camera = document.getElementById('camera');
+
+//camera.setAttribute('transform', `translate(0, 0)`);
+camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);	
 
 //CIRCULO AZUL DEFINIDO
 const bluePointElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
