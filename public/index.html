@@ -17,8 +17,10 @@
 
 
     #fixedText {
+  position: fixed;
   top: 5vh;
   right: 5vw;
+  z-index: 999;
   background-color: red;
   color: white;
   padding: 10px;
@@ -28,10 +30,12 @@
     }
 
 #mainContainer {
+      position: relative;
     }
 
 //Top Player Container
 .fixed-container {
+      position: fixed;
       top: 0;
       right: 0;
       padding: 10px;
@@ -57,10 +61,20 @@ touch-action: pinch-zoom;
 }
 
 #gameCanvas {
-
+top: 0;
+left: 0;
+width: 0;
+position: absolute;
 display: none; }
     
-
+#hexagonGroup {
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+position: absolute;
+z-index: 1;
+display: none; }
     
 #bluePoint {
 display: none; }
@@ -100,8 +114,8 @@ display: none; }
 			<div id="fixedText">
 
      		</div>
-    <g id="camera">
-<svg id="hexagonGroup"  style="background-color: #ffffff;" >
+
+<svg id="hexagonGroup" width="3000" height= "3000" style="background-color: #ffffff;" >
 
 	<text id="textLine1" x="10" y="20" fill="red">
   </text>
@@ -113,10 +127,8 @@ display: none; }
   </text>
   <text id="textLine5" x="10" y="100" fill="purple">
   </text>
+
 </svg>
-	    	</g>
-
-
 
 <div id="mainContainer">
 
@@ -182,11 +194,6 @@ document.getElementById('submitButton').addEventListener('click', function () {
 	socket.emit('playerNameEntered', playerName);
 });
 
-	
-
-
-	
-
 function preventZoom(event) {
 	event.preventDefault();
 }
@@ -218,25 +225,6 @@ function addPlayer(nombre, puntos, color) {
 	};
 	topplayers.push(nuevoJugador);
 }
-
-
-createHexagons();
-
-
-	
-const svgWidth = document.documentElement.clientWidth;
-const svgHeight = document.documentElement.clientHeight;
-
-const initialCameraX = svgWidth / 2 ;
-const initialCameraY = svgHeight / 2 ;
-
-let currentCameraX3 = 0;
-let currentCameraY3 = 0;
-
-const camera = document.getElementById('camera');
-
-//camera.setAttribute('transform', `translate(0, 0)`);
-camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);	
 
 //CIRCULO AZUL DEFINIDO
 const bluePointElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
@@ -451,29 +439,6 @@ createHexagons();
 //////////////////////////////////////////////////////////////////////	
 	
 function moveBluePoint( clickX, clickY ) {   
-
-//CAMARA/////////////////////
-		// Obtener el atributo 'transform' del elemento camera
-		const transformAttribute = camera.getAttribute('transform');
-		// Utilizar expresiones regulares para extraer los valores de traslación (translate)
-		const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
-		// Verificar si se encontraron las coordenadas de traslación
-		if (match) {
-    		// Las coordenadas actuales de la cámara
-    		 currentCameraX3 = parseFloat(match[1]);
-    		 currentCameraY3 = parseFloat(match[2]);
-    		// Haz algo con las coordenadas actuales de la cámara
-    		console.log('Coordenadas actuales de la cámara:', currentCameraX3, currentCameraY3);  
-		} else {
-    		console.error('No se pudieron obtener las coordenadas de la cámara.');
-		}
-        //CAMARA END/////////////////////	
-
-	currentCameraX3+=20;
-	currentCameraY3+=20;
-
-//camera.setAttribute('transform', `translate(800}, 800)`);	
-camera.setAttribute('transform', `translate(${currentCameraX3}, ${currentCameraY3})`);	
 
     console.log('Camara:', Camara);
 
@@ -1127,3 +1092,4 @@ console.log(`COLISION 1999: ${circle.index}:`);
   
 </body>
 </html>
+
