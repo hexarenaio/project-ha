@@ -153,13 +153,13 @@ generateGreenCircles();
 // Función para generar círculos verdes
 function generateGreenCircles() 
 {
-//	if (greenCircles.length<50)	{
+	if (greenCircles.length<50)	{
 		for (let i = 0; i < 30; i++) 
 		{
 			const position = getRandomPosition();
 			greenCircles.push(position);
 		}
-//	}
+	}
 	console.log(`LENGTH0: ${greenCircles.length}:`);
 	//socket.emit('greenCirclesGenerated', greenCircles);
 	io.emit('greenCirclesGenerated', greenCircles);
