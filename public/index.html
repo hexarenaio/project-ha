@@ -115,8 +115,7 @@ display: none; }
 
      		</div>
 
-	  <!--  <g id="camera">
-<g id="hexagonGroup" width="3000" height= "3000" style="background-color: #ffffff;" >
+<svg id="hexagonGroup" width="3000" height= "3000" style="background-color: #ffffff;" >
 
 	<text id="textLine1" x="10" y="20" fill="red">
   </text>
@@ -129,31 +128,7 @@ display: none; }
   <text id="textLine5" x="10" y="100" fill="purple">
   </text>
 
-</g>
-
-		    	</g> -->
-
-	<text id="textLine1" x="10" y="20" fill="red">
-  </text>
-  <text id="textLine2" x="10" y="40" fill="blue">
-  </text>
-  <text id="textLine3" x="10" y="60" fill="green">
-  </text>
-  <text id="textLine4" x="10" y="80" fill="orange">
-  </text>
-  <text id="textLine5" x="10" y="100" fill="purple">
-  </text>
-
- <g id="camera">
-  <!-- Grupo de hexágonos -->
-  <g id="hexagonGroup"></g>
-  <!-- Líneas de trayectoria -->
-  <g id="trajectoryLines"></g>
-  <!-- Punto azul -->
-  <circle id="bluePoint" cx="170" cy="170" r="8" fill="blue" />
-	</g>	
-
-
+</svg>
 
 <div id="mainContainer">
 
@@ -218,65 +193,6 @@ document.getElementById('submitButton').addEventListener('click', function () {
 	// ACTIVAR EL SERVIDOR
 	socket.emit('playerNameEntered', playerName);
 });
-
-
-   const hexagonMap = [
-    [ { direction: 'NE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
-    [ { direction: 'NW' }, { direction: 'NE' }, { direction: 'E' }, { direction: 'EK' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
-    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
-    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
-    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
-    [ { direction: 'NE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
-    [ { direction: 'NW' }, { direction: 'NE' }, { direction: 'E' }, { direction: 'EK' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
-    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
-    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
-    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
-    [ { direction: 'NE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
-    [ { direction: 'NW' }, { direction: 'NE' }, { direction: 'E' }, { direction: 'EK' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
-    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
-    // Repite el patrón de filas según sea necesario para tener 20 filas en total
-];
-createHexagons();
-
-	
-	const initialBluePointX = 100;
-const initialBluePointY = 100;
-const svgWidth = document.documentElement.clientWidth;
-const svgHeight = document.documentElement.clientHeight;
-
-let initialCameraX = svgWidth / 2 - initialBluePointX;
-let initialCameraY = svgHeight / 2 - initialBluePointY;
-
-let currentCameraX3 = 0;
-let currentCameraY3 = 0;
-
-let currentCameraX4 = 0;
-let currentCameraY4 = 0;
-
-
-//const initialCameraX = 100;
-//const initialCameraY = 100;
-
-const camera = document.getElementById('camera');
-
-	//camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
-	 initialCameraX = svgWidth / 2 ;
- initialCameraY = svgHeight / 2;
-
-	
-	camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
-
-//let antesX = bluePoint.getAttribute('cx');
-//let antesY = bluePoint.getAttribute('cy');
-//let desX = bluePoint.getAttribute('cx');
-//let desY = bluePoint.getAttribute('cy');
-	let nuevoX = 0;
-let nuevoY = 0;        
-
-	//bluePoint.setAttribute('cx', initialBluePointX);
-	//bluePoint.setAttribute('cy', initialBluePointY);
-
-
 
 function preventZoom(event) {
 	event.preventDefault();
@@ -488,14 +404,6 @@ function animateCircleLocally(circleElement, start, end) {
 		
 	circleElement.setAttribute('cx', newX);
    	circleElement.setAttribute('cy', newY);
-
-		/////
-		 const newXCam = svgWidth / 2 - newX;
-        const newYCam = svgHeight / 2 - newY;
-     camera.setAttribute('transform', `translate(${newXCam}, ${newYCam})`);
-
-
-		////
 		
     	if (progress < 1) {
       	requestAnimationFrame(update); } }
@@ -525,7 +433,7 @@ function animateNameLocally(circleElement, start, end) {
 }
 
 //CREATE HEXAGON PANAL
-//createHexagons();
+createHexagons();
 
 //MOVE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////	
@@ -575,31 +483,6 @@ const playersContainer = document.getElementById('playersContainer');
         console.log('Mov finalizado'); 
 	});
 	*/
-
-//CAMARA/////////////////////
-		// Obtener el atributo 'transform' del elemento camera
-		const transformAttribute = camera.getAttribute('transform');
-		// Utilizar expresiones regulares para extraer los valores de traslación (translate)
-		const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
-		// Verificar si se encontraron las coordenadas de traslación
-		if (match) {
-    		// Las coordenadas actuales de la cámara
-    		 currentCameraX4 = parseFloat(match[1]);
-    		 currentCameraY4 = parseFloat(match[2]);
-    		// Haz algo con las coordenadas actuales de la cámara
-    		console.log('Coordenadas finales de la cámara:', currentCameraX4, currentCameraY4);  
-		} else {
-    		console.error('No se pudieron obtener las coordenadas de la cámara.');
-		}
-        //CAMARA END/////////////////////
-
-
-
-
-
-
-
-		
 		
 	const closestLine = findClosestLine(
         bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
@@ -705,10 +588,7 @@ function findClosestVertices(x, y) {
         const existingRedDot = document.querySelector
         (`circle[fill="red"][cx="${redVertex.x}"][cy="${redVertex.y}"]`);
         if (existingRedDot) {
-		const cameraGroup = document.getElementById('camera'); 
-       		cameraGroup.removeChild(existingRedDot);
-
-		//svg.removeChild(existingRedDot);
+        svg.removeChild(existingRedDot);
         }
     	});
     	// Limpiar el arreglo de coordenadas de los vértices rojos
@@ -731,9 +611,7 @@ function findClosestVertices(x, y) {
         redDot.setAttribute('cy', y1);
         redDot.setAttribute('r', '3');
         redDot.setAttribute('fill', 'red');
-		const cameraGroup = document.getElementById('camera'); cameraGroup.appendChild(redDot);
-
-//	svg.appendChild(redDot);
+	svg.appendChild(redDot);
 	// Mostramos las coordenadas en la consola
         //console.log(`Vértice (${x1}, ${y1}) marcado con círculo rojo.`);
         }
@@ -784,37 +662,26 @@ function pointToPointDistance2(x1, y1, x2, y2) {
 ///////////////////////////////////////////////// !!!!!
 
 function createHexagons(callback) {
-   const hexagonGroup = document.getElementById('hexagonGroup');
     const hexagonSize = 50;
-    const numRows = hexagonMap.length;
-    const numCols = hexagonMap[0].length;
+    const numRows = 20;
+    const numCols = 40;
     const hexWidth = hexagonSize * Math.sqrt(3);
     const hexHeight = hexagonSize * Math.sqrt(3);
-
     for (let row = 0; row < numRows; row++) {
-        for (let col = 0; col < numCols; col++) {
-            const x = col * (hexWidth * 0.87);
-            const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
-
-            const hexagon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-            hexagon.setAttribute('points', getHexagonPoints(x, y, hexagonSize));
-            hexagon.setAttribute('fill', 'none');
-            hexagon.setAttribute('stroke', 'gray');
-            hexagon.setAttribute('stroke-width', '2');
-
-            // Accede al mapa de hexágonos para obtener la dirección
-            const direction = hexagonMap[row][col].direction;
-
-            // Puedes usar la dirección para realizar acciones específicas en tu juego
-            // Por ejemplo, asignar eventos o comportamientos basados en la dirección
-
-            hexagon.addEventListener('click', function() {
-                console.log(`Hexágono en (${row}, ${col}) con dirección ${direction} clickeado.`);
-            });
-
-            hexagonGroup.appendChild(hexagon);
-        }
-    }
+      for (let col = 0; col < numCols; col++) {
+        const x = col * (hexWidth * 0.87);
+        const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
+        const hexagon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        hexagon.setAttribute('points', getHexagonPoints(x, y, hexagonSize));
+        hexagon.setAttribute('fill', 'none');
+        hexagon.setAttribute('stroke', 'gray');
+        hexagon.setAttribute('stroke-width', '2');
+        hexagon.addEventListener('click', function () {
+          // Agregar el manejo de clic en hexágono aquí si es necesario
+        });
+        hexagonGroup.appendChild(hexagon);
+      }
+}
 if (callback) {
 callback(); }
 }
@@ -1110,10 +977,7 @@ let i = 0;
         greenCircle.setAttribute('cy', y);
         greenCircle.setAttribute('r', '8');
         greenCircle.setAttribute('fill', 'green');
-       // svg.appendChild(greenCircle);
-	    const cameraGroup = document.getElementById('camera');
-	    cameraGroup.appendChild(greenCircle);
-
+        svg.appendChild(greenCircle);
 
 	     anime({
           targets: greenCircle,
