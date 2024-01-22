@@ -1085,7 +1085,10 @@ let i = 0;
         greenCircle.setAttribute('cy', y);
         greenCircle.setAttribute('r', '8');
         greenCircle.setAttribute('fill', 'green');
-        svg.appendChild(greenCircle);
+       // svg.appendChild(greenCircle);
+	    const cameraGroup = document.getElementById('camera');
+	    cameraGroup.appendChild(greenCircle);
+
 
 	     anime({
           targets: greenCircle,
