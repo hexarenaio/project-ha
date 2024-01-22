@@ -164,6 +164,9 @@ const socket = io();
 
 let Camara = null;
 
+			const cameraGroup = document.getElementById('camera'); 
+
+
 // Evento para manejar cambios en los radio buttons
 document.getElementById('cameraOptions').addEventListener('change', function(event) {
     const selectedValue = event.target.value;
@@ -593,7 +596,8 @@ function findClosestVertices(x, y) {
         const existingRedDot = document.querySelector
         (`circle[fill="red"][cx="${redVertex.x}"][cy="${redVertex.y}"]`);
         if (existingRedDot) {
-        svg.removeChild(existingRedDot);
+		        cameraGroup.removeChild(existingRedDot);
+
         }
     	});
     	// Limpiar el arreglo de coordenadas de los vértices rojos
@@ -616,7 +620,7 @@ function findClosestVertices(x, y) {
         redDot.setAttribute('cy', y1);
         redDot.setAttribute('r', '3');
         redDot.setAttribute('fill', 'red');
-	svg.appendChild(redDot);
+	cameraGroup.appendChild(redDot);
 	// Mostramos las coordenadas en la consola
         //console.log(`Vértice (${x1}, ${y1}) marcado con círculo rojo.`);
         }
@@ -982,7 +986,7 @@ let i = 0;
         greenCircle.setAttribute('cy', y);
         greenCircle.setAttribute('r', '8');
         greenCircle.setAttribute('fill', 'green');
-        svg.appendChild(greenCircle);
+        cameraGroup.appendChild(greenCircle);
 
 	     anime({
           targets: greenCircle,
