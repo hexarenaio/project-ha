@@ -658,7 +658,7 @@ callback(); }
 createHexagons(function() {
 console.log("createHexagons end");
 //DRAW GREEN RANDOM CIRCLES	
-//drawGreenCirclesOnRandomPoints();	
+drawGreenCirclesOnRandomPoints();	
 });
 
 
@@ -802,7 +802,7 @@ const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circ
 greenCircle.setAttribute('cx', x);
 greenCircle.setAttribute('cy', y);
 greenCircle.setAttribute('r', '8');
-greenCircle.setAttribute('fill', 'green');
+greenCircle.setAttribute('fill', 'red');
 
 //greenCircle.style.animation = 'circleAnimationWithDuration 2s ease-in-out infinite alternate';
 svg.appendChild(greenCircle);
