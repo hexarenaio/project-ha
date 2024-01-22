@@ -244,7 +244,8 @@ const svgHeight = document.documentElement.clientHeight;
 const initialCameraX = svgWidth / 2 ;
 const initialCameraY = svgHeight / 2 ;
 
-
+let currentCameraX3 = 0;
+let currentCameraY3 = 0;
 
 const camera = document.getElementById('camera');
 
@@ -465,8 +466,28 @@ createHexagons();
 	
 function moveBluePoint( clickX, clickY ) {   
 
-camera.setAttribute('transform', `translate(800}, 800)`);	
-	
+//CAMARA/////////////////////
+		// Obtener el atributo 'transform' del elemento camera
+		const transformAttribute = camera.getAttribute('transform');
+		// Utilizar expresiones regulares para extraer los valores de traslación (translate)
+		const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
+		// Verificar si se encontraron las coordenadas de traslación
+		if (match) {
+    		// Las coordenadas actuales de la cámara
+    		 currentCameraX3 = parseFloat(match[1]);
+    		 currentCameraY3 = parseFloat(match[2]);
+    		// Haz algo con las coordenadas actuales de la cámara
+    		console.log('Coordenadas actuales de la cámara:', currentCameraX3, currentCameraY3);  
+		} else {
+    		console.error('No se pudieron obtener las coordenadas de la cámara.');
+		}
+        //CAMARA END/////////////////////	
+
+	currentCameraX3+=20;
+	currentCameraY3+=20;
+
+//camera.setAttribute('transform', `translate(800}, 800)`);	
+camera.setAttribute('transform', `translate(${currentCameraX3}, ${currentCameraY3})`);	
 
     console.log('Camara:', Camara);
 
