@@ -250,7 +250,10 @@ const sizeCalc = player.puntos * 0.1;
 existingPlayerElement.setAttribute('r', 9 + sizeCalc * 10);
 } else {		
 const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+const sizeCalc = player.puntos * 0.1;
+
 playerElement.setAttribute('id', playerId);
+	
 playerElement.setAttribute('r', 9+ sizeCalc * 10);
 playerElement.setAttribute('fill', player.color);
 playerElement.setAttribute('cx', player.x);
