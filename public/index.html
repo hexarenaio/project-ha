@@ -780,6 +780,8 @@ getCoordinatesOfVertex(document.querySelectorAll('#hexagonGroup polygon'), rando
 function drawGreenCirclesOnRandomPoints() {
 const hexagons = document.querySelectorAll('#hexagonGroup polygon');
 const svg = document.querySelector('svg');
+	    const coordinates = [];
+
 for (let i = 0; i < 30; i++) {
 // Selecciona un hexágono al azar
 const randomHexagon = hexagons[Math.floor(Math.random() * hexagons.length)];
@@ -804,6 +806,8 @@ greenCircle.setAttribute('cy', y);
 greenCircle.setAttribute('r', '8');
 greenCircle.setAttribute('fill', 'red');
 
+        coordinates.push({ x, y });
+	
 //greenCircle.style.animation = 'circleAnimationWithDuration 2s ease-in-out infinite alternate';
 svg.appendChild(greenCircle);
 
@@ -818,6 +822,8 @@ svg.appendChild(greenCircle);
   
 //console.log(`green cire: (${x}, ${y})`); 
     }
+	    socket.emit('sendCoordinates', coordinates);
+
 }
 	
 
