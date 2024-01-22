@@ -1013,7 +1013,7 @@ console.log(`COLISION 1999: ${circle.index}:`);
 
             // Emitir evento al servidor indicando el índice del círculo verde colisionado
             socket.emit('collisionWithGreenCircle', circle.index);
-			    socket.emit('greenCircleEaten');}
+			    socket.emit('greenCircleEaten');
 
             break; // No es necesario verificar más círculos
         }
