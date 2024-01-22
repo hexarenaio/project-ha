@@ -166,7 +166,6 @@ let Camara = null;
 
 			const cameraGroup = document.getElementById('camera'); 
 
-createHexagons();
 
 	
 // Evento para manejar cambios en los radio buttons
@@ -218,6 +217,9 @@ const players = {}; // Objeto para almacenar la información de los jugadores
 const hexagonGroup = document.getElementById('hexagonGroup');
 const bluePoint = {id: socket.id, name: '', x: 170,  y: 170,  color: 'blue', };
 let topplayers = [];
+
+	createHexagons();
+
 
 
 let textLine1 = document.getElementById('textLine1');
