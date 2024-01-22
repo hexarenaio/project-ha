@@ -202,6 +202,57 @@ document.getElementById('submitButton').addEventListener('click', function () {
 	socket.emit('playerNameEntered', playerName);
 });
 
+
+   const hexagonMap = [
+    [ { direction: 'NE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
+    [ { direction: 'NW' }, { direction: 'NE' }, { direction: 'E' }, { direction: 'EK' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'NE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
+    [ { direction: 'NW' }, { direction: 'NE' }, { direction: 'E' }, { direction: 'EK' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'NE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
+    [ { direction: 'NW' }, { direction: 'NE' }, { direction: 'E' }, { direction: 'EK' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    // Repite el patrón de filas según sea necesario para tener 20 filas en total
+];
+	const initialBluePointX = 100;
+const initialBluePointY = 100;
+const svgWidth = document.documentElement.clientWidth;
+const svgHeight = document.documentElement.clientHeight;
+
+const initialCameraX = svgWidth / 2 - initialBluePointX;
+const initialCameraY = svgHeight / 2 - initialBluePointY;
+
+let currentCameraX3 = 0;
+let currentCameraY3 = 0;
+
+let currentCameraX4 = 0;
+let currentCameraY4 = 0;
+
+
+//const initialCameraX = 100;
+//const initialCameraY = 100;
+
+const camera = document.getElementById('camera');
+
+	camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
+
+let antesX = bluePoint.getAttribute('cx');
+let antesY = bluePoint.getAttribute('cy');
+let desX = bluePoint.getAttribute('cx');
+let desY = bluePoint.getAttribute('cy');
+	let nuevoX = 0;
+let nuevoY = 0;        
+
+	bluePoint.setAttribute('cx', initialBluePointX);
+	bluePoint.setAttribute('cy', initialBluePointY);
+
+
+
 function preventZoom(event) {
 	event.preventDefault();
 }
@@ -670,26 +721,37 @@ function pointToPointDistance2(x1, y1, x2, y2) {
 ///////////////////////////////////////////////// !!!!!
 
 function createHexagons(callback) {
+   const hexagonGroup = document.getElementById('hexagonGroup');
     const hexagonSize = 50;
-    const numRows = 20;
-    const numCols = 40;
+    const numRows = hexagonMap.length;
+    const numCols = hexagonMap[0].length;
     const hexWidth = hexagonSize * Math.sqrt(3);
     const hexHeight = hexagonSize * Math.sqrt(3);
+
     for (let row = 0; row < numRows; row++) {
-      for (let col = 0; col < numCols; col++) {
-        const x = col * (hexWidth * 0.87);
-        const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
-        const hexagon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-        hexagon.setAttribute('points', getHexagonPoints(x, y, hexagonSize));
-        hexagon.setAttribute('fill', 'none');
-        hexagon.setAttribute('stroke', 'gray');
-        hexagon.setAttribute('stroke-width', '2');
-        hexagon.addEventListener('click', function () {
-          // Agregar el manejo de clic en hexágono aquí si es necesario
-        });
-        hexagonGroup.appendChild(hexagon);
-      }
-}
+        for (let col = 0; col < numCols; col++) {
+            const x = col * (hexWidth * 0.87);
+            const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
+
+            const hexagon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+            hexagon.setAttribute('points', getHexagonPoints(x, y, hexagonSize));
+            hexagon.setAttribute('fill', 'none');
+            hexagon.setAttribute('stroke', 'gray');
+            hexagon.setAttribute('stroke-width', '2');
+
+            // Accede al mapa de hexágonos para obtener la dirección
+            const direction = hexagonMap[row][col].direction;
+
+            // Puedes usar la dirección para realizar acciones específicas en tu juego
+            // Por ejemplo, asignar eventos o comportamientos basados en la dirección
+
+            hexagon.addEventListener('click', function() {
+                console.log(`Hexágono en (${row}, ${col}) con dirección ${direction} clickeado.`);
+            });
+
+            hexagonGroup.appendChild(hexagon);
+        }
+    }
 if (callback) {
 callback(); }
 }
