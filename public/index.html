@@ -913,6 +913,7 @@ return topPlayersx;
 // Agrega la función para generar círculos verdes
 
 	let greenCircles = [];
+	let greenCircles2 = [];
 
 function generateGreenCircles() {
 	            console.log('GENERATE GREEN CIRCLES 1.');
@@ -937,11 +938,11 @@ let i = 0;
         greenCircle.setAttribute('fill', 'green');
         svg.appendChild(greenCircle);
 
-        greenCircles.push({ x, y, index: i });
+        greenCircles2.push({ x, y, index: i });
 
 i+=1;
 console.log(`Valor de I: ${i}:${x}:${y}`);
-		console.log(`LENGTH: ${greenCircles.length}:`);
+		console.log(`LENGTH: ${greenCircles2.length}:`);
 
     });
 
@@ -992,7 +993,7 @@ socket.on('greenCirclesGenerated', (circles) => {
 
 	function handleCollisionWithGreenCircle(playerX, playerY) {
     // Verificar colisión con cada círculo verde
-    for (const circle of greenCircles) {
+    for (const circle of greenCircles2) {
 
 
 //console.log(`COLISION133: ${circle.lenght}:`);
