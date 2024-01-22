@@ -343,7 +343,7 @@ if (topPlayers[4] && topPlayers[4].color) {textLine5.style.fill = topPlayers[4].
 //////////////////////////////////////////////////////////////////////
 	
 socket.on('animateBluePoint', function (animationData) {
-	console.log('SOCKET ANIMATE BLUE POINT');
+	//console.log('SOCKET ANIMATE BLUE POINT');
 	const playerId = animationData.playerId;
     	const data = animationData.data;
 	const txt = animationData.playerName;
@@ -360,7 +360,7 @@ socket.on('animateBluePoint', function (animationData) {
 //////////////////////////////////////////////////////////////////////
 			  
 function animateCircleLocally(circleElement, start, end) {
-	console.log('ANIMATE CIRCLE LOCALLY');
+	//console.log('ANIMATE CIRCLE LOCALLY');
 	const duration = 100;
   	const startTime = performance.now();
 	function update() {
@@ -471,7 +471,7 @@ const playersContainer = document.getElementById('playersContainer');
 function animateBluePoint(destinationX, destinationY) {
 	const startX = parseFloat(bluePointElement.getAttribute('cx'));
     	const startY = parseFloat(bluePointElement.getAttribute('cy'));
-	console.log(`start: ${startX},${startY}`);
+	//console.log(`start: ${startX},${startY}`);
  	//console.log(`startY: ${startY}`);
 	const startTime = performance.now();
     	const duration = 100; // 1 segundo
@@ -493,7 +493,7 @@ function animateBluePoint(destinationX, destinationY) {
 
 	findClosestVertices(bluePointElement.getAttribute('cx'), bluePointElement.getAttribute('cy'));
 		
-	console.log('Mov finalizado');
+	//console.log('Mov finalizado');
 	isMoving = false
 
 	// Supongamos que newPosition es un objeto con las nuevas coordenadas
