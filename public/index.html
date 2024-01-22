@@ -685,7 +685,10 @@ function findClosestVertices(x, y) {
         const existingRedDot = document.querySelector
         (`circle[fill="red"][cx="${redVertex.x}"][cy="${redVertex.y}"]`);
         if (existingRedDot) {
-        svg.removeChild(existingRedDot);
+		const cameraGroup = document.getElementById('camera'); 
+       		cameraGroup.removeChild(existingRedDot);
+
+		//svg.removeChild(existingRedDot);
         }
     	});
     	// Limpiar el arreglo de coordenadas de los vértices rojos
