@@ -83,6 +83,7 @@ width: 100vw;
 height: 100vh;
 position: absolute;
 z-index: 1;
+	display: none;
  }
     
 #bluePoint {
@@ -223,6 +224,7 @@ document.getElementById('submitButton').addEventListener('click', function () {
 	nameForm.style.display = 'none';
 	gameCanvas.style.display = 'block';
 	hexagonGroup.style.display = 'block';
+	firstP.style.display = 'block';
 
 	// ACTIVAR EL SERVIDOR
 	socket.emit('playerNameEntered', playerName);
