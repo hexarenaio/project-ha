@@ -219,6 +219,16 @@ const hexagonGroup = document.getElementById('hexagonGroup');
 const bluePoint = {id: socket.id, name: '', x: 170,  y: 170,  color: 'blue', };
 let topplayers = [];
 
+	const svgWidth = document.documentElement.clientWidth;
+const svgHeight = document.documentElement.clientHeight;
+
+const initialCameraX = svgWidth / 2 ;
+const initialCameraY = svgHeight / 2 ;
+	
+	const camera = document.getElementById('camera');
+
+	camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
+
 
 let textLine1 = document.getElementById('textLine1');
     let textLine2 = document.getElementById('textLine2');
