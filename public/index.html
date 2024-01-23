@@ -240,6 +240,25 @@ function preventZoom(event) {
 	event.preventDefault();
 }
 
+   
+   const hexagonMap = [
+    [ { direction: 'NE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
+    [ { direction: 'NW' }, { direction: 'NE' }, { direction: 'E' }, { direction: 'EK' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'NE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
+    [ { direction: 'NW' }, { direction: 'NE' }, { direction: 'E' }, { direction: 'EK' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'NE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'SE' }, { direction: 'E' } ],
+    [ { direction: 'NW' }, { direction: 'NE' }, { direction: 'E' }, { direction: 'EK' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    [ { direction: 'SW' }, { direction: 'SE' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' }, { direction: 'ES' }, { direction: 'E' } ],
+    // Repite el patrón de filas según sea necesario para tener 20 filas en total
+];
+	
+
 //VARIABLES 
 let randomV2 = 0;	
 let connectedUsers = 0;
@@ -724,26 +743,31 @@ function pointToPointDistance2(x1, y1, x2, y2) {
 ///////////////////////////////////////////////// !!!!!
 
 function createHexagons(callback) {
-    const hexagonSize = 50;
-    const numRows = 20;
-    const numCols = 40;
+     const hexagonGroup = document.getElementById('hexagonGroup');
+    const hexagonSize = 30;
+    const numRows = hexagonMap.length;
+    const numCols = hexagonMap[0].length;
     const hexWidth = hexagonSize * Math.sqrt(3);
     const hexHeight = hexagonSize * Math.sqrt(3);
+
     for (let row = 0; row < numRows; row++) {
-      for (let col = 0; col < numCols; col++) {
-        const x = col * (hexWidth * 0.87);
-        const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
-        const hexagon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-        hexagon.setAttribute('points', getHexagonPoints(x, y, hexagonSize));
-        hexagon.setAttribute('fill', 'none');
-        hexagon.setAttribute('stroke', 'gray');
-        hexagon.setAttribute('stroke-width', '2');
-        hexagon.addEventListener('click', function () {
-          // Agregar el manejo de clic en hexágono aquí si es necesario
-        });
-        hexagonGroup.appendChild(hexagon);
-      }
-}
+        for (let col = 0; col < numCols; col++) {
+            const x = col * (hexWidth * 0.87);
+            const y = row * hexHeight + (col % 2 === 1 ? hexHeight / 2 : 0);
+
+            const hexagon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+            hexagon.setAttribute('points', getHexagonPoints(x, y, hexagonSize));
+            hexagon.setAttribute('fill', 'none');
+            hexagon.setAttribute('stroke', 'gray');
+            hexagon.setAttribute('stroke-width', '2');
+            // Accede al mapa de hexágonos para obtener la dirección
+            const direction = hexagonMap[row][col].direction;
+            hexagon.addEventListener('click', function() {
+                console.log(`Hexágono en (${row}, ${col}) con dirección ${direction} clickeado.`);
+            });
+            hexagonGroup.appendChild(hexagon);
+        }
+    }
 if (callback) {
 callback(); }
 }
