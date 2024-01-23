@@ -367,6 +367,12 @@ playerElement.setAttribute('fill', player.color);
 playerElement.setAttribute('cx', player.x);
 playerElement.setAttribute('cy', player.y);
 hexagonGroup.appendChild(playerElement);
+
+initialCameraX = svgWidth / 2 - player.x;
+initialCameraY = svgHeight / 2 - player.y;	
+camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
+
+	
 }
 
 //TEXT ELEMENT
