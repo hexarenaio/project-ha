@@ -74,6 +74,7 @@ width: 100vw;
 height: 100vh;
 position: absolute;
 z-index: 1;
+	background-color: #ffffff;
 display: none; }
 
 #firstP {
@@ -254,6 +255,9 @@ const svgHeight = document.documentElement.clientHeight;
 
 const initialCameraX = svgWidth / 2 ;
 const initialCameraY = svgHeight / 2 ;
+
+let currentCameraX3 = 0;
+let currentCameraY3 = 0;
 	
 	const camera = document.getElementById('camera');
 
@@ -488,7 +492,12 @@ createHexagons();
 //MOVE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////	
 	
-function moveBluePoint( clickX, clickY ) {   
+function moveBluePoint( clickX, clickY ) {  
+currentCameraY3 += 20;
+
+currentCameraX3 += 20;
+	camera.setAttribute('transform', `translate(${currentCameraX3}, ${currentCameraY3})`);
+
 
     console.log('Camara:', Camara);
 
