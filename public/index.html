@@ -247,7 +247,9 @@ let isMoving = false
 let FirstMove = true
 const hexagonAngle = 0.523598776; // 30 degrees in radians
 const players = {}; // Objeto para almacenar la información de los jugadores
-const hexagonGroup = document.getElementById('firstP');
+const hexagonGroup = document.getElementById('hexagonGroup');
+	const firstP = document.getElementById('firstP');
+
 const bluePoint = {id: socket.id, name: '', x: 170,  y: 170,  color: 'blue', };
 let topplayers = [];
 
@@ -293,10 +295,10 @@ const bluePointElement = document.createElementNS('http://www.w3.org/2000/svg', 
 
 //CLICK LISTENER HEAGONGROUP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	
-hexagonGroup.addEventListener('click', function (event) {
+firstP.addEventListener('click', function (event) {
 	//console.log('HEXAGON GROUP LOG');
-	const mouseX = event.clientX - hexagonGroup.getBoundingClientRect().left;
-        const mouseY = event.clientY - hexagonGroup.getBoundingClientRect().top;
+	const mouseX = event.clientX - firstP.getBoundingClientRect().left;
+        const mouseY = event.clientY - firstP.getBoundingClientRect().top;
 	
 	moveBluePoint(mouseX, mouseY);
 
