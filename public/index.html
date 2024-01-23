@@ -286,7 +286,7 @@ let currentCameraY3 = 0;
 	
 	const camera = document.getElementById('camera');
 
-	camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
+	//camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
 
 
 let textLine1 = document.getElementById('textLine1');
@@ -372,6 +372,20 @@ initialCameraX = svgWidth / 2 - player.x;
 initialCameraY = svgHeight / 2 - player.y;	
 camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
 
+let currentCameraX4 = 0;	
+	let currentCameraY4 = 0;	
+
+//CAMARA/////////////////////
+		const transformAttribute = camera.getAttribute('transform');
+		const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
+		if (match) {
+    		 currentCameraX4 = parseFloat(match[1]);
+    		 currentCameraY4 = parseFloat(match[2]);
+    		console.log('Cámara:', currentCameraX4, currentCameraY4);  
+		} else {
+    		console.error('No se pudieron obtener las coordenadas de la cámara.');
+		}
+//CAMARA END/////////////////////  	
 	
 }
 
