@@ -8,7 +8,9 @@
   <title>Not-Hex-A</title>
   
 <style>
-	  
+//CSS STYLE SCRITPS
+
+//GREEN CIRCLES ANIMATION	  
 @keyframes circleAnimationWithDuration {
   from { r: 5; }  to { r: 7; }
 }
@@ -24,7 +26,7 @@
   padding: 10px;
   border-radius: 5px;
   font-size: 2vw; /* Ajusta el tamaño del texto según sea necesario */
-//  max-width: 90%; 
+  max-width: 90%; 
     }
 
 #mainContainer {
@@ -69,12 +71,10 @@ display: none; }
 top: 0;
 left: 0;
 width: 100vw;
-
-
-background-color: #000000;
 height: 100vh;
 position: absolute;
-z-index: 999;}
+z-index: 1;
+display: none; }
     
 #bluePoint {
 display: none; }
@@ -115,6 +115,7 @@ display: none; }
 
      		</div>
 
+<svg id="hexagonGroup" width="3000" height= "3000" style="background-color: #ffffff;" >
 
 	<text id="textLine1" x="10" y="20" fill="red">
   </text>
@@ -127,21 +128,13 @@ display: none; }
   <text id="textLine5" x="10" y="100" fill="purple">
   </text>
 
+</svg>
 
 <div id="mainContainer">
 
 </div>
 
 
-
-	<g id="camera">
-  <!-- Grupo de hexágonos -->
-  <g id="hexagonGroup"></g>
-  <!-- Líneas de trayectoria -->
-  <g id="trajectoryLines"></g>
-  <!-- Punto azul -->
-  <circle id="bluePoint" cx="170" cy="170" r="8" fill="blue" />
-	</g>
 
 
 
@@ -444,17 +437,10 @@ createHexagons();
 
 //MOVE BLUE POINT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //////////////////////////////////////////////////////////////////////	
-
-	let cameraX=0;
-	let cameraY=0;
 	
 function moveBluePoint( clickX, clickY ) {   
 
-	cameraX += 20;
-	cameraY += 20;
-
     console.log('Camara:', Camara);
-    hexagonGroup.setAttribute('transform', `translate(${-cameraX},${-cameraY})`);
 
 	
 	//mostrarJugadoresConectados();
@@ -711,7 +697,7 @@ drawGreenCirclesOnRandomPoints();
 ///////////////////////////////////////////////!!!!!!!!!
 
 function getHexagonPoints(x, y, size) {
-console.log('Hexagon Points');
+//console.log('Hexagon Points');
 const points = [];
 for (let i = 0; i < 6; i++) {
 const angle = (2 * Math.PI / 6) * i;
@@ -991,7 +977,7 @@ let i = 0;
         greenCircle.setAttribute('cy', y);
         greenCircle.setAttribute('r', '8');
         greenCircle.setAttribute('fill', 'green');
-        hexagonGroup.appendChild(greenCircle);
+        svg.appendChild(greenCircle);
 
 	     anime({
           targets: greenCircle,
@@ -1106,4 +1092,3 @@ console.log(`COLISION 1999: ${circle.index}:`);
   
 </body>
 </html>
-
