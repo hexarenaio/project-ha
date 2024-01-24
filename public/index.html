@@ -263,7 +263,11 @@ createHexagons();
 	
 
 //VARIABLES 
-let randomV2 = 0;	
+let randomV2 = 0;
+
+	let randomX = 0;	
+let randomY = 0;	
+
 let connectedUsers = 0;
 let isMoving = false
 let FirstMove = true
@@ -364,12 +368,14 @@ playerElement.setAttribute('id', playerId);
 	
 playerElement.setAttribute('r', 9+ sizeCalc * 10);
 playerElement.setAttribute('fill', player.color);
-playerElement.setAttribute('cx', player.x);
-playerElement.setAttribute('cy', player.y);
+//playerElement.setAttribute('cx', player.x);
+//playerElement.setAttribute('cy', player.y);
+	playerElement.setAttribute('cx', randomX);
+playerElement.setAttribute('cy', randomY);
 hexagonGroup.appendChild(playerElement);
 
-initialCameraX = svgWidth / 2 - player.x;
-initialCameraY = svgHeight / 2 - player.y;	
+initialCameraX = svgWidth / 2 - randomX;
+initialCameraY = svgHeight / 2 - randomY;	
 camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
 
 let currentCameraX4 = 0;	
@@ -906,7 +912,9 @@ for (const point of points) {
 const [x, y] = point.split(',').map(Number);
 currentVertex++;
 if (currentVertex === targetVertexNumber) {
-console.log(`Random: ${targetVertexNumber}: (${x}, ${y})`);
+console.log(`Random: ${targetVertexNumber}: (${x}, ${y})`);\
+	randomX = x;
+	randomY = Y;
 return; // Termina la función después de encontrar el vértice deseado
 }}} console.log(`No se encontraron coordenadas para el vértice ${targetVertexNumber}`);
 }
