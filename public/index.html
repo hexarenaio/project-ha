@@ -360,27 +360,23 @@ existingPlayerElement.setAttribute('cx', player.x);
 existingPlayerElement.setAttribute('cy', player.y);
 const sizeCalc = player.puntos * 0.1;
 existingPlayerElement.setAttribute('r', 9 + sizeCalc * 10);
+	
 } else {		
 const playerElement = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
 const sizeCalc = player.puntos * 0.1;
-
 playerElement.setAttribute('id', playerId);
-	
 playerElement.setAttribute('r', 9+ sizeCalc * 10);
 playerElement.setAttribute('fill', player.color);
 //playerElement.setAttribute('cx', player.x);
 //playerElement.setAttribute('cy', player.y);
-	playerElement.setAttribute('cx', randomX);
+playerElement.setAttribute('cx', randomX);
 playerElement.setAttribute('cy', randomY);
 hexagonGroup.appendChild(playerElement);
-
 initialCameraX = svgWidth / 2 - randomX;
 initialCameraY = svgHeight / 2 - randomY;	
 camera.setAttribute('transform', `translate(${initialCameraX}, ${initialCameraY})`);
-
 let currentCameraX4 = 0;	
-	let currentCameraY4 = 0;	
-
+let currentCameraY4 = 0;	
 //CAMARA/////////////////////
 		const transformAttribute = camera.getAttribute('transform');
 		const match = transformAttribute.match(/translate\(([^,]+),([^,]+)\)/);
@@ -392,7 +388,6 @@ let currentCameraX4 = 0;
     		console.error('No se pudieron obtener las coordenadas de la cámara.');
 		}
 //CAMARA END/////////////////////  	
-	
 }
 
 //TEXT ELEMENT
@@ -1107,8 +1102,8 @@ let i = 0;
         greenCircles2.push({ x, y, index: i });
 
 i+=1;
-console.log(`Valor de I: ${i}:${x}:${y}`);
-		console.log(`LENGTH: ${greenCircles2.length}:`);
+//console.log(`Valor de I: ${i}:${x}:${y}`);
+		//console.log(`LENGTH: ${greenCircles2.length}:`);
 
     });
 
