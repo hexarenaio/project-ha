@@ -30,11 +30,11 @@ io.on('connection', (socket) => {
 
     socket.on('sendCoordinates', (coordinates) => {
         // 'coordinates' ahora contiene las coordenadas enviadas desde el cliente
-        console.log('Coordenadas recibidas:', coordinates);
+      //  console.log('Coordenadas recibidas:', coordinates);
         
         // Puedes hacer lo que necesites con estas coordenadas, por ejemplo:
         coordinates.forEach(({ x, y }) => {
-	    console.log(`Coordenada X: ${x}, Coordenada Y: ${y}`);
+	 //   console.log(`Coordenada X: ${x}, Coordenada Y: ${y}`);
 
 
 greenCircles.push({ x, y });	
