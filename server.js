@@ -101,6 +101,8 @@ socket.on('assignColor', function (playerName) {
 //    io.emit('updatePlayers', players); // Envía la información de los jugadores a todos los clientes
 
     socket.on('updatePosition', function (position) {
+	            console.log(`Update POSITION`);
+
     // Actualiza la posición del jugador en el servidor
     players[socket.id].x = position.x;
     players[socket.id].y = position.y;
