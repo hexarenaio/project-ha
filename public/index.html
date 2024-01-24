@@ -399,8 +399,8 @@ if (existingTextElement) {
 } else {
     const textElement2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     textElement2.setAttribute('id', playerId + '-name');
-    textElement2.setAttribute('x', player.x);
-    textElement2.setAttribute('y', player.y - 10);
+    textElement2.setAttribute('x', randomX);
+    textElement2.setAttribute('y', randomY - 10);
     textElement2.setAttribute('text-anchor', 'middle');
     textElement2.setAttribute('fill', 'green');
     textElement2.setAttribute('font-size', '16px');
